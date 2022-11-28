@@ -1,3 +1,5 @@
+using System;
+using Entities.Champion;
 using Photon.Pun;
 using UnityEngine;
 
@@ -7,8 +9,8 @@ namespace GameStates
     {
         public static MapLoaderManager Instance;
         
-        public Transform firstTeamBasePoint;
-        public Transform secondTeamBasePoint;
+        public ChampionSpawner[] firstTeamBasePoint;
+        public ChampionSpawner[] secondTeamBasePoint;
 
         private void Awake()
         {
@@ -26,6 +28,12 @@ namespace GameStates
             GameStateMachine.Instance.LoadMap();
             if (PhotonNetwork.IsMasterClient) PhotonNetwork.IsMessageQueueRunning = true;
         }
-        
+
+        [Serializable]
+        public class ChampionSpawner
+        {
+            public Transform position;
+            public Champion champion;
+        }
     }
 }

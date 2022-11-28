@@ -55,9 +55,6 @@ public class FieldOfViewLocal : MonoBehaviour
 
 		DrawFieldOfView();
 	}
-	
-
-    int rota = 0;
 
 	public void DrawFieldOfView ()
 	{

@@ -190,8 +190,8 @@ MonoBehaviour:
   currentHealth: 20
   attackDamage: 3
   attackSpeed: 2
-  attackRange: 6
-  delayBeforeAttack: 0
+  attackRange: 4
+  delayBeforeAttack: 0.2
   maxHealth: 20
 --- !u!114 &4555090259929885740
 MonoBehaviour:
@@ -206,7 +206,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentState: 0
-  brainSpeed: 0.4
+  brainSpeed: 0.5
 --- !u!114 &2637466631205122503
 MonoBehaviour:
   m_ObjectHideFlags: 0

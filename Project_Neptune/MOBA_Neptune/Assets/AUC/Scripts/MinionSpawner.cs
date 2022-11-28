@@ -50,7 +50,7 @@ public partial class MinionSpawner : Building
 }
 
 
-public partial class MinionSpawner : IDamageable, IDeadable
+public partial class MinionSpawner : IActiveLifeable, IDeadable
 {
     public float GetMaxHp()
     {

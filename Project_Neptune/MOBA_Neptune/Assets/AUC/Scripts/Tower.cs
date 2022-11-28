@@ -18,7 +18,7 @@ public partial class Tower : Building
     public float brainSpeed;
     public float timeBewteenShots;
     public LayerMask canBeHitByTowerMask;
-    public bool isCycleAttack;
+    public bool isCycleAttack = false;
     public string enemyUnit;
     private float brainTimer;
 
@@ -26,9 +26,10 @@ public partial class Tower : Building
     {
         // Créer des tick pour éviter le saut de frame en plus avec le multi ça risque d'arriver
         brainTimer += Time.deltaTime;
-        if (brainTimer >= brainSpeed)
+        if (brainTimer > brainSpeed)
         {
             TowerDetection();
+            Debug.Log("TowerDetection() " + gameObject.name);
             brainTimer = 0;
         }
     }
@@ -36,21 +37,22 @@ public partial class Tower : Building
     private void TowerDetection()
     {
         enemiesInRange.Clear();
-
-        Collider[] results = new Collider[] { };
-        var size = Physics.OverlapSphereNonAlloc(transform.position, detectionRange, results, canBeHitByTowerMask);
         
-        if (size == 0 || !results[0]) return;
+        var size = Physics.OverlapSphere(transform.position, detectionRange, canBeHitByTowerMask);
+        
 
-        foreach (var result in results)
+        foreach (var result in size)
         {
             if (result.CompareTag(enemyUnit))
             {
                 enemiesInRange.Add(result.GetComponent<Entity>());
             }
         }
-        
-        StartCoroutine(AttackTarget());
+
+        if (isCycleAttack == false && enemiesInRange.Count > 0)
+        {
+            StartCoroutine(AttackTarget());
+        }
     }
 
     private IEnumerator AttackTarget()
@@ -74,7 +76,7 @@ public partial class Tower : Building
     }
 }
 
-public partial class Tower : IAttackable, IDamageable, IDeadable
+public partial class Tower : IAttackable, IActiveLifeable, IDeadable
 {
     public bool CanAttack()
     {

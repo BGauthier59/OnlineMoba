@@ -8,7 +8,7 @@ using Photon.Pun;
 using UnityEngine;
 using UnityEngine.AI;
 
-public partial class MinionTest : Entity, IMoveable, IAttackable, IDamageable
+public partial class MinionTest : Entity, IMoveable, IAttackable, IActiveLifeable
 {
     #region MinionVariables
     
@@ -35,7 +35,7 @@ public partial class MinionTest : Entity, IMoveable, IAttackable, IDamageable
     public float currentHealth;
     public float attackDamage;
     public float attackSpeed;
-    [Range(5, 15)] public float attackRange;
+    [Range(2, 8)] public float attackRange;
     public float delayBeforeAttack;
     public float maxHealth;
     #endregion
@@ -128,10 +128,13 @@ public partial class MinionTest : Entity, IMoveable, IAttackable, IDamageable
     
     private IEnumerator AttackLogic()
     {
-        attackCycle = true;
-        AttackTarget(currentAttackTarget);
-        yield return new WaitForSeconds(attackSpeed);
-        attackCycle = false;
+        if (TowersList[towerIndex].isAlive)
+        {
+            attackCycle = true;
+            AttackTarget(currentAttackTarget);
+            yield return new WaitForSeconds(attackSpeed);
+            attackCycle = false; 
+        }
     }
     
     private void AttackTarget(GameObject target) // Attaque de l'entité référencée 
@@ -505,6 +508,7 @@ public partial class MinionTest : IDeadable
     
     public void RequestDecreaseCurrentHp(float amount)
     {
+        Debug.Log(gameObject.name + " attack :" + currentAttackTarget.name + " : with " + amount +" damages");
         photonView.RPC("DecreaseCurrentHpRPC", RpcTarget.MasterClient, amount);
     }
     
@@ -568,6 +572,7 @@ public partial class MinionTest : IDeadable
     {
         PoolNetworkManager.Instance.PoolRequeue(this);
         FogOfWarManager.Instance.RemoveFOWViewable(this);
+        gameObject.SetActive(false);
     }
     
     [PunRPC]

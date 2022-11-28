@@ -1,3 +1,4 @@
+using Entities.FogOfWar;
 using GameStates;
 using Photon.Pun;
 using UnityEngine;
@@ -61,9 +62,12 @@ namespace Entities.Champion
                 InputManager.PlayerMap.Attack.Disable();
                 InputManager.PlayerMap.Capacity.Disable();
                 InputManager.PlayerMap.Inventory.Disable();
+            agent.isStopped = true;
             }
 
-            rotateParent.gameObject.SetActive(false);
+            rotateParent.gameObject.SetActive(false); 
+            uiTransform.gameObject.SetActive(false);
+            FogOfWarManager.Instance.RemoveFOWViewable(this);
 
             OnDieFeedback?.Invoke();
         }
@@ -97,17 +101,19 @@ namespace Entities.Champion
         [PunRPC]
         public void SyncReviveRPC()
         {
+            transform.position = respawnPos;
             if (photonView.IsMine)
             {
                 InputManager.PlayerMap.Movement.Enable();
                 InputManager.PlayerMap.Attack.Enable();
                 InputManager.PlayerMap.Capacity.Enable();
                 InputManager.PlayerMap.Inventory.Enable();
+            agent.isStopped = false;
+            agent.destination = transform.position;
             }
-            
-            transform.position = respawnPos;
-
+            FogOfWarManager.Instance.AddFOWViewable(this);
             rotateParent.gameObject.SetActive(true);
+            uiTransform.gameObject.SetActive(true);
             OnReviveFeedback?.Invoke();
         }
 

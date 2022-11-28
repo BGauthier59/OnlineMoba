@@ -19,7 +19,7 @@ public class PoolNetworkManager : MonoBehaviour
     public static PoolNetworkManager Instance;
 
     [SerializeField] private List<ElementData> poolElements;
-
+    
     public static Dictionary<Entity, Queue<Entity>> queuesDictionary;
 
     private void Awake()
@@ -29,7 +29,6 @@ public class PoolNetworkManager : MonoBehaviour
             DestroyImmediate(gameObject);
             return;
         }
-
         Instance = this;
         SetupDictionary();
     }
@@ -42,13 +41,10 @@ public class PoolNetworkManager : MonoBehaviour
             Queue<Entity> newQueue = new Queue<Entity>();
             for (int i = 0; i < elementData.amount; i++)
             {
-                Entity entity = PhotonNetwork
-                    .Instantiate(elementData.Element.gameObject.name, transform.position, Quaternion.identity)
-                    .GetComponent<Entity>();
+                Entity entity = PhotonNetwork.Instantiate(elementData.Element.gameObject.name, transform.position, Quaternion.identity).GetComponent<Entity>();
                 entity.gameObject.SetActive(false);
                 newQueue.Enqueue(entity);
             }
-
             queuesDictionary.Add(elementData.Element, newQueue);
         }
     }
@@ -62,7 +58,8 @@ public class PoolNetworkManager : MonoBehaviour
 
     public Entity PoolInstantiate(Entity entityRef, Vector3 position, Quaternion rotation, Transform parent = null)
     {
-        if (!isSetup) SetupDictionary();
+        if(!isSetup)SetupDictionary();
+        //Debug.Log(entityRef);
         Entity entity;
         if (parent == null) parent = transform;
         if (queuesDictionary.ContainsKey(entityRef))
@@ -70,8 +67,7 @@ public class PoolNetworkManager : MonoBehaviour
             var queue = queuesDictionary[entityRef];
             if (queue.Count == 0)
             {
-                entity = PhotonNetwork.Instantiate(entityRef.gameObject.name, position, rotation)
-                    .GetComponent<Entity>();
+                entity = PhotonNetwork.Instantiate(entityRef.gameObject.name, position, rotation).GetComponent<Entity>();
                 entity.OnInstantiated();
                 entity.OnInstantiatedFeedback();
             }
@@ -79,17 +75,25 @@ public class PoolNetworkManager : MonoBehaviour
             {
                 entity = queue.Dequeue();
                 entity.OnInstantiated();
-                entity.SendSyncInstantiate(position, rotation);
+                entity.SendSyncInstantiate(position,rotation);
             }
         }
         else
         {
+            //Debug.Log("New pool of " + entityRef.gameObject.name);
             queuesDictionary.Add(entityRef, new Queue<Entity>());
+            
             entity = PhotonNetwork.Instantiate(entityRef.gameObject.name, position, rotation).GetComponent<Entity>();
+            //entity.OnInstantiated();
+            //entity.OnInstantiatedFeedback();
+            
         }
 
         return entity;
     }
 
-    public void PoolRequeue(Entity entity) { }
+    public void PoolRequeue(Entity entity)
+    {
+        
+    }
 }

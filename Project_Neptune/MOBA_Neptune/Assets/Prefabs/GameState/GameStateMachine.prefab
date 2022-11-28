@@ -67,9 +67,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameSceneName: InGameScene
-  tickRate: 0.6
+  tickRate: 10
   winner: 0
   allPlayersIDs: 
+  debugList: []
   expectedPlayerCount: 4
   allChampionsSo:
   - {fileID: 11400000, guid: 09a5f4fc328facc46b8df84dc8d1fbe7, type: 2}
@@ -80,3 +81,4 @@ MonoBehaviour:
     color: {r: 0, g: 0.39215687, b: 1, a: 1}
   - team: 2
     color: {r: 1, g: 0, b: 0.39215687, a: 1}
+  currentStateDebugString: 

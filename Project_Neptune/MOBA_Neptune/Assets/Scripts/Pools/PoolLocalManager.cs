@@ -26,7 +26,6 @@ public class PoolLocalManager : MonoBehaviour
             DestroyImmediate(gameObject);
             return;
         }
-
         Instance = this;
     }
 
@@ -47,7 +46,6 @@ public class PoolLocalManager : MonoBehaviour
                 GO.SetActive(false);
                 newQueue.Enqueue(GO);
             }
-
             queuesDictionary.Add(elementData.Element, newQueue);
         }
     }
@@ -79,11 +77,12 @@ public class PoolLocalManager : MonoBehaviour
         }
         else
         {
+            Debug.Log("New pool of " + GORef.name);
             queuesDictionary.Add(GORef, new Queue<GameObject>());
-
+            
             returnGO = Instantiate(GORef, position, rotation, parent);
         }
-
+        
         return returnGO;
     }
 }

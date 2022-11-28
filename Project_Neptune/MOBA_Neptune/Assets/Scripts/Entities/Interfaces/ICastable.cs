@@ -44,6 +44,6 @@ namespace Entities
         /// <param name="targetedPositions">the positions targeted by  the activeCapacities</param>
         public void SyncCastRPC(byte capacityIndex, int[] targetedEntities, Vector3[] targetedPositions);
         public event GlobalDelegates.ByteIntArrayVector3ArrayDelegate OnCast;
-        public event GlobalDelegates.ByteIntArrayVector3ArrayDelegate OnCastFeedback;
+        public event GlobalDelegates.ByteIntArrayVector3ArrayCapacityDelegate OnCastFeedback;
     }
 }

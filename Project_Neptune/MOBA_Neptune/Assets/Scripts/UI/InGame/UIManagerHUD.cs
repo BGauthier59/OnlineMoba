@@ -1,23 +1,17 @@
-using System.Linq;
-using Entities;
-using Entities.Champion;
+using GameStates;
 using UnityEngine;
 
 public partial class UIManager
 {
     [SerializeField] private ChampionHUD[] championOverlays;
-
-    // Choose the right HUD to show based on the champion the player is playing
-    public void InstantiateChampionHUD(int entityIndex)
+    
+    public void InstantiateChampionHUD()
     {
-        var entity = EntityCollectionManager.GetEntityByIndex(entityIndex);
-        if (entity == null) return;
-        if (entity.GetComponent<Champion>() == null) return;
-        // TODO: How to identify the champion and show the right HUD?
-        ChampionHUD championHUD = championOverlays.FirstOrDefault(c => c.name.Contains(entity.name));
-        // if (!photonView.isMine) return;
-        if (championHUD == null) return;
-        var canvasChampion = Instantiate(championHUD, entity.transform);
-        canvasChampion.InitHUD(entity);
+        var champion = GameStateMachine.Instance.GetPlayerChampion();
+        if (champion == null) return;
+        var canvasIndex = champion.championSo.canvasIndex;
+        if (canvasIndex >= championOverlays.Length) canvasIndex = 0;
+        var canvasChampion = Instantiate(championOverlays[canvasIndex], transform);
+        canvasChampion.InitHUD(champion);
     }
 }

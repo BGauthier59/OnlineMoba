@@ -6,7 +6,9 @@ namespace Entities.Champion
     [CreateAssetMenu(menuName = "Champion", fileName = "new Champion")]
     public class ChampionSO : ScriptableObject
     {
-        [Header("Mesh")] public GameObject championMeshPrefab;
+        [Header("Visual")]
+        public GameObject championMeshPrefab;
+        public int canvasIndex;
         
         [Header("Stats")]
         public float maxHp;
@@ -31,7 +33,7 @@ namespace Entities.Champion
         {
             // Attack
             attackAbilityIndex = CapacitySOCollectionManager.GetActiveCapacitySOIndex(attackAbility);
-            
+        
             // Passives
             passiveCapacitiesIndexes = new byte[passiveCapacities.Length];
             for (var index = 0; index < passiveCapacities.Length; index++)
@@ -41,7 +43,7 @@ namespace Entities.Champion
                     CapacitySOCollectionManager.GetPassiveCapacitySOIndex(passiveCapacitySo);
             }
             // Actives
-            activeCapacitiesIndexes = new byte[activeCapacitiesIndexes.Length];
+            activeCapacitiesIndexes = new byte[activeCapacities.Length];
             for (var index = 0; index < activeCapacitiesIndexes.Length; index++)
             {
                 var activeCapacitySo = activeCapacities[index];

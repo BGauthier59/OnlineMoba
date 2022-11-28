@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Data;
 using Controllers.Inputs;
 using Entities.Champion;
+using Entities.Inventory;
 using Photon.Pun;
 using GameStates.States;
 using UnityEngine;
@@ -393,6 +394,7 @@ namespace GameStates
         {
             PhotonNetwork.IsMessageQueueRunning = false;
             PhotonNetwork.LoadLevel(gameSceneName);
+              
         }
 
         /// <summary>
@@ -403,7 +405,11 @@ namespace GameStates
             // TODO - init pools
 
             LinkChampionSOCapacityIndexes();
+
+            ItemCollectionManager.Instance.LinkCapacityIndexes();
+
             InstantiateChampion();
+            
             SendSetToggleReady(true);
         }
         
@@ -486,7 +492,12 @@ namespace GameStates
         {
             if (UIManager.Instance == null) return;
             
+            UIManager.Instance.InstantiateChampionHUD();
             
+            foreach (var actorNumber in playersReadyDict)
+            {
+                UIManager.Instance.AssignInventory(actorNumber.Key);
+            }
         }
 
         public void SendWinner(Enums.Team team)

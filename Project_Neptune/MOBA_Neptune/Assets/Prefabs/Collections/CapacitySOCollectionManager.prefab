@@ -43,5 +43,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4654f75ea552d244fb15aa6045d03c8d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  allActiveCapacities: []
-  allPassiveCapacities: []
+  allActiveCapacities:
+  - {fileID: 11400000, guid: 841f7b070628dd442a328f1ca37195b1, type: 2}
+  - {fileID: 11400000, guid: 07859fac7ee251f4da76f2d5937a8155, type: 2}
+  - {fileID: 11400000, guid: 21c7c14e005d4cc4f8470bf9a61776e2, type: 2}
+  - {fileID: 11400000, guid: cf4b0ca6bc7bc7a4d9477d556903c9ac, type: 2}
+  - {fileID: 11400000, guid: e433203b26b67c24d8b1daf85d75516f, type: 2}
+  - {fileID: 11400000, guid: 56200ad2b07b5ff43a416c1a288af400, type: 2}
+  - {fileID: 11400000, guid: a0e1138ceea314448b40f9db868c7ec9, type: 2}
+  allPassiveCapacities:
+  - {fileID: 11400000, guid: 4892e9fd3d893d04b8b520812f3c9710, type: 2}

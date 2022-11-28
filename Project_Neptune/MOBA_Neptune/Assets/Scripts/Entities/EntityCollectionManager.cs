@@ -40,7 +40,7 @@ namespace Entities
                 allEntitiesDict[index] = entity;
                 return;
             }
-
+            
             allEntitiesDict.Add(index, entity);
         }
 

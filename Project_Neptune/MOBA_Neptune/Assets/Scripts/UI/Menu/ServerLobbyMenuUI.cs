@@ -10,21 +10,13 @@ public class ServerLobbyMenuUI : MonoBehaviour
 
     public void CreateRoom()
     {
-        if (NetworkManager.Instance == null)
-        {
-            Debug.LogError("no NetworkManager");
-            return;
-        }
-        NetworkManager.Instance.CreateRoom(createRoomTMPInputField.text);
+        if (NetworkManager.Instance == null) Debug.LogError("no NetworkManager");
+        NetworkManager.Instance?.CreateRoom(createRoomTMPInputField.text);
     }
 
     public void JoinRoom()
     {
-        if (NetworkManager.Instance == null)
-        {
-            Debug.LogError("no NetworkManager");
-            return;
-        }
-        NetworkManager.Instance.JoinRoom(joinRoomTMPInputField.text);
+        if(NetworkManager.Instance == null) Debug.LogError("no NetworkManager");
+        NetworkManager.Instance?.JoinRoom(joinRoomTMPInputField.text);
     }
 }

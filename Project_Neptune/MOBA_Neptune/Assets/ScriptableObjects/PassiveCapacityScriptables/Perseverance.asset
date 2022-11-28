@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0777ee0f384f1974b9615ed7c64d795e, type: 3}
+  m_Name: Perseverance
+  m_EditorClassIdentifier: 
+  referenceName: PassivePerseveranceSO
+  descriptionName: Perseverance
+  icon: {fileID: 21300000, guid: da07ff3398264c34f89cd68eb8d3eac8, type: 3}
+  description: If has not recently been struck by damage or enemy abilities, he regenerates
+    a percentage of his total health each second.
+  stackable: 0
+  types: 0000000002000000
+  indexInCollection: 0
+  percentage: 0.054
+  timeBeforeHeal: 10
+  healEffectPrefab: {fileID: 3248323131726062708, guid: 1e116510708295e4fa641f6ab0c260c1, type: 3}

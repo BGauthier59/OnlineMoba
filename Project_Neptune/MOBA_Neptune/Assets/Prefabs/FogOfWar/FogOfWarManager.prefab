@@ -153,8 +153,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ffadea0787f861843a1d7ea7d46324a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _iteration: 4
-  upscaleTexture: 4
+  _iteration: 1
+  upscaleTexture: 1
   _useBlur: 1
   _material: {fileID: 2100000, guid: fb25180902f70ec40a0b988dbf4c415f, type: 2}
   _material1: {fileID: 2100000, guid: 269845f80d310d74db13180ca168d3e1, type: 2}
@@ -184,7 +184,7 @@ MonoBehaviour:
   worldSize: 100
   worldSizeGizmos: 1
   settingsFOV:
-    meshResolution: 2
+    meshResolution: 1
     edgeResolveIterations: 0
     edgeDstThreshold: 0
     maskCutawayDst: 0.1

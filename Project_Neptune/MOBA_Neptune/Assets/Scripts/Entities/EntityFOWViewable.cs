@@ -4,6 +4,7 @@ using Entities.FogOfWar;
 using System.Linq;
 using Photon.Pun;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 namespace Entities
 {
@@ -18,8 +19,8 @@ namespace Entities
         public bool canView;
         public List<IFOWShowable> seenShowables = new List<IFOWShowable>();
         public MeshFilter meshFilterFoV;
-
-
+       public Transform fogOfWarStartDetection;
+        
         public Enums.Team GetTeam()
         {
             return team;
@@ -168,14 +169,17 @@ namespace Entities
             if (seenShowables.Contains(showable)) return;
 
             seenShowables.Add(showable);
+            //Debug.Log("seen Showable Add");
             showable.TryAddFOWViewable(this);
-
+            //Debug.Log("Try add This FowViewable");
             var seenEntityIndex = ((Entity)showable).entityIndex;
+            //Debug.Log("Entity index : " + seenEntityIndex);
             OnAddShowableFeedback?.Invoke(seenEntityIndex);
 
-            if (!PhotonNetwork.IsMasterClient) return;
-            OnAddShowable?.Invoke(seenEntityIndex);
-            photonView.RPC("SyncAddShowableRPC", RpcTarget.All, seenEntityIndex);
+            
+         //   if (!PhotonNetwork.IsMasterClient) return;
+           // OnAddShowable?.Invoke(seenEntityIndex);
+            //photonView.RPC("SyncAddShowableRPC", RpcTarget.All, seenEntityIndex);
         }
 
         [PunRPC]
@@ -190,7 +194,7 @@ namespace Entities
 
             seenShowables.Add(showable);
             OnAddShowableFeedback?.Invoke(seenEntityIndex);
-            if (!PhotonNetwork.IsMasterClient) showable.TryAddFOWViewable(this);
+         //    if (!PhotonNetwork.IsMasterClient) showable.TryAddFOWViewable(this);
         }
 
         public event GlobalDelegates.IntDelegate OnAddShowable;
@@ -211,15 +215,18 @@ namespace Entities
         {
             if (!seenShowables.Contains(showable)) return;
 
-            seenShowables.Add(showable);
+            seenShowables.Remove(showable);
+            //Debug.Log("Remove Showable");
             showable.TryRemoveFOWViewable(this);
-
+            //Debug.Log("TryRemoveFOWViewable");
+            
             var seenEntityIndex = ((Entity)showable).entityIndex;
+            //Debug.Log("Entity Index : " + ((Entity)showable).entityIndex);
             OnRemoveShowableFeedback?.Invoke(seenEntityIndex);
 
-            if (!PhotonNetwork.IsMasterClient) return;
-            OnRemoveShowable?.Invoke(seenEntityIndex);
-            photonView.RPC("SyncRemoveShowableRPC", RpcTarget.All, seenEntityIndex);
+            //    if (!PhotonNetwork.IsMasterClient) return;
+            //     OnRemoveShowable?.Invoke(seenEntityIndex);
+            //     photonView.RPC("SyncRemoveShowableRPC", RpcTarget.All, seenEntityIndex);
         }
 
         [PunRPC]
@@ -234,10 +241,12 @@ namespace Entities
 
             seenShowables.Remove(showable);
             OnAddShowableFeedback?.Invoke(seenEntityIndex);
-            if (!PhotonNetwork.IsMasterClient) showable.TryRemoveFOWViewable(this);
+            //     if (!PhotonNetwork.IsMasterClient) showable.TryRemoveFOWViewable(this);
         }
 
         public event GlobalDelegates.IntDelegate OnRemoveShowable;
         public event GlobalDelegates.IntDelegate OnRemoveShowableFeedback;
+
+  
     }
 }
