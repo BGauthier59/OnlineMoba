@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1045 &1
+EditorBuildSettings:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Scenes:
+  - enabled: 1
+    path: Assets/_Scenes/ServeurConnector.unity
+    guid: ab5a1b2e20d747b458ccda036c955d1a
+  - enabled: 1
+    path: Assets/_Scenes/ServeurLobby.unity
+    guid: 5107ddc071c48914598cbe3a92be2797
+  - enabled: 1
+    path: Assets/_Scenes/LobbyScene.unity
+    guid: ae70351e03775d049892090e4dafec12
+  - enabled: 1
+    path: Assets/_Scenes/InGameScene.unity
+    guid: 6292000b4dcaf834ea926447b9513cda
+  - enabled: 1
+    path: Assets/_Scenes/PostGame.unity
+    guid: 93dfbfd6033908b4282b5a37b1930dfd
+  - enabled: 1
+    path: Assets/AUC/AUCGameScene.unity
+    guid: ace6cf48ad74c374f84baa7a76686572
+  - enabled: 1
+    path: Assets/_Scenes/FOG_InGameScene.unity
+    guid: c5f41c85d6f5fcd479e66bee0ad90a20
+  - enabled: 1
+    path: Assets/GAB/GAB_S.unity
+    guid: c994ecb1f703c1f43887bdeca49180ee
+  m_configObjects: {}

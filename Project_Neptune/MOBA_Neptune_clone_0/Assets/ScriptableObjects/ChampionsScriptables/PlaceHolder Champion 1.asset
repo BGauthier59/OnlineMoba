@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2dde311ad2745fe47bffefc44c802ccf, type: 3}
+  m_Name: PlaceHolder Champion 1
+  m_EditorClassIdentifier: 
+  championMeshPrefab: {fileID: 939176126738527526, guid: 503c9d1bd63ea8645a625d4738cf5e70, type: 3}
+  canvasIndex: 0
+  maxHp: 10
+  maxRessource: 10
+  viewRange: 5
+  referenceMoveSpeed: 10
+  attackAbility: {fileID: 11400000, guid: cf4b0ca6bc7bc7a4d9477d556903c9ac, type: 2}
+  attackAbilityIndex: 2
+  attackDamage: 0
+  passiveCapacities: []
+  passiveCapacitiesIndexes: 00
+  activeCapacities:
+  - {fileID: 11400000, guid: cf4b0ca6bc7bc7a4d9477d556903c9ac, type: 2}
+  - {fileID: 11400000, guid: 841f7b070628dd442a328f1ca37195b1, type: 2}
+  activeCapacitiesIndexes: 0300
+  ultimateAbility: {fileID: 11400000, guid: e433203b26b67c24d8b1daf85d75516f, type: 2}
+  ultimateAbilityIndex: 4
