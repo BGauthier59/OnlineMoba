@@ -208,6 +208,10 @@ MonoBehaviour:
   - SyncRemovePassiveCapacityRPC
   - SyncAddPassiveCapacityRPC
   - SyncRemovePassiveCapacityRPC
+  - OnGrabbedRPC
+  - SetCanBeGrabbedRPC
+  - SyncCanBeGrabbedRPC
+  - SyncOnGrabbedRPC
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1
