@@ -5,26 +5,26 @@ using UnityEngine;
 
 public class MinionController : Controllers.Controller
 {
-    public enum MinionState { Idle, Walking, LookingForPathing, Attacking }
+    public enum MinionState { Idle, Walking, LookingForPathing }
     public MinionState currentState = MinionState.Idle;
-    public float brainSpeed = .7f;
-    private float brainTimer;
-    private MinionTest myMinionTest;
+    public float updateTickSpeed = .5f;
+    private float tickTimer;
+    private MinionBehaviour _myMinionBehaviour;
     
     private void Start()
     {
-        myMinionTest = controlledEntity.GetComponent<MinionTest>();
+        _myMinionBehaviour = controlledEntity.GetComponent<MinionBehaviour>();
         currentState = MinionState.LookingForPathing;
     }
     
     void Update()
     {
         // Créer des tick pour éviter le saut de frame en plus avec le multi ça risque d'arriver
-        brainTimer += Time.deltaTime;
-        if (brainTimer >= brainSpeed)
+        tickTimer += Time.deltaTime;
+        if (tickTimer >= updateTickSpeed)
         {
             AiLogic();
-            brainTimer = 0;
+            tickTimer = 0;
         }
     }
 
@@ -32,10 +32,9 @@ public class MinionController : Controllers.Controller
     {
         switch (currentState)
         {
-            case MinionState.Idle: myMinionTest.IdleState(); break;
-            case MinionState.Walking: myMinionTest.WalkingState(); break;
-            case MinionState.LookingForPathing: myMinionTest.LookingForPathingState(); break;
-            case MinionState.Attacking: myMinionTest.AttackingState(); break;
+            case MinionState.Idle: _myMinionBehaviour.IdleState(); break;
+            case MinionState.Walking: _myMinionBehaviour.WalkingState(); break;
+            case MinionState.LookingForPathing: _myMinionBehaviour.LookingForPathingState(); break;
             default: throw new ArgumentOutOfRangeException();
         }
     }

@@ -14,7 +14,6 @@ public partial class MinionSpawner : Building
     private readonly float spawnSpeed = 30;
     public Color minionColor;
     public List<Transform> pathfinding = new List<Transform>();
-    public List<Building> enemyTowers = new List<Building>();
     public string unitTag;
     
     private void Update()
@@ -39,11 +38,10 @@ public partial class MinionSpawner : Building
 
     private void SpawnMinion()
     {
-        Entity minionGO = PoolNetworkManager.Instance.PoolInstantiate(minionPrefab, spawnPointForMinion.position, Quaternion.identity, transform.root.root.root.root);
+        Entity minionGO = PoolNetworkManager.Instance.PoolInstantiate(minionPrefab, spawnPointForMinion.position, Quaternion.identity, transform.root);
         
-        MinionTest minionScript = minionGO.GetComponent<MinionTest>();
+        MinionBehaviour minionScript = minionGO.GetComponent<MinionBehaviour>();
         minionScript.myWaypoints = pathfinding;
-        minionScript.TowersList = enemyTowers;
         minionScript.tag = unitTag;
         minionGO.GetComponent<MeshRenderer>().material.color = minionColor;
     }

@@ -174,25 +174,15 @@ MonoBehaviour:
   viewAngle: 0
   canView: 0
   meshFilterFoV: {fileID: 6974560254418586115}
+  fogOfWarStartDetection: {fileID: 0}
   myAgent: {fileID: 4555090259929885741}
   myWaypoints: []
   TowersList: []
   wayPointIndex: 0
   towerIndex: 0
-  currentAggroState: 0
-  whoAggro: 0
-  enemyMinionMask:
-    serializedVersion: 2
-    m_Bits: 1024
-  currentAttackTarget: {fileID: 0}
-  whoIsAttackingMe: []
-  attackCycle: 0
   currentHealth: 20
-  attackDamage: 3
-  attackSpeed: 2
-  attackRange: 4
-  delayBeforeAttack: 0.2
   maxHealth: 20
+  speed: 0
 --- !u!114 &4555090259929885740
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -206,7 +196,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentState: 0
-  brainSpeed: 0.5
+  updateTickSpeed: 0.5
 --- !u!114 &2637466631205122503
 MonoBehaviour:
   m_ObjectHideFlags: 0
