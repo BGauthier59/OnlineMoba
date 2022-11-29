@@ -1,8 +1,15 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
+using Entities.Capacities;
 using UnityEngine;
 
-public class GrabCapacitySO : MonoBehaviour
+namespace Capacities.Active_Capacities
 {
-    
+    [CreateAssetMenu(menuName = "Capacity/ActiveCapacitySO/Grab Capacity", fileName = "Grab Capacity SO")]
+    public class GrabCapacitySO : ActiveCapacitySO
+    {
+        public override Type AssociatedType()
+        {
+            return typeof(GrabCapacity);
+        }
+    }
 }

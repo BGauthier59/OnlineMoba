@@ -18,14 +18,14 @@ MonoBehaviour:
   maxRessource: 10
   viewRange: 20
   referenceMoveSpeed: 10
-  attackAbility: {fileID: 11400000, guid: cf4b0ca6bc7bc7a4d9477d556903c9ac, type: 2}
+  attackAbility: {fileID: 0}
   attackAbilityIndex: 255
   attackDamage: 0
   passiveCapacities: []
   passiveCapacitiesIndexes: 
   activeCapacities:
-  - {fileID: 11400000, guid: cf4b0ca6bc7bc7a4d9477d556903c9ac, type: 2}
-  - {fileID: 11400000, guid: 841f7b070628dd442a328f1ca37195b1, type: 2}
-  activeCapacitiesIndexes: ffff
-  ultimateAbility: {fileID: 11400000, guid: e433203b26b67c24d8b1daf85d75516f, type: 2}
+  - {fileID: 11400000, guid: 86bed31a4acbebf4ca8845cd5cfdbca6, type: 2}
+  - {fileID: 0}
+  activeCapacitiesIndexes: 00ff
+  ultimateAbility: {fileID: 0}
   ultimateAbilityIndex: 255

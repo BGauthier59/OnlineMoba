@@ -42,7 +42,7 @@ namespace Entities.Champion
 
         public void RequestCast(byte capacityIndex, int[] targetedEntities, Vector3[] targetedPositions)
         {
-            photonView.RPC("CastRPC",RpcTarget.MasterClient,capacityIndex,targetedEntities,targetedPositions);
+            photonView.RPC("CastRPC", RpcTarget.MasterClient,capacityIndex,targetedEntities,targetedPositions);
         }
         
         [PunRPC]

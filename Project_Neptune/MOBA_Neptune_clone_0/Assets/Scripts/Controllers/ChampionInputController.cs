@@ -18,8 +18,7 @@ namespace Controllers.Inputs
         private Vector3 moveVector;
         private Camera cam;
         private bool isActivebuttonPress;
-
-
+        
         private void OnAttack(InputAction.CallbackContext ctx)
         {
             if (champion.attackAbilityIndex == 255)
@@ -68,7 +67,7 @@ namespace Controllers.Inputs
         private void OnMouseMove(InputAction.CallbackContext ctx)
         {
             // Todo - set selected entity
-            // Todo - Set GetMouseOverWorldPos
+            cursorWorldPos[0] = GetMouseOverWorldPos();
         }
 
         void OnMouseClick(InputAction.CallbackContext ctx)
@@ -76,16 +75,10 @@ namespace Controllers.Inputs
             
         }
 
-        public Vector3 GetMouseOverWorldPos()
+        private Vector3 GetMouseOverWorldPos()
         {
-            Ray mouseRay = cam.ScreenPointToRay(Input.mousePosition);
-
-            if (Physics.Raycast(mouseRay, out RaycastHit hit))
-            {
-                return hit.point;
-            }
-
-            return Vector3.zero;
+            var mouseRay = cam.ScreenPointToRay(Input.mousePosition);
+            return Physics.Raycast(mouseRay, out var hit) ? hit.point : Vector3.zero;
         }
 
 
