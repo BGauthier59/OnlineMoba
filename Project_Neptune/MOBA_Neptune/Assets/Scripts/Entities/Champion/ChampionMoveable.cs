@@ -10,8 +10,7 @@ namespace Entities.Champion
 {
     public partial class Champion : IMoveable
     {
-        [Header("Movement")]
-        public float referenceMoveSpeed;
+        [Header("Movement")] public float referenceMoveSpeed;
         public float currentMoveSpeed;
         public float currentRotateSpeed;
         public bool canMove;
@@ -24,7 +23,7 @@ namespace Entities.Champion
         {
             return canMove;
         }
-        
+
         public float GetReferenceMoveSpeed()
         {
             return referenceMoveSpeed;
@@ -111,7 +110,7 @@ namespace Entities.Champion
 
         public event GlobalDelegates.FloatDelegate OnDecreaseCurrentMoveSpeed;
         public event GlobalDelegates.FloatDelegate OnDecreaseCurrentMoveSpeedFeedback;
-        
+
 
         private void Move()
         {
@@ -119,13 +118,15 @@ namespace Entities.Champion
             var strength = StreamManager.GetStreamVector(this);
             Debug.DrawRay(transform.position, velocity, Color.green);
             Debug.DrawRay(transform.position, strength, Color.magenta);
+            if (velocity + strength == rb.velocity) return;
+            
             rb.velocity = velocity + strength;
         }
 
         private void RotateMath()
         {
             if (!photonView.IsMine) return;
-    
+
             var ray = camera.ScreenPointToRay(Input.mousePosition);
 
             if (!Physics.Raycast(ray, out var hit, float.PositiveInfinity)) return;
@@ -145,7 +146,7 @@ namespace Entities.Champion
         {
             moveDirection = direction;
         }
-        
+
         public event GlobalDelegates.Vector3Delegate OnMove;
         public event GlobalDelegates.Vector3Delegate OnMoveFeedback;
     }

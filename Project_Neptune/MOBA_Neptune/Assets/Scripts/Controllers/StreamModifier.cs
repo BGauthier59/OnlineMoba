@@ -13,10 +13,15 @@ namespace Controllers
         public CircleEntrance circleEntrance;
 
         public Transform circleStreamCenter;
-        public float streamStrength;
+        [HideInInspector] public float streamStrength;
         public float linearFactor = 60;
 
-        private List<IStreamable> entitiesInStream = new List<IStreamable>();
+        private List<IStreamable> streamablesWaitingInCircle = new List<IStreamable>();
+
+        private void Start()
+        {
+            streamStrength = StreamManager.Instance.streamStrength;
+        }
 
         private void Update()
         {
@@ -25,18 +30,29 @@ namespace Controllers
 
         private void CheckPlayerRelativePosition()
         {
-            foreach (var s in entitiesInStream)
+            for (int i = streamablesWaitingInCircle.Count - 1; i >= 0; i--)
             {
-                if (s.GetCurrentStreamModifier() == this) return;
+                var s = streamablesWaitingInCircle[i];
                 
+                if (s.GetCurrentStreamModifier() == this) return;
+
+                var streamableReadyToTurn = false;
                 switch (circleEntrance)
                 {
                     case CircleEntrance.Bottom:
-                        if(s.GetCurrentPosition().x <= circleStreamCenter.position.x) s.SetStreamModifier(this);
+                        if (s.GetCurrentPosition().x <= circleStreamCenter.position.x) streamableReadyToTurn = true;
+
                         break;
                     case CircleEntrance.Top:
-                        if(s.GetCurrentPosition().x >= circleStreamCenter.position.x) s.SetStreamModifier(this);
+                        if (s.GetCurrentPosition().x >= circleStreamCenter.position.x) streamableReadyToTurn = true;
+
                         break;
+                }
+
+                if (streamableReadyToTurn)
+                {
+                    s.SetStreamModifier(this);
+                    streamablesWaitingInCircle.Remove(s);
                 }
             }
         }
@@ -48,7 +64,10 @@ namespace Controllers
             if (streamable == null) return;
 
             if (streamModifierType == StreamModifierType.Linear) streamable.SetStreamModifier(this);
-            else entitiesInStream.Add(streamable);
+            else
+            {
+                streamablesWaitingInCircle.Add(streamable);
+            }
         }
 
         private void OnTriggerExit(Collider other)
@@ -56,6 +75,11 @@ namespace Controllers
             var streamable = other.GetComponent<IStreamable>();
 
             if (streamable == null) return;
+
+            if (streamModifierType == StreamModifierType.Circular)
+            {
+                streamablesWaitingInCircle.Remove(streamable);
+            }
 
             if (streamable.GetCurrentStreamModifier() != this) return;
             streamable.SetStreamModifier(null);
@@ -76,6 +100,7 @@ namespace Controllers
 
     public enum CircleEntrance
     {
-        Bottom, Top
+        Bottom,
+        Top
     }
 }

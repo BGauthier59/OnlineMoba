@@ -20,7 +20,6 @@ namespace Entities.Champion
 
         public void SetStreamModifier(StreamModifier modifier)
         {
-            Debug.Log("New stream modifier!");
             currentStreamModifier = modifier;
         }
     }
