@@ -19,7 +19,6 @@ namespace Entities.Champion
 
         private Vector3 rotateDirection;
 
-        public StreamModifier currentStreamModifier;
 
         public bool CanMove()
         {
@@ -120,8 +119,6 @@ namespace Entities.Champion
             var strength = StreamManager.GetStreamVector(this);
             Debug.DrawRay(transform.position, velocity, Color.green);
             Debug.DrawRay(transform.position, strength, Color.magenta);
-            Debug.DrawRay(transform.position, velocity + strength, Color.yellow);
-
             rb.velocity = velocity + strength;
         }
 

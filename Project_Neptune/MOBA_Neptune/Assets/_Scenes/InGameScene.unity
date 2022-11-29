@@ -522,9 +522,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   streamModifierType: 1
-  direction: 0
+  direction: 1
+  circleEntrance: 0
   circleStreamCenter: {fileID: 1288807030}
-  streamStrength: 10
+  streamStrength: 20
+  linearFactor: 20
 --- !u!1 &691937023
 GameObject:
   m_ObjectHideFlags: 0
@@ -883,9 +885,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   streamModifierType: 1
-  direction: 0
+  direction: 1
+  circleEntrance: 1
   circleStreamCenter: {fileID: 1083636002}
-  streamStrength: 10
+  streamStrength: 20
+  linearFactor: 20
 --- !u!1 &996030813
 GameObject:
   m_ObjectHideFlags: 0
@@ -2102,8 +2106,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   streamModifierType: 0
   direction: 0
+  circleEntrance: 0
   circleStreamCenter: {fileID: 0}
-  streamStrength: 10
+  streamStrength: 20
+  linearFactor: 30
 --- !u!1 &1893229721
 GameObject:
   m_ObjectHideFlags: 0
@@ -2215,8 +2221,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   streamModifierType: 0
   direction: 1
+  circleEntrance: 0
   circleStreamCenter: {fileID: 0}
-  streamStrength: 10
+  streamStrength: 20
+  linearFactor: 30
 --- !u!1001 &1991350100
 PrefabInstance:
   m_ObjectHideFlags: 0

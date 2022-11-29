@@ -32,19 +32,16 @@ namespace Controllers
                     StreamDirection.RightToLeft => Vector3.left,
                     _ => Vector3.zero
                 };
-                return dir * (modifier.streamStrength * Time.fixedDeltaTime);
+                return dir * (modifier.streamStrength * modifier.linearFactor * Time.fixedDeltaTime);
             }
             else
             {
-                // Todo - Debug circular : ça marche pas
-                
                 var relativeVector = -(modifier.circleStreamCenter.position - champion.transform.position);
-                Debug.DrawRay(modifier.circleStreamCenter.position, relativeVector, Color.black);
                 var dir = Vector2.Perpendicular(new Vector2(relativeVector.x, relativeVector.z));
                 if (modifier.direction == StreamDirection.RightToLeft) dir = -dir;
                 var dir3 = new Vector3(dir.x, 0, dir.y);
 
-                return dir * (modifier.streamStrength * Time.fixedTime);
+                return dir3 * (modifier.streamStrength * Time.fixedDeltaTime);
             }
         }
     }
