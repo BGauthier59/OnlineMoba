@@ -7,6 +7,7 @@ namespace Controllers
     public class StreamManager : MonoBehaviour
     {
         public static StreamManager Instance;
+        public float streamStrength;
 
         private void Awake()
         {
