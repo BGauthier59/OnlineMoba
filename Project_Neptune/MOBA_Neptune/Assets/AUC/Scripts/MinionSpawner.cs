@@ -13,7 +13,7 @@ public partial class MinionSpawner : Building
     public float spawnCycleTime = 30;
     private readonly float spawnSpeed = 30;
     public Color minionColor;
-    public List<Transform> pathfinding = new List<Transform>();
+    public Transform goToPointBeforeStream;
     public string unitTag;
     
     private void Update()
@@ -41,7 +41,7 @@ public partial class MinionSpawner : Building
         Entity minionGO = PoolNetworkManager.Instance.PoolInstantiate(minionPrefab, spawnPointForMinion.position, Quaternion.identity, transform.root);
         
         MinionBehaviour minionScript = minionGO.GetComponent<MinionBehaviour>();
-        minionScript.myWaypoints = pathfinding;
+        minionScript.myWayPoint = goToPointBeforeStream;
         minionScript.tag = unitTag;
         minionGO.GetComponent<MeshRenderer>().material.color = minionColor;
     }

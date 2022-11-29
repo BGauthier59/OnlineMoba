@@ -1,22 +1,25 @@
 using System;
 using System.Collections.Generic;
+using Controllers;
 using Entities;
 using Entities.FogOfWar;
+using Entities.Interfaces;
 using Photon.Pun;
 using UnityEngine;
 using UnityEngine.AI;
 
-public partial class MinionBehaviour : Entity, IMoveable, IDamageable
+public partial class MinionBehaviour : Entity
 {
     #region MinionVariables
 
+    [Space]
     public NavMeshAgent myAgent;
     private MinionController myController;
 
-    [Header("Pathfinding")] public List<Transform> myWaypoints = new List<Transform>();
-    public List<Building> TowersList = new List<Building>();
+    [Header("Pathfinding")] 
+    [SerializeField] private StreamModifier currentStreamModifier;
+    public Transform myWayPoint;
     public int wayPointIndex;
-    public int towerIndex;
 
     [Header("Stats")] public float currentHealth;
     public float maxHealth;
@@ -42,37 +45,23 @@ public partial class MinionBehaviour : Entity, IMoveable, IDamageable
 
     public void WalkingState()
     {
-        CheckMyWayPoints();
+        var strength = StreamManager.GetStreamVector(currentStreamModifier, transform);
+        Debug.DrawRay(transform.position, strength, Color.magenta);
+        Vector3 targetDestination = (transform.position + strength);
+        myAgent.SetDestination(targetDestination);
     }
 
     public void LookingForPathingState()
     {
-        myAgent.SetDestination(myWaypoints[wayPointIndex].position);
-        myController.currentState = MinionController.MinionState.Walking;
-    }
-
-
-    //------Others Methods
-    private void CheckMyWayPoints()
-    {
-        if (Vector3.Distance(transform.position, myWaypoints[wayPointIndex].transform.position) <=
-            myAgent.stoppingDistance /* Definir range de detection des waypoints en variable si besoin*/)
-        {
-            if (wayPointIndex < myWaypoints.Count - 1)
-            {
-                wayPointIndex++;
-                myAgent.SetDestination(myWaypoints[wayPointIndex].position);
-            }
-            else
-            {
-                myController.currentState = MinionController.MinionState.Idle;
-            }
-        }
+        myAgent.SetDestination(myWayPoint.position);
+        
+        if (Vector3.Distance(transform.position, myWayPoint.position) < myAgent.stoppingDistance)
+            myController.currentState = MinionController.MinionState.Walking;
     }
 }
 
 
-public partial class MinionBehaviour : IDeadable
+public partial class MinionBehaviour : IDeadable, IMoveable, IDamageable, IStreamable
 {
     //------
 
@@ -468,4 +457,19 @@ public partial class MinionBehaviour : IDeadable
 
     public event GlobalDelegates.NoParameterDelegate OnRevive;
     public event GlobalDelegates.NoParameterDelegate OnReviveFeedback;
+
+    public Vector3 GetCurrentPosition()
+    {
+        return transform.position;
+    }
+
+    public StreamModifier GetCurrentStreamModifier()
+    {
+        return currentStreamModifier;
+    }
+
+    public void SetStreamModifier(StreamModifier modifier)
+    {
+        currentStreamModifier = modifier;
+    }
 }

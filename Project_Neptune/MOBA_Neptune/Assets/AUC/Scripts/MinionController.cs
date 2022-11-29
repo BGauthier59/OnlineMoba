@@ -19,13 +19,15 @@ public class MinionController : Controllers.Controller
     
     void Update()
     {
+        AiLogic();
+        
         // Créer des tick pour éviter le saut de frame en plus avec le multi ça risque d'arriver
-        tickTimer += Time.deltaTime;
-        if (tickTimer >= updateTickSpeed)
-        {
-            AiLogic();
-            tickTimer = 0;
-        }
+        //tickTimer += Time.deltaTime;
+        //if (tickTimer >= updateTickSpeed)
+        //{
+        //    AiLogic();
+        //    tickTimer = 0;
+        //}
     }
 
     private void AiLogic()

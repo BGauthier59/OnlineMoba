@@ -110,12 +110,11 @@ namespace Entities.Champion
 
         public event GlobalDelegates.FloatDelegate OnDecreaseCurrentMoveSpeed;
         public event GlobalDelegates.FloatDelegate OnDecreaseCurrentMoveSpeedFeedback;
-
-
+        
         private void Move()
         {
             var velocity = moveDirection * currentMoveSpeed;
-            var strength = StreamManager.GetStreamVector(this);
+            var strength = StreamManager.GetStreamVector(currentStreamModifier, transform);
             Debug.DrawRay(transform.position, velocity, Color.green);
             Debug.DrawRay(transform.position, strength, Color.magenta);
             if (velocity + strength == rb.velocity) return;

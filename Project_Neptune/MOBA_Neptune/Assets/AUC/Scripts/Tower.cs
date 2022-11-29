@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Entities;
 using Entities.Capacities;
+using Entities.Champion;
 using Photon.Pun;
 using UnityEngine;
 
@@ -10,17 +11,20 @@ public partial class Tower : Building
 {
     [Space]
     [Header("Tower settings")]
-    public float detectionRange;
     public List<Entity> enemiesInRange = new List<Entity>();
+    public LayerMask canBeHitByTowerMask;
     public int damage;
+    public float detectionRange;
     public float delayBeforeAttack;
     public float detectionDelay;
     public float brainSpeed;
     public float timeBewteenShots;
-    public LayerMask canBeHitByTowerMask;
     public bool isCycleAttack = false;
     public string enemyUnit;
+    
     private float brainTimer;
+    [SerializeField] private ActiveCapacitySO attackCapa;
+    [SerializeField] private Transform debugRay;
 
     protected override void OnUpdate()
     {
@@ -39,14 +43,49 @@ public partial class Tower : Building
         enemiesInRange.Clear();
         
         var size = Physics.OverlapSphere(transform.position, detectionRange, canBeHitByTowerMask);
-        
 
+        if (size.Length == 0) return;
+        
+        float tempDist = detectionRange;
+        Collider tempEntity = null;
         foreach (var result in size)
         {
             if (result.CompareTag(enemyUnit))
             {
-                enemiesInRange.Add(result.GetComponent<Entity>());
+                float dist = Vector3.Distance(transform.position, result.transform.position);
+                
+                if (dist < detectionRange)
+                {
+                    tempEntity = result;
+                    tempDist = dist;
+                }
             }
+        }
+
+        if (tempEntity != null)
+        {
+            enemiesInRange.Add(tempEntity.GetComponent<Entity>());
+        }
+
+        tempDist = detectionRange;
+        tempEntity = null;
+        foreach (var result in size)
+        {
+            if (result.GetComponent<Champion>() != null)
+            {
+                float dist = Vector3.Distance(transform.position, result.transform.position);
+                
+                if (dist < detectionRange)
+                {
+                    tempEntity = result;
+                    tempDist = dist;
+                }
+            }
+        }
+        
+        if (tempEntity != null)
+        {
+            enemiesInRange.Add(tempEntity.GetComponent<Entity>());
         }
 
         if (isCycleAttack == false && enemiesInRange.Count > 0)
@@ -54,7 +93,7 @@ public partial class Tower : Building
             StartCoroutine(AttackTarget());
         }
     }
-
+    
     private IEnumerator AttackTarget()
     {
         isCycleAttack = true;
@@ -63,7 +102,7 @@ public partial class Tower : Building
         
         int[] targetEntity = new[] { enemiesInRange[0].GetComponent<Entity>().entityIndex };
         
-        AttackRPC(3, targetEntity, Array.Empty<Vector3>());
+        AttackRPC(attackCapa.indexInCollection, targetEntity, Array.Empty<Vector3>());
         
         yield return new WaitForSeconds(timeBewteenShots);
         isCycleAttack = false;
@@ -74,9 +113,19 @@ public partial class Tower : Building
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, detectionRange);
     }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.yellow;
+        
+        if (enemiesInRange.Count > 0)
+        {
+            Gizmos.DrawLine(debugRay.position, enemiesInRange[0].transform.position);
+        }
+    }
 }
 
-public partial class Tower : IAttackable, IDamageable, IDeadable
+public partial class Tower : IAttackable, IDeadable
 {
     public bool CanAttack()
     {
@@ -140,7 +189,7 @@ public partial class Tower : IAttackable, IDamageable, IDeadable
     {
         var attackCapacity = CapacitySOCollectionManager.CreateActiveCapacity(capacityIndex,this);
 
-        if (!attackCapacity.TryCast(entityIndex, targetedEntities, targetedPositions)) return;
+        if (!attackCapacity.TryCast(photonView.ViewID, targetedEntities, targetedPositions)) return;
             
         OnAttack?.Invoke(capacityIndex,targetedEntities,targetedPositions);
         photonView.RPC("SyncAttackRPC",RpcTarget.All,capacityIndex,targetedEntities,targetedPositions);
@@ -148,152 +197,7 @@ public partial class Tower : IAttackable, IDamageable, IDeadable
 
     public event GlobalDelegates.ByteIntArrayVector3ArrayDelegate OnAttack;
     public event GlobalDelegates.ByteIntArrayVector3ArrayDelegate OnAttackFeedback;
-    public float GetMaxHp()
-    {
-        throw new NotImplementedException();
-    }
-
-    public float GetCurrentHp()
-    {
-        throw new NotImplementedException();
-    }
-
-    public float GetCurrentHpPercent()
-    {
-        throw new NotImplementedException();
-    }
-
-    public void RequestSetMaxHp(float value)
-    {
-        throw new NotImplementedException();
-    }
-
-    public void SyncSetMaxHpRPC(float value)
-    {
-        throw new NotImplementedException();
-    }
-
-    public void SetMaxHpRPC(float value)
-    {
-        throw new NotImplementedException();
-    }
-
-    public event GlobalDelegates.FloatDelegate OnSetMaxHp;
-    public event GlobalDelegates.FloatDelegate OnSetMaxHpFeedback;
-    public void RequestIncreaseMaxHp(float amount)
-    {
-        throw new NotImplementedException();
-    }
-
-    public void SyncIncreaseMaxHpRPC(float amount)
-    {
-        throw new NotImplementedException();
-    }
-
-    public void IncreaseMaxHpRPC(float amount)
-    {
-        throw new NotImplementedException();
-    }
-
-    public event GlobalDelegates.FloatDelegate OnIncreaseMaxHp;
-    public event GlobalDelegates.FloatDelegate OnIncreaseMaxHpFeedback;
-    public void RequestDecreaseMaxHp(float amount)
-    {
-        throw new NotImplementedException();
-    }
-
-    public void SyncDecreaseMaxHpRPC(float amount)
-    {
-        throw new NotImplementedException();
-    }
-
-    public void DecreaseMaxHpRPC(float amount)
-    {
-        throw new NotImplementedException();
-    }
-
-    public event GlobalDelegates.FloatDelegate OnDecreaseMaxHp;
-    public event GlobalDelegates.FloatDelegate OnDecreaseMaxHpFeedback;
-    public void RequestSetCurrentHp(float value)
-    {
-        throw new NotImplementedException();
-    }
-
-    public void SyncSetCurrentHpRPC(float value)
-    {
-        throw new NotImplementedException();
-    }
-
-    public void SetCurrentHpRPC(float value)
-    {
-        throw new NotImplementedException();
-    }
-
-    public event GlobalDelegates.FloatDelegate OnSetCurrentHp;
-    public event GlobalDelegates.FloatDelegate OnSetCurrentHpFeedback;
-    public void RequestSetCurrentHpPercent(float value)
-    {
-        throw new NotImplementedException();
-    }
-
-    public void SyncSetCurrentHpPercentRPC(float value)
-    {
-        throw new NotImplementedException();
-    }
-
-    public void SetCurrentHpPercentRPC(float value)
-    {
-        throw new NotImplementedException();
-    }
-
-    public event GlobalDelegates.FloatDelegate OnSetCurrentHpPercent;
-    public event GlobalDelegates.FloatDelegate OnSetCurrentHpPercentFeedback;
-    public void RequestIncreaseCurrentHp(float amount)
-    {
-        throw new NotImplementedException();
-    }
-
-    public void SyncIncreaseCurrentHpRPC(float amount)
-    {
-        throw new NotImplementedException();
-    }
-
-    public void IncreaseCurrentHpRPC(float amount)
-    {
-        throw new NotImplementedException();
-    }
-
-    public event GlobalDelegates.FloatDelegate OnIncreaseCurrentHp;
-    public event GlobalDelegates.FloatDelegate OnIncreaseCurrentHpFeedback;
     
-    public void RequestDecreaseCurrentHp(float amount)
-    {
-        photonView.RPC("DecreaseCurrentHpRPC", RpcTarget.MasterClient, amount);
-    }
-    
-    [PunRPC]
-    public void SyncDecreaseCurrentHpRPC(float amount)
-    {
-        currentHealth = amount;
-    }
-
-    [PunRPC]
-    public void DecreaseCurrentHpRPC(float amount)
-    {
-        currentHealth -= amount;
-        if (currentHealth < 0) currentHealth = 0;
-        
-        photonView.RPC("SyncDecreaseCurrentHpRPC", RpcTarget.All, currentHealth);
-        
-        if (currentHealth <= 0 && isAlive)
-        {
-            RequestDie();
-            isAlive = false;
-        }
-    }
-
-    public event GlobalDelegates.FloatDelegate OnDecreaseCurrentHp;
-    public event GlobalDelegates.FloatDelegate OnDecreaseCurrentHpFeedback;
     public bool IsAlive()
     {
         throw new NotImplementedException();

@@ -31,7 +31,6 @@ namespace Entities.Champion
             capacityCollection = CapacitySOCollectionManager.Instance;
             uiManager = UIManager.Instance;
             camera = Camera.main;
-            uiManager = UIManager.Instance;
 
             blocker.characterColliderBlocker.enabled = true;
             blocker.SetUpBlocker();
