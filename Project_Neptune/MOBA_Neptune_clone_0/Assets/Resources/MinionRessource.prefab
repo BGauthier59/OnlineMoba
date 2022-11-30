@@ -17,7 +17,8 @@ GameObject:
   - component: {fileID: 4555090259929885739}
   - component: {fileID: 4555090259929885740}
   - component: {fileID: 2637466631205122503}
-  m_Layer: 10
+  - component: {fileID: 2610927020216715510}
+  m_Layer: 29
   m_Name: MinionRessource
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -112,7 +113,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.7
-  m_Speed: 3.5
+  m_Speed: 6
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
@@ -174,25 +175,14 @@ MonoBehaviour:
   viewAngle: 0
   canView: 0
   meshFilterFoV: {fileID: 6974560254418586115}
+  fogOfWarStartDetection: {fileID: 0}
   myAgent: {fileID: 4555090259929885741}
-  myWaypoints: []
-  TowersList: []
+  currentStreamModifier: {fileID: 0}
+  myWayPoint: {fileID: 0}
   wayPointIndex: 0
-  towerIndex: 0
-  currentAggroState: 0
-  whoAggro: 0
-  enemyMinionMask:
-    serializedVersion: 2
-    m_Bits: 1024
-  currentAttackTarget: {fileID: 0}
-  whoIsAttackingMe: []
-  attackCycle: 0
   currentHealth: 20
-  attackDamage: 3
-  attackSpeed: 2
-  attackRange: 4
-  delayBeforeAttack: 0.2
   maxHealth: 20
+  speed: 0
 --- !u!114 &4555090259929885740
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -206,7 +196,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentState: 0
-  brainSpeed: 0.5
+  updateTickSpeed: 0.2
 --- !u!114 &2637466631205122503
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -223,6 +213,22 @@ MonoBehaviour:
   m_SynchronizeRotation: 1
   m_SynchronizeScale: 0
   m_UseLocal: 1
+--- !u!54 &2610927020216715510
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4555090259929885730}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 112
+  m_CollisionDetection: 0
 --- !u!1001 &366539886548500121
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -33,7 +33,6 @@ public partial class MinionBehaviour : Entity
         myAgent = GetComponent<NavMeshAgent>();
         myController = GetComponent<MinionController>();
         currentHealth = maxHealth;
-        Debug.Log("OnStart ? " + gameObject.name);
     }
 
     //------ State Methods

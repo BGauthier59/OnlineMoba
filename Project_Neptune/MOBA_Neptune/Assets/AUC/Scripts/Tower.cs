@@ -33,7 +33,6 @@ public partial class Tower : Building
         if (brainTimer > brainSpeed)
         {
             TowerDetection();
-            Debug.Log("TowerDetection() " + gameObject.name);
             brainTimer = 0;
         }
     }

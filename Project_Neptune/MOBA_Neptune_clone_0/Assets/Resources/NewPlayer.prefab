@@ -143,6 +143,7 @@ GameObject:
   - component: {fileID: 2263356599250850540}
   - component: {fileID: 6530865356692434526}
   - component: {fileID: 434428232920986599}
+  - component: {fileID: 7093485588091870439}
   m_Layer: 29
   m_Name: NewPlayer
   m_TagString: Untagged
@@ -305,6 +306,22 @@ MonoBehaviour:
   m_SynchronizeAngularVelocity: 0
   m_TeleportEnabled: 1
   m_TeleportIfDistanceGreaterThan: 3
+--- !u!208 &7093485588091870439
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3480681341667345177}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 0
+  m_Extents: {x: 0.6, y: 1, z: 0.6}
+  m_MoveThreshold: 0.1
+  m_Carve: 0
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 1, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!1 &3480681342087303709
 GameObject:
   m_ObjectHideFlags: 0

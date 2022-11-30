@@ -33,6 +33,7 @@ namespace Entities.FogOfWar
         /// </summary>
         /// <param name="IFogOfWarViewable"> Interface for Entity </param>
         private List<Entity> allViewables = new List<Entity>();
+
         private Dictionary<Entity, List<Entity>> currentViewablesWithEntitiesShowables =
             new Dictionary<Entity, List<Entity>>();
 
@@ -96,7 +97,7 @@ namespace Entities.FogOfWar
         {
             foreach (var viewable in currentViewablesWithEntitiesShowables)
             {
-               viewable.Value.Clear();
+                viewable.Value.Clear();
             }
         }
 
@@ -112,16 +113,14 @@ namespace Entities.FogOfWar
             foreach (var viewable in allViewables)
             {
                 var seenShowables = viewable.seenShowables;
-                for (int i = seenShowables.Count-1; i >= 0; i--)
+                for (int i = seenShowables.Count - 1; i >= 0; i--)
                 {
                     if (!currentViewablesWithEntitiesShowables[viewable].Contains((Entity)seenShowables[i]))
                     {
                         viewable.RemoveShowable(seenShowables[i]);
                         //Debug.Log("Remove Elements from list");
                     }
-                    
                 }
-                
             }
         }
 
@@ -225,6 +224,7 @@ namespace Entities.FogOfWar
                     maxPoint = newViewCast.point;
                 }
             }
+
             return new EdgeInfo(minPoint, maxPoint);
         }
 
@@ -232,11 +232,10 @@ namespace Entities.FogOfWar
         {
             Vector3 dir = DirFromAngle(globalAngle, true, entity);
             RaycastHit hit;
-            if (Physics.Raycast(entity.fogOfWarStartDetection.position, dir, out hit, entity.viewRange, layerTargetFogOfWar))
+            if (Physics.Raycast(entity.fogOfWarStartDetection.position, dir, out hit, entity.viewRange,
+                    layerTargetFogOfWar))
             {
-     //           Debug.DrawRay(entity.transform.position, dir * entity.viewRange, Color.green, 1);
                 Entity candidateEntity = hit.collider.gameObject.GetComponent<Entity>();
-       //         Debug.Log(hit.collider.gameObject.name);
                 if (candidateEntity != null)
                 {
                     entity.AddShowable(candidateEntity);
@@ -244,6 +243,7 @@ namespace Entities.FogOfWar
                     return new ViewCastInfo(false, entity.transform.position + dir * entity.viewRange, entity.viewRange,
                         globalAngle);
                 }
+
                 return new ViewCastInfo(true, hit.point, hit.distance, globalAngle);
             }
             else
