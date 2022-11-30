@@ -144,7 +144,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 891615681}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -21.23, y: 0, z: 0}
+  m_LocalPosition: {x: -20.96, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 5379506599813813555}
@@ -174,7 +174,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1979177663}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 12.87, y: 0, z: 0}
+  m_LocalPosition: {x: 15, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 5379506599425828995}
@@ -341,13 +341,13 @@ MonoBehaviour:
   canHide: 0
   elementsToShow: []
   canChangeTeam: 0
-  team: 0
+  team: 2
   baseViewRange: 0
   viewRange: 0
   viewAngle: 0
   canView: 0
   meshFilterFoV: {fileID: 3421455115152798149}
-  fogOfWarStartDetection: {fileID: 0}
+  fogOfWarStartDetection: {fileID: 5379506599165814278}
   isAlive: 1
   maxHealth: 10000
   currentHealth: 0
@@ -362,7 +362,6 @@ MonoBehaviour:
   brainSpeed: 0.7
   timeBewteenShots: 2
   isCycleAttack: 0
-  enemyUnit: RedUnit
   attackCapa: {fileID: 11400000, guid: 36fc4f6e74087054dbff028990139ea0, type: 2}
   debugRay: {fileID: 104813094}
 --- !u!1 &5379506599251309896
@@ -426,7 +425,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5379506599425828994}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -91.65, y: 1.4, z: 0}
+  m_LocalPosition: {x: -95, y: 1.4, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 8810554823560930598}
@@ -494,13 +493,13 @@ MonoBehaviour:
   canHide: 0
   elementsToShow: []
   canChangeTeam: 0
-  team: 0
+  team: 1
   baseViewRange: 0
   viewRange: 0
   viewAngle: 0
   canView: 0
   meshFilterFoV: {fileID: 3421455114658274712}
-  fogOfWarStartDetection: {fileID: 0}
+  fogOfWarStartDetection: {fileID: 5379506599425828995}
   isAlive: 0
   maxHealth: 0
   currentHealth: 0
@@ -510,7 +509,7 @@ MonoBehaviour:
   spawnMinionInterval: 1.5
   spawnCycleTime: 30
   minionColor: {r: 0.8584906, g: 0.4753558, b: 0.08503916, a: 0}
-  goToPointBeforeStream: {fileID: 0}
+  goToPointBeforeStream: {fileID: 1979177664}
   unitTag: RedUnit
 --- !u!1 &5379506599813813554
 GameObject:
@@ -539,7 +538,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5379506599813813554}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 98.76, y: 1.4, z: 0}
+  m_LocalPosition: {x: 103.27, y: 1.4, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 8810554824428499601}
@@ -607,13 +606,13 @@ MonoBehaviour:
   canHide: 0
   elementsToShow: []
   canChangeTeam: 0
-  team: 0
+  team: 2
   baseViewRange: 0
   viewRange: 0
   viewAngle: 0
   canView: 0
   meshFilterFoV: {fileID: 3421455114999188015}
-  fogOfWarStartDetection: {fileID: 0}
+  fogOfWarStartDetection: {fileID: 5379506599813813555}
   isAlive: 0
   maxHealth: 0
   currentHealth: 0
@@ -623,7 +622,7 @@ MonoBehaviour:
   spawnMinionInterval: 1.7
   spawnCycleTime: 30
   minionColor: {r: 0.5504379, g: 0.18160377, b: 0.7264151, a: 0}
-  goToPointBeforeStream: {fileID: 0}
+  goToPointBeforeStream: {fileID: 891615682}
   unitTag: BlueUnit
 --- !u!1 &5379506599872585210
 GameObject:
@@ -818,13 +817,13 @@ MonoBehaviour:
   canHide: 0
   elementsToShow: []
   canChangeTeam: 0
-  team: 0
+  team: 1
   baseViewRange: 0
   viewRange: 0
   viewAngle: 0
   canView: 0
   meshFilterFoV: {fileID: 3421455115799979793}
-  fogOfWarStartDetection: {fileID: 0}
+  fogOfWarStartDetection: {fileID: 5379506599922093070}
   isAlive: 0
   maxHealth: 0
   currentHealth: 0
@@ -839,7 +838,6 @@ MonoBehaviour:
   brainSpeed: 0.7
   timeBewteenShots: 2
   isCycleAttack: 0
-  enemyUnit: BlueUnit
   attackCapa: {fileID: 11400000, guid: 36fc4f6e74087054dbff028990139ea0, type: 2}
   debugRay: {fileID: 648427878}
 --- !u!1 &5379506600203440758
@@ -1065,13 +1063,13 @@ MonoBehaviour:
   canHide: 0
   elementsToShow: []
   canChangeTeam: 0
-  team: 0
+  team: 1
   baseViewRange: 0
   viewRange: 0
   viewAngle: 0
   canView: 0
   meshFilterFoV: {fileID: 3421455115384769013}
-  fogOfWarStartDetection: {fileID: 0}
+  fogOfWarStartDetection: {fileID: 5379506600856259972}
   isAlive: 0
   maxHealth: 0
   currentHealth: 0
@@ -1086,7 +1084,6 @@ MonoBehaviour:
   brainSpeed: 0.7
   timeBewteenShots: 2
   isCycleAttack: 0
-  enemyUnit: BlueUnit
   attackCapa: {fileID: 11400000, guid: 36fc4f6e74087054dbff028990139ea0, type: 2}
   debugRay: {fileID: 319555829}
 --- !u!1 &5379506601065416564
@@ -1250,13 +1247,13 @@ MonoBehaviour:
   canHide: 0
   elementsToShow: []
   canChangeTeam: 0
-  team: 0
+  team: 2
   baseViewRange: 0
   viewRange: 0
   viewAngle: 0
   canView: 0
   meshFilterFoV: {fileID: 3421455115061873357}
-  fogOfWarStartDetection: {fileID: 0}
+  fogOfWarStartDetection: {fileID: 5379506601065416568}
   isAlive: 1
   maxHealth: 10000
   currentHealth: 0
@@ -1271,7 +1268,6 @@ MonoBehaviour:
   brainSpeed: 0.7
   timeBewteenShots: 2
   isCycleAttack: 0
-  enemyUnit: RedUnit
   attackCapa: {fileID: 11400000, guid: 36fc4f6e74087054dbff028990139ea0, type: 2}
   debugRay: {fileID: 732095763}
 --- !u!1 &5379506601136933633

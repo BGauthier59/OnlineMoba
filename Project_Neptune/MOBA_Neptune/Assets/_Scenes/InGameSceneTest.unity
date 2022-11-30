@@ -277,7 +277,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8476984097424502033, guid: 8239c1a9673f991428136c57e027d608, type: 3}
       propertyPath: worldSize
-      value: 250
+      value: 75
+      objectReference: {fileID: 0}
+    - target: {fileID: 8476984097424502033, guid: 8239c1a9673f991428136c57e027d608, type: 3}
+      propertyPath: sceneToRenderFog.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8476984097424502033, guid: 8239c1a9673f991428136c57e027d608, type: 3}
+      propertyPath: sceneToRenderFog.Array.data[3]
+      value: InGameSceneTest
       objectReference: {fileID: 0}
     - target: {fileID: 8476984097424502034, guid: 8239c1a9673f991428136c57e027d608, type: 3}
       propertyPath: m_Name
@@ -617,37 +625,13 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 891615682, guid: dead161a952d82f4d81fc3d989c5be74, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -20.96
-      objectReference: {fileID: 0}
-    - target: {fileID: 1979177664, guid: dead161a952d82f4d81fc3d989c5be74, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 15
-      objectReference: {fileID: 0}
     - target: {fileID: 5379506599165814277, guid: dead161a952d82f4d81fc3d989c5be74, type: 3}
       propertyPath: sceneViewId
       value: 4
       objectReference: {fileID: 0}
-    - target: {fileID: 5379506599425828992, guid: dead161a952d82f4d81fc3d989c5be74, type: 3}
-      propertyPath: goToPointBeforeStream
-      value: 
-      objectReference: {fileID: 1979177664}
-    - target: {fileID: 5379506599425828995, guid: dead161a952d82f4d81fc3d989c5be74, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -95
-      objectReference: {fileID: 0}
     - target: {fileID: 5379506599425828998, guid: dead161a952d82f4d81fc3d989c5be74, type: 3}
       propertyPath: sceneViewId
       value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 5379506599813813552, guid: dead161a952d82f4d81fc3d989c5be74, type: 3}
-      propertyPath: goToPointBeforeStream
-      value: 
-      objectReference: {fileID: 891615682}
-    - target: {fileID: 5379506599813813555, guid: dead161a952d82f4d81fc3d989c5be74, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 103.27
       objectReference: {fileID: 0}
     - target: {fileID: 5379506599813813558, guid: dead161a952d82f4d81fc3d989c5be74, type: 3}
       propertyPath: sceneViewId
@@ -797,11 +781,6 @@ Transform:
   m_Father: {fileID: 1540473102}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
---- !u!4 &891615682 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 891615682, guid: dead161a952d82f4d81fc3d989c5be74, type: 3}
-  m_PrefabInstance: {fileID: 747641057}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &921472233
 GameObject:
   m_ObjectHideFlags: 0
@@ -1271,12 +1250,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6697169192466650589, guid: 80fefcb4f83a0b14db760960cf24ee68, type: 3}
       propertyPath: allActiveCapacities.Array.size
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6697169192466650589, guid: 80fefcb4f83a0b14db760960cf24ee68, type: 3}
       propertyPath: allActiveCapacities.Array.data[0]
       value: 
       objectReference: {fileID: 11400000, guid: 36fc4f6e74087054dbff028990139ea0, type: 2}
+    - target: {fileID: 6697169192466650589, guid: 80fefcb4f83a0b14db760960cf24ee68, type: 3}
+      propertyPath: allActiveCapacities.Array.data[1]
+      value: 
+      objectReference: {fileID: 11400000, guid: 86bed31a4acbebf4ca8845cd5cfdbca6, type: 2}
     - target: {fileID: 6697169192466650589, guid: 80fefcb4f83a0b14db760960cf24ee68, type: 3}
       propertyPath: allPassiveCapacitiesSo.Array.size
       value: 0
@@ -2387,11 +2370,6 @@ MonoBehaviour:
   circleStreamCenter: {fileID: 0}
   streamStrength: 20
   linearFactor: 30
---- !u!4 &1979177664 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 1979177664, guid: dead161a952d82f4d81fc3d989c5be74, type: 3}
-  m_PrefabInstance: {fileID: 747641057}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1991350100
 PrefabInstance:
   m_ObjectHideFlags: 0
