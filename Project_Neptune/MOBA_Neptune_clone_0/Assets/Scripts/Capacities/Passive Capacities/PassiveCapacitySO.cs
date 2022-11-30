@@ -2,10 +2,8 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Entities.Capacities
+namespace Capacities.Passive_Capacities
 {
-    //Asset Menu Syntax :
-    //[CreateAssetMenu(menuName = "Capacity/PassiveCapacitySO", fileName = "new PassiveCapacitySO")]
     public abstract class PassiveCapacitySO : ScriptableObject
     {
         [Tooltip("GP Name")] public string referenceName;
@@ -18,7 +16,6 @@ namespace Entities.Capacities
         public string description;
         
         public bool stackable;
-
         
         /// <summary>
         /// return typeof(PassiveCapacity);

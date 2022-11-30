@@ -1,43 +1,44 @@
+using Entities;
 using Entities.Interfaces;
 using Photon.Pun;
+using UnityEngine;
 
-namespace Entities.Champion
+namespace Capacities.Active_Capacities.Grab
 {
-    public partial class Champion : IGrabable
+    public class GrabableWall : Entity, IGrabable
     {
-        public bool canBeGrabbed;
-
         public Enums.Team GetGrabbedTeam()
         {
-            return team;
+            return Enums.Team.Neutral;
         }
 
         public void RequestSetCanBeGrabbed(bool canBeGrabbed)
         {
-            photonView.RPC("SetCanBeGrabbedRPC", RpcTarget.MasterClient, canBeGrabbed);
+            throw new System.NotImplementedException();
         }
 
         [PunRPC]
         public void SetCanBeGrabbedRPC(bool canBeGrabbed)
         {
-            this.canBeGrabbed = canBeGrabbed;
-            photonView.RPC("SyncCanBeGrabbedRPC", RpcTarget.All, this.canBeGrabbed);
+            throw new System.NotImplementedException();
         }
 
         [PunRPC]
         public void SyncCanBeGrabbedRPC(bool canBeGrabbed)
         {
-            this.canBeGrabbed = canBeGrabbed;
+            throw new System.NotImplementedException();
         }
-
+        
         public void OnGrabbed()
         {
+            Debug.Log("Je suis grab mais je suis un mur!");
             photonView.RPC("SyncOnGrabbedRPC", RpcTarget.All);
         }
 
         [PunRPC]
         public void SyncOnGrabbedRPC()
         {
+            // Todo - Implement grab feedbacks
         }
     }
 }

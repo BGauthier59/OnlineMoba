@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Capacities.Passive_Capacities;
 using UnityEditor;
 using UnityEngine;
 
@@ -8,12 +9,12 @@ namespace Entities.Capacities
     public class CapacitySOCollectionManager : MonoBehaviour
     {
         public static CapacitySOCollectionManager Instance;
-        
+
         /// <summary>
         /// Reference of All Active Capacities 
         /// </summary>
         [SerializeField] private List<ActiveCapacitySO> allActiveCapacities = new List<ActiveCapacitySO>();
-        
+
         /// <summary>
         /// Reference of All Passive Capacities 
         /// </summary>
@@ -28,7 +29,6 @@ namespace Entities.Capacities
             }
 
             Instance = this;
-
         }
 
         private void Start()
@@ -37,6 +37,7 @@ namespace Entities.Capacities
             {
                 allActiveCapacities[i].indexInCollection = i;
             }
+
             for (byte i = 0; i < allPassiveCapacitiesSo.Count; i++)
             {
                 allPassiveCapacitiesSo[i].indexInCollection = i;
@@ -50,9 +51,10 @@ namespace Entities.Capacities
             return (byte)Instance.allActiveCapacities.IndexOf(so);
         }
 
-        public static ActiveCapacity CreateActiveCapacity(byte soIndex,Entity caster)
+        public static ActiveCapacity CreateActiveCapacity(byte soIndex, Entity caster)
         {
-            var active = (ActiveCapacity) Activator.CreateInstance(Instance.allActiveCapacities[soIndex].AssociatedType());
+            var active =
+                (ActiveCapacity)Activator.CreateInstance(Instance.allActiveCapacities[soIndex].AssociatedType());
             active.indexOfSOInCollection = soIndex;
             active.caster = caster;
             return active;
@@ -75,10 +77,10 @@ namespace Entities.Capacities
             return (byte)Instance.allPassiveCapacitiesSo.IndexOf(so);
         }
 
-        public PassiveCapacity CreatePassiveCapacity(byte soIndex,Entity entity)
+        public PassiveCapacity CreatePassiveCapacity(byte soIndex, Entity entity)
         {
             Debug.Log($"Trying to create passive capacity of so at {soIndex}");
-            if(soIndex>= allPassiveCapacitiesSo.Count) return null;
+            if (soIndex >= allPassiveCapacitiesSo.Count) return null;
             var so = allPassiveCapacitiesSo[soIndex];
             PassiveCapacity capacity;
             if (so.stackable)
@@ -90,10 +92,11 @@ namespace Entities.Capacities
                     return capacity;
                 }
             }
-            capacity = (PassiveCapacity) Activator.CreateInstance(allPassiveCapacitiesSo[soIndex].AssociatedType());
+
+            capacity = (PassiveCapacity)Activator.CreateInstance(allPassiveCapacitiesSo[soIndex].AssociatedType());
             capacity.stackable = so.stackable;
             capacity.indexOfSo = soIndex;
-            
+
             return capacity;
         }
 
@@ -102,9 +105,9 @@ namespace Entities.Capacities
         /// </summary>
         /// <param name="index">Capacity Index</param>
         /// <returns></returns>
-        public PassiveCapacitySO GetPassiveCapacitySOByIndex(byte index)
+        public static PassiveCapacitySO GetPassiveCapacitySOByIndex(byte index)
         {
-            return allPassiveCapacitiesSo[index];
+            return Instance.allPassiveCapacitiesSo[index];
         }
     }
 }

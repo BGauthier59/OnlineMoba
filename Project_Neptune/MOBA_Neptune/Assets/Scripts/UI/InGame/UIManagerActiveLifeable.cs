@@ -15,7 +15,7 @@ public partial class UIManager
         Debug.Log(entity);
         if (entity == null) return;
         if (entity.GetComponent<IDamageable>() == null) return;
-        var canvasHealth = Instantiate(healthBarPrefab, entity.uiTransform.position + entity.offset, Quaternion.identity, entity.uiTransform);
+        var canvasHealth = Instantiate(healthBarPrefab, entity.uiTransform.position + entity.guiOffset, Quaternion.identity, entity.uiTransform);
         entity.elementsToShow.Add(canvasHealth);
         if (entity.team != GameStateMachine.Instance.GetPlayerTeam())
         {

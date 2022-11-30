@@ -90,6 +90,6 @@ public class PoolNetworkManager : MonoBehaviour
 
         return entity;
     }
-
+    
     public void PoolRequeue(Entity entity) { }
 }

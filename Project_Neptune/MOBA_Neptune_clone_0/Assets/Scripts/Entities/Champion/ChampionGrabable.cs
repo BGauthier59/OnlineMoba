@@ -6,7 +6,12 @@ namespace Entities.Champion
     public partial class Champion : IGrabable
     {
         public bool canBeGrabbed;
-    
+
+        public Enums.Team GetGrabbedTeam()
+        {
+            return team;
+        }
+
         public void RequestSetCanBeGrabbed(bool canBeGrabbed)
         {
             photonView.RPC("SetCanBeGrabbedRPC", RpcTarget.MasterClient, canBeGrabbed);
@@ -25,13 +30,7 @@ namespace Entities.Champion
             this.canBeGrabbed = canBeGrabbed;
         }
 
-        public void RequestOnGrabbed()
-        {
-            photonView.RPC("OnGrabbedRPC", RpcTarget.MasterClient);
-        }
-
-        [PunRPC]
-        public void OnGrabbedRPC()
+        public void OnGrabbed()
         {
             photonView.RPC("SyncOnGrabbedRPC", RpcTarget.All);
         }

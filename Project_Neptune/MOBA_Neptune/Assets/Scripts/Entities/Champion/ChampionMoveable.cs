@@ -17,8 +17,7 @@ namespace Entities.Champion
         private Vector3 moveDirection;
 
         private Vector3 rotateDirection;
-
-
+        
         public bool CanMove()
         {
             return canMove;

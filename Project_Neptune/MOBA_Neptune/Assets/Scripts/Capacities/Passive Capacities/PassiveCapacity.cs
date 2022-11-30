@@ -1,45 +1,47 @@
+using System;
 using System.Collections.Generic;
-using UnityEngine;
+using Entities;
+using Entities.Capacities;
 
-namespace Entities.Capacities
+namespace Capacities.Passive_Capacities
 {
     public abstract class PassiveCapacity
     {
         public byte indexOfSo; //Index Reference in CapacitySOCollectionManager
-
         public bool stackable;
         private int count; //Amount of Stacks
 
         public List<Enums.CapacityType> types; //All types of the capacity
-
-        public abstract PassiveCapacitySO AssociatedPassiveCapacitySO();
-
-        protected Entity entity;
         
+        protected Entity targetEntity;
+
+        public PassiveCapacitySO AssociatedPassiveCapacitySO()
+        {
+            return CapacitySOCollectionManager.GetPassiveCapacitySOByIndex(indexOfSo);
+        }
         
         public void OnAdded(Entity target)
         {
             if (stackable) count++;
-            entity = target;
-            Debug.Log("onadded");
-            OnAddedEffects(entity);
+            targetEntity = target;
+            OnAddedEffects();
         }
 
         /// <summary>
-        /// Call when a Stack of the capicity is Added
+        /// Call when a Stack of the capacity is Added
         /// </summary>
-        protected abstract void OnAddedEffects(Entity target);
+        protected abstract void OnAddedEffects();
 
         /// <summary>
         /// Call Feedback of the Stack on when Added
         /// </summary>
         public void OnAddedFeedback(Entity target)
         {
-            entity = target;
-            OnAddedFeedbackEffects(target);
+            targetEntity = target;
+            OnAddedFeedbackEffects();
         }
-        
-        protected abstract void OnAddedFeedbackEffects(Entity target);
+
+        protected abstract void OnAddedFeedbackEffects();
 
         /// <summary>
         /// Call when a Stack of the capacity is Removed
@@ -48,7 +50,7 @@ namespace Entities.Capacities
         {
             OnRemovedEffects(target);
         }
-        
+
         protected abstract void OnRemovedEffects(Entity target);
 
         /// <summary>
@@ -58,7 +60,7 @@ namespace Entities.Capacities
         {
             OnRemovedFeedbackEffects(target);
         }
-        
+
         protected abstract void OnRemovedFeedbackEffects(Entity target);
     }
 }

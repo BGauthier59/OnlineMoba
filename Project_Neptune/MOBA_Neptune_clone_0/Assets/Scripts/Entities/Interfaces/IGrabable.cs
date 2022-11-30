@@ -2,15 +2,14 @@ namespace Entities.Interfaces
 {
     public interface IGrabable
     {
+        public Enums.Team GetGrabbedTeam();
         public void RequestSetCanBeGrabbed(bool canBeGrabbed);
 
         public void SetCanBeGrabbedRPC(bool canBeGrabbed);
 
         public void SyncCanBeGrabbedRPC(bool canBeGrabbed);
-
-        public void RequestOnGrabbed();
-
-        public void OnGrabbedRPC();
+        
+        public void OnGrabbed();
 
         public void SyncOnGrabbedRPC();
     }

@@ -35,7 +35,6 @@ namespace Entities.Capacities
             if (cooldownTimer > 0) return;
             
             onCooldown = false;
-            Debug.LogError("fin du cooldown");
             GameStateMachine.Instance.OnTick -= CooldownTimer;
         }
 

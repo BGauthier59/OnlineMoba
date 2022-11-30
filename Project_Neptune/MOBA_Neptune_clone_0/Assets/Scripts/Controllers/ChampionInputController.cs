@@ -80,8 +80,7 @@ namespace Controllers.Inputs
             var mouseRay = cam.ScreenPointToRay(Input.mousePosition);
             return Physics.Raycast(mouseRay, out var hit) ? hit.point : Vector3.zero;
         }
-
-
+        
         void OnMoveChange(InputAction.CallbackContext ctx)
         {
             moveInput = ctx.ReadValue<Vector2>();

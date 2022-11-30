@@ -9,20 +9,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1090d072f570f1240a8bd554fd173ce7, type: 3}
-  m_Name: Grab Capacity SO
+  m_Script: {fileID: 11500000, guid: cc49afaa1f9d22a488716b59d37dc3e1, type: 3}
+  m_Name: Grabbed
   m_EditorClassIdentifier: 
-  referenceName: Grab
+  referenceName: 
   descriptionName: 
   icon: {fileID: 0}
   description: 
-  cooldown: 5
-  isTargeting: 0
-  maxRange: 0
+  stackable: 0
   types: 
-  shootType: 0
   indexInCollection: 0
-  feedbackDuration: 0
-  feedbackPrefab: {fileID: 0}
-  grabHookPrefab: {fileID: 3004368748918192088, guid: 7cd5572757816e34ea4ce0f8594fb482, type: 3}
-  shootOriginOffset: {x: 0, y: 0, z: 0}
+  duration: 5
+  timer: 0
+  grabStrength: 5
