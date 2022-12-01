@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using Entities.Capacities;
@@ -30,6 +29,11 @@ namespace Entities
         /// The list of PassiveCapacity on the entity.
         /// </summary>
         public readonly List<PassiveCapacity> passiveCapacitiesList = new List<PassiveCapacity>();
+
+        /// <summary>
+        /// The current amount of point currently carried by the entity
+        /// </summary>
+        public int currentPointCarried = 0;
 
         /// <summary>
         /// The transform of the UI of the entity.
@@ -69,9 +73,13 @@ namespace Entities
         /// <summary>
         /// Replaces the Update() method.
         /// </summary>
-        protected virtual void OnUpdate() { }
+        protected virtual void OnUpdate()
+        {
+        }
 
-        protected virtual void OnFixedUpdate() { }
+        protected virtual void OnFixedUpdate()
+        {
+        }
 
         #region MasterMethods
 
@@ -83,7 +91,6 @@ namespace Entities
 
         public virtual void OnInstantiated()
         {
-            
         }
 
         [PunRPC]
@@ -99,7 +106,9 @@ namespace Entities
             return passiveCapacitiesList.FirstOrDefault(item => item.indexOfSo == soIndex);
         }
 
-        public virtual void OnInstantiatedFeedback() { }
+        public virtual void OnInstantiatedFeedback()
+        {
+        }
 
         /// <summary>
         /// Sends an RPC to the master to set the value canAddPassiveCapacity.
@@ -149,8 +158,9 @@ namespace Entities
         public void AddPassiveCapacityRPC(byte index)
         {
             if (!canAddPassiveCapacity) return;
-            photonView.RPC("SyncAddPassiveCapacityRPC",RpcTarget.All, index);
+            photonView.RPC("SyncAddPassiveCapacityRPC", RpcTarget.All, index);
         }
+
         /// <summary>
         /// Sends an RPC to all clients to add a PassiveCapacity to the passiveCapacityList.
         /// </summary>
@@ -159,8 +169,8 @@ namespace Entities
         public void SyncAddPassiveCapacityRPC(byte capacityIndex)
         {
             var capacity = CapacitySOCollectionManager.Instance.CreatePassiveCapacity(capacityIndex, this);
-            if(capacity == null) return;
-            if(!passiveCapacitiesList.Contains(capacity)) passiveCapacitiesList.Add(capacity);
+            if (capacity == null) return;
+            if (!passiveCapacitiesList.Contains(capacity)) passiveCapacitiesList.Add(capacity);
             if (PhotonNetwork.IsMasterClient)
             {
                 capacity.OnAdded(this);
@@ -170,18 +180,19 @@ namespace Entities
             capacity.OnAddedFeedback(this);
             OnPassiveCapacityAddedFeedback?.Invoke(capacityIndex);
         }
+
         public event GlobalDelegates.ByteDelegate OnPassiveCapacityAdded;
         public event GlobalDelegates.ByteDelegate OnPassiveCapacityAddedFeedback;
-        
+
         /// <summary>
         /// Removes a PassiveCapacity from the passiveCapacityList.
         /// </summary>
         /// <param name="index">The index in the passiveCapacityList of the PassiveCapacity to remove</param>
         public void RemovePassiveCapacityByIndex(byte index)
         {
-            photonView.RPC("SyncRemovePassiveCapacityRPC",RpcTarget.All,index);
+            photonView.RPC("SyncRemovePassiveCapacityRPC", RpcTarget.All, index);
         }
-        
+
         /// <summary>
         /// Sends an RPC to all clients to remove a PassiveCapacity from passiveCapacityList.
         /// </summary>
@@ -189,7 +200,7 @@ namespace Entities
         [PunRPC]
         public void SyncRemovePassiveCapacityRPC(byte index)
         {
-            if(index >= passiveCapacitiesList.Count) return;
+            if (index >= passiveCapacitiesList.Count) return;
             var capacity = passiveCapacitiesList[index];
             passiveCapacitiesList.Remove(capacity);
             if (PhotonNetwork.IsMasterClient)
@@ -197,15 +208,14 @@ namespace Entities
                 capacity.OnRemoved(this);
                 OnPassiveCapacityRemoved?.Invoke(index);
             }
-            
+
             capacity.OnRemovedFeedback(this);
             OnPassiveCapacityRemovedFeedback?.Invoke(index);
         }
-        
+
         public event GlobalDelegates.ByteDelegate OnPassiveCapacityRemoved;
         public event GlobalDelegates.ByteDelegate OnPassiveCapacityRemovedFeedback;
 
         #endregion
-        
     }
 }
