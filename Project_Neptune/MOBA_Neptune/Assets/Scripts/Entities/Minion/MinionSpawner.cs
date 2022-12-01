@@ -47,6 +47,7 @@ namespace Entities.Minion
             MinionBehaviour minionScript = minionGO.GetComponent<MinionBehaviour>();
             minionScript.myWayPoint = goToPointBeforeStream;
             minionScript.tag = unitTag;
+            minionScript.team = team;
             minionGO.GetComponent<MeshRenderer>().material.color = minionColor;
         }
     }

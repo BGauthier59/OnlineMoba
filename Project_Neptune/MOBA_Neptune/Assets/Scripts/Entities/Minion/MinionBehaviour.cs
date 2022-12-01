@@ -8,7 +8,7 @@ namespace Entities.Minion
     {
         #region MinionVariables
         [Space] public NavMeshAgent myAgent;
-        private MinionController myController;
+        public MinionController myController;
 
         [Header("Pathfinding")] [SerializeField]
         private StreamModifier currentStreamModifier;
