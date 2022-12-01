@@ -9,9 +9,7 @@ using UnityEngine;
 
 public partial class Tower : Building
 {
-    [Space]
-    [Header("Tower settings")]
-    public List<Entity> enemiesInRange = new List<Entity>();
+    [Space] [Header("Tower settings")] public List<Entity> enemiesInRange = new List<Entity>();
     public LayerMask canBeHitByTowerMask;
     public int damage;
     public float detectionRange;
@@ -20,8 +18,7 @@ public partial class Tower : Building
     public float brainSpeed;
     public float timeBewteenShots;
     public bool isCycleAttack = false;
-    public string enemyUnit;
-    
+
     private float brainTimer;
     [SerializeField] private ActiveCapacitySO attackCapa;
     [SerializeField] private Transform debugRay;
@@ -40,69 +37,60 @@ public partial class Tower : Building
     private void TowerDetection()
     {
         enemiesInRange.Clear();
-        
+
         var size = Physics.OverlapSphere(transform.position, detectionRange, canBeHitByTowerMask);
 
         if (size.Length == 0) return;
-        
+
         float tempDist = detectionRange;
         Collider tempEntity = null;
         foreach (var result in size)
         {
-            if (result.CompareTag(enemyUnit))
+            if (result.GetComponent<Entity>().GetTeam() == GetTeam()) continue;
+            
+            float dist = Vector3.Distance(transform.position, result.transform.position);
+
+            if (dist < detectionRange)
             {
-                float dist = Vector3.Distance(transform.position, result.transform.position);
-                
-                if (dist < detectionRange)
-                {
-                    tempEntity = result;
-                    tempDist = dist;
-                }
+                tempEntity = result;
+                tempDist = dist;
             }
         }
 
-        if (tempEntity != null)
-        {
-            enemiesInRange.Add(tempEntity.GetComponent<Entity>());
-        }
+        if (tempEntity) enemiesInRange.Add(tempEntity.GetComponent<Entity>());
 
         tempDist = detectionRange;
         tempEntity = null;
         foreach (var result in size)
         {
-            if (result.GetComponent<Champion>() != null)
+            var resultChamp = result.GetComponent<Champion>();
+            if (!resultChamp || resultChamp.GetTeam() == GetTeam()) continue;
+            float dist = Vector3.Distance(transform.position, result.transform.position);
+
+            if (dist < detectionRange)
             {
-                float dist = Vector3.Distance(transform.position, result.transform.position);
-                
-                if (dist < detectionRange)
-                {
-                    tempEntity = result;
-                    tempDist = dist;
-                }
+                tempEntity = result;
+                tempDist = dist;
             }
         }
-        
-        if (tempEntity != null)
-        {
-            enemiesInRange.Add(tempEntity.GetComponent<Entity>());
-        }
+
+        if (tempEntity) enemiesInRange.Add(tempEntity.GetComponent<Entity>());
 
         if (isCycleAttack == false && enemiesInRange.Count > 0)
-        {
             StartCoroutine(AttackTarget());
-        }
+        
     }
-    
+
     private IEnumerator AttackTarget()
     {
         isCycleAttack = true;
-        
+
         yield return new WaitForSeconds(detectionDelay);
-        
+
         int[] targetEntity = new[] { enemiesInRange[0].GetComponent<Entity>().entityIndex };
-        
+
         AttackRPC(attackCapa.indexInCollection, targetEntity, Array.Empty<Vector3>());
-        
+
         yield return new WaitForSeconds(timeBewteenShots);
         isCycleAttack = false;
     }
@@ -116,7 +104,7 @@ public partial class Tower : Building
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.yellow;
-        
+
         if (enemiesInRange.Count > 0)
         {
             Gizmos.DrawLine(debugRay.position, enemiesInRange[0].transform.position);
@@ -148,6 +136,7 @@ public partial class Tower : IAttackable, IDeadable
 
     public event GlobalDelegates.BoolDelegate OnSetCanAttack;
     public event GlobalDelegates.BoolDelegate OnSetCanAttackFeedback;
+
     public float GetAttackDamage()
     {
         throw new System.NotImplementedException();
@@ -170,6 +159,7 @@ public partial class Tower : IAttackable, IDeadable
 
     public event GlobalDelegates.FloatDelegate OnSetAttackDamage;
     public event GlobalDelegates.FloatDelegate OnSetAttackDamageFeedback;
+
     public void RequestAttack(byte capacityIndex, int[] targetedEntities, Vector3[] targetedPositions)
     {
         throw new System.NotImplementedException();
@@ -178,25 +168,25 @@ public partial class Tower : IAttackable, IDeadable
     [PunRPC]
     public void SyncAttackRPC(byte capacityIndex, int[] targetedEntities, Vector3[] targetedPositions)
     {
-        var attackCapacity = CapacitySOCollectionManager.CreateActiveCapacity(capacityIndex,this);
-        attackCapacity.PlayFeedback(capacityIndex,targetedEntities,targetedPositions);
-        OnAttackFeedback?.Invoke(capacityIndex,targetedEntities,targetedPositions);
+        var attackCapacity = CapacitySOCollectionManager.CreateActiveCapacity(capacityIndex, this);
+        attackCapacity.PlayFeedback(capacityIndex, targetedEntities, targetedPositions);
+        OnAttackFeedback?.Invoke(capacityIndex, targetedEntities, targetedPositions);
     }
 
     [PunRPC]
     public void AttackRPC(byte capacityIndex, int[] targetedEntities, Vector3[] targetedPositions)
     {
-        var attackCapacity = CapacitySOCollectionManager.CreateActiveCapacity(capacityIndex,this);
+        var attackCapacity = CapacitySOCollectionManager.CreateActiveCapacity(capacityIndex, this);
 
         if (!attackCapacity.TryCast(photonView.ViewID, targetedEntities, targetedPositions)) return;
-            
-        OnAttack?.Invoke(capacityIndex,targetedEntities,targetedPositions);
-        photonView.RPC("SyncAttackRPC",RpcTarget.All,capacityIndex,targetedEntities,targetedPositions);
+
+        OnAttack?.Invoke(capacityIndex, targetedEntities, targetedPositions);
+        photonView.RPC("SyncAttackRPC", RpcTarget.All, capacityIndex, targetedEntities, targetedPositions);
     }
 
     public event GlobalDelegates.ByteIntArrayVector3ArrayDelegate OnAttack;
     public event GlobalDelegates.ByteIntArrayVector3ArrayDelegate OnAttackFeedback;
-    
+
     public bool IsAlive()
     {
         throw new NotImplementedException();
@@ -224,8 +214,8 @@ public partial class Tower : IAttackable, IDeadable
 
     public event GlobalDelegates.BoolDelegate OnSetCanDie;
     public event GlobalDelegates.BoolDelegate OnSetCanDieFeedback;
-    
-    
+
+
     public void RequestDie()
     {
         photonView.RPC("DieRPC", RpcTarget.MasterClient);
@@ -246,6 +236,7 @@ public partial class Tower : IAttackable, IDeadable
 
     public event GlobalDelegates.NoParameterDelegate OnDie;
     public event GlobalDelegates.NoParameterDelegate OnDieFeedback;
+
     public void RequestRevive()
     {
         throw new NotImplementedException();
