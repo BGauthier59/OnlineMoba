@@ -634,6 +634,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5379506599165814277, guid: dead161a952d82f4d81fc3d989c5be74, type: 3}
+      propertyPath: sceneViewId
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 5379506599425828998, guid: dead161a952d82f4d81fc3d989c5be74, type: 3}
+      propertyPath: sceneViewId
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 5379506599813813558, guid: dead161a952d82f4d81fc3d989c5be74, type: 3}
+      propertyPath: sceneViewId
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 5379506599872585210, guid: dead161a952d82f4d81fc3d989c5be74, type: 3}
       propertyPath: m_Name
       value: PrefabIAandTowers
@@ -681,6 +693,18 @@ PrefabInstance:
     - target: {fileID: 5379506599872585211, guid: dead161a952d82f4d81fc3d989c5be74, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5379506599922093069, guid: dead161a952d82f4d81fc3d989c5be74, type: 3}
+      propertyPath: sceneViewId
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5379506600856259979, guid: dead161a952d82f4d81fc3d989c5be74, type: 3}
+      propertyPath: sceneViewId
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5379506601065416575, guid: dead161a952d82f4d81fc3d989c5be74, type: 3}
+      propertyPath: sceneViewId
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dead161a952d82f4d81fc3d989c5be74, type: 3}
