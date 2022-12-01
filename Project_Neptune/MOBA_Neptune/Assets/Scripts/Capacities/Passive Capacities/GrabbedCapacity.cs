@@ -16,7 +16,17 @@ namespace Capacities.Passive_Capacities
         protected override void OnAddedEffects()
         {
             Debug.Log("Effect begins!");
-            var grabDirection = (giverEntity.transform.position - entityUnderEffect.transform.position).normalized;
+
+            Vector3 grabDirection;
+            if (giverEntity == null)
+            {
+                grabDirection = (giverEntity.transform.position - entityUnderEffect.transform.position).normalized;
+            }
+            else
+            {
+                grabDirection = (pos - entityUnderEffect.transform.position).normalized;
+            }
+            
             Debug.DrawRay(entityUnderEffect.transform.position, grabDirection * 3, Color.cyan, 5);
 
             var soData = (GrabbedCapacitySO)AssociatedPassiveCapacitySO();

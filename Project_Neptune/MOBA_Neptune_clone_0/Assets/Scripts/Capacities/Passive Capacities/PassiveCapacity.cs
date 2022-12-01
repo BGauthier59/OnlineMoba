@@ -16,6 +16,7 @@ namespace Capacities.Passive_Capacities
         
         protected Entity entityUnderEffect;
         protected Entity giverEntity;
+        protected Vector3 pos;
 
         public PassiveCapacitySO AssociatedPassiveCapacitySO()
         {
@@ -27,6 +28,7 @@ namespace Capacities.Passive_Capacities
             if (stackable) count++;
             this.entityUnderEffect = entityUnderEffect;
             giverEntity = giver;
+            this.pos = pos;
             OnAddedEffects();
         }
 
