@@ -177,12 +177,11 @@ MonoBehaviour:
   meshFilterFoV: {fileID: 6974560254418586115}
   fogOfWarStartDetection: {fileID: 0}
   myAgent: {fileID: 4555090259929885741}
+  myController: {fileID: 0}
   currentStreamModifier: {fileID: 0}
   myWayPoint: {fileID: 0}
-  wayPointIndex: 0
   currentHealth: 20
   maxHealth: 20
-  speed: 0
 --- !u!114 &4555090259929885740
 MonoBehaviour:
   m_ObjectHideFlags: 0

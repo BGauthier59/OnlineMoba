@@ -84,7 +84,6 @@ namespace Entities
         public virtual void OnInstantiated()
         {
             
-     
         }
 
         [PunRPC]
