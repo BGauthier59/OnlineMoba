@@ -4,7 +4,7 @@ namespace Entities
 {
     public interface ITeamable
     {
-        /// <returns>the team of the entity</returns>
+        /// <returns>the team of the entity</returns>s
         public Enums.Team GetTeam();
         /// <returns>returns the teams that the entity considers its enemy</returns>
         public List<Enums.Team> GetEnemyTeams();
