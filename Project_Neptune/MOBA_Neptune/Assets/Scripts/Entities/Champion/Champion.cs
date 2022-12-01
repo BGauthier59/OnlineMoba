@@ -1,4 +1,5 @@
 using System;
+using Capacities.Passive_Capacities;
 using Controllers;
 using Entities.Capacities;
 using Entities.FogOfWar;
@@ -20,7 +21,6 @@ namespace Entities.Champion
         private CapacitySOCollectionManager capacityCollection;
         private UIManager uiManager;
         public Camera camera;
-        public Rigidbody rb;
 
         public CollisionBlocker blocker;
 

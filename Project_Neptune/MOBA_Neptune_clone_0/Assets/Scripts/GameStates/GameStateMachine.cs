@@ -161,11 +161,9 @@ namespace GameStates
         public void Tick()
         {
             OnTick?.Invoke();
-            photonView.RPC("TickRPC", RpcTarget.All);
         }
-
-        [PunRPC]
-        private void TickRPC()
+        
+        public void TickFeedback()
         {
             OnTickFeedback?.Invoke();
         }

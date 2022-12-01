@@ -142,7 +142,12 @@ namespace Entities.Champion
 
         public void SetMoveDirection(Vector3 direction)
         {
-            moveDirection = direction;
+            moveDirection = new Vector3(direction.x, 0, direction.z);
+        }
+
+        public Vector3 GetMoveDirection()
+        {
+            return moveDirection;
         }
 
         public event GlobalDelegates.Vector3Delegate OnMove;

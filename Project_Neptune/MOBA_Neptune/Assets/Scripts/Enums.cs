@@ -20,4 +20,9 @@ public class Enums
     {
         Skillshot, targetPosition, targetEntity
     } 
+    
+    public enum PassiveType
+    {
+        Grabbed, Marked, Slow, Acceleration, Invulnerability
+    }
 }

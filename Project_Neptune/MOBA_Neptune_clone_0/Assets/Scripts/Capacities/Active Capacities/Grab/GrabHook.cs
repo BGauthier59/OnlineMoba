@@ -74,12 +74,14 @@ namespace Capacities.Active_Capacities.Grab
             if (!PhotonNetwork.IsMasterClient) return;
 
             var grabable = other.gameObject.GetComponent<IGrabable>();
-
             if (grabable == null) return;
             
             var entity = other.gameObject.GetComponent<Entity>();
+            if (entity == caster) return;
+            
             var team = entity.team;
 
+            Debug.Log(team);
             if (team == caster.team)
             {
                 Debug.Log("You grabbed an ally");

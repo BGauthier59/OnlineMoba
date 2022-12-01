@@ -11,12 +11,13 @@ namespace Capacities.Passive_Capacities
         public byte indexOfSo; //Index Reference in CapacitySOCollectionManager
         public bool stackable;
         private int count; //Amount of Stacks
+        public Enums.PassiveType type;
 
         public List<Enums.CapacityType> types; //All types of the capacity
         
-        protected Entity entityUnderEffect;
-        protected Entity giverEntity;
-        protected Vector3 pos;
+        public Entity entityUnderEffect;
+        public Entity giverEntity;
+        public Vector3 pos;
 
         public PassiveCapacitySO AssociatedPassiveCapacitySO()
         {

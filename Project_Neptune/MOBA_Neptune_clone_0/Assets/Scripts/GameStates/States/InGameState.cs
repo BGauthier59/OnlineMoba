@@ -18,9 +18,7 @@ namespace GameStates.States
 
         public override void UpdateState()
         {
-            if (!sm.IsMaster) return;
-
-            if (IsWinConditionChecked())
+            if (IsWinConditionChecked() && sm.IsMaster)
             {
                 sm.SendWinner(sm.winner);
                 sm.SwitchState(3);
@@ -28,13 +26,13 @@ namespace GameStates.States
             }
 
             timer = PhotonNetwork.Time - lastTickTime;
-
+            
             if (timer >= 1.0 / sm.tickRate)
             {
-                sm.Tick();
-                timer = PhotonNetwork.Time;
+                if(sm.IsMaster) sm.Tick();
+                sm.TickFeedback();
+                lastTickTime = PhotonNetwork.Time;
             }
-            else timer += Time.deltaTime;
         }
 
         public override void ExitState() { }

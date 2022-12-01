@@ -24,6 +24,8 @@ namespace Entities
 
         public Transform uiTransform;
         public Vector3 guiOffset = new Vector3(0, 2f, 0);
+        
+        public Rigidbody rb;
 
         private void Start()
         {
