@@ -17,7 +17,6 @@ namespace Entities
             allEntitiesDict.Clear();
         }
 
-        
         /// <summary>
         /// Returns the entity corresponding to the index.
         /// </summary>
@@ -26,6 +25,16 @@ namespace Entities
         public static Entity GetEntityByIndex(int index)
         {
             return !allEntitiesDict.ContainsKey(index) ? null : allEntitiesDict[index];
+        }
+
+        public static byte GetEntityIndex(Entity entity)
+        {
+            foreach (var kvp in allEntitiesDict)
+            {
+                if (kvp.Value == entity) return (byte)kvp.Key;
+            }
+
+            return default;
         }
 
         /// <summary>
@@ -40,7 +49,7 @@ namespace Entities
                 allEntitiesDict[index] = entity;
                 return;
             }
-            
+
             allEntitiesDict.Add(index, entity);
         }
 

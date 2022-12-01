@@ -69,25 +69,32 @@ namespace Capacities.Active_Capacities.Grab
             }
         }
 
-        private void OnTriggerEnter(Collider other)
+        private void OnCollisionEnter(Collision other)
         {
             if (!PhotonNetwork.IsMasterClient) return;
 
-            var grabable = other.GetComponent<IGrabable>();
+            var grabable = other.gameObject.GetComponent<IGrabable>();
 
             if (grabable == null) return;
             
-            var entity = other.GetComponent<Entity>();
+            var entity = other.gameObject.GetComponent<Entity>();
             var team = entity.team;
 
-            if (team == caster.team || team == Enums.Team.Neutral)
+            if (team == caster.team)
             {
-                Debug.Log("You grabbed an ally or a wall");
+                Debug.Log("You grabbed an ally");
 
                 // Set passive capacity Grabbed on caster
-                caster.grabbingEntity = entity;
-                var index = CapacitySOCollectionManager.GetPassiveCapacitySOIndex(grabbedCapacitySO);
-                caster.AddPassiveCapacityRPC(index);
+                var capacityIndex = CapacitySOCollectionManager.GetPassiveCapacitySOIndex(grabbedCapacitySO);
+                var giver = EntityCollectionManager.GetEntityIndex(entity);
+                caster.AddPassiveCapacityRPC(capacityIndex, giver);
+            }
+            else if (team == Enums.Team.Neutral)
+            {
+                Debug.Log("You grabbed a wall");
+                var contactPoint = other.contacts[0].point;
+                var capacityIndex = CapacitySOCollectionManager.GetPassiveCapacitySOIndex(grabbedCapacitySO);
+                caster.AddPassiveCapacityRPC(capacityIndex, default, contactPoint);
             }
             else
             {

@@ -16,13 +16,12 @@ namespace Entities
         /// The viewID of the photonView of the entity.
         /// </summary>
         public int entityIndex;
-        
+
         [SerializeField] private bool canAddPassiveCapacity = true;
         [SerializeField] private bool canRemovePassiveCapacity = true;
-        public Entity grabbingEntity;
-        
+
         public readonly List<PassiveCapacity> passiveCapacitiesList = new List<PassiveCapacity>();
-        
+
         public Transform uiTransform;
         public Vector3 guiOffset = new Vector3(0, 2f, 0);
 
@@ -84,20 +83,20 @@ namespace Entities
 
         public virtual void OnInstantiatedFeedback() { }
 
-        
+
         [PunRPC]
         private void SyncSetCanAddPassiveCapacityRPC(bool value)
         {
             photonView.RPC("SetCanAddPassiveCapacityRPC", RpcTarget.All, value);
         }
 
-        
+
         [PunRPC]
         public void SetCanAddPassiveCapacityRPC(bool value)
         {
             canAddPassiveCapacity = value;
         }
-        
+
         [PunRPC]
         private void SyncSetCanRemovePassiveCapacityRPC(bool value)
         {
@@ -109,23 +108,32 @@ namespace Entities
         {
             canRemovePassiveCapacity = value;
         }
-        
+
         [PunRPC]
-        public void AddPassiveCapacityRPC(byte index)
+        public void AddPassiveCapacityRPC(byte index, byte giverIndex = default, Vector3 pos = default)
         {
             if (!canAddPassiveCapacity) return;
-            photonView.RPC("SyncAddPassiveCapacityRPC", RpcTarget.All, index);
+            photonView.RPC("SyncAddPassiveCapacityRPC", RpcTarget.All, index, giverIndex, pos);
         }
-        
+
         [PunRPC]
-        public void SyncAddPassiveCapacityRPC(byte capacityIndex)
+        public void SyncAddPassiveCapacityRPC(byte capacityIndex, byte giverIndex, Vector3 pos)
         {
             var capacity = CapacitySOCollectionManager.Instance.CreatePassiveCapacity(capacityIndex, this);
-            if (capacity == null) return;
+            if (capacity == null)
+            {
+                Debug.LogWarning($"No capacity found! Index is {capacityIndex}.");
+                return;
+            }
+
+            Entity giver = null;
+            if (giverIndex != default) giver = EntityCollectionManager.GetEntityByIndex(giverIndex);
+
             if (!passiveCapacitiesList.Contains(capacity)) passiveCapacitiesList.Add(capacity);
+            
             if (PhotonNetwork.IsMasterClient)
             {
-                capacity.OnAdded(this);
+                capacity.OnAdded(this, giver, pos);
                 OnPassiveCapacityAdded?.Invoke(capacityIndex);
             }
 
@@ -135,12 +143,12 @@ namespace Entities
 
         public event GlobalDelegates.ByteDelegate OnPassiveCapacityAdded;
         public event GlobalDelegates.ByteDelegate OnPassiveCapacityAddedFeedback;
-        
+
         public void RemovePassiveCapacityByIndex(byte index)
         {
             photonView.RPC("SyncRemovePassiveCapacityRPC", RpcTarget.All, index);
         }
-        
+
         [PunRPC]
         public void SyncRemovePassiveCapacityRPC(byte index)
         {

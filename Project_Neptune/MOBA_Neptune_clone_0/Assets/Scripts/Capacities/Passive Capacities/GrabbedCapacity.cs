@@ -10,20 +10,18 @@ namespace Capacities.Passive_Capacities
 {
     public class GrabbedCapacity : PassiveCapacity
     {
-        public Entity grabbingEntity;
         private double duration;
         private double timer;
 
         protected override void OnAddedEffects()
         {
             Debug.Log("Effect begins!");
-            grabbingEntity = targetEntity.grabbingEntity;
-            var grabDirection = (grabbingEntity.transform.position - targetEntity.transform.position).normalized;
-            Debug.DrawRay(targetEntity.transform.position, grabDirection * 3, Color.cyan, 5);
+            var grabDirection = (giverEntity.transform.position - entityUnderEffect.transform.position).normalized;
+            Debug.DrawRay(entityUnderEffect.transform.position, grabDirection * 3, Color.cyan, 5);
 
             var soData = (GrabbedCapacitySO)AssociatedPassiveCapacitySO();
 
-            ((Champion)targetEntity).SetMoveDirection(grabDirection * soData.grabStrength);
+            ((Champion)entityUnderEffect).SetMoveDirection(grabDirection * soData.grabStrength);
 
             duration = soData.duration;
             timer = soData.timer;

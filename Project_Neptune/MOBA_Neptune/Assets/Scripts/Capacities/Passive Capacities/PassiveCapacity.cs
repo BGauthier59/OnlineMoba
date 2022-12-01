@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using Entities;
 using Entities.Capacities;
+using UnityEngine;
 
 namespace Capacities.Passive_Capacities
 {
@@ -13,17 +14,19 @@ namespace Capacities.Passive_Capacities
 
         public List<Enums.CapacityType> types; //All types of the capacity
         
-        protected Entity targetEntity;
+        protected Entity entityUnderEffect;
+        protected Entity giverEntity;
 
         public PassiveCapacitySO AssociatedPassiveCapacitySO()
         {
             return CapacitySOCollectionManager.GetPassiveCapacitySOByIndex(indexOfSo);
         }
         
-        public void OnAdded(Entity target)
+        public void OnAdded(Entity entityUnderEffect, Entity giver, Vector3 pos)
         {
             if (stackable) count++;
-            targetEntity = target;
+            this.entityUnderEffect = entityUnderEffect;
+            giverEntity = giver;
             OnAddedEffects();
         }
 
@@ -37,7 +40,7 @@ namespace Capacities.Passive_Capacities
         /// </summary>
         public void OnAddedFeedback(Entity target)
         {
-            targetEntity = target;
+            entityUnderEffect = target;
             OnAddedFeedbackEffects();
         }
 
