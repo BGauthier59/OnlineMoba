@@ -28,8 +28,6 @@ namespace Capacities.Passive_Capacities
             duration = soData.duration;
             timer = 0;
             
-            Debug.Log(giverEntity.transform.position);
-
             GameStateMachine.Instance.OnTick += CheckDistance;
         }
 
