@@ -27,11 +27,15 @@ namespace Entities
             return !allEntitiesDict.ContainsKey(index) ? null : allEntitiesDict[index];
         }
 
-        public static byte GetEntityIndex(Entity entity)
+        public static int GetEntityIndex(Entity entity)
         {
             foreach (var kvp in allEntitiesDict)
             {
-                if (kvp.Value == entity) return (byte)kvp.Key;
+                if (kvp.Value == entity)
+                {
+                    Debug.Log($"Find entity! {entity.name} is index {kvp.Key}");
+                    return kvp.Key;
+                }
             }
 
             return default;

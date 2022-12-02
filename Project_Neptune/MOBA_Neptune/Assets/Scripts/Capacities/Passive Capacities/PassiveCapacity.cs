@@ -28,6 +28,7 @@ namespace Capacities.Passive_Capacities
         {
             if (stackable) count++;
             this.entityUnderEffect = entityUnderEffect;
+            Debug.Log(giver);
             giverEntity = giver;
             this.pos = pos;
             OnAddedEffects();

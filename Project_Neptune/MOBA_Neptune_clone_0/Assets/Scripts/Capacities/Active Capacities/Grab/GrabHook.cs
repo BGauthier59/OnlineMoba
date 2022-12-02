@@ -81,7 +81,6 @@ namespace Capacities.Active_Capacities.Grab
             
             var team = entity.team;
 
-            Debug.Log(team);
             if (team == caster.team)
             {
                 Debug.Log("You grabbed an ally");

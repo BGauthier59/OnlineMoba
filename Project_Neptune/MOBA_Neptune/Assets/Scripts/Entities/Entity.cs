@@ -114,14 +114,14 @@ namespace Entities
         }
 
         [PunRPC]
-        public void AddPassiveCapacityRPC(byte index, byte giverIndex = default, Vector3 pos = default)
+        public void AddPassiveCapacityRPC(byte index, int giverIndex = default, Vector3 pos = default)
         {
             if (!canAddPassiveCapacity) return;
             photonView.RPC("SyncAddPassiveCapacityRPC", RpcTarget.All, index, giverIndex, pos);
         }
 
         [PunRPC]
-        public void SyncAddPassiveCapacityRPC(byte capacityIndex, byte giverIndex, Vector3 pos)
+        public void SyncAddPassiveCapacityRPC(byte capacityIndex, int giverIndex, Vector3 pos)
         {
             var capacity = CapacitySOCollectionManager.Instance.CreatePassiveCapacity(capacityIndex, this);
             if (capacity == null)
@@ -131,7 +131,12 @@ namespace Entities
             }
 
             Entity giver = null;
-            if (giverIndex != default) giver = EntityCollectionManager.GetEntityByIndex(giverIndex);
+            if (giverIndex != default)
+            {
+                Debug.Log($"Index is not null. Finding an entity that matches with index {giverIndex}.");
+                giver = EntityCollectionManager.GetEntityByIndex(giverIndex);
+                Debug.Log(giver.name);
+            }
 
             if (!passiveCapacitiesList.Contains(capacity)) passiveCapacitiesList.Add(capacity);
             

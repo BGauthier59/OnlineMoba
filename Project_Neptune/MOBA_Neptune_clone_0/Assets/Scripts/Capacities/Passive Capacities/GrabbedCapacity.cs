@@ -19,22 +19,31 @@ namespace Capacities.Passive_Capacities
         {
             Debug.Log("Effect begins!");
             hasHitTarget = false;
+            InputManager.PlayerMap.Movement.Disable();
 
-            Vector3 grabDirection;
-            grabDirection = giverEntity != null
+            var soData = (GrabbedCapacitySO)AssociatedPassiveCapacitySO();
+
+            SetMoveDirection();
+
+            duration = soData.duration;
+            timer = 0;
+            
+            Debug.Log(giverEntity.transform.position);
+
+            GameStateMachine.Instance.OnTick += CheckDistance;
+        }
+
+        private void SetMoveDirection()
+        {
+            var grabDirection = giverEntity != null
                 ? (giverEntity.transform.position - entityUnderEffect.transform.position).normalized
                 : (pos - entityUnderEffect.transform.position).normalized;
 
-            Debug.DrawRay(entityUnderEffect.transform.position, grabDirection * 3, Color.cyan, 5);
-
             var soData = (GrabbedCapacitySO)AssociatedPassiveCapacitySO();
-            
-            ((Champion)entityUnderEffect).SetMoveDirection(grabDirection * soData.grabStrength);
-            
-            duration = soData.duration;
-            timer = 0;
 
-            GameStateMachine.Instance.OnTick += CheckDistance;
+            ((Champion)entityUnderEffect).SetMoveDirection(grabDirection * soData.grabStrength);
+
+            Debug.DrawRay(entityUnderEffect.transform.position, grabDirection * 3, Color.cyan, 5);
         }
 
         public void OnEntityUnderEffectHitsTarget()
@@ -51,6 +60,7 @@ namespace Capacities.Passive_Capacities
         protected override void OnRemovedEffects(Entity target)
         {
             Debug.Log("Not grabbed anymore");
+            InputManager.PlayerMap.Movement.Enable();
         }
 
         protected override void OnRemovedFeedbackEffects(Entity target) { }
@@ -61,7 +71,7 @@ namespace Capacities.Passive_Capacities
             {
                 Debug.LogWarning("Has been stop while grabbing!");
             }
-            
+
             var distance = giverEntity != null
                 ? Vector3.Distance(entityUnderEffect.transform.position, giverEntity.transform.position)
                 : Vector3.Distance(entityUnderEffect.transform.position, pos);
@@ -71,6 +81,10 @@ namespace Capacities.Passive_Capacities
                 GameStateMachine.Instance.OnTick -= CheckDistance;
                 Debug.Log("Should have reached point!");
                 OnEntityUnderEffectHitsTarget();
+            }
+            else
+            {
+                if (giverEntity) SetMoveDirection(); // S'il y a une cible, sa position change
             }
         }
 
