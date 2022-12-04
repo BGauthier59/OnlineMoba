@@ -68,9 +68,7 @@ namespace Entities
             OnInstantiated();
         }
 
-
         public virtual void OnInstantiated() { }
-
 
         [PunRPC]
         public void SyncInstantiateRPC(Vector3 position, Quaternion rotation)

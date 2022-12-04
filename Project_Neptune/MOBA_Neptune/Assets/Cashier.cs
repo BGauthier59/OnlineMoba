@@ -1,30 +1,54 @@
 using Entities;
-using UnityEditor.Rendering;
+using GameStates;
+using Photon.Pun;
 using UnityEngine;
 
-public class Cashier : MonoBehaviour
+public class Cashier : MonoBehaviour, IScorable
 {
+    private PhotonView _photonView;
     [SerializeField] private int cashierPoint;
     [SerializeField] private int pointsNeededToWin;
     public Enums.Team teamToGoCashier;
 
-    private void OnTriggerEnter(Collider other)
+    private void Start()
     {
-        Entity e_Collsion = other.gameObject.GetComponent<Entity>();
-
-        if (!e_Collsion) return;
-
-        if (e_Collsion.team == teamToGoCashier)
-            GetPoints();
+        _photonView = GetComponent<PhotonView>();
     }
 
-    void GetPoints(int points = 2)
+    private void OnTriggerEnter(Collider other)
     {
-        cashierPoint += points;
-        
-        if(cashierPoint < pointsNeededToWin) return;
+        Entity tempEntity = other.gameObject.GetComponent<Entity>();
+
+        if (!tempEntity) return;
+
+        if (tempEntity.team == teamToGoCashier)
+            RequestIncreaseScore(tempEntity.currentPointCarried);
+    }
+
+    //------ IScorable Methods
+
+    public void RequestIncreaseScore(int value)
+    {
+        _photonView.RPC("SetIncreaseScoreRPC", RpcTarget.MasterClient, value);
+    }
+
+    public void SyncIncreaseScoreRPC(int value)
+    {
+        cashierPoint = value;
+    }
+
+    public void SetIncreaseScoreRPC(int value)
+    {
+        cashierPoint += value;
+
+        _photonView.RPC("SyncIncreaseScoreRPC", RpcTarget.All, value);
+
+        if (cashierPoint < pointsNeededToWin) return;
+
         Debug.Log($"Team {teamToGoCashier} won the game !");
-        
+
+        GameStateMachine.Instance.winner = teamToGoCashier;
+
         // TODO - Faire gagner l'équipe teamToGoCashier
     }
 }

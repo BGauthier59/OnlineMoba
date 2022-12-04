@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using Capacities.Passive_Capacities;
@@ -21,6 +20,11 @@ namespace Entities
         [SerializeField] private bool canRemovePassiveCapacity = true;
 
         public readonly List<PassiveCapacity> passiveCapacitiesList = new List<PassiveCapacity>();
+
+        /// <summary>
+        /// The current amount of point currently carried by the entity
+        /// </summary>
+        public int currentPointCarried = 0;
 
         public Transform uiTransform;
         public Vector3 guiOffset = new Vector3(0, 2f, 0);
@@ -56,9 +60,13 @@ namespace Entities
         /// <summary>
         /// Replaces the Update() method.
         /// </summary>
-        protected virtual void OnUpdate() { }
+        protected virtual void OnUpdate()
+        {
+        }
 
-        protected virtual void OnFixedUpdate() { }
+        protected virtual void OnFixedUpdate()
+        {
+        }
 
         #region MasterMethods
 
@@ -70,7 +78,6 @@ namespace Entities
 
 
         public virtual void OnInstantiated() { }
-
 
         [PunRPC]
         public void SyncInstantiateRPC(Vector3 position, Quaternion rotation)
@@ -85,7 +92,9 @@ namespace Entities
             return passiveCapacitiesList.FirstOrDefault(item => item.indexOfSo == soIndex);
         }
 
-        public virtual void OnInstantiatedFeedback() { }
+        public virtual void OnInstantiatedFeedback()
+        {
+        }
 
 
         [PunRPC]
@@ -119,6 +128,7 @@ namespace Entities
             if (!canAddPassiveCapacity) return;
             photonView.RPC("SyncAddPassiveCapacityRPC", RpcTarget.All, index, giverIndex, pos);
         }
+
 
         [PunRPC]
         public void SyncAddPassiveCapacityRPC(byte capacityIndex, int giverIndex, Vector3 pos)
