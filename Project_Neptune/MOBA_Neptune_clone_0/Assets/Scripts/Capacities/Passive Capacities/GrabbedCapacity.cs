@@ -1,9 +1,8 @@
-using System;
-using Capacities.Active_Capacities;
 using Entities;
-using Entities.Capacities;
 using Entities.Champion;
+using Entities.Interfaces;
 using GameStates;
+using Photon.Pun;
 using UnityEngine;
 
 namespace Capacities.Passive_Capacities
@@ -13,83 +12,75 @@ namespace Capacities.Passive_Capacities
         private double duration;
         private double timer;
 
-        public bool hasHitTarget;
+        private GrabbedCapacitySO data;
+        private IDisplaceable displaceable;
 
         protected override void OnAddedEffects()
         {
             Debug.Log("Effect begins!");
-            hasHitTarget = false;
             InputManager.PlayerMap.Movement.Disable();
+            data = (GrabbedCapacitySO)AssociatedPassiveCapacitySO();
 
-            var soData = (GrabbedCapacitySO)AssociatedPassiveCapacitySO();
+            var grabable = entityUnderEffect.GetComponent<IGrabable>();
+            grabable?.OnGrabbed();
 
-            SetMoveDirection();
-
-            duration = soData.duration;
+            duration = data.duration;
             timer = 0;
+
+            displaceable = entityUnderEffect.GetComponent<IDisplaceable>();
+            if (displaceable == null)
+            {
+                Debug.LogWarning("Can't displace this grabable entity?");
+                return;
+            }
+
+            GameStateMachine.Instance.OnTick += MoveGrabbedEntity;
+        }
+
+        private void MoveGrabbedEntity()
+        {
+            var pointToReach = giverEntity != null ? giverEntity.transform.position : pos;
+            pointToReach.y = 0;
+
+            var distance = Vector3.Distance(entityUnderEffect.transform.position, pointToReach);
             
-            GameStateMachine.Instance.OnTick += CheckDistance;
+            var velocity = (pointToReach - entityUnderEffect.transform.position) * (distance * data.speed);
+            velocity.y = 0;
+            displaceable.SetVelocity(velocity);
+            
+            if (distance < 1.2f)
+            {
+                GameStateMachine.Instance.OnTick -= MoveGrabbedEntity;
+                Debug.Log("Should have reached point!");
+                GrabbedEntityHitTarget();
+            }
         }
 
-        private void SetMoveDirection()
+        private void GrabbedEntityHitTarget()
         {
-            var grabDirection = giverEntity != null
-                ? (giverEntity.transform.position - entityUnderEffect.transform.position).normalized
-                : (pos - entityUnderEffect.transform.position).normalized;
-
-            var soData = (GrabbedCapacitySO)AssociatedPassiveCapacitySO();
-
-            ((Champion)entityUnderEffect).SetMoveDirection(grabDirection * soData.grabStrength);
-
-            Debug.DrawRay(entityUnderEffect.transform.position, grabDirection * 3, Color.cyan, 5);
+            if (giverEntity != null) entityUnderEffect.transform.SetParent(giverEntity.transform);
+            GameStateMachine.Instance.OnTick += CheckTimer;
         }
 
-        public void OnEntityUnderEffectHitsTarget()
+        protected override void OnAddedFeedbackEffects()
         {
-            hasHitTarget = true;
-            ((Champion)entityUnderEffect).SetMoveDirection(Vector3.zero);
-            Debug.Log("Hit target!");
-
-            GameStateMachine.Instance.OnTick += CheckTimer; // Timer en restant accroché
+            
         }
-
-        protected override void OnAddedFeedbackEffects() { }
+        
 
         protected override void OnRemovedEffects(Entity target)
         {
             Debug.Log("Not grabbed anymore");
+            if (giverEntity != null) entityUnderEffect.transform.SetParent(null);
+            ((Champion)entityUnderEffect).OnUnGrabbed();
             InputManager.PlayerMap.Movement.Enable();
         }
 
         protected override void OnRemovedFeedbackEffects(Entity target) { }
 
-        private void CheckDistance()
-        {
-            if (entityUnderEffect.rb.velocity.magnitude < .1f)
-            {
-                Debug.LogWarning("Has been stop while grabbing!");
-            }
-
-            var distance = giverEntity != null
-                ? Vector3.Distance(entityUnderEffect.transform.position, giverEntity.transform.position)
-                : Vector3.Distance(entityUnderEffect.transform.position, pos);
-
-            if (distance < 1.5f)
-            {
-                GameStateMachine.Instance.OnTick -= CheckDistance;
-                Debug.Log("Should have reached point!");
-                OnEntityUnderEffectHitsTarget();
-            }
-            else
-            {
-                if (giverEntity) SetMoveDirection(); // S'il y a une cible, sa position change
-            }
-        }
-
         private void CheckTimer()
         {
             timer += 1.0 / GameStateMachine.Instance.tickRate;
-            Debug.Log(timer);
 
             if (timer >= duration - .1)
             {

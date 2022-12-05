@@ -1,4 +1,6 @@
-﻿namespace Entities
+﻿using UnityEngine;
+
+namespace Entities
 {
     public interface IDisplaceable
     {
@@ -35,5 +37,9 @@
 
         public event GlobalDelegates.NoParameterDelegate OnDisplace;
         public event GlobalDelegates.NoParameterDelegate OnDisplaceFeedback;
+        
+        public void SetVelocity(Vector3 value);
+
+        public void SyncSetVelocityRPC(Vector3 value);
     }
 }

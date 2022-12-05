@@ -80,6 +80,7 @@ namespace Entities.Champion
             }
 
             isAlive = false;
+            SetCanDieRPC(false);
             
             // TODO - Disable collision, etc...
 
@@ -116,7 +117,8 @@ namespace Entities.Champion
         public void ReviveRPC()
         {
             isAlive = true;
-            
+            SetCanDieRPC(true);
+
             SetCurrentHpRPC(maxHp);
             SetCurrentResourceRPC(maxResource);
             OnRevive?.Invoke();

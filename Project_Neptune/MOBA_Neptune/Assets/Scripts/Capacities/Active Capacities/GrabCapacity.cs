@@ -35,8 +35,7 @@ namespace Capacities.Active_Capacities
                 var cast = PhotonNetwork.Instantiate(go.name, ((Champion)caster).rotateParent.position + forward,
                     Quaternion.LookRotation(forward)).GetComponent<GrabHook>();
 
-                cast.caster = caster;
-                cast.Shoot();
+                cast.SendShoot(caster);
             }
 
             InitiateCooldown();

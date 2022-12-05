@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Entities;
 using Entities.Capacities;
 using Entities.Champion;
+using GameStates;
 using Photon.Pun;
 using UnityEngine;
 
@@ -16,16 +17,38 @@ public partial class Tower : Building
     public float delayBeforeAttack;
     public float detectionDelay;
     public float brainSpeed;
-    public float timeBewteenShots;
+    public float timeBetweenShots;
     public bool isCycleAttack = false;
 
     private float brainTimer;
     [SerializeField] private ActiveCapacitySO attackCapa;
-    [SerializeField] private Transform debugRay;
+
+    [SerializeField] private MeshRenderer[] colorfulMeshes;
+    private static readonly int EmissionColor = Shader.PropertyToID("_EmissionColor");
+
+    protected override void OnStart()
+    {
+        base.OnStart();
+        SetUpColor();
+    }
+
+    private void SetUpColor()
+    {
+        var color = Color.white;
+
+        foreach (var tc in GameStateMachine.Instance.teamColors)
+        {
+            if (tc.team == team) color = tc.color;
+        }
+        
+        foreach (var rd in colorfulMeshes)
+        {
+            rd.material.SetColor(EmissionColor, color * 1);
+        }
+    }
 
     protected override void OnUpdate()
     {
-        // Créer des tick pour éviter le saut de frame en plus avec le multi ça risque d'arriver
         brainTimer += Time.deltaTime;
         if (brainTimer > brainSpeed)
         {
@@ -91,7 +114,7 @@ public partial class Tower : Building
 
         AttackRPC(attackCapa.indexInCollection, targetEntity, Array.Empty<Vector3>());
 
-        yield return new WaitForSeconds(timeBewteenShots);
+        yield return new WaitForSeconds(timeBetweenShots);
         isCycleAttack = false;
     }
 
@@ -107,7 +130,7 @@ public partial class Tower : Building
 
         if (enemiesInRange.Count > 0)
         {
-            Gizmos.DrawLine(debugRay.position, enemiesInRange[0].transform.position);
+            Gizmos.DrawLine(transform.position, enemiesInRange[0].transform.position);
         }
     }
 }

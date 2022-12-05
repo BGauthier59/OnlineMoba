@@ -221,6 +221,7 @@ MonoBehaviour:
   entityIndex: 0
   canAddPassiveCapacity: 1
   canRemovePassiveCapacity: 1
+  currentPointCarried: 0
   uiTransform: {fileID: 3480681342087303708}
   guiOffset: {x: 0, y: 2, z: 0}
   rb: {fileID: 6530865356692434526}
@@ -257,6 +258,9 @@ MonoBehaviour:
   currentMoveSpeed: 8
   currentRotateSpeed: 15
   canMove: 0
+  groundMask:
+    serializedVersion: 2
+    m_Bits: 64
   maxResource: 0
   currentResource: 0
   currentStreamModifier: {fileID: 0}

@@ -17,7 +17,8 @@ namespace Entities.Champion
         private Vector3 moveDirection;
 
         private Vector3 rotateDirection;
-        
+        [SerializeField] private LayerMask groundMask;
+
         public bool CanMove()
         {
             return canMove;
@@ -33,13 +34,24 @@ namespace Entities.Champion
             return currentMoveSpeed;
         }
 
-        public void RequestSetCanMove(bool value) { }
+        public void RequestSetCanMove(bool value)
+        {
+            photonView.RPC("SetCanMoveRPC", RpcTarget.MasterClient, value);
+        }
 
         [PunRPC]
-        public void SyncSetCanMoveRPC(bool value) { }
+        public void SyncSetCanMoveRPC(bool value)
+        {
+            canMove = value;
+            Debug.Log($"{name} set can move at {canMove}!");
+        }
 
         [PunRPC]
-        public void SetCanMoveRPC(bool value) { }
+        public void SetCanMoveRPC(bool value)
+        {
+            canMove = value;
+            photonView.RPC("SyncSetCanMoveRPC", RpcTarget.All, canMove);
+        }
 
         public event GlobalDelegates.BoolDelegate OnSetCanMove;
         public event GlobalDelegates.BoolDelegate OnSetCanMoveFeedback;
@@ -109,15 +121,17 @@ namespace Entities.Champion
 
         public event GlobalDelegates.FloatDelegate OnDecreaseCurrentMoveSpeed;
         public event GlobalDelegates.FloatDelegate OnDecreaseCurrentMoveSpeedFeedback;
-        
+
         private void Move()
         {
+            if (!canMove) return;
+
             var velocity = moveDirection * currentMoveSpeed;
             var strength = StreamManager.GetStreamVector(currentStreamModifier, transform);
             Debug.DrawRay(transform.position, velocity, Color.green);
             Debug.DrawRay(transform.position, strength, Color.magenta);
             if (velocity + strength == rb.velocity) return;
-            
+
             rb.velocity = velocity + strength;
         }
 
@@ -127,7 +141,7 @@ namespace Entities.Champion
 
             var ray = camera.ScreenPointToRay(Input.mousePosition);
 
-            if (!Physics.Raycast(ray, out var hit, float.PositiveInfinity)) return;
+            if (!Physics.Raycast(ray, out var hit, float.PositiveInfinity, groundMask)) return;
 
             rotateDirection = -(transform.position - hit.point);
             rotateDirection.y = 0;
@@ -137,7 +151,7 @@ namespace Entities.Champion
         {
             rotateParent.transform.rotation = Quaternion.Lerp(rotateParent.transform.rotation,
                 Quaternion.LookRotation(rotateDirection),
-                Time.deltaTime * currentRotateSpeed);
+                Time.fixedDeltaTime * currentRotateSpeed);
         }
 
         public void SetMoveDirection(Vector3 direction)

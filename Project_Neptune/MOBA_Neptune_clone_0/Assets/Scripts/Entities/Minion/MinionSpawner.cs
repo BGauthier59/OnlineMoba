@@ -18,6 +18,7 @@ namespace Entities.Minion
         public Color minionColor;
         public Transform goToPointBeforeStream;
         public string unitTag;
+        public int pointsCarriedAtStartByMinions = 2;
 
         private void Update()
         {
@@ -48,6 +49,7 @@ namespace Entities.Minion
             minionScript.myWayPoint = goToPointBeforeStream;
             minionScript.tag = unitTag;
             minionScript.team = team;
+            minionScript.currentPointCarried = 2;
             minionGO.GetComponent<MeshRenderer>().material.color = minionColor;
         }
     }

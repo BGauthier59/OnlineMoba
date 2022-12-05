@@ -28,7 +28,7 @@ namespace Capacities.Active_Capacities.Grab
         {
             throw new System.NotImplementedException();
         }
-        
+
         public void OnGrabbed()
         {
             Debug.Log("Je suis grab mais je suis un mur!");
@@ -39,6 +39,16 @@ namespace Capacities.Active_Capacities.Grab
         public void SyncOnGrabbedRPC()
         {
             // Todo - Implement grab feedbacks
+        }
+
+        public void OnUnGrabbed()
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public void SyncOnUnGrabbed()
+        {
+            throw new System.NotImplementedException();
         }
     }
 }

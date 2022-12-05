@@ -31,7 +31,6 @@ namespace Entities.Champion
             this.canBeGrabbed = canBeGrabbed;
         }
 
-        // When grabbed entity hits target point
         public void OnGrabbed()
         {
             SetCanMoveRPC(false);

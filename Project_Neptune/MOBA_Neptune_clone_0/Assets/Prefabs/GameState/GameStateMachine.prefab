@@ -67,18 +67,43 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameSceneName: InGameScene
-  tickRate: 10
+  tickRate: 15
   winner: 0
   allPlayersIDs: 
-  debugList: []
+  debugList:
+  - team: 0
+    championSOIndex: 0
+    playerReady: 0
+    championPhotonViewId: 0
+    champion: {fileID: 0}
+  - team: 0
+    championSOIndex: 0
+    playerReady: 0
+    championPhotonViewId: 0
+    champion: {fileID: 0}
+  - team: 0
+    championSOIndex: 0
+    playerReady: 0
+    championPhotonViewId: 0
+    champion: {fileID: 0}
+  - team: 0
+    championSOIndex: 0
+    playerReady: 0
+    championPhotonViewId: 0
+    champion: {fileID: 0}
+  - team: 0
+    championSOIndex: 0
+    playerReady: 0
+    championPhotonViewId: 0
+    champion: {fileID: 0}
   expectedPlayerCount: 4
   allChampionsSo:
   - {fileID: 11400000, guid: 09a5f4fc328facc46b8df84dc8d1fbe7, type: 2}
   - {fileID: 11400000, guid: 2c32bd83db976c344a82bd0dbb225626, type: 2}
-  allTeams: 
+  allTeams: 000000000100000002000000
   teamColors:
   - team: 1
-    color: {r: 0, g: 0.39215687, b: 1, a: 1}
+    color: {r: 1, g: 0.5882353, b: 0, a: 1}
   - team: 2
-    color: {r: 1, g: 0, b: 0.39215687, a: 1}
+    color: {r: 0.5882353, g: 0, b: 1, a: 1}
   currentStateDebugString: 

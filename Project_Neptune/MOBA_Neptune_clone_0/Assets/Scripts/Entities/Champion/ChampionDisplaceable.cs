@@ -1,4 +1,5 @@
 using Photon.Pun;
+using UnityEngine;
 
 namespace Entities.Champion
 {
@@ -32,5 +33,17 @@ namespace Entities.Champion
 
         public event GlobalDelegates.NoParameterDelegate OnDisplace;
         public event GlobalDelegates.NoParameterDelegate OnDisplaceFeedback;
+        
+        public void SetVelocity(Vector3 value)
+        {
+            rb.velocity = value;
+            photonView.RPC("SyncSetVelocityRPC", RpcTarget.All, rb.velocity);
+        }
+
+        [PunRPC]
+        public void SyncSetVelocityRPC(Vector3 value)
+        {
+            rb.velocity = value;
+        }
     }
 }

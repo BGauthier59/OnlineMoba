@@ -49,9 +49,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   caster: {fileID: 0}
-  shootForce: 40
-  lifeDuration: 0.5
-  backDuration: 0.2
+  shootForce: 30
+  lifeDuration: 0.3
+  backDuration: 0.15
   grabbedCapacitySO: {fileID: 11400000, guid: 7b654e7fa8808ba469c348c5950028ea, type: 2}
 --- !u!135 &5026118300552954257
 SphereCollider:

@@ -1,5 +1,6 @@
 using Entities.Interfaces;
 using Photon.Pun;
+using UnityEngine;
 
 namespace Entities.Champion
 {
@@ -32,12 +33,21 @@ namespace Entities.Champion
 
         public void OnGrabbed()
         {
+            SetCanMoveRPC(false);
+            rb.velocity = Vector3.zero;
             photonView.RPC("SyncOnGrabbedRPC", RpcTarget.All);
         }
 
         [PunRPC]
-        public void SyncOnGrabbedRPC()
+        public void SyncOnGrabbedRPC() { }
+
+        public void OnUnGrabbed()
         {
+            SetCanMoveRPC(true);
+            photonView.RPC("SyncOnUnGrabbed", RpcTarget.All);
         }
+
+        [PunRPC]
+        public void SyncOnUnGrabbed() { }
     }
 }

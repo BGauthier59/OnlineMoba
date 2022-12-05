@@ -1,5 +1,4 @@
 using System;
-using Entities.Capacities;
 using UnityEngine;
 
 namespace Capacities.Passive_Capacities
@@ -8,8 +7,7 @@ namespace Capacities.Passive_Capacities
     public class GrabbedCapacitySO : PassiveCapacitySO
     {
         public double duration;
-        public double timer;
-        public float grabStrength;
+        public float speed;
         
         public override Type AssociatedType()
         {

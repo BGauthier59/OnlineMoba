@@ -25,8 +25,8 @@ public class LobbyUIManager : MonoBehaviourPun
     [SerializeField] private Color unselectedChampionColor;
     [SerializeField] private Image firstChampionColorImage;
     [SerializeField] private Image secondChampionColorImage;
-    [SerializeField] private Color firstTeamColor;
-    [SerializeField] private Color secondTeamColor;
+    private Color firstTeamColor;
+    private Color secondTeamColor;
     [SerializeField] private Image teamColorImage;
     [SerializeField] private TextMeshProUGUI teamColorText;
     private bool isFirstTeam = true;
@@ -64,6 +64,12 @@ public class LobbyUIManager : MonoBehaviourPun
         sm = GameStateMachine.Instance;
 
         readyButton.interactable = false;
+
+        foreach (var tc in sm.teamColors)
+        {
+            if (tc.team == Enums.Team.Team1) firstTeamColor = tc.color;
+            if (tc.team == Enums.Team.Team2) secondTeamColor = tc.color;
+        }
 
         firstChampionColorImage.color = unselectedChampionColor;
         secondChampionColorImage.color = unselectedChampionColor;

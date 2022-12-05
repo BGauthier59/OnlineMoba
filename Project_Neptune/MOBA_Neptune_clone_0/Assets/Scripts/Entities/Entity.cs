@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using Capacities.Passive_Capacities;
@@ -22,9 +21,14 @@ namespace Entities
 
         public readonly List<PassiveCapacity> passiveCapacitiesList = new List<PassiveCapacity>();
 
+        /// <summary>
+        /// The current amount of point currently carried by the entity
+        /// </summary>
+        public int currentPointCarried = 0;
+
         public Transform uiTransform;
         public Vector3 guiOffset = new Vector3(0, 2f, 0);
-        
+
         public Rigidbody rb;
 
         private void Start()
@@ -67,6 +71,7 @@ namespace Entities
             photonView.RPC("SyncInstantiateRPC", RpcTarget.All, position, rotation);
             OnInstantiated();
         }
+
 
         public virtual void OnInstantiated() { }
 
@@ -137,7 +142,7 @@ namespace Entities
             }
 
             if (!passiveCapacitiesList.Contains(capacity)) passiveCapacitiesList.Add(capacity);
-            
+
             if (PhotonNetwork.IsMasterClient)
             {
                 capacity.OnAdded(this, giver, pos);

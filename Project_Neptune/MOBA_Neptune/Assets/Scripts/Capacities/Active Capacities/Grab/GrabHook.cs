@@ -9,7 +9,7 @@ using UnityEngine;
 
 namespace Capacities.Active_Capacities.Grab
 {
-    public class GrabHook : MonoBehaviour
+    public class GrabHook : MonoBehaviourPun
     {
         public Entity caster;
         [SerializeField] private float shootForce;
@@ -25,7 +25,19 @@ namespace Capacities.Active_Capacities.Grab
 
         [SerializeField] private PassiveCapacitySO grabbedCapacitySO;
 
-        public void Shoot()
+        public void SendShoot(Entity caster)
+        {
+            photonView.RPC("SyncShootRPC", RpcTarget.All, EntityCollectionManager.GetEntityIndex(caster));
+        }
+
+        [PunRPC]
+        public void SyncShootRPC(int casterIndex)
+        {
+            caster = EntityCollectionManager.GetEntityByIndex(casterIndex);
+            Shoot();
+        }
+        
+        private void Shoot()
         {
             transform.SetParent(caster.transform);
             isLaunching = true;
@@ -96,9 +108,9 @@ namespace Capacities.Active_Capacities.Grab
             {
                 Debug.Log("You grabbed a wall");
                 var contactPoint = other.contacts[0].point;
-                var reachingPoint = new Vector3(contactPoint.x, caster.transform.position.y, contactPoint.z);
+                contactPoint.y = caster.transform.position.y;
                 var capacityIndex = CapacitySOCollectionManager.GetPassiveCapacitySOIndex(grabbedCapacitySO);
-                caster.AddPassiveCapacityRPC(capacityIndex, default, reachingPoint);
+                caster.AddPassiveCapacityRPC(capacityIndex, default, contactPoint);
             }
             else
             {

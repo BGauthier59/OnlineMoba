@@ -28,7 +28,7 @@ namespace Entities
 
         public Transform uiTransform;
         public Vector3 guiOffset = new Vector3(0, 2f, 0);
-        
+
         public Rigidbody rb;
 
         private void Start()
@@ -60,13 +60,9 @@ namespace Entities
         /// <summary>
         /// Replaces the Update() method.
         /// </summary>
-        protected virtual void OnUpdate()
-        {
-        }
+        protected virtual void OnUpdate() { }
 
-        protected virtual void OnFixedUpdate()
-        {
-        }
+        protected virtual void OnFixedUpdate() { }
 
         #region MasterMethods
 
@@ -92,9 +88,7 @@ namespace Entities
             return passiveCapacitiesList.FirstOrDefault(item => item.indexOfSo == soIndex);
         }
 
-        public virtual void OnInstantiatedFeedback()
-        {
-        }
+        public virtual void OnInstantiatedFeedback() { }
 
 
         [PunRPC]
@@ -129,7 +123,6 @@ namespace Entities
             photonView.RPC("SyncAddPassiveCapacityRPC", RpcTarget.All, index, giverIndex, pos);
         }
 
-
         [PunRPC]
         public void SyncAddPassiveCapacityRPC(byte capacityIndex, int giverIndex, Vector3 pos)
         {
@@ -149,7 +142,7 @@ namespace Entities
             }
 
             if (!passiveCapacitiesList.Contains(capacity)) passiveCapacitiesList.Add(capacity);
-            
+
             if (PhotonNetwork.IsMasterClient)
             {
                 capacity.OnAdded(this, giver, pos);
