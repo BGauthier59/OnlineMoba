@@ -258,6 +258,9 @@ MonoBehaviour:
   currentMoveSpeed: 8
   currentRotateSpeed: 15
   canMove: 0
+  groundMask:
+    serializedVersion: 2
+    m_Bits: 64
   maxResource: 0
   currentResource: 0
   currentStreamModifier: {fileID: 0}

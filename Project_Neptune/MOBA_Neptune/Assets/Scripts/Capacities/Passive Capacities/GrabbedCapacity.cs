@@ -27,7 +27,7 @@ namespace Capacities.Passive_Capacities
 
             duration = soData.duration;
             timer = 0;
-            
+
             GameStateMachine.Instance.OnTick += CheckDistance;
         }
 
@@ -47,6 +47,7 @@ namespace Capacities.Passive_Capacities
         public void OnEntityUnderEffectHitsTarget()
         {
             hasHitTarget = true;
+            ((Champion)entityUnderEffect).OnGrabbed();
             ((Champion)entityUnderEffect).SetMoveDirection(Vector3.zero);
             Debug.Log("Hit target!");
 
@@ -58,6 +59,7 @@ namespace Capacities.Passive_Capacities
         protected override void OnRemovedEffects(Entity target)
         {
             Debug.Log("Not grabbed anymore");
+            ((Champion)entityUnderEffect).OnUnGrabbed();
             InputManager.PlayerMap.Movement.Enable();
         }
 
@@ -65,17 +67,19 @@ namespace Capacities.Passive_Capacities
 
         private void CheckDistance()
         {
-            if (entityUnderEffect.rb.velocity.magnitude < .1f)
-            {
-                Debug.LogWarning("Has been stop while grabbing!");
-            }
-
             var distance = giverEntity != null
                 ? Vector3.Distance(entityUnderEffect.transform.position, giverEntity.transform.position)
                 : Vector3.Distance(entityUnderEffect.transform.position, pos);
 
             if (distance < 1.5f)
             {
+                GameStateMachine.Instance.OnTick -= CheckDistance;
+                Debug.Log("Should have reached point!");
+                OnEntityUnderEffectHitsTarget();
+            }
+            else if (entityUnderEffect.rb.velocity.magnitude < .1f)
+            {
+                Debug.LogWarning("Has been stop while grabbing! Considers grab ended.");
                 GameStateMachine.Instance.OnTick -= CheckDistance;
                 Debug.Log("Should have reached point!");
                 OnEntityUnderEffectHitsTarget();

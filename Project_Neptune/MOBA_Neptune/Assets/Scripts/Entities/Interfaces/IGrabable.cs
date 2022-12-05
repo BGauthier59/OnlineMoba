@@ -12,5 +12,9 @@ namespace Entities.Interfaces
         public void OnGrabbed();
 
         public void SyncOnGrabbedRPC();
+
+        public void OnUnGrabbed();
+
+        public void SyncOnUnGrabbed();
     }
 }

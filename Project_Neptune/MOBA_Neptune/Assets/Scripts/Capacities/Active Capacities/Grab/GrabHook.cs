@@ -73,6 +73,8 @@ namespace Capacities.Active_Capacities.Grab
         {
             if (!PhotonNetwork.IsMasterClient) return;
 
+            if (isComingBack) return;
+
             var grabable = other.gameObject.GetComponent<IGrabable>();
             if (grabable == null) return;
             
@@ -94,8 +96,9 @@ namespace Capacities.Active_Capacities.Grab
             {
                 Debug.Log("You grabbed a wall");
                 var contactPoint = other.contacts[0].point;
+                var reachingPoint = new Vector3(contactPoint.x, caster.transform.position.y, contactPoint.z);
                 var capacityIndex = CapacitySOCollectionManager.GetPassiveCapacitySOIndex(grabbedCapacitySO);
-                caster.AddPassiveCapacityRPC(capacityIndex, default, contactPoint);
+                caster.AddPassiveCapacityRPC(capacityIndex, default, reachingPoint);
             }
             else
             {
@@ -103,9 +106,7 @@ namespace Capacities.Active_Capacities.Grab
 
                 // Set passive capacity Grabbed on both caster and grabable
             }
-
-            grabable.OnGrabbed();
-
+            
             gameObject.SetActive(false);
         }
     }
