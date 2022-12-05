@@ -215,6 +215,9 @@ MonoBehaviour:
   - SetIncreaseScoreRPC
   - SyncIncreaseScoreRPC
   - SyncAllScores
+  - SyncOnUnGrabbed
+  - SyncSetVelocityRPC
+  - SyncShootRPC
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1
