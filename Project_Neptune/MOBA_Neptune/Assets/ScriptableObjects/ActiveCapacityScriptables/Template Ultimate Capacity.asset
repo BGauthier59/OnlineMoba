@@ -9,16 +9,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cc49afaa1f9d22a488716b59d37dc3e1, type: 3}
-  m_Name: Grabbed
+  m_Script: {fileID: 11500000, guid: 76c7024a4b0ef7b4ca5875b3c8a7a719, type: 3}
+  m_Name: Template Ultimate Capacity
   m_EditorClassIdentifier: 
   referenceName: 
   descriptionName: 
-  icon: {fileID: 21300000, guid: 6d880134e66232c4492a3070abb2f03d, type: 3}
+  icon: {fileID: 21300000, guid: da8824121b8d565478ff8c89cc85e7f0, type: 3}
   description: 
-  stackable: 0
+  cooldown: 30
+  isTargeting: 0
+  maxRange: 0
   types: 
+  shootType: 0
   indexInCollection: 0
-  duration: 2
-  timer: 0
-  speed: 1
+  feedbackDuration: 0
+  feedbackPrefab: {fileID: 0}
+  damage: 0

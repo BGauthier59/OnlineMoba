@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using Entities;
 using Entities.Capacities;
@@ -10,7 +9,7 @@ using UnityEngine.UI;
 public class ChampionHUD : MonoBehaviour
 {
     [SerializeField] private Image healthBar;
-    [SerializeField] private Image resourceBar;
+    //[SerializeField] private Image resourceBar;
     [SerializeField] private Image spellPassive;
     [SerializeField] private Image spellOne;
     [SerializeField] private Image spellTwo;
@@ -20,7 +19,7 @@ public class ChampionHUD : MonoBehaviour
     [SerializeField] private Image spellTwoCooldown;
     [SerializeField] private Image spellUltimateCooldown;
     private Champion champion;
-    private IResourceable resourceable;
+    //private IResourceable resourceable;
     private IDamageable lifeable;
     private ICastable castable;
     private SpellHolder passiveHolder;
@@ -64,11 +63,11 @@ public class ChampionHUD : MonoBehaviour
     {
         champion = newChampion;
         lifeable = champion.GetComponent<IDamageable>();
-        resourceable = champion.GetComponent<IResourceable>();
+        //resourceable = champion.GetComponent<IResourceable>();
         castable = champion.GetComponent<ICastable>();
 
         healthBar.fillAmount = lifeable.GetCurrentHpPercent();
-        resourceBar.fillAmount = resourceable.GetCurrentResourcePercent();
+        //resourceBar.fillAmount = resourceable.GetCurrentResourcePercent();
         LinkToEvents();
         UpdateIcons(champion);
     }
@@ -93,12 +92,12 @@ public class ChampionHUD : MonoBehaviour
         lifeable.OnIncreaseMaxHpFeedback += UpdateFillPercentHealth;
         lifeable.OnDecreaseMaxHpFeedback += UpdateFillPercentHealth;
         
-        resourceable.OnSetCurrentResourceFeedback += UpdateFillPercentResource;
-        resourceable.OnSetCurrentResourcePercentFeedback += UpdateFillPercentByPercentResource;
-        resourceable.OnIncreaseCurrentResourceFeedback += UpdateFillPercentResource;
-        resourceable.OnDecreaseCurrentResourceFeedback += UpdateFillPercentResource;
-        resourceable.OnIncreaseMaxResourceFeedback += UpdateFillPercentResource;
-        resourceable.OnDecreaseMaxResourceFeedback += UpdateFillPercentResource;
+        //resourceable.OnSetCurrentResourceFeedback += UpdateFillPercentResource;
+        //resourceable.OnSetCurrentResourcePercentFeedback += UpdateFillPercentByPercentResource;
+        //resourceable.OnIncreaseCurrentResourceFeedback += UpdateFillPercentResource;
+        //resourceable.OnDecreaseCurrentResourceFeedback += UpdateFillPercentResource;
+        //resourceable.OnIncreaseMaxResourceFeedback += UpdateFillPercentResource;
+        //resourceable.OnDecreaseMaxResourceFeedback += UpdateFillPercentResource;
     }
 
     private void UpdateIcons(Champion champion)
@@ -132,7 +131,7 @@ public class ChampionHUD : MonoBehaviour
         if(so.passiveCapacities.Length != 0)
         passiveHolder.Setup(so.passiveCapacities[0].icon);
         spellOneHolder.Setup(so.activeCapacities[0].icon);
-        spellTwoHolder.Setup(so.activeCapacities[1].icon);
+        //spellTwoHolder.Setup(so.activeCapacities[1].icon);
         ultimateHolder.Setup(so.ultimateAbility.icon);
     }
 
@@ -153,11 +152,11 @@ public class ChampionHUD : MonoBehaviour
     
     private void UpdateFillPercentByPercentResource(float value)
     {
-        resourceBar.fillAmount = value;
+        //resourceBar.fillAmount = value;
     }
 
     private void UpdateFillPercentResource(float value)
     {
-        resourceBar.fillAmount = resourceable.GetCurrentResource();
+        //resourceBar.fillAmount = resourceable.GetCurrentResource();
     }
 }

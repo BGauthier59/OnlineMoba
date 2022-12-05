@@ -1,4 +1,5 @@
 using Entities;
+using Entities.Minion;
 using GameStates;
 using Photon.Pun;
 using UnityEngine;
@@ -6,8 +7,8 @@ using UnityEngine;
 public class Cashier : MonoBehaviour, IScorable
 {
     private PhotonView _photonView;
-    [SerializeField] private int cashierPoint;
-    [SerializeField] private int pointsNeededToWin;
+    public int cashierPoint;
+    public int pointsNeededToWin;
     public Enums.Team teamToGoCashier;
 
     private void Start()
@@ -22,20 +23,26 @@ public class Cashier : MonoBehaviour, IScorable
         if (!tempEntity) return;
 
         if (tempEntity.team == teamToGoCashier)
-            RequestIncreaseScore(tempEntity.currentPointCarried);
+            RequestIncreaseScore(tempEntity.currentPointCarried, tempEntity);
     }
 
     //------ IScorable Methods
 
-    public void RequestIncreaseScore(int value)
+    public void RequestIncreaseScore(int value, Entity entityWhoScored)
     {
         _photonView.RPC("SetIncreaseScoreRPC", RpcTarget.MasterClient, value);
-    }
 
+        if (!entityWhoScored.GetComponent<MinionBehaviour>()) return; // Si c'est un creep alors,
+        
+        IDeadable deadable = entityWhoScored.GetComponent<IDeadable>(); // Tue
+        deadable?.RequestDie();
+    }
+    
     [PunRPC]
     public void SyncIncreaseScoreRPC(int value)
     {
         cashierPoint = value;
+        UICommonPlayers.Instance.OnScoreChange();
     }
 
     [PunRPC]
