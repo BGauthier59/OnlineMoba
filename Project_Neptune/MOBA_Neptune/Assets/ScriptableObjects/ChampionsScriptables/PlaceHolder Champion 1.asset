@@ -21,11 +21,12 @@ MonoBehaviour:
   attackAbility: {fileID: 0}
   attackAbilityIndex: 255
   attackDamage: 0
-  passiveCapacities: []
+  passiveCapacities:
+  - {fileID: 11400000, guid: 7b654e7fa8808ba469c348c5950028ea, type: 2}
   passiveCapacitiesIndexes: 
   activeCapacities:
   - {fileID: 11400000, guid: 86bed31a4acbebf4ca8845cd5cfdbca6, type: 2}
-  - {fileID: 0}
+  - {fileID: 11400000, guid: 36fc4f6e74087054dbff028990139ea0, type: 2}
   activeCapacitiesIndexes: 00ff
-  ultimateAbility: {fileID: 0}
+  ultimateAbility: {fileID: 11400000, guid: 210e24423e20fdc418591fbd126f89c0, type: 2}
   ultimateAbilityIndex: 255
