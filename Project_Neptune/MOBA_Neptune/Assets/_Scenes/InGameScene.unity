@@ -503,105 +503,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 891615682, guid: dead161a952d82f4d81fc3d989c5be74, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -20.96
-      objectReference: {fileID: 0}
-    - target: {fileID: 1979177664, guid: dead161a952d82f4d81fc3d989c5be74, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 15
-      objectReference: {fileID: 0}
-    - target: {fileID: 110707415250857782, guid: dead161a952d82f4d81fc3d989c5be74, type: 3}
+    - target: {fileID: 240767954, guid: dead161a952d82f4d81fc3d989c5be74, type: 3}
       propertyPath: sceneViewId
-      value: 10
+      value: 11
       objectReference: {fileID: 0}
-    - target: {fileID: 432406727299571511, guid: dead161a952d82f4d81fc3d989c5be74, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 67
-      objectReference: {fileID: 0}
-    - target: {fileID: 432406727299571511, guid: dead161a952d82f4d81fc3d989c5be74, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 1730643581233684571, guid: dead161a952d82f4d81fc3d989c5be74, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 67
-      objectReference: {fileID: 0}
-    - target: {fileID: 1730643581233684571, guid: dead161a952d82f4d81fc3d989c5be74, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -10
-      objectReference: {fileID: 0}
-    - target: {fileID: 2273476980019499098, guid: dead161a952d82f4d81fc3d989c5be74, type: 3}
+    - target: {fileID: 240767956, guid: dead161a952d82f4d81fc3d989c5be74, type: 3}
       propertyPath: sceneViewId
-      value: 9
-      objectReference: {fileID: 0}
-    - target: {fileID: 2992909702858129841, guid: dead161a952d82f4d81fc3d989c5be74, type: 3}
-      propertyPath: sceneViewId
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 3315084641626796464, guid: dead161a952d82f4d81fc3d989c5be74, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -67
-      objectReference: {fileID: 0}
-    - target: {fileID: 3315084641626796464, guid: dead161a952d82f4d81fc3d989c5be74, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 4114792016951657974, guid: dead161a952d82f4d81fc3d989c5be74, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -67
-      objectReference: {fileID: 0}
-    - target: {fileID: 4114792016951657974, guid: dead161a952d82f4d81fc3d989c5be74, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -10
-      objectReference: {fileID: 0}
-    - target: {fileID: 4509182842930804215, guid: dead161a952d82f4d81fc3d989c5be74, type: 3}
-      propertyPath: sceneViewId
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 4729032469736153305, guid: dead161a952d82f4d81fc3d989c5be74, type: 3}
-      propertyPath: m_Name
-      value: OrangeTower (2)
-      objectReference: {fileID: 0}
-    - target: {fileID: 5379506599165814277, guid: dead161a952d82f4d81fc3d989c5be74, type: 3}
-      propertyPath: sceneViewId
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 5379506599425828992, guid: dead161a952d82f4d81fc3d989c5be74, type: 3}
-      propertyPath: goToPointBeforeStream
-      value: 
-      objectReference: {fileID: 240767952}
-    - target: {fileID: 5379506599425828994, guid: dead161a952d82f4d81fc3d989c5be74, type: 3}
-      propertyPath: m_Icon
-      value: 
-      objectReference: {fileID: 6519382022992737161, guid: 0000000000000000d000000000000000, type: 0}
-    - target: {fileID: 5379506599425828994, guid: dead161a952d82f4d81fc3d989c5be74, type: 3}
-      propertyPath: m_Name
-      value: VioletTeamSpawner
-      objectReference: {fileID: 0}
-    - target: {fileID: 5379506599425828995, guid: dead161a952d82f4d81fc3d989c5be74, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -95
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 5379506599425828998, guid: dead161a952d82f4d81fc3d989c5be74, type: 3}
       propertyPath: sceneViewId
       value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 5379506599813813552, guid: dead161a952d82f4d81fc3d989c5be74, type: 3}
-      propertyPath: goToPointBeforeStream
-      value: 
-      objectReference: {fileID: 240767951}
-    - target: {fileID: 5379506599813813554, guid: dead161a952d82f4d81fc3d989c5be74, type: 3}
-      propertyPath: m_Icon
-      value: 
-      objectReference: {fileID: 2488908585195742037, guid: 0000000000000000d000000000000000, type: 0}
-    - target: {fileID: 5379506599813813554, guid: dead161a952d82f4d81fc3d989c5be74, type: 3}
-      propertyPath: m_Name
-      value: OrangeTeamSpawner
-      objectReference: {fileID: 0}
-    - target: {fileID: 5379506599813813555, guid: dead161a952d82f4d81fc3d989c5be74, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 103.27
       objectReference: {fileID: 0}
     - target: {fileID: 5379506599813813558, guid: dead161a952d82f4d81fc3d989c5be74, type: 3}
       propertyPath: sceneViewId
@@ -655,42 +567,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5379506599922093069, guid: dead161a952d82f4d81fc3d989c5be74, type: 3}
-      propertyPath: sceneViewId
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 5379506600856259979, guid: dead161a952d82f4d81fc3d989c5be74, type: 3}
-      propertyPath: sceneViewId
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 5379506601065416575, guid: dead161a952d82f4d81fc3d989c5be74, type: 3}
-      propertyPath: sceneViewId
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 6249803977964754079, guid: dead161a952d82f4d81fc3d989c5be74, type: 3}
-      propertyPath: m_Name
-      value: OrangeTower (1)
-      objectReference: {fileID: 0}
-    - target: {fileID: 7611463472886566494, guid: dead161a952d82f4d81fc3d989c5be74, type: 3}
-      propertyPath: m_Name
-      value: VioletTower (2)
-      objectReference: {fileID: 0}
-    - target: {fileID: 8621320399941251378, guid: dead161a952d82f4d81fc3d989c5be74, type: 3}
-      propertyPath: m_Name
-      value: VioletTower (1)
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dead161a952d82f4d81fc3d989c5be74, type: 3}
---- !u!4 &240767951 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 891615682, guid: dead161a952d82f4d81fc3d989c5be74, type: 3}
-  m_PrefabInstance: {fileID: 240767950}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &240767952 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 1979177664, guid: dead161a952d82f4d81fc3d989c5be74, type: 3}
-  m_PrefabInstance: {fileID: 240767950}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &352275754
 GameObject:
   m_ObjectHideFlags: 0
@@ -1504,11 +1382,11 @@ PrefabInstance:
       objectReference: {fileID: 3248323131726062708, guid: 9365fdce127720748a1a73011482ddeb, type: 3}
     - target: {fileID: 835053568365048107, guid: 80fefcb4f83a0b14db760960cf24ee68, type: 3}
       propertyPath: sceneViewId
-      value: 1
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 1032358462637503682, guid: 80fefcb4f83a0b14db760960cf24ee68, type: 3}
       propertyPath: sceneViewId
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 2983732105347116086, guid: 80fefcb4f83a0b14db760960cf24ee68, type: 3}
       propertyPath: poolElements.Array.size

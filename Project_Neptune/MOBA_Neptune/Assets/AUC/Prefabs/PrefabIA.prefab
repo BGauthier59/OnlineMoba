@@ -185,6 +185,7 @@ GameObject:
   - component: {fileID: 1047249484}
   - component: {fileID: 1047249483}
   - component: {fileID: 1047249486}
+  - component: {fileID: 240767954}
   m_Layer: 0
   m_Name: RedTeamCashier
   m_TagString: Untagged
@@ -221,7 +222,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1047249481}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -283,6 +284,28 @@ MonoBehaviour:
   cashierPoint: 0
   pointsNeededToWin: 200
   teamToGoCashier: 1
+--- !u!114 &240767954
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1047249481}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 0
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 0
+  observableSearch: 2
+  ObservedComponents: []
+  sceneViewId: 0
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
 --- !u!1 &1757322141
 GameObject:
   m_ObjectHideFlags: 0
@@ -406,6 +429,7 @@ GameObject:
   - component: {fileID: 1897466037}
   - component: {fileID: 1897466036}
   - component: {fileID: 1897466039}
+  - component: {fileID: 240767956}
   m_Layer: 0
   m_Name: BlueTeamCashier
   m_TagString: Untagged
@@ -504,6 +528,28 @@ MonoBehaviour:
   cashierPoint: 0
   pointsNeededToWin: 200
   teamToGoCashier: 2
+--- !u!114 &240767956
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1897466034}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 0
+  observableSearch: 2
+  ObservedComponents: []
+  sceneViewId: 0
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
 --- !u!1 &1979177663
 GameObject:
   m_ObjectHideFlags: 0
@@ -544,12 +590,11 @@ GameObject:
   m_Component:
   - component: {fileID: 5379506599425828995}
   - component: {fileID: 5379506599425828998}
-  - component: {fileID: 5379506599425828993}
   - component: {fileID: 5379506599425828992}
   m_Layer: 0
-  m_Name: RedTeamSpawner
+  m_Name: VioletTeamSpawner
   m_TagString: Untagged
-  m_Icon: {fileID: 2488908585195742037, guid: 0000000000000000d000000000000000, type: 0}
+  m_Icon: {fileID: 6519382022992737161, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -587,27 +632,10 @@ MonoBehaviour:
   Synchronization: 3
   OwnershipTransfer: 0
   observableSearch: 2
-  ObservedComponents:
-  - {fileID: 5379506599425828993}
+  ObservedComponents: []
   sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
---- !u!114 &5379506599425828993
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5379506599425828994}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 627855c7f81362d41938ffe0b1475957, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_SynchronizePosition: 1
-  m_SynchronizeRotation: 1
-  m_SynchronizeScale: 0
-  m_UseLocal: 1
 --- !u!114 &5379506599425828992
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -663,9 +691,9 @@ GameObject:
   - component: {fileID: 5379506599813813553}
   - component: {fileID: 5379506599813813552}
   m_Layer: 0
-  m_Name: BlueTeamSpawner
+  m_Name: OrangeTeamSpawner
   m_TagString: Untagged
-  m_Icon: {fileID: 8418204508859773708, guid: 0000000000000000d000000000000000, type: 0}
+  m_Icon: {fileID: 2488908585195742037, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -1018,13 +1046,13 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7b4ee32591c74d04ab78b9d01885cb29, type: 3}
---- !u!33 &3421455114999188015 stripped
-MeshFilter:
-  m_CorrespondingSourceObject: {fileID: 7339930112782087322, guid: 7b4ee32591c74d04ab78b9d01885cb29, type: 3}
-  m_PrefabInstance: {fileID: 5379506599614873269}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &8810554824428499601 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3522580368828124196, guid: 7b4ee32591c74d04ab78b9d01885cb29, type: 3}
+  m_PrefabInstance: {fileID: 5379506599614873269}
+  m_PrefabAsset: {fileID: 0}
+--- !u!33 &3421455114999188015 stripped
+MeshFilter:
+  m_CorrespondingSourceObject: {fileID: 7339930112782087322, guid: 7b4ee32591c74d04ab78b9d01885cb29, type: 3}
   m_PrefabInstance: {fileID: 5379506599614873269}
   m_PrefabAsset: {fileID: 0}

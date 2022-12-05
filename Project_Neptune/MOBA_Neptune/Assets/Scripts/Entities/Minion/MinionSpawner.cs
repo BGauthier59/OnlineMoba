@@ -49,7 +49,7 @@ namespace Entities.Minion
             minionScript.myWayPoint = goToPointBeforeStream;
             minionScript.tag = unitTag;
             minionScript.team = team;
-            minionScript.currentPointCarried = pointsCarriedAtStartByMinions;
+            minionScript.currentPointCarried = 2;
             minionGO.GetComponent<MeshRenderer>().material.color = minionColor;
         }
     }

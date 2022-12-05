@@ -32,16 +32,18 @@ public class Cashier : MonoBehaviour, IScorable
         _photonView.RPC("SetIncreaseScoreRPC", RpcTarget.MasterClient, value);
     }
 
+    [PunRPC]
     public void SyncIncreaseScoreRPC(int value)
     {
         cashierPoint = value;
     }
 
+    [PunRPC]
     public void SetIncreaseScoreRPC(int value)
     {
         cashierPoint += value;
 
-        _photonView.RPC("SyncIncreaseScoreRPC", RpcTarget.All, value);
+        _photonView.RPC("SyncIncreaseScoreRPC", RpcTarget.All, cashierPoint);
 
         if (cashierPoint < pointsNeededToWin) return;
 
