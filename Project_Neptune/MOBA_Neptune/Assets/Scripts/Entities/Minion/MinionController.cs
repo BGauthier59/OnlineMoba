@@ -2,8 +2,8 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Controllers;
+using Photon.Pun;
 using UnityEngine;
-
 
 namespace Entities.Minion
 {
@@ -23,18 +23,23 @@ namespace Entities.Minion
 
         private void Start()
         {
+            // Master client deals with State Machine
+            if (!PhotonNetwork.IsMasterClient) return;
+            
             _myMinionBehaviour = controlledEntity.GetComponent<MinionBehaviour>();
             currentState = MinionState.LookingForPathing;
         }
 
         void Update()
         {
-            // Créer des tick pour éviter le saut de frame en plus avec le multi ça risque d'arriver
+            // Master client deals with State Machine
+            if (!PhotonNetwork.IsMasterClient) return;
+            
             tickTimer += Time.deltaTime;
             if (tickTimer >= updateTickSpeed)
             {
                 AiLogic();
-                tickTimer = 0;
+                tickTimer -= updateTickSpeed;
             }
         }
 

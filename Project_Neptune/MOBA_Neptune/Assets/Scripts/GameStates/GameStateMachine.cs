@@ -85,6 +85,9 @@ namespace GameStates
             gamesStates[2] = new InGameState(this);
             gamesStates[3] = new PostGameState(this);
 
+            OnTick = null;
+            Debug.Log($"OnTick has been cleared : {OnTick?.Method}");
+
             DontDestroyOnLoad(gameObject);
         }
 

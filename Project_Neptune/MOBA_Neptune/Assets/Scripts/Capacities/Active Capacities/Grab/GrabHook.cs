@@ -24,10 +24,11 @@ namespace Capacities.Active_Capacities.Grab
         private bool isComingBack;
 
         [SerializeField] private PassiveCapacitySO grabbedCapacitySO;
+        private bool hasCollided = false;
 
         public void SendShoot(Entity caster)
         {
-            photonView.RPC("SyncShootRPC", RpcTarget.All, EntityCollectionManager.GetEntityIndex(caster));
+            photonView.RPC("SyncShootRPC", RpcTarget.All, caster.entityIndex);
         }
 
         [PunRPC]
@@ -36,7 +37,7 @@ namespace Capacities.Active_Capacities.Grab
             caster = EntityCollectionManager.GetEntityByIndex(casterIndex);
             Shoot();
         }
-        
+
         private void Shoot()
         {
             transform.SetParent(caster.transform);
@@ -84,15 +85,17 @@ namespace Capacities.Active_Capacities.Grab
         private void OnCollisionEnter(Collision other)
         {
             if (!PhotonNetwork.IsMasterClient) return;
+            if (hasCollided) return;
+            hasCollided = true;
 
             if (isComingBack) return;
 
             var grabable = other.gameObject.GetComponent<IGrabable>();
             if (grabable == null) return;
-            
+
             var entity = other.gameObject.GetComponent<Entity>();
             if (entity == caster) return;
-            
+
             var team = entity.team;
 
             if (team == caster.team)
@@ -101,8 +104,7 @@ namespace Capacities.Active_Capacities.Grab
 
                 // Set passive capacity Grabbed on caster
                 var capacityIndex = CapacitySOCollectionManager.GetPassiveCapacitySOIndex(grabbedCapacitySO);
-                var giver = EntityCollectionManager.GetEntityIndex(entity);
-                caster.AddPassiveCapacityRPC(capacityIndex, giver);
+                caster.AddPassiveCapacityRPC(capacityIndex, entity.entityIndex);
             }
             else if (team == Enums.Team.Neutral)
             {
@@ -118,7 +120,7 @@ namespace Capacities.Active_Capacities.Grab
 
                 // Set passive capacity Grabbed on both caster and grabable
             }
-            
+
             gameObject.SetActive(false);
         }
     }

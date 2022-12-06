@@ -11,7 +11,7 @@ namespace Entities
 
         private static PhotonView view;
 
-        private void Start()
+        private void Awake()
         {
             view = GetComponent<PhotonView>();
             allEntitiesDict.Clear();
@@ -25,20 +25,6 @@ namespace Entities
         public static Entity GetEntityByIndex(int index)
         {
             return !allEntitiesDict.ContainsKey(index) ? null : allEntitiesDict[index];
-        }
-
-        public static int GetEntityIndex(Entity entity)
-        {
-            foreach (var kvp in allEntitiesDict)
-            {
-                if (kvp.Value == entity)
-                {
-                    Debug.Log($"Find entity! {entity.name} is index {kvp.Key}");
-                    return kvp.Key;
-                }
-            }
-
-            return default;
         }
 
         /// <summary>
@@ -55,6 +41,7 @@ namespace Entities
             }
 
             allEntitiesDict.Add(index, entity);
+            Debug.Log("Added to dict");
         }
 
         /// <summary>

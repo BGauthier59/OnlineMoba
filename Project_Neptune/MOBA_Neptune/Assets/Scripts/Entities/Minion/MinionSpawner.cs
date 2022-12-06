@@ -8,7 +8,7 @@ namespace Entities.Minion
 {
     public class MinionSpawner : Building
     {
-        [Space] [Header("Spawner Seetings")] public Transform spawnPointForMinion;
+        [Space] [Header("Spawner Settings")] public Transform spawnPointForMinion;
         public Entity minionPrefab;
         public int spawnMinionAmount = 5;
         public float spawnMinionInterval = 1.7f;
@@ -19,6 +19,8 @@ namespace Entities.Minion
 
         private void Update()
         {
+            if (!PhotonNetwork.IsMasterClient) return;
+
             // Spawn de minion tous les spawnCycleTime secondes
             spawnCycleTime += Time.deltaTime;
             if (spawnCycleTime >= spawnSpeed)
@@ -46,16 +48,7 @@ namespace Entities.Minion
             minionScript.myWayPoint = goToPointBeforeStream;
             minionScript.team = team;
             minionScript.currentPointCarried = 2;
-            
-            var color = Color.white;
-            foreach (var tc in GameStateMachine.Instance.teamColors)
-            {
-                if (tc.team != team) continue;
-                color = tc.color;
-                break;
-            }
-
-            minionGO.GetComponent<MeshRenderer>().material.color = color;
         }
+
     }
 }

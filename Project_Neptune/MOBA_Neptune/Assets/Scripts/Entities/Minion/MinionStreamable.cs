@@ -8,10 +8,6 @@ namespace Entities.Minion
 {
     public partial class MinionBehaviour : IStreamable
     {
-        public void OnInstantiatedFeedback()
-        {
-        }
-
         public Vector3 GetCurrentPosition()
         {
             return transform.position;

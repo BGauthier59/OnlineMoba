@@ -17,9 +17,8 @@ namespace Capacities.Passive_Capacities
 
         protected override void OnAddedEffects()
         {
-            Debug.Log("Effect begins!");
             InputManager.PlayerMap.Movement.Disable();
-            data = (GrabbedCapacitySO)AssociatedPassiveCapacitySO();
+            data = (GrabbedCapacitySO) AssociatedPassiveCapacitySO();
 
             var grabable = entityUnderEffect.GetComponent<IGrabable>();
             grabable?.OnGrabbed();
@@ -34,6 +33,8 @@ namespace Capacities.Passive_Capacities
                 return;
             }
 
+            var pointToReach = giverEntity != null ? giverEntity.transform.position : pos;
+            Debug.DrawLine(entityUnderEffect.transform.position, pointToReach, Color.blue, 3f);
             GameStateMachine.Instance.OnTick += MoveGrabbedEntity;
         }
 
@@ -43,40 +44,45 @@ namespace Capacities.Passive_Capacities
             pointToReach.y = 0;
 
             var distance = Vector3.Distance(entityUnderEffect.transform.position, pointToReach);
-            
+
             var velocity = (pointToReach - entityUnderEffect.transform.position) * (distance * data.speed);
             velocity.y = 0;
             displaceable.SetVelocity(velocity);
-            
-            if (distance < 1.2f)
-            {
-                GameStateMachine.Instance.OnTick -= MoveGrabbedEntity;
-                Debug.Log("Should have reached point!");
-                GrabbedEntityHitTarget();
-            }
+
+            Debug.Log("Grabbed !!!");
+            if (!(distance < 1.2f)) return;
+            Debug.Log("Should have reached point!");
+            GrabbedEntityHitTarget();
         }
 
         private void GrabbedEntityHitTarget()
         {
-            if (giverEntity != null) entityUnderEffect.transform.SetParent(giverEntity.transform);
+            if (giverEntity != null)
+            {
+                entityUnderEffect.transform.position = giverEntity.transform.position - entityUnderEffect.transform.forward * .5f;
+                entityUnderEffect.transform.SetParent(giverEntity.transform);
+            }
+
+            GameStateMachine.Instance.OnTick -= MoveGrabbedEntity;
             GameStateMachine.Instance.OnTick += CheckTimer;
         }
 
         protected override void OnAddedFeedbackEffects()
         {
-            
         }
-        
+
 
         protected override void OnRemovedEffects(Entity target)
         {
             Debug.Log("Not grabbed anymore");
             if (giverEntity != null) entityUnderEffect.transform.SetParent(null);
-            ((Champion)entityUnderEffect).OnUnGrabbed();
+            ((Champion) entityUnderEffect).OnUnGrabbed();
             InputManager.PlayerMap.Movement.Enable();
         }
 
-        protected override void OnRemovedFeedbackEffects(Entity target) { }
+        protected override void OnRemovedFeedbackEffects(Entity target)
+        {
+        }
 
         private void CheckTimer()
         {
