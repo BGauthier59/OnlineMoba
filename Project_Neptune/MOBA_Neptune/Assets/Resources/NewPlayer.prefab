@@ -182,6 +182,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: abbd4fae1b8b17c438853362e41376dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canCastAA: 1
+  AACooldown: 0
+  canCastCapa1: 1
+  capa1Cooldown: 3
+  canCastCapa2: 1
+  capa2Cooldown: 3
+  canCastUltimate: 1
+  capa3Cooldown: 3
 --- !u!114 &3480681341667345174
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -244,7 +252,7 @@ MonoBehaviour:
   attackAbilityIndex: 0
   canAttack: 0
   attackDamage: 0
-  abilitiesIndexes: 0000
+  abilitiesIndexes: 0002
   ultimateAbilityIndex: 0
   canCast: 0
   maxHp: 0
