@@ -1,4 +1,5 @@
 using Entities.Minion;
+using Photon.Pun;
 using UnityEngine;
 
 public class TriggerToCashier : MonoBehaviour
@@ -8,6 +9,8 @@ public class TriggerToCashier : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        if(!PhotonNetwork.IsMasterClient) return;
+        
         MinionBehaviour m_behavior = other.gameObject.GetComponent<MinionBehaviour>();
 
         if (!m_behavior) return;

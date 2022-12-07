@@ -47,8 +47,11 @@ namespace Entities.Minion
             MinionBehaviour minionScript = minionGO.GetComponent<MinionBehaviour>();
             minionScript.myWayPoint = goToPointBeforeStream;
             minionScript.team = team;
+            minionScript.RequestChangeTeam(team);
             minionScript.currentPointCarried = 2;
         }
 
+        
+        
     }
 }

@@ -41,7 +41,6 @@ namespace Entities
             }
 
             allEntitiesDict.Add(index, entity);
-            Debug.Log("Added to dict");
         }
 
         /// <summary>
