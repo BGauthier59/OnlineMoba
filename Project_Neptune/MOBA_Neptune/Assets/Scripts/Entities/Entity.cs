@@ -32,11 +32,6 @@ namespace Entities
 
         public Rigidbody rb;
 
-        public virtual void Awake()
-        {
-            
-        }
-
         private void Start()
         {
             entityIndex = photonView.ViewID;
