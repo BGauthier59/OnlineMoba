@@ -32,16 +32,6 @@ namespace Entities.Minion
             myAgent = GetComponent<NavMeshAgent>();
             myController = GetComponent<MinionController>();
             currentHealth = maxHealth;
-            
-            var color = Color.white;
-            foreach (var tc in GameStateMachine.Instance.teamColors)
-            {
-                if (tc.team != (Enums.Team) team) continue;
-                color = tc.color;
-                break;
-            }
-            
-            GetComponent<MeshRenderer>().material.color = color;
         }
 
         //------ State Methods
