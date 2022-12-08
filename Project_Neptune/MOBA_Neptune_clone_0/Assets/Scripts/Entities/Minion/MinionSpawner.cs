@@ -1,5 +1,6 @@
 using System.Collections;
 using Entities;
+using GameStates;
 using Photon.Pun;
 using UnityEngine;
 
@@ -7,21 +8,19 @@ namespace Entities.Minion
 {
     public class MinionSpawner : Building
     {
-        [Space]
-        [Header("Spawner Seetings")]
-        public Transform spawnPointForMinion;
+        [Space] [Header("Spawner Settings")] public Transform spawnPointForMinion;
         public Entity minionPrefab;
         public int spawnMinionAmount = 5;
         public float spawnMinionInterval = 1.7f;
         public float spawnCycleTime = 30;
         private readonly float spawnSpeed = 30;
-        public Color minionColor;
         public Transform goToPointBeforeStream;
-        public string unitTag;
         public int pointsCarriedAtStartByMinions = 2;
 
         private void Update()
         {
+            if (!PhotonNetwork.IsMasterClient) return;
+
             // Spawn de minion tous les spawnCycleTime secondes
             spawnCycleTime += Time.deltaTime;
             if (spawnCycleTime >= spawnSpeed)
@@ -47,10 +46,8 @@ namespace Entities.Minion
 
             MinionBehaviour minionScript = minionGO.GetComponent<MinionBehaviour>();
             minionScript.myWayPoint = goToPointBeforeStream;
-            minionScript.tag = unitTag;
-            minionScript.team = team;
+            minionScript.ChangeTeamRPC((byte)team);
             minionScript.currentPointCarried = 2;
-            minionGO.GetComponent<MeshRenderer>().material.color = minionColor;
         }
     }
 }

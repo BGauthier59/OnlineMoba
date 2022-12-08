@@ -24,5 +24,9 @@ MonoBehaviour:
   indexInCollection: 0
   feedbackDuration: 0
   feedbackPrefab: {fileID: 0}
-  grabHookPrefab: {fileID: 3004368748918192088, guid: 7cd5572757816e34ea4ce0f8594fb482, type: 3}
-  shootOriginOffset: {x: 0, y: 0, z: 0}
+  grabMaxDistance: 15
+  delayDuration: 0.1
+  grabableLayer:
+    serializedVersion: 2
+    m_Bits: 1610612736
+  passiveEffect: {fileID: 11400000, guid: 7b654e7fa8808ba469c348c5950028ea, type: 2}

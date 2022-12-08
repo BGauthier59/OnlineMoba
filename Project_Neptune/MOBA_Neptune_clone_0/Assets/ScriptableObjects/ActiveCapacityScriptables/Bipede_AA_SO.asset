@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9a552349df608e4eab2816a2228d4e3, type: 3}
+  m_Name: Bipede_AA_SO
+  m_EditorClassIdentifier: 
+  referenceName: Bipede_AA_SO
+  descriptionName: Auto attaque du bipede
+  icon: {fileID: 21300000, guid: aed6393858493e647832e7cc3209fbf9, type: 3}
+  description: "Lance trois projectile en un temps don\xE9e."
+  cooldown: 0.45
+  isTargeting: 0
+  maxRange: 4
+  types: 04000000
+  shootType: 0
+  indexInCollection: 2
+  feedbackDuration: 0
+  feedbackPrefab: {fileID: 0}
+  projectilePrefab: {fileID: 4084898602198204898, guid: db1de7f64aa6c76418b55128908926c0, type: 3}
+  capacityDamages: 5

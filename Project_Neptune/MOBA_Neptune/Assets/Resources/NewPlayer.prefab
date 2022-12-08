@@ -182,6 +182,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: abbd4fae1b8b17c438853362e41376dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 64
   canCastAA: 1
   AACooldown: 0.45
   canCastCapa1: 1

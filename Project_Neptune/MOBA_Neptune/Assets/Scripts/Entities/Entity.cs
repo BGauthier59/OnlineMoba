@@ -45,6 +45,7 @@ namespace Entities
         protected virtual void OnStart()
         {
             if (meshFilterFoV == null) return;
+            if (FogOfWarManager.Instance == null) return;
             FogOfWarManager.Instance.AddFOWViewable(this);
         }
 

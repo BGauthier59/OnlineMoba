@@ -130,6 +130,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 763807008}
     m_Modifications:
+    - target: {fileID: 861003199837379817, guid: 77cef67edeba3e947a92da8af352c84a, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1174145029305704546, guid: 77cef67edeba3e947a92da8af352c84a, type: 3}
       propertyPath: sceneViewId
       value: 8
@@ -1274,6 +1278,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Field Of View_FOW
       objectReference: {fileID: 0}
+    - target: {fileID: 4924447214370837390, guid: 7b4ee32591c74d04ab78b9d01885cb29, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7b4ee32591c74d04ab78b9d01885cb29, type: 3}
 --- !u!33 &190051437 stripped
@@ -1335,6 +1343,10 @@ PrefabInstance:
     - target: {fileID: 8476984097424502034, guid: 8239c1a9673f991428136c57e027d608, type: 3}
       propertyPath: m_Name
       value: FogOfWarManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 8476984097424502034, guid: 8239c1a9673f991428136c57e027d608, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8239c1a9673f991428136c57e027d608, type: 3}
@@ -5074,6 +5086,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Field Of View_FOW
       objectReference: {fileID: 0}
+    - target: {fileID: 4924447214370837390, guid: 7b4ee32591c74d04ab78b9d01885cb29, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7b4ee32591c74d04ab78b9d01885cb29, type: 3}
 --- !u!33 &531158280 stripped
@@ -6168,7 +6184,7 @@ MonoBehaviour:
   OwnershipTransfer: 0
   observableSearch: 2
   ObservedComponents: []
-  sceneViewId: 2
+  sceneViewId: 600
   InstantiationId: 0
   isRuntimeInstantiated: 0
 --- !u!65 &703070128
@@ -6818,6 +6834,10 @@ PrefabInstance:
     - target: {fileID: 4924447214370837390, guid: 7b4ee32591c74d04ab78b9d01885cb29, type: 3}
       propertyPath: m_Name
       value: Field Of View_FOW
+      objectReference: {fileID: 0}
+    - target: {fileID: 4924447214370837390, guid: 7b4ee32591c74d04ab78b9d01885cb29, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7b4ee32591c74d04ab78b9d01885cb29, type: 3}
@@ -16434,6 +16454,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Field Of View_FOW
       objectReference: {fileID: 0}
+    - target: {fileID: 4924447214370837390, guid: 7b4ee32591c74d04ab78b9d01885cb29, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7b4ee32591c74d04ab78b9d01885cb29, type: 3}
 --- !u!33 &1712584121 stripped
@@ -19120,6 +19144,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 763807008}
     m_Modifications:
+    - target: {fileID: 861003199837379817, guid: 77cef67edeba3e947a92da8af352c84a, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1174145029305704546, guid: 77cef67edeba3e947a92da8af352c84a, type: 3}
       propertyPath: sceneViewId
       value: 10
@@ -19650,6 +19678,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 763807008}
     m_Modifications:
+    - target: {fileID: 861003199837379817, guid: 77cef67edeba3e947a92da8af352c84a, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1174145029305704546, guid: 77cef67edeba3e947a92da8af352c84a, type: 3}
       propertyPath: sceneViewId
       value: 7
@@ -19902,6 +19934,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 763807008}
     m_Modifications:
+    - target: {fileID: 861003199837379817, guid: 77cef67edeba3e947a92da8af352c84a, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1174145029305704546, guid: 77cef67edeba3e947a92da8af352c84a, type: 3}
       propertyPath: sceneViewId
       value: 9
@@ -21113,7 +21149,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7863f62508e8ce4498b34b1b29b27aea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  streamStrength: 40
+  streamStrength: 30
 --- !u!1 &2134439177
 GameObject:
   m_ObjectHideFlags: 0

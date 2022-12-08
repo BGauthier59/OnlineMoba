@@ -44,7 +44,7 @@ namespace Entities.Minion
         public void SyncDieRPC()
         {
             PoolNetworkManager.Instance.PoolRequeue(this);
-            FogOfWarManager.Instance.RemoveFOWViewable(this);
+            if(FogOfWarManager.Instance != null) FogOfWarManager.Instance.RemoveFOWViewable(this);
             gameObject.SetActive(false);
         }
 

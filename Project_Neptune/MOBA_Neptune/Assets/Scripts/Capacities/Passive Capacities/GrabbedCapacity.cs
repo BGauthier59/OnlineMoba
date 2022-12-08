@@ -11,6 +11,7 @@ namespace Capacities.Passive_Capacities
     {
         private double duration;
         private double timer;
+        private double securityTimer;
 
         private GrabbedCapacitySO data;
         private IDisplaceable displaceable;
@@ -32,16 +33,14 @@ namespace Capacities.Passive_Capacities
                 Debug.LogWarning("Can't displace this grabable entity?");
                 return;
             }
-
-            var pointToReach = giverEntity != null ? giverEntity.transform.position : pos;
-            Debug.DrawLine(entityUnderEffect.transform.position, pointToReach, Color.blue, 3f);
+            
             GameStateMachine.Instance.OnTick += MoveGrabbedEntity;
         }
 
         private void MoveGrabbedEntity()
         {
             var pointToReach = giverEntity != null ? giverEntity.transform.position : pos;
-            pointToReach.y = 0;
+            pointToReach.y = 1;
 
             var distance = Vector3.Distance(entityUnderEffect.transform.position, pointToReach);
 
@@ -50,6 +49,15 @@ namespace Capacities.Passive_Capacities
             displaceable.SetVelocity(velocity);
 
             Debug.Log("Grabbed !!!");
+
+            securityTimer += 1.0 / GameStateMachine.Instance.tickRate;
+
+            if (securityTimer >= 5)
+            {
+                Debug.LogWarning($"Can't reach its target at pos {pointToReach}");
+                GrabbedEntityHitTarget();
+
+            }
             if (!(distance < 1.2f)) return;
             Debug.Log("Should have reached point!");
             GrabbedEntityHitTarget();

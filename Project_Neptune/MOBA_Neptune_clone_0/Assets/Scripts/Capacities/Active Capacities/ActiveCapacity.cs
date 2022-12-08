@@ -40,6 +40,13 @@ namespace Entities.Capacities
 
         public abstract bool TryCast(int casterIndex, int[] targetsEntityIndexes, Vector3[] targetPositions);
 
+        protected Vector3 GetCasterPos()
+        {
+            var casterPos = caster.transform.position;
+            casterPos.y = 1;
+            return casterPos;
+        }
+
         #endregion
 
         #region Feedback

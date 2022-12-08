@@ -34,6 +34,7 @@ namespace Entities.Minion
 
         public event GlobalDelegates.BoolDelegate OnSetCanDie;
         public event GlobalDelegates.BoolDelegate OnSetCanDieFeedback;
+
         public void RequestDie()
         {
             photonView.RPC("DieRPC", RpcTarget.MasterClient);
@@ -43,7 +44,7 @@ namespace Entities.Minion
         public void SyncDieRPC()
         {
             PoolNetworkManager.Instance.PoolRequeue(this);
-            FogOfWarManager.Instance.RemoveFOWViewable(this);
+            if(FogOfWarManager.Instance != null) FogOfWarManager.Instance.RemoveFOWViewable(this);
             gameObject.SetActive(false);
         }
 
@@ -55,6 +56,7 @@ namespace Entities.Minion
 
         public event GlobalDelegates.NoParameterDelegate OnDie;
         public event GlobalDelegates.NoParameterDelegate OnDieFeedback;
+
         public void RequestRevive()
         {
             throw new NotImplementedException();

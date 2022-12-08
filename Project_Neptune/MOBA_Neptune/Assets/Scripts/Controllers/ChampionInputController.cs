@@ -18,6 +18,7 @@ namespace Controllers.Inputs
         private Vector3 moveVector;
         private Camera cam;
         private bool isActivebuttonPress;
+        public LayerMask groundLayer;
 
         // Capacity 0 CD Variables
         [Space] [Header("COOLDOWN")] public bool canCastAA = true;
@@ -45,7 +46,7 @@ namespace Controllers.Inputs
 
             if (champion.championSo.activeCapacities[1])
                 AACooldown = champion.championSo.activeCapacities[1].cooldown;
-            
+
             if (champion.championSo.activeCapacities[0])
                 capa1Cooldown = champion.championSo.activeCapacities[0].cooldown;
         }
@@ -54,7 +55,7 @@ namespace Controllers.Inputs
         {
             if (!canCastAA)
             {
-                AATimer += Time.deltaTime;
+                AATimer += Time.fixedDeltaTime;
                 if (AATimer >= AACooldown)
                 {
                     canCastAA = true;
@@ -64,7 +65,7 @@ namespace Controllers.Inputs
 
             if (!canCastCapa1)
             {
-                capa1Timer += Time.deltaTime;
+                capa1Timer += Time.fixedDeltaTime;
                 if (capa1Timer >= capa1Cooldown)
                 {
                     canCastCapa1 = true;
@@ -74,7 +75,7 @@ namespace Controllers.Inputs
 
             if (!canCastCapa2)
             {
-                capa2Timer += Time.deltaTime;
+                capa2Timer += Time.fixedDeltaTime;
                 if (capa2Timer >= capa2Cooldown)
                 {
                     canCastCapa2 = true;
@@ -84,13 +85,23 @@ namespace Controllers.Inputs
 
             if (!canCastUltimate)
             {
-                capa3Timer += Time.deltaTime;
+                capa3Timer += Time.fixedDeltaTime;
                 if (capa3Timer >= capa3Cooldown)
                 {
                     canCastUltimate = true;
                     capa3Timer = 0f;
                 }
             }
+        }
+
+        private void Update()
+        {
+            if (!photonView.IsMine) return;
+
+            cursorWorldPos[0] = GetMouseOverWorldPos();
+            var pos = transform.position;
+            pos.y = 1;
+            Debug.DrawLine(pos, cursorWorldPos[0], Color.black);
         }
 
         private void OnAttack(InputAction.CallbackContext ctx)
@@ -153,21 +164,16 @@ namespace Controllers.Inputs
             }
         }
 
-
-        private void OnMouseMove(InputAction.CallbackContext ctx)
-        {
-            // Todo - set selected entity
-            cursorWorldPos[0] = GetMouseOverWorldPos();
-        }
-
-        void OnMouseClick(InputAction.CallbackContext ctx)
-        {
-        }
+        void OnMouseClick(InputAction.CallbackContext ctx) { }
 
         private Vector3 GetMouseOverWorldPos()
         {
             var mouseRay = cam.ScreenPointToRay(Input.mousePosition);
-            return Physics.Raycast(mouseRay, out var hit) ? hit.point : Vector3.zero;
+            var point = Physics.Raycast(mouseRay, out var hit, float.PositiveInfinity, groundLayer)
+                ? hit.point
+                : Vector3.zero;
+            point.y = 1;
+            return point;
         }
 
         void OnMoveChange(InputAction.CallbackContext ctx)
@@ -194,8 +200,6 @@ namespace Controllers.Inputs
 
             inputs.Movement.Move.performed += OnMoveChange;
             inputs.Movement.Move.canceled += OnMoveChange;
-
-            inputs.MoveMouse.MousePos.performed += OnMouseMove;
         }
 
         protected override void Unlink()
@@ -208,8 +212,6 @@ namespace Controllers.Inputs
 
             inputs.Movement.Move.performed -= OnMoveChange;
             inputs.Movement.Move.canceled -= OnMoveChange;
-
-            inputs.MoveMouse.MousePos.performed -= OnMouseMove;
 
             CameraController.Instance.UnLinkCamera();
         }

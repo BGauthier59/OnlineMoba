@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Capacities.Active_Capacities;
 using Capacities.Passive_Capacities;
 using UnityEditor;
 using UnityEngine;
@@ -53,8 +54,7 @@ namespace Entities.Capacities
 
         public static ActiveCapacity CreateActiveCapacity(byte soIndex, Entity caster)
         {
-            var active =
-                (ActiveCapacity)Activator.CreateInstance(Instance.allActiveCapacities[soIndex].AssociatedType());
+            var active = (ActiveCapacity)Activator.CreateInstance(Instance.allActiveCapacities[soIndex].AssociatedType());
             active.indexOfSOInCollection = soIndex;
             active.caster = caster;
             return active;

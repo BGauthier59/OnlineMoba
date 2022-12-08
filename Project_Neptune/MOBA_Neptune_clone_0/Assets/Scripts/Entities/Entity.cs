@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Capacities.Passive_Capacities;
@@ -44,6 +45,7 @@ namespace Entities
         protected virtual void OnStart()
         {
             if (meshFilterFoV == null) return;
+            if (FogOfWarManager.Instance == null) return;
             FogOfWarManager.Instance.AddFOWViewable(this);
         }
 
@@ -60,9 +62,13 @@ namespace Entities
         /// <summary>
         /// Replaces the Update() method.
         /// </summary>
-        protected virtual void OnUpdate() { }
+        protected virtual void OnUpdate()
+        {
+        }
 
-        protected virtual void OnFixedUpdate() { }
+        protected virtual void OnFixedUpdate()
+        {
+        }
 
         #region MasterMethods
 
@@ -72,8 +78,9 @@ namespace Entities
             OnInstantiated();
         }
 
-
-        public virtual void OnInstantiated() { }
+        public virtual void OnInstantiated()
+        {
+        }
 
         [PunRPC]
         public void SyncInstantiateRPC(Vector3 position, Quaternion rotation)
@@ -88,8 +95,9 @@ namespace Entities
             return passiveCapacitiesList.FirstOrDefault(item => item.indexOfSo == soIndex);
         }
 
-        public virtual void OnInstantiatedFeedback() { }
-
+        public virtual void OnInstantiatedFeedback()
+        {
+        }
 
         [PunRPC]
         private void SyncSetCanAddPassiveCapacityRPC(bool value)

@@ -1,4 +1,6 @@
 using Controllers;
+using GameStates;
+using Photon.Pun;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -31,6 +33,15 @@ namespace Entities.Minion
             myAgent = GetComponent<NavMeshAgent>();
             myController = GetComponent<MinionController>();
             currentHealth = maxHealth;
+            
+            foreach (var tc in GameStateMachine.Instance.teamColors)
+            {
+                if (tc.team != team) continue;
+                GetComponent<MeshRenderer>().material
+                                .SetColor("_EmissionColor", tc.color);
+                break;
+            }
+            
         }
 
         //------ State Methods
@@ -43,8 +54,7 @@ namespace Entities.Minion
         public void WalkingState()
         {
             var strength = StreamManager.GetStreamVector(currentStreamModifier, transform);
-            Debug.DrawRay(transform.position, strength, Color.magenta);
-            Vector3 targetDestination = (transform.position + strength);
+            var targetDestination = transform.position + strength;
             myAgent.SetDestination(targetDestination);
         }
 

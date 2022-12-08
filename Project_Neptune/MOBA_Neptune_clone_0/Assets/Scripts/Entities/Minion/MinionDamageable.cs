@@ -61,17 +61,14 @@ namespace Entities.Minion
 
         public void RequestDecreaseMaxHp(float amount)
         {
-            throw new NotImplementedException();
         }
 
         public void SyncDecreaseMaxHpRPC(float amount)
         {
-            throw new NotImplementedException();
         }
 
         public void DecreaseMaxHpRPC(float amount)
         {
-            throw new NotImplementedException();
         }
 
         public event GlobalDelegates.FloatDelegate OnDecreaseMaxHp;
@@ -79,17 +76,14 @@ namespace Entities.Minion
 
         public void RequestSetCurrentHp(float value)
         {
-            throw new NotImplementedException();
         }
 
         public void SyncSetCurrentHpRPC(float value)
         {
-            throw new NotImplementedException();
         }
 
         public void SetCurrentHpRPC(float value)
         {
-            throw new NotImplementedException();
         }
 
         public event GlobalDelegates.FloatDelegate OnSetCurrentHp;
@@ -97,17 +91,14 @@ namespace Entities.Minion
 
         public void RequestSetCurrentHpPercent(float value)
         {
-            throw new NotImplementedException();
         }
 
         public void SyncSetCurrentHpPercentRPC(float value)
         {
-            throw new NotImplementedException();
         }
 
         public void SetCurrentHpPercentRPC(float value)
         {
-            throw new NotImplementedException();
         }
 
         public event GlobalDelegates.FloatDelegate OnSetCurrentHpPercent;
@@ -115,17 +106,14 @@ namespace Entities.Minion
 
         public void RequestIncreaseCurrentHp(float amount)
         {
-            throw new NotImplementedException();
         }
 
         public void SyncIncreaseCurrentHpRPC(float amount)
         {
-            throw new NotImplementedException();
         }
 
         public void IncreaseCurrentHpRPC(float amount)
         {
-            throw new NotImplementedException();
         }
 
         public event GlobalDelegates.FloatDelegate OnIncreaseCurrentHp;
@@ -148,13 +136,9 @@ namespace Entities.Minion
         {
             currentHealth -= amount;
             if (currentHealth < 0) currentHealth = 0;
-
+            
             photonView.RPC("SyncDecreaseCurrentHpRPC", RpcTarget.All, currentHealth);
-
-            if (currentHealth <= 0)
-            {
-                RequestDie();
-            }
+            if (currentHealth <= 0) DieRPC();
         }
 
         public event GlobalDelegates.FloatDelegate OnDecreaseCurrentHp;

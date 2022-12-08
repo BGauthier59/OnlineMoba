@@ -65,7 +65,8 @@ namespace Entities.Champion
 
             rotateParent.gameObject.SetActive(false); 
             uiTransform.gameObject.SetActive(false);
-            FogOfWarManager.Instance.RemoveFOWViewable(this);
+            
+            if(FogOfWarManager.Instance != null) FogOfWarManager.Instance.RemoveFOWViewable(this);
 
             OnDieFeedback?.Invoke();
         }
@@ -107,7 +108,7 @@ namespace Entities.Champion
                 InputManager.PlayerMap.Attack.Enable();
                 InputManager.PlayerMap.Capacity.Enable();
             }
-            FogOfWarManager.Instance.AddFOWViewable(this);
+            if(FogOfWarManager.Instance != null) FogOfWarManager.Instance.AddFOWViewable(this);
             rotateParent.gameObject.SetActive(true);
             uiTransform.gameObject.SetActive(true);
             OnReviveFeedback?.Invoke();

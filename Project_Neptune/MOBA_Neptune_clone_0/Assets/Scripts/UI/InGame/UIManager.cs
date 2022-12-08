@@ -14,6 +14,4 @@ public partial class UIManager : MonoBehaviour
 
         Instance = this;
     }
-
-
 }
