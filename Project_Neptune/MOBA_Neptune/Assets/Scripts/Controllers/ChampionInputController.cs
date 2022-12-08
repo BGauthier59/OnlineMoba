@@ -20,76 +20,73 @@ namespace Controllers.Inputs
         private bool isActivebuttonPress;
         public LayerMask groundLayer;
 
-        // Capacity 0 CD Variables
-        [Space] [Header("COOLDOWN")] public bool canCastAA = true;
-        private float AATimer;
-        [SerializeField] private float AACooldown = 0.45f;
+        [Space] [Header("Cooldown")] public bool canCastAutoAttack = true;
+        private float autoAttackTimer;
+        public float autoAttackCooldownDuration;
 
-        // Capacity 1 CD Variables
-        [Space] [Header("COOLDOWN")] public bool canCastCapa1 = true;
-        private float capa1Timer;
-        public float capa1Cooldown = 2.5f;
+        public bool canCastCapacity1 = true;
+        private float capacity1Timer;
+        public float capacity1CooldownDuration;
 
-        // Capacity 2 CD Variables
-        [Space] [Header("COOLDOWN")] public bool canCastCapa2 = true;
-        private float capa2Timer;
-        public float capa2Cooldown = 3f;
+        public bool canCastCapacity2 = true;
+        private float capacity2Timer;
+        public float capacity2CooldownDuration;
 
-        // Capacity Ultimate CD Variables
-        [Space] [Header("COOLDOWN")] public bool canCastUltimate = true;
-        private float capa3Timer;
-        public float capa3Cooldown = 3f;
+        public bool canCastUltimate = true;
+        private float ultimateTimer;
+        public float capacity3CooldownDuration;
+
 
         private void SetupAbilitiesCD()
         {
             if (!photonView.IsMine) return;
 
             if (champion.championSo.activeCapacities[1])
-                AACooldown = champion.championSo.activeCapacities[1].cooldown;
+                autoAttackCooldownDuration = champion.championSo.activeCapacities[1].cooldown;
 
             if (champion.championSo.activeCapacities[0])
-                capa1Cooldown = champion.championSo.activeCapacities[0].cooldown;
+                capacity1CooldownDuration = champion.championSo.activeCapacities[0].cooldown;
         }
 
         private void FixedUpdate()
         {
-            if (!canCastAA)
+            if (!canCastAutoAttack)
             {
-                AATimer += Time.fixedDeltaTime;
-                if (AATimer >= AACooldown)
+                autoAttackTimer += Time.fixedDeltaTime;
+                if (autoAttackTimer >= autoAttackCooldownDuration)
                 {
-                    canCastAA = true;
-                    AATimer = 0f;
+                    canCastAutoAttack = true;
+                    autoAttackTimer = 0f;
                 }
             }
 
-            if (!canCastCapa1)
+            if (!canCastCapacity1)
             {
-                capa1Timer += Time.fixedDeltaTime;
-                if (capa1Timer >= capa1Cooldown)
+                capacity1Timer += Time.fixedDeltaTime;
+                if (capacity1Timer >= capacity1CooldownDuration)
                 {
-                    canCastCapa1 = true;
-                    capa1Timer = 0f;
+                    canCastCapacity1 = true;
+                    capacity1Timer = 0f;
                 }
             }
 
-            if (!canCastCapa2)
+            if (!canCastCapacity2)
             {
-                capa2Timer += Time.fixedDeltaTime;
-                if (capa2Timer >= capa2Cooldown)
+                capacity2Timer += Time.fixedDeltaTime;
+                if (capacity2Timer >= capacity2CooldownDuration)
                 {
-                    canCastCapa2 = true;
-                    capa2Timer = 0f;
+                    canCastCapacity2 = true;
+                    capacity2Timer = 0f;
                 }
             }
 
             if (!canCastUltimate)
             {
-                capa3Timer += Time.fixedDeltaTime;
-                if (capa3Timer >= capa3Cooldown)
+                ultimateTimer += Time.fixedDeltaTime;
+                if (ultimateTimer >= capacity3CooldownDuration)
                 {
                     canCastUltimate = true;
-                    capa3Timer = 0f;
+                    ultimateTimer = 0f;
                 }
             }
         }
@@ -112,10 +109,10 @@ namespace Controllers.Inputs
                 return;
             }
 
-            if (canCastAA)
+            if (canCastAutoAttack)
             {
                 champion.RequestCast(champion.abilitiesIndexes[1], selectedEntity, cursorWorldPos);
-                canCastAA = false;
+                canCastAutoAttack = false;
             }
         }
 
@@ -127,11 +124,9 @@ namespace Controllers.Inputs
                 return;
             }
 
-            if (canCastCapa1)
-            {
-                champion.RequestCast(champion.abilitiesIndexes[0], selectedEntity, cursorWorldPos);
-                canCastCapa1 = false;
-            }
+            if (!canCastCapacity1) return;
+            champion.RequestCast(champion.abilitiesIndexes[0], selectedEntity, cursorWorldPos);
+            canCastCapacity1 = false;
         }
 
         private void OnActivateCapacity1(InputAction.CallbackContext ctx)
@@ -142,11 +137,9 @@ namespace Controllers.Inputs
                 return;
             }
 
-            if (canCastCapa2)
-            {
-                champion.RequestCast(champion.abilitiesIndexes[2], selectedEntity, cursorWorldPos);
-                canCastCapa2 = false;
-            }
+            if (!canCastCapacity2) return;
+            champion.RequestCast(champion.abilitiesIndexes[2], selectedEntity, cursorWorldPos);
+            canCastCapacity2 = false;
         }
 
         private void OnActivateUltimateAbility(InputAction.CallbackContext ctx)
@@ -157,11 +150,9 @@ namespace Controllers.Inputs
                 return;
             }
 
-            if (canCastUltimate)
-            {
-                champion.RequestCast(champion.ultimateAbilityIndex, selectedEntity, cursorWorldPos);
-                canCastUltimate = false;
-            }
+            if (!canCastUltimate) return;
+            champion.RequestCast(champion.ultimateAbilityIndex, selectedEntity, cursorWorldPos);
+            canCastUltimate = false;
         }
 
         void OnMouseClick(InputAction.CallbackContext ctx) { }

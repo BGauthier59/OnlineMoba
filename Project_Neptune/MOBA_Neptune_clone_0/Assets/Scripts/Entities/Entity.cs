@@ -157,7 +157,7 @@ namespace Entities
                 OnPassiveCapacityAdded?.Invoke(capacityIndex);
             }
 
-            capacity.OnAddedFeedback(this);
+            capacity.OnAddedFeedback(this, giver, pos);
             OnPassiveCapacityAddedFeedback?.Invoke(capacityIndex);
         }
 

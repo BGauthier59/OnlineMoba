@@ -19,6 +19,7 @@ namespace Capacities.Active_Capacities
 
         private Vector3 direction;
         private LayerMask grabableLayer;
+        private Vector3 casterInitPos;
 
         public override bool TryCast(int casterIndex, int[] targetsEntityIndexes, Vector3[] targetPositions)
         {
@@ -30,11 +31,12 @@ namespace Capacities.Active_Capacities
             }
             
             data = (GrabCapacitySO)AssociatedActiveCapacitySO();
-            direction = -(GetCasterPos() - targetPositions[0]);
+            casterInitPos = GetCasterPos();
+            direction = -(casterInitPos - targetPositions[0]);
             direction.y = 0;
             direction = direction.normalized;
             grabableLayer = data.grabableLayer;
-            Debug.DrawRay(GetCasterPos(), direction * 10, Color.magenta, 3f);
+            Debug.DrawRay(casterInitPos, direction * 10, Color.magenta, 3f);
 
             GameStateMachine.Instance.OnTick += CheckTimer;
             return true;
@@ -42,7 +44,6 @@ namespace Capacities.Active_Capacities
 
         private void CheckTimer()
         {
-            Debug.Log($"Will grab in {data.delayDuration - timer}");
             if (timer > data.delayDuration)
             {
                 GameStateMachine.Instance.OnTick -= CheckTimer;
@@ -56,12 +57,14 @@ namespace Capacities.Active_Capacities
 
         private void CastGrab()
         {
-            Debug.DrawRay(GetCasterPos(), direction * data.grabMaxDistance, Color.yellow, 3);
+            Debug.Log("Casting grab!");
+            Debug.DrawRay(casterInitPos, direction * data.grabMaxDistance, Color.yellow, 3);
+            var champion = (Champion)caster;
 
-            if (!Physics.Raycast(GetCasterPos() + ((Champion)caster).rotateParent.forward, direction, out var hit,
+            if (!Physics.Raycast(casterInitPos + champion.rotateParent.forward, direction, out var hit,
                     data.grabMaxDistance, grabableLayer)) return;
-
-            Debug.DrawLine(GetCasterPos(), hit.point, Color.red, 3);
+            
+            Debug.DrawLine(casterInitPos, hit.point, Color.red, 3);
 
             // We get hit IGrabable data
             var grabable = hit.collider.gameObject.GetComponent<IGrabable>();
@@ -79,32 +82,32 @@ namespace Capacities.Active_Capacities
             }
             Debug.Log($"You hit {entity.name}");
 
+            champion.grabVFX.transform.position = hit.point;
+            champion.grabVFX.Play();
+
             var team = entity.team;
             var capacityIndex = CapacitySOCollectionManager.GetPassiveCapacitySOIndex(data.passiveEffect);
 
             if (team == caster.team)
             {
-                Debug.Log("You grabbed an ally");
                 caster.AddPassiveCapacityRPC(capacityIndex, entity.entityIndex);
             }
             else if (team == Enums.Team.Neutral)
             {
                 var point = hit.point;
                 point.y = 1;
-                Debug.Log("You grabbed a wall");
                 caster.AddPassiveCapacityRPC(capacityIndex, default, point);
             }
             else
             {
                 Debug.Log("You grabbed an enemy");
-
                 // Set passive capacity Grabbed on both caster and grabable
             }
         }
 
         public override void PlayFeedback(int casterIndex, int[] targetsEntityIndexes, Vector3[] targetPositions)
         {
-            Debug.Log("Feedback!");
+            
         }
     }
 }

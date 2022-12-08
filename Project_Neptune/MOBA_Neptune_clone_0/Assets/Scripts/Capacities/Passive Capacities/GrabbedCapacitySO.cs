@@ -8,6 +8,7 @@ namespace Capacities.Passive_Capacities
     {
         public double duration;
         public float speed;
+        public float distanceSpeedFactor;
         
         public override Type AssociatedType()
         {

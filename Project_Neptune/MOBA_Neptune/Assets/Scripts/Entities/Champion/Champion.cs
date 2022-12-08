@@ -1,6 +1,7 @@
 using System;
 using Capacities.Passive_Capacities;
 using Controllers;
+using Controllers.Inputs;
 using Entities.Capacities;
 using Entities.FogOfWar;
 using GameStates;
@@ -13,6 +14,7 @@ namespace Entities.Champion
     public partial class Champion : Entity
     {
         public ChampionSO championSo;
+        public ChampionInputController controller;
         public Transform rotateParent;
         public Transform championMesh;
         private Vector3 respawnPos;
@@ -23,6 +25,9 @@ namespace Entities.Champion
         public Camera camera;
 
         public CollisionBlocker blocker;
+        
+        public LineRenderer grabLine;
+        public ParticleSystem grabVFX;
 
         protected override void OnStart()
         {
@@ -141,6 +146,19 @@ namespace Entities.Champion
             rb.velocity = Vector3.zero;
             RequestSetCanDie(true);
             RequestSetCanMove(true);
+
+            if (attackAbilityIndex != 255)
+                controller.capacity1CooldownDuration = CapacitySOCollectionManager
+                    .GetActiveCapacitySOByIndex(attackAbilityIndex).cooldown;
+            if (abilitiesIndexes[0] != 255)
+                controller.capacity2CooldownDuration = CapacitySOCollectionManager
+                    .GetActiveCapacitySOByIndex(abilitiesIndexes[0]).cooldown;
+            if (abilitiesIndexes[1] != 255)
+                controller.capacity1CooldownDuration = CapacitySOCollectionManager
+                    .GetActiveCapacitySOByIndex(abilitiesIndexes[1]).cooldown;
+            if (ultimateAbilityIndex != 255)
+                controller.capacity1CooldownDuration = CapacitySOCollectionManager
+                    .GetActiveCapacitySOByIndex(ultimateAbilityIndex).cooldown;
         }
     }
 }

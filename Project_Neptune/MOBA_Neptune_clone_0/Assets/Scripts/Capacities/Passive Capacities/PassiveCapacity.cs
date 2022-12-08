@@ -28,7 +28,6 @@ namespace Capacities.Passive_Capacities
         {
             if (stackable) count++;
             this.entityUnderEffect = entityUnderEffect;
-            Debug.Log(giver);
             giverEntity = giver;
             this.pos = pos;
             OnAddedEffects();
@@ -42,9 +41,11 @@ namespace Capacities.Passive_Capacities
         /// <summary>
         /// Call Feedback of the Stack on when Added
         /// </summary>
-        public void OnAddedFeedback(Entity target)
+        public void OnAddedFeedback(Entity target, Entity giver, Vector3 pos)
         {
             entityUnderEffect = target;
+            giverEntity = giver;
+            this.pos = pos;
             OnAddedFeedbackEffects();
         }
 

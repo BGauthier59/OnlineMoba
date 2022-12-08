@@ -45,7 +45,7 @@ namespace Entities.Capacities
             }
         }
 
-        //=========================ACTIVE=====================================
+        #region Active Capacities
 
         public static byte GetActiveCapacitySOIndex(ActiveCapacitySO so)
         {
@@ -54,7 +54,8 @@ namespace Entities.Capacities
 
         public static ActiveCapacity CreateActiveCapacity(byte soIndex, Entity caster)
         {
-            var active = (ActiveCapacity)Activator.CreateInstance(Instance.allActiveCapacities[soIndex].AssociatedType());
+            var active =
+                (ActiveCapacity)Activator.CreateInstance(Instance.allActiveCapacities[soIndex].AssociatedType());
             active.indexOfSOInCollection = soIndex;
             active.caster = caster;
             return active;
@@ -70,7 +71,9 @@ namespace Entities.Capacities
             return Instance.allActiveCapacities[index];
         }
 
-        //=========================PASSIF=====================================
+        #endregion
+
+        #region Passive Capacities
 
         public static byte GetPassiveCapacitySOIndex(PassiveCapacitySO so)
         {
@@ -109,5 +112,7 @@ namespace Entities.Capacities
         {
             return Instance.allPassiveCapacitiesSo[index];
         }
+
+        #endregion
     }
 }
