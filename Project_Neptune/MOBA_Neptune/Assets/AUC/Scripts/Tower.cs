@@ -26,10 +26,15 @@ public partial class Tower : Building
     [SerializeField] private MeshRenderer[] colorfulMeshes;
     private static readonly int EmissionColor = Shader.PropertyToID("_EmissionColor");
 
+    [SerializeField] private Transform attackFrom;
+    private LineRenderer towerLr;
+    private Vector3[] points;
+
     protected override void OnStart()
     {
         base.OnStart();
         SetUpColor();
+        towerLr = GetComponent<LineRenderer>();
     }
 
     private void SetUpColor()
@@ -40,7 +45,7 @@ public partial class Tower : Building
         {
             if (tc.team == team) color = tc.color;
         }
-        
+
         foreach (var rd in colorfulMeshes)
         {
             rd.material.SetColor(EmissionColor, color * 1);
@@ -55,6 +60,20 @@ public partial class Tower : Building
             TowerDetection();
             brainTimer = 0;
         }
+
+        if (enemiesInRange.Count > 0)
+        {
+            points[0] = attackFrom.transform.position;
+            points[1] = enemiesInRange[0].transform.position;
+            towerLr.SetPositions(points);
+        }
+        else ResetLr();
+    }
+
+    void ResetLr()
+    {
+        if (towerLr.positionCount > 0)
+            towerLr.positionCount = 0;
     }
 
     private void TowerDetection()
@@ -70,7 +89,7 @@ public partial class Tower : Building
         foreach (var result in size)
         {
             if (result.GetComponent<Entity>().GetTeam() == GetTeam()) continue;
-            
+
             float dist = Vector3.Distance(transform.position, result.transform.position);
 
             if (dist < detectionRange)
@@ -99,9 +118,9 @@ public partial class Tower : Building
 
         if (tempEntity) enemiesInRange.Add(tempEntity.GetComponent<Entity>());
 
+
         if (isCycleAttack == false && enemiesInRange.Count > 0)
             StartCoroutine(AttackTarget());
-        
     }
 
     private IEnumerator AttackTarget()
