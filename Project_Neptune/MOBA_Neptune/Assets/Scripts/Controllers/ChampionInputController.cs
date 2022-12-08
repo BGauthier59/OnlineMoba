@@ -22,7 +22,7 @@ namespace Controllers.Inputs
         // Capacity 0 CD Variables
         [Space] [Header("COOLDOWN")] public bool canCastAA = true;
         private float AATimer;
-        public float AACooldown = 0.45f;
+        [SerializeField] private float AACooldown = 0.45f;
 
         // Capacity 1 CD Variables
         [Space] [Header("COOLDOWN")] public bool canCastCapa1 = true;

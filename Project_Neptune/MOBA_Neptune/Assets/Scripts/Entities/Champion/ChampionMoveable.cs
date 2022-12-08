@@ -141,7 +141,7 @@ namespace Entities.Champion
 
             var ray = camera.ScreenPointToRay(Input.mousePosition);
 
-            if (!Physics.Raycast(ray, out var hit, float.PositiveInfinity, groundMask)) return;
+            if (!Physics.Raycast(ray, out var hit, float.PositiveInfinity)) return;
 
             rotateDirection = -(transform.position - hit.point);
             rotateDirection.y = 0;
