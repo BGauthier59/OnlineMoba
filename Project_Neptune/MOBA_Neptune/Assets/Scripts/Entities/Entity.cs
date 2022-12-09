@@ -31,6 +31,7 @@ namespace Entities
         public Vector3 guiOffset = new Vector3(0, 2f, 0);
 
         public Rigidbody rb;
+        public Animator animator;
 
         private void Start()
         {

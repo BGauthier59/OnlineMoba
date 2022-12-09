@@ -9,6 +9,7 @@ namespace Entities.Champion
     {
         [SerializeField] private MeshRenderer[] teamColorfulParts;
         private static readonly int EmissionColor = Shader.PropertyToID("_EmissionColor");
+        public Animator animator;
 
         public void LinkTeamColor(Enums.Team team)
         {

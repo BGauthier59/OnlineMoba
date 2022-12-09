@@ -34,71 +34,60 @@ namespace Controllers.Inputs
 
         public bool canCastUltimate = true;
         private float ultimateTimer;
-        public float capacity3CooldownDuration;
-
-
-        private void SetupAbilitiesCD()
-        {
-            if (!photonView.IsMine) return;
-
-            if (champion.championSo.activeCapacities[1])
-                autoAttackCooldownDuration = champion.championSo.activeCapacities[1].cooldown;
-
-            if (champion.championSo.activeCapacities[0])
-                capacity1CooldownDuration = champion.championSo.activeCapacities[0].cooldown;
-        }
-
-        private void FixedUpdate()
-        {
-            if (!canCastAutoAttack)
-            {
-                autoAttackTimer += Time.fixedDeltaTime;
-                if (autoAttackTimer >= autoAttackCooldownDuration)
-                {
-                    canCastAutoAttack = true;
-                    autoAttackTimer = 0f;
-                }
-            }
-
-            if (!canCastCapacity1)
-            {
-                capacity1Timer += Time.fixedDeltaTime;
-                if (capacity1Timer >= capacity1CooldownDuration)
-                {
-                    canCastCapacity1 = true;
-                    capacity1Timer = 0f;
-                }
-            }
-
-            if (!canCastCapacity2)
-            {
-                capacity2Timer += Time.fixedDeltaTime;
-                if (capacity2Timer >= capacity2CooldownDuration)
-                {
-                    canCastCapacity2 = true;
-                    capacity2Timer = 0f;
-                }
-            }
-
-            if (!canCastUltimate)
-            {
-                ultimateTimer += Time.fixedDeltaTime;
-                if (ultimateTimer >= capacity3CooldownDuration)
-                {
-                    canCastUltimate = true;
-                    ultimateTimer = 0f;
-                }
-            }
-        }
+        public float ultimateCooldownDuration;
 
         private void Update()
         {
             if (!photonView.IsMine) return;
+            UpdateCooldown();
 
             cursorWorldPos[0] = GetMouseOverWorldPos();
             var pos = transform.position;
             pos.y = 1;
             Debug.DrawLine(pos, cursorWorldPos[0], Color.black);
+        }
+
+        private void UpdateCooldown()
+        {
+            if (!canCastAutoAttack)
+            {
+                if (autoAttackTimer >= autoAttackCooldownDuration)
+                {
+                    canCastAutoAttack = true;
+                    autoAttackTimer = 0f;
+                }
+                else autoAttackTimer += Time.deltaTime;
+            }
+
+            if (!canCastCapacity1)
+            {
+                if (capacity1Timer >= capacity1CooldownDuration)
+                {
+                    canCastCapacity1 = true;
+                    capacity1Timer = 0f;
+                }
+                else capacity1Timer += Time.deltaTime;
+            }
+
+            if (!canCastCapacity2)
+            {
+                if (capacity2Timer >= capacity2CooldownDuration)
+                {
+                    canCastCapacity2 = true;
+                    capacity2Timer = 0f;
+                }
+                else capacity2Timer += Time.deltaTime;
+            }
+
+            if (!canCastUltimate)
+            {
+                if (ultimateTimer >= ultimateCooldownDuration)
+                {
+                    canCastUltimate = true;
+                    ultimateTimer = 0f;
+                }
+                else ultimateTimer += Time.deltaTime;
+            }
         }
 
         private void OnAttack(InputAction.CallbackContext ctx)
@@ -109,11 +98,13 @@ namespace Controllers.Inputs
                 return;
             }
 
-            if (canCastAutoAttack)
+            if (!canCastAutoAttack)
             {
-                champion.RequestCast(champion.abilitiesIndexes[1], selectedEntity, cursorWorldPos);
-                canCastAutoAttack = false;
+                Debug.LogWarning("Cooldown not over!");
+                return;
             }
+            champion.RequestCast(champion.abilitiesIndexes[1], selectedEntity, cursorWorldPos);
+            canCastAutoAttack = false;
         }
 
         private void OnActivateCapacity0(InputAction.CallbackContext ctx)
@@ -124,7 +115,11 @@ namespace Controllers.Inputs
                 return;
             }
 
-            if (!canCastCapacity1) return;
+            if (!canCastCapacity1)
+            {
+                Debug.LogWarning("Cooldown not over!");
+                return;
+            }
             champion.RequestCast(champion.abilitiesIndexes[0], selectedEntity, cursorWorldPos);
             canCastCapacity1 = false;
         }
@@ -137,7 +132,11 @@ namespace Controllers.Inputs
                 return;
             }
 
-            if (!canCastCapacity2) return;
+            if (!canCastCapacity2)
+            {
+                Debug.LogWarning("Cooldown not over!");
+                return;
+            }
             champion.RequestCast(champion.abilitiesIndexes[2], selectedEntity, cursorWorldPos);
             canCastCapacity2 = false;
         }
@@ -150,7 +149,11 @@ namespace Controllers.Inputs
                 return;
             }
 
-            if (!canCastUltimate) return;
+            if (!canCastUltimate)
+            {
+                Debug.LogWarning("Cooldown not over!");
+                return;
+            }
             champion.RequestCast(champion.ultimateAbilityIndex, selectedEntity, cursorWorldPos);
             canCastUltimate = false;
         }

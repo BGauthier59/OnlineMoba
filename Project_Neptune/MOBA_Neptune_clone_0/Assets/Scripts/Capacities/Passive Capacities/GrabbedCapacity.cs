@@ -74,7 +74,6 @@ namespace Capacities.Passive_Capacities
                 entityUnderEffect.transform.SetParent(giverEntity.transform);
             }
 
-            GameStateMachine.Instance.OnTickFeedback -= SetLineFeedback;
             GameStateMachine.Instance.OnTick -= MoveGrabbedEntity;
             GameStateMachine.Instance.OnTick += CheckTimer;
         }
@@ -83,6 +82,8 @@ namespace Capacities.Passive_Capacities
         {
             grabbedChampion = (Champion)entityUnderEffect;
             grabbedChampion.grabLine.SetPosition(0, grabbedChampion.transform.position);
+            var p = giverEntity == null ? pos : giverEntity.transform.position;
+            grabbedChampion.grabLine.SetPosition(1, p);
             grabbedChampion.grabLine.enabled = true;
 
             GameStateMachine.Instance.OnTickFeedback += SetLineFeedback;
@@ -91,7 +92,8 @@ namespace Capacities.Passive_Capacities
         private void SetLineFeedback()
         {
             grabbedChampion.grabLine.SetPosition(0, grabbedChampion.transform.position);
-            grabbedChampion.grabLine.SetPosition(1, giverEntity == null ? pos : giverEntity.transform.position);
+            var p = giverEntity == null ? pos : giverEntity.transform.position;
+            grabbedChampion.grabLine.SetPosition(1, p);
         }
 
         protected override void OnRemovedEffects(Entity target)
@@ -105,6 +107,7 @@ namespace Capacities.Passive_Capacities
         protected override void OnRemovedFeedbackEffects(Entity target)
         {
             grabbedChampion.grabLine.enabled = false;
+            GameStateMachine.Instance.OnTickFeedback -= SetLineFeedback;
         }
 
         private void CheckTimer()

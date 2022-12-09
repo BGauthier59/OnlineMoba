@@ -29,7 +29,8 @@ namespace Capacities.Active_Capacities
                 Debug.LogWarning("You're on a cooldown for grab capacity!");
                 return false;
             }
-            
+
+            caster.animator.SetBool("IsGrabbing", true);
             data = (GrabCapacitySO)AssociatedActiveCapacitySO();
             casterInitPos = GetCasterPos();
             direction = -(casterInitPos - targetPositions[0]);
@@ -60,6 +61,7 @@ namespace Capacities.Active_Capacities
             Debug.Log("Casting grab!");
             Debug.DrawRay(casterInitPos, direction * data.grabMaxDistance, Color.yellow, 3);
             var champion = (Champion)caster;
+            caster.animator.SetBool("IsGrabbing", false);
 
             if (!Physics.Raycast(casterInitPos + champion.rotateParent.forward, direction, out var hit,
                     data.grabMaxDistance, grabableLayer)) return;
@@ -80,6 +82,7 @@ namespace Capacities.Active_Capacities
                 Debug.LogWarning("Touched itself!");
                 return;
             }
+
             Debug.Log($"You hit {entity.name}");
 
             champion.grabVFX.transform.position = hit.point;
@@ -105,9 +108,6 @@ namespace Capacities.Active_Capacities
             }
         }
 
-        public override void PlayFeedback(int casterIndex, int[] targetsEntityIndexes, Vector3[] targetPositions)
-        {
-            
-        }
+        public override void PlayFeedback(int casterIndex, int[] targetsEntityIndexes, Vector3[] targetPositions) { }
     }
 }

@@ -124,15 +124,31 @@ namespace Entities.Champion
 
         private void Move()
         {
-            if (!canMove) return;
+            if (!canMove)
+            {
+                animator.SetBool("IsRunning", false);
+                animator.SetBool("IsSliding", false);
+                return;
+            }
 
             var velocity = moveDirection * currentMoveSpeed;
             var strength = StreamManager.GetStreamVector(currentStreamModifier, transform);
+
+            if (currentStreamModifier == null) animator.SetBool("IsRunning", true);
+            else animator.SetBool("IsSliding", true);
+
+
             Debug.DrawRay(transform.position, velocity, Color.green);
             Debug.DrawRay(transform.position, strength, Color.magenta);
             if (velocity + strength == rb.velocity) return;
 
             rb.velocity = velocity + strength;
+
+            if (rb.velocity.magnitude == 0)
+            {
+                animator.SetBool("IsRunning", false);
+                animator.SetBool("IsSliding", false);
+            }
         }
 
         private void RotateMath()

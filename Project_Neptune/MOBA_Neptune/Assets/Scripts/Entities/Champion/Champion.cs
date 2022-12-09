@@ -28,6 +28,7 @@ namespace Entities.Champion
         
         public LineRenderer grabLine;
         public ParticleSystem grabVFX;
+        private bool isLinked;
 
         protected override void OnStart()
         {
@@ -43,12 +44,16 @@ namespace Entities.Champion
 
         protected override void OnUpdate()
         {
+            if (!isLinked) return;
+            
             if (GameStateMachine.Instance.GetPlayerChampion() == this)
                 RotateMath();
         }
 
         protected override void OnFixedUpdate()
         {
+            if (!isLinked) return;
+
             if (GameStateMachine.Instance.GetPlayerChampion() != this) return;
             Move();
             Rotate();
@@ -127,6 +132,7 @@ namespace Entities.Champion
             respawnPos = transform.position = pos.position;
 
             championMesh.GetComponent<ChampionMeshLinker>().LinkTeamColor(this.team);
+            animator = championMesh.GetComponent<ChampionMeshLinker>().animator;
             elementsToShow.Add(championMesh);
 
             uiManager = UIManager.Instance;
@@ -148,17 +154,19 @@ namespace Entities.Champion
             RequestSetCanMove(true);
 
             if (attackAbilityIndex != 255)
-                controller.capacity1CooldownDuration = CapacitySOCollectionManager
+                controller.autoAttackCooldownDuration = CapacitySOCollectionManager
                     .GetActiveCapacitySOByIndex(attackAbilityIndex).cooldown;
             if (abilitiesIndexes[0] != 255)
-                controller.capacity2CooldownDuration = CapacitySOCollectionManager
+                controller.capacity1CooldownDuration = CapacitySOCollectionManager
                     .GetActiveCapacitySOByIndex(abilitiesIndexes[0]).cooldown;
             if (abilitiesIndexes[1] != 255)
-                controller.capacity1CooldownDuration = CapacitySOCollectionManager
+                controller.capacity2CooldownDuration = CapacitySOCollectionManager
                     .GetActiveCapacitySOByIndex(abilitiesIndexes[1]).cooldown;
             if (ultimateAbilityIndex != 255)
-                controller.capacity1CooldownDuration = CapacitySOCollectionManager
+                controller.ultimateCooldownDuration = CapacitySOCollectionManager
                     .GetActiveCapacitySOByIndex(ultimateAbilityIndex).cooldown;
+
+            isLinked = true;
         }
     }
 }
