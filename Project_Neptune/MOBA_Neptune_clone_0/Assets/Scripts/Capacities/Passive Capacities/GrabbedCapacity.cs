@@ -1,4 +1,5 @@
 using Entities;
+using Entities.Capacities;
 using Entities.Champion;
 using Entities.Interfaces;
 using GameStates;
@@ -25,7 +26,6 @@ namespace Capacities.Passive_Capacities
             var grabable = entityUnderEffect.GetComponent<IGrabable>();
             grabable?.OnGrabbed();
             grabbedChampion = (Champion)entityUnderEffect;
-
 
             duration = data.duration;
             timer = 0;
@@ -67,15 +67,21 @@ namespace Capacities.Passive_Capacities
 
         private void GrabbedEntityHitTarget()
         {
-            if (giverEntity != null)
+            GameStateMachine.Instance.OnTick -= MoveGrabbedEntity;
+
+            if (giverEntity != null && giverEntity.team == entityUnderEffect.team)
             {
                 entityUnderEffect.transform.position =
                     giverEntity.transform.position - entityUnderEffect.transform.forward * .5f;
-                entityUnderEffect.transform.SetParent(giverEntity.transform);
+                GameStateMachine.Instance.OnTick += SetVelocityOnHookedEntity;
             }
 
-            GameStateMachine.Instance.OnTick -= MoveGrabbedEntity;
             GameStateMachine.Instance.OnTick += CheckTimer;
+        }
+
+        private void SetVelocityOnHookedEntity()
+        {
+            entityUnderEffect.rb.velocity = giverEntity.rb.velocity;
         }
 
         protected override void OnAddedFeedbackEffects()
@@ -99,8 +105,13 @@ namespace Capacities.Passive_Capacities
         protected override void OnRemovedEffects(Entity target)
         {
             Debug.Log("Not grabbed anymore");
-            if (giverEntity != null) entityUnderEffect.transform.SetParent(null);
-            ((Champion)entityUnderEffect).OnUnGrabbed();
+            if (giverEntity != null)
+            {
+                entityUnderEffect.rb.velocity = Vector3.zero;
+                GameStateMachine.Instance.OnTick -= SetVelocityOnHookedEntity;
+            }
+
+            grabbedChampion.OnUnGrabbed();
             InputManager.PlayerMap.Movement.Enable();
         }
 
