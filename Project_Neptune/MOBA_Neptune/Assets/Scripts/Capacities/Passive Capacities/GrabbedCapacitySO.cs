@@ -9,7 +9,6 @@ namespace Capacities.Passive_Capacities
         public double duration;
         public float speed;
         public float distanceSpeedFactor;
-        public PassiveCapacitySO hooked;
         
         public override Type AssociatedType()
         {

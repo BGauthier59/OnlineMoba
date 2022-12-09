@@ -124,7 +124,6 @@ namespace Capacities.Passive_Capacities
         private void CheckTimer()
         {
             timer += 1.0 / GameStateMachine.Instance.tickRate;
-
             if (timer >= duration - .1)
             {
                 timer = 0;
