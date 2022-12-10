@@ -5,8 +5,10 @@ using Entities;
 using Entities.Capacities;
 using Entities.Champion;
 using GameStates;
+using JetBrains.Annotations;
 using Photon.Pun;
 using UnityEngine;
+using static UnityEngine.Debug;
 
 public partial class Tower : Building
 {
@@ -26,10 +28,18 @@ public partial class Tower : Building
     [SerializeField] private MeshRenderer[] colorfulMeshes;
     private static readonly int EmissionColor = Shader.PropertyToID("_EmissionColor");
 
+    [SerializeField] private LineRenderer _lineRenderer;
+    
+    [SerializeField] private GameObject warningPoint;
+    [SerializeField] private int playerID;
+    [SerializeField] private int localEnemiesInRange;
+    [SerializeField] private int localPlayerFocused;
+
     protected override void OnStart()
     {
         base.OnStart();
         SetUpColor();
+        _lineRenderer = GetComponent<LineRenderer>();
     }
 
     private void SetUpColor()
@@ -47,14 +57,60 @@ public partial class Tower : Building
         }
     }
 
+    // ReSharper disable Unity.PerformanceAnalysis
     protected override void OnUpdate()
     {
+        // Local
+
+        if (playerID == 0)
+            playerID = GameStateMachine.Instance.GetPlayerChampionPhotonViewId();
+        
+
+        if (localEnemiesInRange > 0) 
+            warningPoint.SetActive(localPlayerFocused == playerID);
+        
+        
+        // Multi
+
+        if (!PhotonNetwork.IsMasterClient) return;
+
         brainTimer += Time.deltaTime;
         if (brainTimer > brainSpeed)
         {
             TowerDetection();
             brainTimer = 0;
         }
+        
+        // Line Renderer
+        if (enemiesInRange.Count > 0)
+            photonView.RPC("SyncLineRendererRPC", RpcTarget.All, enemiesInRange[0].transform.position);
+        else
+            photonView.RPC("ResetLrRPC", RpcTarget.All);
+        
+        
+        // LocalMethods
+        photonView.RPC("SyncPlayerInfoRPC", RpcTarget.All, enemiesInRange.Count, enemiesInRange.Count < 0 ?  0 : enemiesInRange[0].GetComponent<Entity>().entityIndex);
+    }
+    
+    [PunRPC] [UsedImplicitly]
+    private void SyncPlayerInfoRPC(int i, int j)
+    {
+        localEnemiesInRange = i;
+        localPlayerFocused = j;
+    }
+
+    [PunRPC] [UsedImplicitly]
+    private void SyncLineRendererRPC(Vector3 targetTransform)
+    {
+        _lineRenderer.positionCount = 2;
+        _lineRenderer.SetPosition(0, transform.position + Vector3.up * 2.5f);
+        _lineRenderer.SetPosition(1, targetTransform + Vector3.up * 2);
+    }
+
+    [PunRPC] [UsedImplicitly]
+    private void ResetLrRPC()
+    {
+        _lineRenderer.positionCount = 0;
     }
 
     private void TowerDetection()
@@ -103,7 +159,7 @@ public partial class Tower : Building
             StartCoroutine(AttackTarget());
         
     }
-
+    
     private IEnumerator AttackTarget()
     {
         isCycleAttack = true;
