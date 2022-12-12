@@ -1,4 +1,6 @@
-﻿namespace Entities
+﻿using JetBrains.Annotations;
+
+namespace Entities
 {
     public interface IDamageable
     {
@@ -127,17 +129,17 @@
         /// Sends an RPC to the master to decrease the entity's currentHp.
         /// </summary>
         /// <param name="amount">the decrease amount</param>
-        public void RequestDecreaseCurrentHp(float amount);
+        public void RequestDecreaseCurrentHp(float amount, [CanBeNull] Entity entityWhoAttacked );
         /// <summary>
         /// Sends an RPC to all clients to decrease the entity's currentHp.
         /// </summary>
         /// <param name="amount">the decrease amount</param>
-        public void SyncDecreaseCurrentHpRPC(float amount);
+        public void SyncDecreaseCurrentHpRPC(float amount, [CanBeNull] Entity entityWhoAttacked);
         /// <summary>
         /// Decreases the entity's currentHp.
         /// </summary>
         /// <param name="amount">the decrease amount</param>
-        public void DecreaseCurrentHpRPC(float amount);
+        public void DecreaseCurrentHpRPC(float amount, [CanBeNull] Entity entityWhoAttacked);
 
         public event GlobalDelegates.FloatDelegate OnDecreaseCurrentHp;
         public event GlobalDelegates.FloatDelegate OnDecreaseCurrentHpFeedback;

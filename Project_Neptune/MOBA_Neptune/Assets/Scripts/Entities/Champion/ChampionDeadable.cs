@@ -63,7 +63,7 @@ namespace Entities.Champion
                 InputManager.PlayerMap.Capacity.Disable();
             }
 
-            rotateParent.gameObject.SetActive(false); 
+            rotateParent.gameObject.SetActive(false);
             uiTransform.gameObject.SetActive(false);
             
             if(FogOfWarManager.Instance != null) FogOfWarManager.Instance.RemoveFOWViewable(this);
@@ -82,6 +82,7 @@ namespace Entities.Champion
 
             isAlive = false;
             SetCanDieRPC(false);
+            ChampionRequestRemoveScore(GetComponent<Entity>());
             
             // TODO - Disable collision, etc...
 
@@ -119,12 +120,11 @@ namespace Entities.Champion
         {
             isAlive = true;
             SetCanDieRPC(true);
-
             SetCurrentHpRPC(maxHp);
             SetCurrentResourceRPC(maxResource);
+            
             OnRevive?.Invoke();
             photonView.RPC("SyncReviveRPC", RpcTarget.All);
-
         }
 
         private void Revive()

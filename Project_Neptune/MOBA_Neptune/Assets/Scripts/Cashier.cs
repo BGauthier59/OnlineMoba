@@ -23,30 +23,36 @@ public class Cashier : MonoBehaviour, IScorable
         if (!tempEntity) return;
 
         if (tempEntity.team == teamToGoCashier)
-            RequestIncreaseScore(tempEntity.currentPointCarried, tempEntity);
+            CashierRequestIncreaseScore(tempEntity.currentPointCarried, tempEntity);
     }
 
-    //------ IScorable Methods
+    /* ------- Scoreable Methods ------- */
 
-    public void RequestIncreaseScore(int value, Entity entityWhoScored)
+    public void CashierRequestIncreaseScore(int value, Entity entityWhoScored)
     {
         _photonView.RPC("SetIncreaseScoreRPC", RpcTarget.MasterClient, value);
-
-        if (!entityWhoScored.GetComponent<MinionBehaviour>()) return; // Si c'est un creep alors,
         
-        IDeadable deadable = entityWhoScored.GetComponent<IDeadable>(); // Tue
-        deadable?.RequestDie();
+        if (entityWhoScored.GetComponent<MinionBehaviour>())
+        {
+            var deadable = entityWhoScored.GetComponent<IDeadable>(); // Tue le sbire
+            deadable?.RequestDie();
+        }
+        else
+        {
+            var championScoreable = entityWhoScored.GetComponent<IScorable>(); // Retire les points
+            championScoreable?.ChampionRequestRemoveScore(entityWhoScored);
+        }
     }
     
     [PunRPC]
-    public void SyncIncreaseScoreRPC(int value)
+    public void SyncCashierIncreaseScoreRPC(int value)
     {
         cashierPoint = value;
         UICommonPlayers.Instance.OnScoreChange();
     }
 
     [PunRPC]
-    public void SetIncreaseScoreRPC(int value)
+    public void CashierIncreaseScoreRPC(int value)
     {
         cashierPoint += value;
 
@@ -59,5 +65,27 @@ public class Cashier : MonoBehaviour, IScorable
         GameStateMachine.Instance.winner = teamToGoCashier;
 
         // TODO - Faire gagner l'équipe teamToGoCashier
+    }
+
+    // ----------- Unused Methods ----------- //
+    
+    public void ChampionRequestIncreaseScore(int value, Entity entityToInscreasePoints)
+    {
+    }
+
+    public void SyncChampionIncreaseScore(int value, Entity entityToInscreasePoints)
+    {
+    }
+
+    public void ChampionIncreaseScore(int value, Entity entityToInscreasePoints)
+    {
+    }
+    
+    public void ChampionRequestRemoveScore(Entity entityWhoScored)
+    {
+    }
+
+    public void SyncChampionRemoveScore(Entity entityWhoScored)
+    {
     }
 }

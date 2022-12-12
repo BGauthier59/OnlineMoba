@@ -41,7 +41,7 @@ public class ActiveTowerAuto : ActiveCapacity
         if (Vector3.Distance(_tower.transform.position, _target.transform.position) < _tower.detectionRange)
         {
             IDamageable entityDamageable = _target.GetComponent<IDamageable>();
-            entityDamageable.DecreaseCurrentHpRPC(_tower.damage); 
+            entityDamageable.DecreaseCurrentHpRPC(_tower.damage, null); 
         }
     }
 }

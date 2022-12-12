@@ -1,10 +1,19 @@
-using Entities;
+ using Entities;
+ using Photon.Pun;
 
-public interface IScorable
+ public interface IScorable
 {
-    public void RequestIncreaseScore(int value, Entity entityWhoScored);
+    // Minion & Champion ---
+    public void CashierRequestIncreaseScore(int value, Entity entityWhoScored);
+    public void SyncCashierIncreaseScoreRPC(int value);
+    public void CashierIncreaseScoreRPC(int value);
     
-    public void SyncIncreaseScoreRPC(int value);
+    // Champion Increase Score ---
+    public void ChampionRequestIncreaseScore(int value, Entity entityToInscreasePoints);
+    public void SyncChampionIncreaseScore(int value, Entity entityToInscreasePoints);
+    public void ChampionIncreaseScore(int value, Entity entityToInscreasePoints);
     
-    public void SetIncreaseScoreRPC(int value);
+    //Champion Remove Score (Set to 0) ---
+    public void ChampionRequestRemoveScore(Entity entityWhoScored);
+    public void SyncChampionRemoveScore(Entity entityWhoScored);
 }

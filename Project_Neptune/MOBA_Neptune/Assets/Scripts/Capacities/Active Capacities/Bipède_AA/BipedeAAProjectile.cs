@@ -54,7 +54,7 @@ public class BipedeAAProjectile : MonoBehaviourPun
         if (other.gameObject.GetComponent<Entity>().team != caster.team)
         {
             Debug.Log($"Minion hit : {other.gameObject.name}");
-            damageable?.RequestDecreaseCurrentHp(bipedeAASO.capacityDamages);
+            damageable?.RequestDecreaseCurrentHp(bipedeAASO.capacityDamages, caster);
         }
         
         gameObject.SetActive(false);

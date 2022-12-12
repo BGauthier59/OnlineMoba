@@ -437,6 +437,7 @@ MonoBehaviour:
   uiTransform: {fileID: 0}
   guiOffset: {x: 0, y: 2, z: 0}
   rb: {fileID: 0}
+  animator: {fileID: 0}
   canShow: 0
   canHide: 0
   elementsToShow: []
@@ -457,7 +458,7 @@ MonoBehaviour:
   spawnMinionInterval: 1.5
   spawnCycleTime: 30
   goToPointBeforeStream: {fileID: 7738572017703545246}
-  pointsCarriedAtStartByMinions: 0
+  pointsCarriedAtStartByMinions: 2
 --- !u!1 &7738572017703545245
 GameObject:
   m_ObjectHideFlags: 0
@@ -623,6 +624,7 @@ MonoBehaviour:
   uiTransform: {fileID: 0}
   guiOffset: {x: 0, y: 2, z: 0}
   rb: {fileID: 0}
+  animator: {fileID: 0}
   canShow: 0
   canHide: 0
   elementsToShow: []
@@ -643,7 +645,7 @@ MonoBehaviour:
   spawnMinionInterval: 1.5
   spawnCycleTime: 30
   goToPointBeforeStream: {fileID: 7738572018155207994}
-  pointsCarriedAtStartByMinions: 0
+  pointsCarriedAtStartByMinions: 2
 --- !u!1 &7738572018348773359
 GameObject:
   m_ObjectHideFlags: 0
