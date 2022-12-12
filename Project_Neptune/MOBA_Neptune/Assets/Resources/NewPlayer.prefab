@@ -266,6 +266,7 @@ MonoBehaviour:
   canCast: 0
   maxHp: 0
   currentHp: 0
+  lastEntityWhoAttackedMe: {fileID: 0}
   isAlive: 0
   canDie: 0
   respawnDuration: 3
