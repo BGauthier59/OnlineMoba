@@ -1,5 +1,6 @@
 using Capacities.Active_Capacities;
 using Entities;
+using JetBrains.Annotations;
 using Photon.Pun;
 using UnityEngine;
 
@@ -18,7 +19,7 @@ public class BipedeAAProjectile : MonoBehaviourPun
         photonView.RPC("SyncLaunchAARPC", RpcTarget.All, caster.entityIndex);
     }
 
-    [PunRPC]
+    [PunRPC] [UsedImplicitly]
     public void SyncLaunchAARPC(int casterIndex)
     {
         caster = EntityCollectionManager.GetEntityByIndex(casterIndex);
@@ -49,12 +50,16 @@ public class BipedeAAProjectile : MonoBehaviourPun
 
         var damageable = other.gameObject.GetComponent<IDamageable>();
         if (damageable == null) return;
-        
-        
+
         if (other.gameObject.GetComponent<Entity>().team != caster.team)
         {
-            Debug.Log($"Minion hit : {other.gameObject.name}");
-            damageable?.RequestDecreaseCurrentHp(bipedeAASO.capacityDamages, caster);
+            Debug.Log($"Entity hit : {other.gameObject.name}");
+
+            if (other.gameObject != null)
+            {
+                damageable?.RequestDecreaseCurrentHp(bipedeAASO.capacityDamages, caster);
+            }
+            
         }
         
         gameObject.SetActive(false);

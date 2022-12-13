@@ -7,7 +7,7 @@ namespace Entities.Champion
     {
         //------------- Unused Methods ----------------------
         
-        public void CashierRequestIncreaseScore(int value, Entity entityWhoScored)
+        public void CashierRequestIncreaseScore(Entity entityWhoScored)
         {
         }
 
@@ -21,34 +21,38 @@ namespace Entities.Champion
 
         //----- Increase Bonbons -----------------------
         
-        public void ChampionRequestIncreaseScore(int value, Entity entity)
+        public void ChampionRequestIncreaseScore(int value, Entity championToIncreaseScore)
         {
-            photonView.RPC("ChampionIncreaseScore", RpcTarget.MasterClient, value, entity);
+            photonView.RPC("ChampionIncreaseScore", RpcTarget.MasterClient, value, championToIncreaseScore.entityIndex);
         }
 
         [PunRPC]
-        public void SyncChampionIncreaseScore(int value, Entity entity)
+        public void SyncChampionIncreaseScore(int value, int entityIndex)
         {
+            var entity = EntityCollectionManager.GetEntityByIndex(entityIndex);
             entity.currentPointCarried = value;
         }
 
         [PunRPC]
-        public void ChampionIncreaseScore(int value, Entity entity)
+        public void ChampionIncreaseScore(int value, int entityIndex)
         {
-            var points =  entity.currentPointCarried += value;
-            photonView.RPC("SyncChampionIncreaseScore", RpcTarget.All, points, entity);
+            var entity = EntityCollectionManager.GetEntityByIndex(entityIndex);
+            entity.currentPointCarried += value;
+            
+            photonView.RPC("SyncChampionIncreaseScore", RpcTarget.All, entity.currentPointCarried, entity.entityIndex);
         }
 
         // ----------- RemoveScore ----------------------
         public void ChampionRequestRemoveScore(Entity entityWhoScored)
         {
-            photonView.RPC("SyncChampionRemoveScore", RpcTarget.All, entityWhoScored); 
+            photonView.RPC("SyncChampionRemoveScore", RpcTarget.All, entityWhoScored.entityIndex); 
         }
         
         [PunRPC]
-        public void SyncChampionRemoveScore(Entity entityWhoScored)
+        public void SyncChampionRemoveScore(int entityWhoScored)
         {
-            entityWhoScored.currentPointCarried = 0;
+            var entity = EntityCollectionManager.GetEntityByIndex(entityIndex);
+            entity.currentPointCarried = 0;
         }
     }
 }

@@ -52,6 +52,13 @@ namespace Entities.Minion
         public void DieRPC()
         {
             photonView.RPC("SyncDieRPC", RpcTarget.All);
+            
+            if (lastEntityWhoAttackedMeIndex != 0)
+            {
+                var lastEntity = EntityCollectionManager.GetEntityByIndex(lastEntityWhoAttackedMeIndex);
+                var entityChamp = lastEntity.GetComponent<Champion.Champion>();
+                if (entityChamp) entityChamp.ChampionRequestIncreaseScore(this.currentPointCarried, lastEntity);
+            }
         }
 
         public event GlobalDelegates.NoParameterDelegate OnDie;

@@ -120,24 +120,27 @@ namespace Entities.Minion
         public event GlobalDelegates.FloatDelegate OnIncreaseCurrentHpFeedback;
 
 
-        public void RequestDecreaseCurrentHp(float amount, Entity nullEntity = null)
+        public void RequestDecreaseCurrentHp(float amount, Entity entityWhoAttackedMinion)
         {
-            photonView.RPC("DecreaseCurrentHpRPC", RpcTarget.MasterClient, amount, null);
+            photonView.RPC("DecreaseCurrentHpRPC", RpcTarget.MasterClient, amount, entityWhoAttackedMinion.entityIndex);
         }
 
         [PunRPC]
-        public void SyncDecreaseCurrentHpRPC(float amount, Entity nullEntity = null)
+        public void SyncDecreaseCurrentHpRPC(float amount, int entityWhoAttackedMeIndex)
         {
             currentHealth = amount;
+            lastEntityWhoAttackedMeIndex = entityWhoAttackedMeIndex;
         }
 
         [PunRPC]
-        public void DecreaseCurrentHpRPC(float amount, Entity nullEntity = null)
+        public void DecreaseCurrentHpRPC(float amount, int entityWhoAttackedMeIndex)
         {
             currentHealth -= amount;
+            lastEntityWhoAttackedMeIndex = entityWhoAttackedMeIndex;
+            
             if (currentHealth < 0) currentHealth = 0;
             
-            photonView.RPC("SyncDecreaseCurrentHpRPC", RpcTarget.All, currentHealth, null);
+            photonView.RPC("SyncDecreaseCurrentHpRPC", RpcTarget.All, currentHealth, lastEntityWhoAttackedMeIndex);
             if (currentHealth <= 0) DieRPC();
         }
 

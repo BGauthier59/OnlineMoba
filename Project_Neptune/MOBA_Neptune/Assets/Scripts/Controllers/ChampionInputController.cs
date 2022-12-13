@@ -21,19 +21,19 @@ namespace Controllers.Inputs
         public LayerMask groundLayer;
 
         [Space] [Header("Cooldown")] public bool canCastAutoAttack = true;
-        private float autoAttackTimer;
+        public float autoAttackTimer;
         public float autoAttackCooldownDuration;
 
         public bool canCastCapacity1 = true;
-        private float capacity1Timer;
+        public float capacity1Timer;
         public float capacity1CooldownDuration;
 
         public bool canCastCapacity2 = true;
-        private float capacity2Timer;
+        public float capacity2Timer;
         public float capacity2CooldownDuration;
 
         public bool canCastUltimate = true;
-        private float ultimateTimer;
+        public float ultimateTimer;
         public float ultimateCooldownDuration;
 
         private void Update()
@@ -103,6 +103,7 @@ namespace Controllers.Inputs
                 Debug.LogWarning("Cooldown not over!");
                 return;
             }
+            
             champion.RequestCast(champion.abilitiesIndexes[1], selectedEntity, cursorWorldPos);
             canCastAutoAttack = false;
         }
@@ -120,6 +121,7 @@ namespace Controllers.Inputs
                 Debug.LogWarning("Cooldown not over!");
                 return;
             }
+            
             champion.RequestCast(champion.abilitiesIndexes[0], selectedEntity, cursorWorldPos);
             canCastCapacity1 = false;
         }
@@ -137,6 +139,7 @@ namespace Controllers.Inputs
                 Debug.LogWarning("Cooldown not over!");
                 return;
             }
+            
             champion.RequestCast(champion.abilitiesIndexes[2], selectedEntity, cursorWorldPos);
             canCastCapacity2 = false;
         }
@@ -154,6 +157,7 @@ namespace Controllers.Inputs
                 Debug.LogWarning("Cooldown not over!");
                 return;
             }
+            
             champion.RequestCast(champion.ultimateAbilityIndex, selectedEntity, cursorWorldPos);
             canCastUltimate = false;
         }

@@ -6,7 +6,6 @@ namespace Entities.Champion
     {
         public float maxHp;
         public float currentHp;
-        public Entity lastEntityWhoAttackedMe;
 
         public float GetMaxHp()
         {
@@ -173,32 +172,29 @@ namespace Entities.Champion
         public event GlobalDelegates.FloatDelegate OnIncreaseCurrentHp;
         public event GlobalDelegates.FloatDelegate OnIncreaseCurrentHpFeedback;
 
-        public void RequestDecreaseCurrentHp(float amount, Entity entityWhoAttacked = null)
+        public void RequestDecreaseCurrentHp(float amount, Entity entityWhoAttackedMe)
         {
-            photonView.RPC("DecreaseCurrentHpRPC", RpcTarget.MasterClient, amount, entityWhoAttacked);
+            photonView.RPC("DecreaseCurrentHpRPC", RpcTarget.MasterClient, amount, entityWhoAttackedMe.entityIndex);
         }
 
         [PunRPC]
-        public void SyncDecreaseCurrentHpRPC(float amount, Entity entityWhoAttacked = null)
+        public void SyncDecreaseCurrentHpRPC(float amount, int entityWhoAttackedIndex)
         {
             currentHp = amount;
-            if (currentHp <= 0)
-            {
-                currentHp = 0;
-                RequestDie();
-            }
-
-            lastEntityWhoAttackedMe = entityWhoAttacked;
-
+            lastEntityWhoAttackedMeIndex = entityWhoAttackedIndex;
             OnDecreaseCurrentHpFeedback?.Invoke(amount);
         }
 
         [PunRPC]
-        public void DecreaseCurrentHpRPC(float amount, Entity entityWhoAttacked = null)
+        public void DecreaseCurrentHpRPC(float amount, int entityWhoAttackedIndex)
         {
             currentHp -= amount;
+            if (currentHp < 0) currentHp = 0;
+            
             OnDecreaseCurrentHp?.Invoke(amount);
-            photonView.RPC("SyncDecreaseCurrentHpRPC", RpcTarget.All, currentHp, entityWhoAttacked);
+            photonView.RPC("SyncDecreaseCurrentHpRPC", RpcTarget.All, currentHp, entityWhoAttackedIndex);
+            
+            if (currentHp <= 0) RequestDie();
         }
 
         public event GlobalDelegates.FloatDelegate OnDecreaseCurrentHp;
