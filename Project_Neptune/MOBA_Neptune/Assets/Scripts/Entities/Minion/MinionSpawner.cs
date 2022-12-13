@@ -16,6 +16,7 @@ namespace Entities.Minion
         private readonly float spawnSpeed = 30;
         public Transform goToPointBeforeStream;
         public int pointsCarriedAtStartByMinions = 2;
+        public Material teamMat;
 
         private void Update()
         {
@@ -48,6 +49,7 @@ namespace Entities.Minion
             minionScript.myWayPoint = goToPointBeforeStream;
             minionScript.ChangeTeamRPC((byte)team);
             minionScript.currentPointCarried = pointsCarriedAtStartByMinions;
+            //minionScript.myMeshRenderer.materials[1] = teamMat;
         }
     }
 }

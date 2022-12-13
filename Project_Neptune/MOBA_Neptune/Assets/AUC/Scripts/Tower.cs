@@ -81,15 +81,17 @@ public partial class Tower : Building
             brainTimer = 0;
         }
         
-        // Line Renderer
+        // Line Renderer 
         if (enemiesInRange.Count > 0)
+        {
             photonView.RPC("SyncLineRendererRPC", RpcTarget.All, enemiesInRange[0].transform.position);
+            photonView.RPC("SyncPlayerInfoRPC", RpcTarget.All, enemiesInRange.Count, enemiesInRange[0].GetComponent<Entity>().entityIndex);
+        }
         else
+        {
             photonView.RPC("ResetLrRPC", RpcTarget.All);
-        
-        
-        // LocalMethods
-        photonView.RPC("SyncPlayerInfoRPC", RpcTarget.All, enemiesInRange.Count, enemiesInRange.Count < 0 ?  0 : enemiesInRange[0].GetComponent<Entity>().entityIndex);
+            photonView.RPC("SyncPlayerInfoRPC", RpcTarget.All, 0, 0);
+        }
     }
     
     [PunRPC] [UsedImplicitly]

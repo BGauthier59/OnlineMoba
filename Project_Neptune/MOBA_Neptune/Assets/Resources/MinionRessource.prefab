@@ -60,7 +60,7 @@ MeshRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: -4446790053355040612, guid: 080cf9ebdf42ec34f941d5dd9a337ba0, type: 3}
-  - {fileID: 673825305927647000, guid: 080cf9ebdf42ec34f941d5dd9a337ba0, type: 3}
+  - {fileID: 2100000, guid: d1f8f27fa1a4e1843aeb4f7d9195674c, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -218,6 +218,7 @@ MonoBehaviour:
   myWayPoint: {fileID: 0}
   currentHealth: 20
   maxHealth: 20
+  myMeshRenderer: {fileID: 645752604322479918}
 --- !u!114 &4555090259929885740
 MonoBehaviour:
   m_ObjectHideFlags: 0

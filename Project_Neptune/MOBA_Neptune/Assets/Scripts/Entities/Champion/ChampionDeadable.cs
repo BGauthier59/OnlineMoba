@@ -65,8 +65,8 @@ namespace Entities.Champion
 
             rotateParent.gameObject.SetActive(false);
             uiTransform.gameObject.SetActive(false);
-            
-            if(FogOfWarManager.Instance != null) FogOfWarManager.Instance.RemoveFOWViewable(this);
+
+            if (FogOfWarManager.Instance != null) FogOfWarManager.Instance.RemoveFOWViewable(this);
 
             OnDieFeedback?.Invoke();
         }
@@ -81,9 +81,11 @@ namespace Entities.Champion
             }
 
             isAlive = false;
+
             SetCanDieRPC(false);
+            if (lastEntityWhoAttackedMe != null) ChampionRequestIncreaseScore(currentPointCarried / 2, lastEntityWhoAttackedMe);
             ChampionRequestRemoveScore(GetComponent<Entity>());
-            
+
             // TODO - Disable collision, etc...
 
             OnDie?.Invoke();
@@ -109,7 +111,8 @@ namespace Entities.Champion
                 InputManager.PlayerMap.Attack.Enable();
                 InputManager.PlayerMap.Capacity.Enable();
             }
-            if(FogOfWarManager.Instance != null) FogOfWarManager.Instance.AddFOWViewable(this);
+
+            if (FogOfWarManager.Instance != null) FogOfWarManager.Instance.AddFOWViewable(this);
             rotateParent.gameObject.SetActive(true);
             uiTransform.gameObject.SetActive(true);
             OnReviveFeedback?.Invoke();
@@ -122,7 +125,7 @@ namespace Entities.Champion
             SetCanDieRPC(true);
             SetCurrentHpRPC(maxHp);
             SetCurrentResourceRPC(maxResource);
-            
+
             OnRevive?.Invoke();
             photonView.RPC("SyncReviveRPC", RpcTarget.All);
         }

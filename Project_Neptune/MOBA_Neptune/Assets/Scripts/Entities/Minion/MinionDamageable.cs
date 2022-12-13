@@ -122,7 +122,7 @@ namespace Entities.Minion
 
         public void RequestDecreaseCurrentHp(float amount, Entity nullEntity = null)
         {
-            photonView.RPC("DecreaseCurrentHpRPC", RpcTarget.MasterClient, amount);
+            photonView.RPC("DecreaseCurrentHpRPC", RpcTarget.MasterClient, amount, null);
         }
 
         [PunRPC]
@@ -137,7 +137,7 @@ namespace Entities.Minion
             currentHealth -= amount;
             if (currentHealth < 0) currentHealth = 0;
             
-            photonView.RPC("SyncDecreaseCurrentHpRPC", RpcTarget.All, currentHealth);
+            photonView.RPC("SyncDecreaseCurrentHpRPC", RpcTarget.All, currentHealth, null);
             if (currentHealth <= 0) DieRPC();
         }
 

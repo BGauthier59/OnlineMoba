@@ -30,7 +30,7 @@ public class Cashier : MonoBehaviour, IScorable
 
     public void CashierRequestIncreaseScore(int value, Entity entityWhoScored)
     {
-        _photonView.RPC("SetIncreaseScoreRPC", RpcTarget.MasterClient, value);
+        _photonView.RPC("CashierIncreaseScoreRPC", RpcTarget.MasterClient, value);
         
         if (entityWhoScored.GetComponent<MinionBehaviour>())
         {
@@ -56,7 +56,7 @@ public class Cashier : MonoBehaviour, IScorable
     {
         cashierPoint += value;
 
-        _photonView.RPC("SyncIncreaseScoreRPC", RpcTarget.All, cashierPoint);
+        _photonView.RPC("SyncCashierIncreaseScoreRPC", RpcTarget.All, cashierPoint);
 
         if (cashierPoint < pointsNeededToWin) return;
 

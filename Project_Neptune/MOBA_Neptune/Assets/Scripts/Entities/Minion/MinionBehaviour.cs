@@ -6,9 +6,10 @@ using UnityEngine.AI;
 
 namespace Entities.Minion
 {
-    public partial class MinionBehaviour : Entity 
+    public partial class MinionBehaviour : Entity
     {
         #region MinionVariables
+
         [Space] public NavMeshAgent myAgent;
         public MinionController myController;
 
@@ -19,29 +20,27 @@ namespace Entities.Minion
 
         [Header("Stats")] public float currentHealth;
         public float maxHealth;
-
+        public MeshRenderer myMeshRenderer;
         #endregion
 
         public override void OnInstantiated()
         {
             base.OnInstantiated();
         }
-        
+
         protected override void OnStart()
         {
             base.OnStart();
             myAgent = GetComponent<NavMeshAgent>();
             myController = GetComponent<MinionController>();
             currentHealth = maxHealth;
-            
+
             foreach (var tc in GameStateMachine.Instance.teamColors)
             {
                 if (tc.team != team) continue;
-                GetComponent<MeshRenderer>().material
-                                .SetColor("_EmissionColor", tc.color);
+                myMeshRenderer.materials[1].SetColor("_EmissionColor", tc.color);
                 break;
             }
-            
         }
 
         //------ State Methods
