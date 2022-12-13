@@ -243,6 +243,7 @@ MonoBehaviour:
   canAddPassiveCapacity: 1
   canRemovePassiveCapacity: 1
   currentPointCarried: 0
+  lastEntityWhoAttackedMeIndex: 0
   uiTransform: {fileID: 3480681342087303708}
   guiOffset: {x: 0, y: 2, z: 0}
   rb: {fileID: 6530865356692434526}
@@ -252,35 +253,30 @@ MonoBehaviour:
   elementsToShow: []
   canChangeTeam: 0
   team: 0
-  baseViewRange: 5
-  viewRange: 5
+  baseViewRange: 10
+  viewRange: 10
   viewAngle: 360
   canView: 1
   meshFilterFoV: {fileID: 3480681341397647661}
   fogOfWarStartDetection: {fileID: 1225001110951397080}
   controller: {fileID: 3480681341667345172}
   rotateParent: {fileID: 3480681341152264625}
-  championMesh: {fileID: 0}
   camera: {fileID: 0}
   blocker: {fileID: 3711244289653556686}
   grabLine: {fileID: 1239114571874846425}
-  grabVFX: {fileID: 8539344772885261290}
   attackAbilityIndex: 0
   canAttack: 0
   attackDamage: 0
-  abilitiesIndexes: 0002
-  ultimateAbilityIndex: 0
   canCast: 0
-  maxHp: 0
-  currentHp: 0
-  lastEntityWhoAttackedMe: {fileID: 0}
+  maxHp: 50
+  currentHp: 50
   isAlive: 0
   canDie: 0
   respawnDuration: 3
   canBeDisplaced: 0
   canBeGrabbed: 0
-  referenceMoveSpeed: 8
-  currentMoveSpeed: 8
+  referenceMoveSpeed: 15
+  currentMoveSpeed: 15
   currentRotateSpeed: 15
   canMove: 0
   groundMask:

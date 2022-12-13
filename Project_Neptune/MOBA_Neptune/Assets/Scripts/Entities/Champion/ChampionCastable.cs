@@ -7,9 +7,6 @@ namespace Entities.Champion
 {
     public partial class Champion : ICastable
     {
-        public byte[] abilitiesIndexes = new byte[2];
-        public byte ultimateAbilityIndex;
-
         public bool canCast;
 
         public bool CanCast()

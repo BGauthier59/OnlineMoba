@@ -13,34 +13,26 @@ namespace Entities.Champion
 {
     public partial class Champion : Entity
     {
-        //public ChampionSO championSo;
         public ChampionInputController controller;
         public Transform rotateParent;
-        public Transform championMesh;
         private Vector3 respawnPos;
 
-        private FogOfWarManager fowm;
-        private CapacitySOCollectionManager capacityCollection;
         private UIManager uiManager;
         public Camera camera;
 
         public CollisionBlocker blocker;
         
         public LineRenderer grabLine;
-        public ParticleSystem grabVFX;
         private bool isLinked;
 
         protected override void OnStart()
         {
             base.OnStart();
-            fowm = FogOfWarManager.Instance;
-            capacityCollection = CapacitySOCollectionManager.Instance;
             uiManager = UIManager.Instance;
             camera = Camera.main;
 
             blocker.characterColliderBlocker.enabled = true;
             blocker.SetUpBlocker();
-            
         }
 
         protected override void OnUpdate()
@@ -69,23 +61,6 @@ namespace Entities.Champion
 
         public void ApplyChampionSO(byte championSoIndex, Enums.Team newTeam)
         {
-           // var so = GameStateMachine.Instance.allChampionsSo[championSoIndex];
-            //championSo = so;
-            //maxHp = championSo.maxHp;
-            //currentHp = maxHp;
-        //    maxResource = championSo.maxRessource;
-          //  currentResource = championSo.maxRessource;
-          //  viewRange = championSo.viewRange;
-         //   referenceMoveSpeed = championSo.referenceMoveSpeed;
-        //    currentMoveSpeed = referenceMoveSpeed;
-         //   attackDamage = championSo.attackDamage;
-       //     attackAbilityIndex = championSo.attackAbilityIndex;
-        //    abilitiesIndexes = championSo.activeCapacitiesIndexes;
-        //    ultimateAbilityIndex = championSo.ultimateAbilityIndex;
-      //      var championMesh = Instantiate(championSo.championMeshPrefab, rotateParent.position,
-      //          Quaternion.identity, rotateParent);
-        //    championMesh.transform.localEulerAngles = Vector3.zero;
-
             team = newTeam;
 
             Transform pos = transform;
@@ -125,16 +100,7 @@ namespace Entities.Champion
                     break;
             }
 
-         //   if (GameStateMachine.Instance.GetPlayerTeam() != team)
-          //  {
-          //      championMesh.SetActive(false);
-          //  }
-
             respawnPos = transform.position = pos.position;
-
-       //     championMesh.GetComponent<ChampionMeshLinker>().LinkTeamColor(this.team);
-       //     animator = championMesh.GetComponent<ChampionMeshLinker>().animator;
-       //     elementsToShow.Add(championMesh);
 
             uiManager = UIManager.Instance;
 
@@ -144,29 +110,9 @@ namespace Entities.Champion
                 uiManager.InstantiateResourceBarForEntity(entityIndex);
             }
 
-       //     so.SetIndexes();
-          //  for (int i = 0; i < so.passiveCapacitiesIndexes.Length; i++)
-          //  {
-          //      AddPassiveCapacityRPC(so.passiveCapacitiesIndexes[i]);
-       //     }
-
             rb.velocity = Vector3.zero;
             RequestSetCanDie(true);
             RequestSetCanMove(true);
-
-         //   if (attackAbilityIndex != 255)
-         //       controller.autoAttackCooldownDuration = CapacitySOCollectionManager
-         //           .GetActiveCapacitySOByIndex(attackAbilityIndex).cooldown;
-        //    if (abilitiesIndexes[0] != 255)
-         //       controller.capacity1CooldownDuration = CapacitySOCollectionManager
-        //            .GetActiveCapacitySOByIndex(abilitiesIndexes[0]).cooldown;
-        //    if (abilitiesIndexes[1] != 255)
-        //        controller.capacity2CooldownDuration = CapacitySOCollectionManager
-        //            .GetActiveCapacitySOByIndex(abilitiesIndexes[1]).cooldown;
-        //    if (ultimateAbilityIndex != 255)
-        //        controller.ultimateCooldownDuration = CapacitySOCollectionManager
-        //            .GetActiveCapacitySOByIndex(ultimateAbilityIndex).cooldown;
-
             isLinked = true;
         }
         
