@@ -238,6 +238,13 @@ MonoBehaviour:
   - SyncDataRPC
   - SyncCanCastCapacityRPC
   - SyncCanCastGrabCapacityRPC
+  - CastGrabCapacityRPC
+  - CastIoAutoAttackCapacityRPC
+  - SyncCastGrabCapacityRPC
+  - SyncCastIoAutoAttackCapacityRPC
+  - SyncDataGrabCapacityRPC
+  - SyncDataIoAutoAttackCapacityRPC
+  - SyncCanCastIoAutoAttackCapacityRPC
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1

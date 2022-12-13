@@ -12,7 +12,7 @@ public class GrabCapacity : NewActiveCapacity
     public float grabMaxDistance;
     public LayerMask grabableLayer;
     public GrabbedCapacitySO passiveEffect;
-    
+
     public double delayDuration;
     private double delayTimer;
 
@@ -26,14 +26,14 @@ public class GrabCapacity : NewActiveCapacity
 
     public override void RequestCastCapacity(int[] targetedEntities, Vector3[] targetedPositions)
     {
-        photonView.RPC("CastCapacityRPC", RpcTarget.MasterClient, targetedEntities, targetedPositions);
+        photonView.RPC("CastGrabCapacityRPC", RpcTarget.MasterClient, targetedEntities, targetedPositions);
     }
 
     [PunRPC]
-    public override void CastCapacityRPC(int[] targetedEntities, Vector3[] targetedPositions)
+    public void CastGrabCapacityRPC(int[] targetedEntities, Vector3[] targetedPositions)
     {
         // Set data
-        photonView.RPC("SyncDataRPC", RpcTarget.All, targetedPositions[0]);
+        photonView.RPC("SyncDataGrabCapacityRPC", RpcTarget.All, targetedPositions[0]);
 
         if (TryCast())
         {
@@ -43,7 +43,7 @@ public class GrabCapacity : NewActiveCapacity
     }
 
     [PunRPC]
-    public void SyncDataRPC(Vector3 target)
+    public void SyncDataGrabCapacityRPC(Vector3 target)
     {
         caster = GetComponent<Entity>();
         champion = (Champion) caster;
@@ -54,7 +54,7 @@ public class GrabCapacity : NewActiveCapacity
     }
 
     [PunRPC]
-    public override void SyncCastCapacityRPC(int[] targetedEntities, Vector3[] targetedPosition)
+    public void SyncCastGrabCapacityRPC(int[] targetedEntities, Vector3[] targetedPosition)
     {
     }
 
@@ -69,10 +69,10 @@ public class GrabCapacity : NewActiveCapacity
             Debug.LogWarning("Still on cooldown!");
             return false;
         }
-        
+
         if (!Physics.Raycast(casterInitPos + champion.rotateParent.forward, direction, out var hit,
             grabMaxDistance, grabableLayer)) return false;
-        
+
         // Cast Succeeded!
 
         hitData = hit;
@@ -129,7 +129,7 @@ public class GrabCapacity : NewActiveCapacity
             caster.AddPassiveCapacityRPC(capacityIndex, default, point);
         }
     }
-    
+
     [PunRPC]
     private void PlayHitEffect(Vector3 pos)
     {
@@ -137,7 +137,12 @@ public class GrabCapacity : NewActiveCapacity
         grabVFX.Play();
     }
     
-    private void TimerCooldown()
+    protected override void StartCooldown()
+    {
+        photonView.RPC("SyncCanCastGrabCapacityRPC", RpcTarget.All, false);
+    }
+
+    protected override void TimerCooldown()
     {
         cooldownTimer += 1.0 / GameStateMachine.Instance.tickRate;
 

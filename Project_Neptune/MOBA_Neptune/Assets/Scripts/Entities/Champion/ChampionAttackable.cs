@@ -6,7 +6,6 @@ namespace Entities.Champion
 {
     public partial class Champion : IAttackable
     {
-        public byte attackAbilityIndex;
         private ActiveCapacity lastCapacity;
         private ActiveCapacitySO lastCapacitySO;
         public bool canAttack;

@@ -25,6 +25,8 @@ namespace Entities.Champion
         public LineRenderer grabLine;
         private bool isLinked;
 
+        [SerializeField] private MeshRenderer teamConeRenderer;
+
         protected override void OnStart()
         {
             base.OnStart();
@@ -63,7 +65,16 @@ namespace Entities.Champion
         {
             team = newTeam;
 
-            Transform pos = transform;
+            foreach (var tc in GameStateMachine.Instance.teamColors)
+            {
+                if (tc.team == team)
+                {
+                    teamConeRenderer.material.SetColor("_EmissionColor", tc.color);
+                    break;
+                }
+            }
+
+            var pos = transform;
             switch (team)
             {
                 case Enums.Team.Team1:

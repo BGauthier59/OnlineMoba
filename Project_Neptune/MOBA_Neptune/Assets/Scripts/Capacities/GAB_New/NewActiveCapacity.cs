@@ -15,10 +15,6 @@ public abstract class NewActiveCapacity : MonoBehaviourPun
     
     public abstract void RequestCastCapacity(int[] targetedEntities, Vector3[] targetedPositions);
 
-    public abstract void CastCapacityRPC(int[] targetedEntities, Vector3[] targetedPositions);
-
-    public abstract void SyncCastCapacityRPC(int[] targetedEntities, Vector3[] targetedPositions);
-
     public abstract bool TryCast();
     
     protected Vector3 GetCasterPos()
@@ -28,8 +24,7 @@ public abstract class NewActiveCapacity : MonoBehaviourPun
         return casterPos;
     }
 
-    protected void StartCooldown()
-    {
-        photonView.RPC("SyncCanCastGrabCapacityRPC", RpcTarget.All, false);
-    }
+    protected abstract void StartCooldown();
+
+    protected abstract void TimerCooldown();
 }

@@ -9,17 +9,27 @@ public class KickCapacity : NewActiveCapacity
         Debug.Log("This capacity is not available!");
     }
 
-    public override void CastCapacityRPC(int[] targetedEntities, Vector3[] targetedPositions)
+    public void CastCapacityRPC(int[] targetedEntities, Vector3[] targetedPositions)
     {
         throw new System.NotImplementedException();
     }
 
-    public override void SyncCastCapacityRPC(int[] targetedEntities, Vector3[] targetedPositions)
+    public void SyncCastCapacityRPC(int[] targetedEntities, Vector3[] targetedPositions)
     {
         throw new System.NotImplementedException();
     }
 
     public override bool TryCast()
+    {
+        throw new System.NotImplementedException();
+    }
+
+    protected override void StartCooldown()
+    {
+        throw new System.NotImplementedException();
+    }
+
+    protected override void TimerCooldown()
     {
         throw new System.NotImplementedException();
     }

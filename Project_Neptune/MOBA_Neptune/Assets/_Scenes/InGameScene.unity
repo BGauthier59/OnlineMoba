@@ -236,6 +236,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4826138202304914655, guid: d64bdd76e7c6a7a42b598530d2fc30d1, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4826138202468875371, guid: d64bdd76e7c6a7a42b598530d2fc30d1, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4826138202480386203, guid: d64bdd76e7c6a7a42b598530d2fc30d1, type: 3}
       propertyPath: m_Name
       value: DebugCanvas
@@ -326,6 +334,34 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4826138202480386207, guid: d64bdd76e7c6a7a42b598530d2fc30d1, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4826138203476421315, guid: d64bdd76e7c6a7a42b598530d2fc30d1, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4826138203731386115, guid: d64bdd76e7c6a7a42b598530d2fc30d1, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4826138203826596971, guid: d64bdd76e7c6a7a42b598530d2fc30d1, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6902798891859604287, guid: d64bdd76e7c6a7a42b598530d2fc30d1, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8292541375058839284, guid: d64bdd76e7c6a7a42b598530d2fc30d1, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8464154122984128126, guid: d64bdd76e7c6a7a42b598530d2fc30d1, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9056852135837125343, guid: d64bdd76e7c6a7a42b598530d2fc30d1, type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -1119,6 +1155,7 @@ MonoBehaviour:
   canAddPassiveCapacity: 0
   canRemovePassiveCapacity: 0
   currentPointCarried: 0
+  lastEntityWhoAttackedMeIndex: 0
   uiTransform: {fileID: 0}
   guiOffset: {x: 0, y: 2, z: 0}
   rb: {fileID: 0}
@@ -1286,6 +1323,7 @@ MonoBehaviour:
   canAddPassiveCapacity: 0
   canRemovePassiveCapacity: 0
   currentPointCarried: 0
+  lastEntityWhoAttackedMeIndex: 0
   uiTransform: {fileID: 0}
   guiOffset: {x: 0, y: 2, z: 0}
   rb: {fileID: 0}
@@ -1873,6 +1911,7 @@ MonoBehaviour:
   canAddPassiveCapacity: 0
   canRemovePassiveCapacity: 0
   currentPointCarried: 0
+  lastEntityWhoAttackedMeIndex: 0
   uiTransform: {fileID: 0}
   guiOffset: {x: 0, y: 2, z: 0}
   rb: {fileID: 0}
@@ -2386,6 +2425,7 @@ MonoBehaviour:
   canAddPassiveCapacity: 0
   canRemovePassiveCapacity: 0
   currentPointCarried: 0
+  lastEntityWhoAttackedMeIndex: 0
   uiTransform: {fileID: 0}
   guiOffset: {x: 0, y: 2, z: 0}
   rb: {fileID: 0}
@@ -3564,6 +3604,7 @@ MonoBehaviour:
   canAddPassiveCapacity: 0
   canRemovePassiveCapacity: 0
   currentPointCarried: 0
+  lastEntityWhoAttackedMeIndex: 0
   uiTransform: {fileID: 0}
   guiOffset: {x: 0, y: 2, z: 0}
   rb: {fileID: 0}
@@ -3695,6 +3736,7 @@ MonoBehaviour:
   canAddPassiveCapacity: 0
   canRemovePassiveCapacity: 0
   currentPointCarried: 0
+  lastEntityWhoAttackedMeIndex: 0
   uiTransform: {fileID: 0}
   guiOffset: {x: 0, y: 2, z: 0}
   rb: {fileID: 0}
@@ -3862,6 +3904,7 @@ MonoBehaviour:
   canAddPassiveCapacity: 0
   canRemovePassiveCapacity: 0
   currentPointCarried: 0
+  lastEntityWhoAttackedMeIndex: 0
   uiTransform: {fileID: 0}
   guiOffset: {x: 0, y: 2, z: 0}
   rb: {fileID: 0}
@@ -4292,6 +4335,7 @@ MonoBehaviour:
   canAddPassiveCapacity: 0
   canRemovePassiveCapacity: 0
   currentPointCarried: 0
+  lastEntityWhoAttackedMeIndex: 0
   uiTransform: {fileID: 0}
   guiOffset: {x: 0, y: 2, z: 0}
   rb: {fileID: 0}
@@ -4659,6 +4703,7 @@ MonoBehaviour:
   canAddPassiveCapacity: 0
   canRemovePassiveCapacity: 0
   currentPointCarried: 0
+  lastEntityWhoAttackedMeIndex: 0
   uiTransform: {fileID: 0}
   guiOffset: {x: 0, y: 2, z: 0}
   rb: {fileID: 0}
@@ -4826,6 +4871,7 @@ MonoBehaviour:
   canAddPassiveCapacity: 0
   canRemovePassiveCapacity: 0
   currentPointCarried: 0
+  lastEntityWhoAttackedMeIndex: 0
   uiTransform: {fileID: 0}
   guiOffset: {x: 0, y: 2, z: 0}
   rb: {fileID: 0}
@@ -5347,6 +5393,7 @@ MonoBehaviour:
   canAddPassiveCapacity: 0
   canRemovePassiveCapacity: 0
   currentPointCarried: 0
+  lastEntityWhoAttackedMeIndex: 0
   uiTransform: {fileID: 0}
   guiOffset: {x: 0, y: 2, z: 0}
   rb: {fileID: 0}
@@ -6546,6 +6593,7 @@ MonoBehaviour:
   canAddPassiveCapacity: 0
   canRemovePassiveCapacity: 0
   currentPointCarried: 0
+  lastEntityWhoAttackedMeIndex: 0
   uiTransform: {fileID: 0}
   guiOffset: {x: 0, y: 2, z: 0}
   rb: {fileID: 0}
@@ -6699,6 +6747,7 @@ MonoBehaviour:
   canAddPassiveCapacity: 0
   canRemovePassiveCapacity: 0
   currentPointCarried: 0
+  lastEntityWhoAttackedMeIndex: 0
   uiTransform: {fileID: 0}
   guiOffset: {x: 0, y: 2, z: 0}
   rb: {fileID: 0}
@@ -6866,6 +6915,7 @@ MonoBehaviour:
   canAddPassiveCapacity: 0
   canRemovePassiveCapacity: 0
   currentPointCarried: 0
+  lastEntityWhoAttackedMeIndex: 0
   uiTransform: {fileID: 0}
   guiOffset: {x: 0, y: 2, z: 0}
   rb: {fileID: 0}
@@ -7018,6 +7068,7 @@ MonoBehaviour:
   canAddPassiveCapacity: 0
   canRemovePassiveCapacity: 0
   currentPointCarried: 0
+  lastEntityWhoAttackedMeIndex: 0
   uiTransform: {fileID: 0}
   guiOffset: {x: 0, y: 2, z: 0}
   rb: {fileID: 0}
@@ -7633,6 +7684,7 @@ MonoBehaviour:
   canAddPassiveCapacity: 0
   canRemovePassiveCapacity: 0
   currentPointCarried: 0
+  lastEntityWhoAttackedMeIndex: 0
   uiTransform: {fileID: 0}
   guiOffset: {x: 0, y: 2, z: 0}
   rb: {fileID: 0}
@@ -8040,6 +8092,7 @@ MonoBehaviour:
   canAddPassiveCapacity: 0
   canRemovePassiveCapacity: 0
   currentPointCarried: 0
+  lastEntityWhoAttackedMeIndex: 0
   uiTransform: {fileID: 0}
   guiOffset: {x: 0, y: 2, z: 0}
   rb: {fileID: 0}
@@ -8660,6 +8713,7 @@ MonoBehaviour:
   canAddPassiveCapacity: 0
   canRemovePassiveCapacity: 0
   currentPointCarried: 0
+  lastEntityWhoAttackedMeIndex: 0
   uiTransform: {fileID: 0}
   guiOffset: {x: 0, y: 2, z: 0}
   rb: {fileID: 0}
@@ -8997,6 +9051,7 @@ MonoBehaviour:
   canAddPassiveCapacity: 0
   canRemovePassiveCapacity: 0
   currentPointCarried: 0
+  lastEntityWhoAttackedMeIndex: 0
   uiTransform: {fileID: 0}
   guiOffset: {x: 0, y: 2, z: 0}
   rb: {fileID: 0}
@@ -9600,6 +9655,7 @@ MonoBehaviour:
   canAddPassiveCapacity: 0
   canRemovePassiveCapacity: 0
   currentPointCarried: 0
+  lastEntityWhoAttackedMeIndex: 0
   uiTransform: {fileID: 0}
   guiOffset: {x: 0, y: 2, z: 0}
   rb: {fileID: 0}
@@ -10135,6 +10191,7 @@ MonoBehaviour:
   canAddPassiveCapacity: 0
   canRemovePassiveCapacity: 0
   currentPointCarried: 0
+  lastEntityWhoAttackedMeIndex: 0
   uiTransform: {fileID: 0}
   guiOffset: {x: 0, y: 2, z: 0}
   rb: {fileID: 0}
@@ -10580,6 +10637,7 @@ MonoBehaviour:
   canAddPassiveCapacity: 0
   canRemovePassiveCapacity: 0
   currentPointCarried: 0
+  lastEntityWhoAttackedMeIndex: 0
   uiTransform: {fileID: 0}
   guiOffset: {x: 0, y: 2, z: 0}
   rb: {fileID: 0}
@@ -11156,6 +11214,7 @@ MonoBehaviour:
   canAddPassiveCapacity: 0
   canRemovePassiveCapacity: 0
   currentPointCarried: 0
+  lastEntityWhoAttackedMeIndex: 0
   uiTransform: {fileID: 0}
   guiOffset: {x: 0, y: 2, z: 0}
   rb: {fileID: 0}
@@ -12140,6 +12199,7 @@ MonoBehaviour:
   canAddPassiveCapacity: 0
   canRemovePassiveCapacity: 0
   currentPointCarried: 0
+  lastEntityWhoAttackedMeIndex: 0
   uiTransform: {fileID: 0}
   guiOffset: {x: 0, y: 2, z: 0}
   rb: {fileID: 0}
@@ -12308,6 +12368,7 @@ MonoBehaviour:
   canAddPassiveCapacity: 0
   canRemovePassiveCapacity: 0
   currentPointCarried: 0
+  lastEntityWhoAttackedMeIndex: 0
   uiTransform: {fileID: 0}
   guiOffset: {x: 0, y: 2, z: 0}
   rb: {fileID: 0}
@@ -12415,6 +12476,7 @@ MonoBehaviour:
   canAddPassiveCapacity: 0
   canRemovePassiveCapacity: 0
   currentPointCarried: 0
+  lastEntityWhoAttackedMeIndex: 0
   uiTransform: {fileID: 0}
   guiOffset: {x: 0, y: 2, z: 0}
   rb: {fileID: 0}
@@ -12844,6 +12906,7 @@ MonoBehaviour:
   canAddPassiveCapacity: 0
   canRemovePassiveCapacity: 0
   currentPointCarried: 0
+  lastEntityWhoAttackedMeIndex: 0
   uiTransform: {fileID: 0}
   guiOffset: {x: 0, y: 2, z: 0}
   rb: {fileID: 0}
@@ -13010,6 +13073,7 @@ MonoBehaviour:
   canAddPassiveCapacity: 0
   canRemovePassiveCapacity: 0
   currentPointCarried: 0
+  lastEntityWhoAttackedMeIndex: 0
   uiTransform: {fileID: 0}
   guiOffset: {x: 0, y: 2, z: 0}
   rb: {fileID: 0}
@@ -13802,6 +13866,7 @@ MonoBehaviour:
   canAddPassiveCapacity: 0
   canRemovePassiveCapacity: 0
   currentPointCarried: 0
+  lastEntityWhoAttackedMeIndex: 0
   uiTransform: {fileID: 0}
   guiOffset: {x: 0, y: 2, z: 0}
   rb: {fileID: 0}
@@ -14421,6 +14486,7 @@ MonoBehaviour:
   canAddPassiveCapacity: 0
   canRemovePassiveCapacity: 0
   currentPointCarried: 0
+  lastEntityWhoAttackedMeIndex: 0
   uiTransform: {fileID: 0}
   guiOffset: {x: 0, y: 2, z: 0}
   rb: {fileID: 0}
@@ -14736,6 +14802,7 @@ MonoBehaviour:
   canAddPassiveCapacity: 0
   canRemovePassiveCapacity: 0
   currentPointCarried: 0
+  lastEntityWhoAttackedMeIndex: 0
   uiTransform: {fileID: 0}
   guiOffset: {x: 0, y: 2, z: 0}
   rb: {fileID: 0}
@@ -14917,6 +14984,7 @@ MonoBehaviour:
   canAddPassiveCapacity: 0
   canRemovePassiveCapacity: 0
   currentPointCarried: 0
+  lastEntityWhoAttackedMeIndex: 0
   uiTransform: {fileID: 0}
   guiOffset: {x: 0, y: 2, z: 0}
   rb: {fileID: 0}
@@ -15220,6 +15288,7 @@ MonoBehaviour:
   canAddPassiveCapacity: 0
   canRemovePassiveCapacity: 0
   currentPointCarried: 0
+  lastEntityWhoAttackedMeIndex: 0
   uiTransform: {fileID: 0}
   guiOffset: {x: 0, y: 2, z: 0}
   rb: {fileID: 0}
@@ -16295,6 +16364,7 @@ MonoBehaviour:
   canAddPassiveCapacity: 0
   canRemovePassiveCapacity: 0
   currentPointCarried: 0
+  lastEntityWhoAttackedMeIndex: 0
   uiTransform: {fileID: 0}
   guiOffset: {x: 0, y: 2, z: 0}
   rb: {fileID: 0}
@@ -16745,6 +16815,7 @@ MonoBehaviour:
   canAddPassiveCapacity: 0
   canRemovePassiveCapacity: 0
   currentPointCarried: 0
+  lastEntityWhoAttackedMeIndex: 0
   uiTransform: {fileID: 0}
   guiOffset: {x: 0, y: 2, z: 0}
   rb: {fileID: 0}
@@ -17190,6 +17261,7 @@ MonoBehaviour:
   canAddPassiveCapacity: 0
   canRemovePassiveCapacity: 0
   currentPointCarried: 0
+  lastEntityWhoAttackedMeIndex: 0
   uiTransform: {fileID: 0}
   guiOffset: {x: 0, y: 2, z: 0}
   rb: {fileID: 0}
@@ -17537,6 +17609,7 @@ MonoBehaviour:
   canAddPassiveCapacity: 0
   canRemovePassiveCapacity: 0
   currentPointCarried: 0
+  lastEntityWhoAttackedMeIndex: 0
   uiTransform: {fileID: 0}
   guiOffset: {x: 0, y: 2, z: 0}
   rb: {fileID: 0}
@@ -18120,6 +18193,7 @@ MonoBehaviour:
   canAddPassiveCapacity: 0
   canRemovePassiveCapacity: 0
   currentPointCarried: 0
+  lastEntityWhoAttackedMeIndex: 0
   uiTransform: {fileID: 0}
   guiOffset: {x: 0, y: 2, z: 0}
   rb: {fileID: 0}
@@ -18565,6 +18639,7 @@ MonoBehaviour:
   canAddPassiveCapacity: 0
   canRemovePassiveCapacity: 0
   currentPointCarried: 0
+  lastEntityWhoAttackedMeIndex: 0
   uiTransform: {fileID: 0}
   guiOffset: {x: 0, y: 2, z: 0}
   rb: {fileID: 0}
@@ -19010,6 +19085,7 @@ MonoBehaviour:
   canAddPassiveCapacity: 0
   canRemovePassiveCapacity: 0
   currentPointCarried: 0
+  lastEntityWhoAttackedMeIndex: 0
   uiTransform: {fileID: 0}
   guiOffset: {x: 0, y: 2, z: 0}
   rb: {fileID: 0}
@@ -19869,6 +19945,7 @@ MonoBehaviour:
   canAddPassiveCapacity: 0
   canRemovePassiveCapacity: 0
   currentPointCarried: 0
+  lastEntityWhoAttackedMeIndex: 0
   uiTransform: {fileID: 0}
   guiOffset: {x: 0, y: 2, z: 0}
   rb: {fileID: 0}
@@ -21244,6 +21321,7 @@ MonoBehaviour:
   canAddPassiveCapacity: 0
   canRemovePassiveCapacity: 0
   currentPointCarried: 0
+  lastEntityWhoAttackedMeIndex: 0
   uiTransform: {fileID: 0}
   guiOffset: {x: 0, y: 2, z: 0}
   rb: {fileID: 0}
@@ -21865,6 +21943,7 @@ MonoBehaviour:
   canAddPassiveCapacity: 0
   canRemovePassiveCapacity: 0
   currentPointCarried: 0
+  lastEntityWhoAttackedMeIndex: 0
   uiTransform: {fileID: 0}
   guiOffset: {x: 0, y: 2, z: 0}
   rb: {fileID: 0}
@@ -22711,6 +22790,7 @@ MonoBehaviour:
   canAddPassiveCapacity: 0
   canRemovePassiveCapacity: 0
   currentPointCarried: 0
+  lastEntityWhoAttackedMeIndex: 0
   uiTransform: {fileID: 0}
   guiOffset: {x: 0, y: 2, z: 0}
   rb: {fileID: 0}
@@ -23706,6 +23786,7 @@ MonoBehaviour:
   canAddPassiveCapacity: 0
   canRemovePassiveCapacity: 0
   currentPointCarried: 0
+  lastEntityWhoAttackedMeIndex: 0
   uiTransform: {fileID: 0}
   guiOffset: {x: 0, y: 2, z: 0}
   rb: {fileID: 0}
@@ -24151,6 +24232,7 @@ MonoBehaviour:
   canAddPassiveCapacity: 0
   canRemovePassiveCapacity: 0
   currentPointCarried: 0
+  lastEntityWhoAttackedMeIndex: 0
   uiTransform: {fileID: 0}
   guiOffset: {x: 0, y: 2, z: 0}
   rb: {fileID: 0}
@@ -24364,6 +24446,7 @@ MonoBehaviour:
   canAddPassiveCapacity: 1
   canRemovePassiveCapacity: 1
   currentPointCarried: 0
+  lastEntityWhoAttackedMeIndex: 0
   uiTransform: {fileID: 0}
   guiOffset: {x: 0, y: 2, z: 0}
   rb: {fileID: 0}
@@ -24398,6 +24481,7 @@ MonoBehaviour:
   canAddPassiveCapacity: 1
   canRemovePassiveCapacity: 1
   currentPointCarried: 0
+  lastEntityWhoAttackedMeIndex: 0
   uiTransform: {fileID: 0}
   guiOffset: {x: 0, y: 2, z: 0}
   rb: {fileID: 0}
