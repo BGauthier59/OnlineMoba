@@ -21,23 +21,6 @@ namespace Entities.Capacities
 
         #region Cast
 
-        protected virtual void InitiateCooldown()
-        {
-            cooldownTimer = AssociatedActiveCapacitySO().cooldown;
-            onCooldown = true;
-            GameStateMachine.Instance.OnTick += CooldownTimer;
-        }
-
-        protected virtual void CooldownTimer()
-        {
-            cooldownTimer -= 1.0 / GameStateMachine.Instance.tickRate;
-
-            if (cooldownTimer > 0) return;
-            
-            onCooldown = false;
-            GameStateMachine.Instance.OnTick -= CooldownTimer;
-        }
-
         public abstract bool TryCast(int casterIndex, int[] targetsEntityIndexes, Vector3[] targetPositions);
 
         protected Vector3 GetCasterPos()
@@ -52,28 +35,6 @@ namespace Entities.Capacities
         #region Feedback
 
         public abstract void PlayFeedback(int casterIndex, int[] targetsEntityIndexes, Vector3[] targetPositions);
-
-        protected virtual void InitializeFeedbackCountdown()
-        {
-            feedbackTimer = AssociatedActiveCapacitySO().feedbackDuration;
-            GameStateMachine.Instance.OnTick += FeedbackCooldown;
-        }
-
-        protected virtual void FeedbackCooldown()
-        {
-            feedbackTimer -= GameStateMachine.Instance.tickRate;
-
-            if (feedbackTimer <= 0)
-            {
-                DisableFeedback();
-            }
-        }
-
-        protected virtual void DisableFeedback()
-        {
-            PoolLocalManager.Instance.EnqueuePool(AssociatedActiveCapacitySO().feedbackPrefab, instantiateFeedbackObj);
-            GameStateMachine.Instance.OnTick -= FeedbackCooldown;
-        }
 
         #endregion
     }

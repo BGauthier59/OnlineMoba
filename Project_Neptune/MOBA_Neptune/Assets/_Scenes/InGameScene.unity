@@ -11948,6 +11948,14 @@ PrefabInstance:
       propertyPath: sceneViewId
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 2983732105347116086, guid: 80fefcb4f83a0b14db760960cf24ee68, type: 3}
+      propertyPath: poolElements.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2983732105347116086, guid: 80fefcb4f83a0b14db760960cf24ee68, type: 3}
+      propertyPath: poolElements.Array.data[1].Element
+      value: 
+      objectReference: {fileID: 3480681341667345175, guid: 8cf6ed5d694588d48a5cb7018a1b0ac8, type: 3}
     - target: {fileID: 6697169192466650589, guid: 80fefcb4f83a0b14db760960cf24ee68, type: 3}
       propertyPath: allPassiveCapacitiesSo.Array.size
       value: 1

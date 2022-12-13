@@ -74,11 +74,13 @@ public class ChampionHUD : MonoBehaviour
 
     private void InitHolders()
     {
-        var so = champion.championSo;
-        spellPassive.sprite = champion.passiveCapacitiesList[0].AssociatedPassiveCapacitySO().icon;
-        spellOne.sprite = so.activeCapacities[0].icon;
-        spellTwo.sprite = so.activeCapacities[1].icon;
-        spellUltimate.sprite = so.ultimateAbility.icon;
+        Debug.Log("Has to be modified.");
+        
+        //var so = champion.championSo;
+        //spellPassive.sprite = champion.passiveCapacitiesList[0].AssociatedPassiveCapacitySO().icon;
+        //spellOne.sprite = so.activeCapacities[0].icon;
+        //spellTwo.sprite = so.activeCapacities[1].icon;
+        //spellUltimate.sprite = so.ultimateAbility.icon;
     }
 
     private void LinkToEvents()
@@ -102,6 +104,9 @@ public class ChampionHUD : MonoBehaviour
 
     private void UpdateIcons(Champion champion)
     {
+        Debug.Log("Has to be modified.");
+        
+        /*
         var so = champion.championSo;
         passiveHolder = new SpellHolder
         {
@@ -133,6 +138,7 @@ public class ChampionHUD : MonoBehaviour
         spellOneHolder.Setup(so.activeCapacities[0].icon);
         //spellTwoHolder.Setup(so.activeCapacities[1].icon);
         ultimateHolder.Setup(so.ultimateAbility.icon);
+        */
     }
 
     private void UpdateCooldown(byte capacityIndex, int[] intArray, Vector3[] vectors, ActiveCapacity capacity)

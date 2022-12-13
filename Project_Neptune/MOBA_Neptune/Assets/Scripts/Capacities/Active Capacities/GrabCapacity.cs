@@ -21,24 +21,32 @@ namespace Capacities.Active_Capacities
         private LayerMask grabableLayer;
         private Vector3 casterInitPos;
 
+        private RaycastHit hitData;
+        private Champion champion;
+
         public override bool TryCast(int casterIndex, int[] targetsEntityIndexes, Vector3[] targetPositions)
         {
-            // Check condition
-            if (onCooldown)
+            // Set data
+            champion = (Champion) caster;
+            casterInitPos = GetCasterPos();
+            data = (GrabCapacitySO) AssociatedActiveCapacitySO();
+            grabableLayer = data.grabableLayer;
+            direction = -(casterInitPos - targetPositions[0]);
+            direction.y = 0;
+            direction.Normalize();
+
+            Debug.DrawRay(casterInitPos + champion.rotateParent.forward, direction * data.grabMaxDistance, Color.yellow,
+                3);
+
+            // Check conditions
+            if (!Physics.Raycast(casterInitPos + champion.rotateParent.forward, direction, out var hit,
+                data.grabMaxDistance, grabableLayer))
             {
-                Debug.LogWarning("You're on a cooldown for grab capacity!");
+                Debug.Log("Raycast for grab hit nothing!");
                 return false;
             }
 
-            caster.animator.SetBool("IsGrabbing", true);
-            data = (GrabCapacitySO)AssociatedActiveCapacitySO();
-            casterInitPos = GetCasterPos();
-            direction = -(casterInitPos - targetPositions[0]);
-            direction.y = 0;
-            direction = direction.normalized;
-            grabableLayer = data.grabableLayer;
-            Debug.DrawRay(casterInitPos, direction * 10, Color.magenta, 3f);
-
+            hitData = hit;
             GameStateMachine.Instance.OnTick += CheckTimer;
             return true;
         }
@@ -50,43 +58,24 @@ namespace Capacities.Active_Capacities
                 GameStateMachine.Instance.OnTick -= CheckTimer;
                 CastGrab();
             }
-            else
-            {
-                timer += 1.0 / GameStateMachine.Instance.tickRate;
-            }
+            else timer += 1.0 / GameStateMachine.Instance.tickRate;
         }
 
         private void CastGrab()
         {
-            Debug.Log("Casting grab!");
-            Debug.DrawRay(casterInitPos, direction * data.grabMaxDistance, Color.yellow, 3);
-            var champion = (Champion)caster;
-            caster.animator.SetBool("IsGrabbing", false);
-
-            if (!Physics.Raycast(casterInitPos + champion.rotateParent.forward, direction, out var hit,
-                    data.grabMaxDistance, grabableLayer)) return;
-            
-            Debug.DrawLine(casterInitPos, hit.point, Color.red, 3);
+            Debug.DrawLine(casterInitPos, hitData.point, Color.red, 3);
 
             // We get hit IGrabable data
-            var grabable = hit.collider.gameObject.GetComponent<IGrabable>();
-            if (grabable == null)
-            {
-                return;
-            }
+            var grabable = hitData.collider.gameObject.GetComponent<IGrabable>();
+            if (grabable == null) return;
 
             // We get hit entity data
-            var entity = hit.collider.gameObject.GetComponent<Entity>();
+            var entity = hitData.collider.gameObject.GetComponent<Entity>();
             if (entity == caster)
             {
                 Debug.LogWarning("Touched itself!");
                 return;
             }
-
-            Debug.Log($"You hit {entity.name}");
-
-            champion.grabVFX.transform.position = hit.point;
-            champion.grabVFX.Play();
 
             var team = entity.team;
             var capacityIndex = CapacitySOCollectionManager.GetPassiveCapacitySOIndex(data.passiveEffect);
@@ -97,17 +86,29 @@ namespace Capacities.Active_Capacities
             }
             else if (team == Enums.Team.Neutral)
             {
-                var point = hit.point;
+                var point = hitData.point;
                 point.y = 1;
                 caster.AddPassiveCapacityRPC(capacityIndex, default, point);
             }
             else
             {
                 Debug.Log("You grabbed an enemy");
-                // Set passive capacity Grabbed on both caster and grabable
+                var point = (entity.transform.position + caster.transform.position) * .5f;
+                entity.AddPassiveCapacityRPC(capacityIndex, default, point);
+                caster.AddPassiveCapacityRPC(capacityIndex, default, point);
             }
         }
 
-        public override void PlayFeedback(int casterIndex, int[] targetsEntityIndexes, Vector3[] targetPositions) { }
+        public override void PlayFeedback(int casterIndex, int[] targetsEntityIndexes, Vector3[] targetPositions)
+        {
+        }
+
+        private void PlayHitEffect()
+        {
+            Debug.Log(caster);
+            champion.grabVFX.transform.position = hitData.point;
+            champion.grabVFX.Play();
+            GameStateMachine.Instance.OnTickFeedback -= PlayHitEffect;
+        }
     }
 }

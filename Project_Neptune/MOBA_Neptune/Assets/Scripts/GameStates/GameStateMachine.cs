@@ -59,9 +59,7 @@ namespace GameStates
             public int championPhotonViewId;
             public Champion champion;
         }
-
-        public string currentStateDebugString;
-
+        
         private void Awake()
         {
             if (Instance != null && Instance != this)
@@ -106,7 +104,6 @@ namespace GameStates
         private void Update()
         {
             currentState?.UpdateState();
-            //Debug.Log(currentState);
         }
 
         private void InitState()
@@ -125,7 +122,6 @@ namespace GameStates
         {
             currentState.ExitState();
             currentState = gamesStates[stateIndex];
-            currentStateDebugString = gamesStates[stateIndex].ToString();
             currentState.StartState();
         }
 
@@ -327,7 +323,6 @@ namespace GameStates
         [PunRPC]
         private void SyncDataDictionaryRPC(int key, byte team, byte championSO, bool ready)
         {
-            Debug.Log($"Je récupère les data du Master : {key}, {(Enums.Team)team}, {championSO}, {ready}");
             var data = new PlayerData
             {
                 team = (Enums.Team)team,
@@ -427,7 +422,9 @@ namespace GameStates
 
         private void InstantiateChampion()
         {
-            var champion = (Champion)PoolNetworkManager.Instance.PoolInstantiate(0, Vector3.up, Quaternion.identity);
+            var index = playersReadyDict[PhotonNetwork.LocalPlayer.ActorNumber].championSOIndex;
+            
+            var champion = (Champion)PoolNetworkManager.Instance.PoolInstantiate(index, Vector3.up, Quaternion.identity);
             
             photonView.RPC("SyncChampionPhotonId", RpcTarget.All, PhotonNetwork.LocalPlayer.ActorNumber, champion.photonView.ViewID);
 

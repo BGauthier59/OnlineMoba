@@ -19,6 +19,12 @@ namespace Controllers.Inputs
         private Camera cam;
         private bool isActivebuttonPress;
         public LayerMask groundLayer;
+        [SerializeField] private Transform mousePositionSphere;
+
+        [SerializeField] private NewActiveCapacity attackCapacity;
+        [SerializeField] private NewActiveCapacity capacity1;
+        [SerializeField] private NewActiveCapacity capacity2;
+        [SerializeField] private NewActiveCapacity ultimateCapacity;
 
         [Space] [Header("Cooldown")] public bool canCastAutoAttack = true;
         private float autoAttackTimer;
@@ -44,6 +50,8 @@ namespace Controllers.Inputs
             cursorWorldPos[0] = GetMouseOverWorldPos();
             var pos = transform.position;
             pos.y = 1;
+            mousePositionSphere.position =
+                Vector3.Lerp(mousePositionSphere.position, cursorWorldPos[0], Time.deltaTime * 15);
             Debug.DrawLine(pos, cursorWorldPos[0], Color.black);
         }
 
@@ -92,73 +100,59 @@ namespace Controllers.Inputs
 
         private void OnAttack(InputAction.CallbackContext ctx)
         {
-            if (champion.abilitiesIndexes[0] == 255)
-            {
-                Debug.LogWarning("No attack implemented!");
-                return;
-            }
+            if (!attackCapacity) return;
 
             if (!canCastAutoAttack)
             {
                 Debug.LogWarning("Cooldown not over!");
                 return;
             }
-            champion.RequestCast(champion.abilitiesIndexes[1], selectedEntity, cursorWorldPos);
             canCastAutoAttack = false;
+            attackCapacity.RequestCastCapacity(selectedEntity, cursorWorldPos);
         }
 
         private void OnActivateCapacity0(InputAction.CallbackContext ctx)
         {
-            if (champion.abilitiesIndexes[0] == 255)
-            {
-                Debug.LogWarning("No attack implemented!");
-                return;
-            }
+            if (!capacity1) return;
 
             if (!canCastCapacity1)
             {
                 Debug.LogWarning("Cooldown not over!");
                 return;
             }
-            champion.RequestCast(champion.abilitiesIndexes[0], selectedEntity, cursorWorldPos);
             canCastCapacity1 = false;
+            capacity1.RequestCastCapacity(selectedEntity, cursorWorldPos);
         }
 
         private void OnActivateCapacity1(InputAction.CallbackContext ctx)
         {
-            if (champion.abilitiesIndexes[2] == 255)
-            {
-                Debug.LogWarning("No attack implemented!");
-                return;
-            }
+            if (!capacity2) return;
 
             if (!canCastCapacity2)
             {
                 Debug.LogWarning("Cooldown not over!");
                 return;
             }
-            champion.RequestCast(champion.abilitiesIndexes[2], selectedEntity, cursorWorldPos);
             canCastCapacity2 = false;
+            capacity2.RequestCastCapacity(selectedEntity, cursorWorldPos);
         }
 
         private void OnActivateUltimateAbility(InputAction.CallbackContext ctx)
         {
-            if (champion.ultimateAbilityIndex == 255)
-            {
-                Debug.LogWarning("No attack implemented!");
-                return;
-            }
+            if (!ultimateCapacity) return;
 
             if (!canCastUltimate)
             {
                 Debug.LogWarning("Cooldown not over!");
                 return;
             }
-            champion.RequestCast(champion.ultimateAbilityIndex, selectedEntity, cursorWorldPos);
             canCastUltimate = false;
+            ultimateCapacity.RequestCastCapacity(selectedEntity, cursorWorldPos);
         }
 
-        void OnMouseClick(InputAction.CallbackContext ctx) { }
+        void OnMouseClick(InputAction.CallbackContext ctx)
+        {
+        }
 
         private Vector3 GetMouseOverWorldPos()
         {
@@ -185,6 +179,7 @@ namespace Controllers.Inputs
             cam = Camera.main;
             selectedEntity = new int[1];
             cursorWorldPos = new Vector3[1];
+            mousePositionSphere.gameObject.SetActive(true);
 
             inputs.Attack.Attack.performed += OnAttack;
 

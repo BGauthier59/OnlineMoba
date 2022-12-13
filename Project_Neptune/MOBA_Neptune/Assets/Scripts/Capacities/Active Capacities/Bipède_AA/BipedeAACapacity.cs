@@ -10,13 +10,6 @@ namespace Capacities.Active_Capacities
     {
         public override bool TryCast(int casterIndex, int[] targetsEntityIndexes, Vector3[] targetPositions)
         {
-            // Todo - fix cooldown, on crée une nouvelle capacité à chaque utilisation donc ça override le cooldown !
-            // Check condition
-            if (onCooldown)
-            {
-                Debug.LogWarning("You're on a cooldown for Bipede_AA !"); return false;
-            }
-
             // Cast de la compétence
             var caster = EntityCollectionManager.GetEntityByIndex(casterIndex);
             if (!EntityCollectionManager.GetEntityByIndex(targetsEntityIndexes[0]))
@@ -31,8 +24,6 @@ namespace Capacities.Active_Capacities
 
                 projectile.SendBipedeAA(caster);
             }
-            
-            InitiateCooldown();
             return true;
         }
 

@@ -40,20 +40,57 @@ namespace Entities.Champion
         public event GlobalDelegates.BoolDelegate OnSetCanCast;
         public event GlobalDelegates.BoolDelegate OnSetCanCastFeedback;
 
-        public void RequestCast(byte capacityIndex, int[] targetedEntities, Vector3[] targetedPositions)
+        public void RequestCast(byte capacityIndex, int[] targetedEntities, Vector3[] targetedPositions,
+            int cooldownIndex)
         {
-            photonView.RPC("CastRPC", RpcTarget.MasterClient, capacityIndex, targetedEntities, targetedPositions);
+            if (capacityIndex == 255)
+            {
+                Debug.LogWarning("No ability implemented!");
+                return;
+            }
+            
+            photonView.RPC("CastRPC", RpcTarget.MasterClient, capacityIndex, targetedEntities, targetedPositions,
+                cooldownIndex);
         }
 
         [PunRPC]
-        public void CastRPC(byte capacityIndex, int[] targetedEntities, Vector3[] targetedPositions)
+        public void CastRPC(byte capacityIndex, int[] targetedEntities, Vector3[] targetedPositions, int cooldownIndex)
         {
             var activeCapacity = CapacitySOCollectionManager.CreateActiveCapacity(capacityIndex, this);
 
-            if (!activeCapacity.TryCast(entityIndex, targetedEntities, targetedPositions)) return;
+            if (!activeCapacity.TryCast(entityIndex, targetedEntities, targetedPositions))
+            {
+                photonView.RPC("SyncCancelCooldown", RpcTarget.All, cooldownIndex);
+                return;
+            }
 
             OnCast?.Invoke(capacityIndex, targetedEntities, targetedPositions);
             photonView.RPC("SyncCastRPC", RpcTarget.All, capacityIndex, targetedEntities, targetedPositions);
+        }
+
+        [PunRPC]
+        public void SyncCancelCooldown(int cooldownIndex)
+        {
+            if (!photonView.IsMine) return;
+            switch (cooldownIndex)
+            {
+                case 0:
+                    controller.canCastAutoAttack = true;
+                    break;
+                case 1:
+                    controller.canCastCapacity1 = true;
+                    break;
+                case 2:
+                    controller.canCastCapacity2 = true;
+                    break;
+                case 3:
+                    controller.canCastUltimate = true;
+                    break;
+                default:
+                    Debug.LogError("Index is not valid.");
+                    return;
+            }
+            Debug.Log("Cancel cooldown.");
         }
 
         [PunRPC]

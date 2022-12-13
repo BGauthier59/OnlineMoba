@@ -7,6 +7,9 @@ public partial class UIManager
 
     public void InstantiateChampionHUD()
     {
+        Debug.Log("Has to be modified.");
+        
+        /*
         var champion = GameStateMachine.Instance.GetPlayerChampion();
 
         if (champion == null) return;
@@ -16,5 +19,6 @@ public partial class UIManager
         if (canvasIndex >= championOverlays.Length) canvasIndex = 0;
         var canvasChampion = Instantiate(championOverlays[canvasIndex], transform);
         canvasChampion.InitHUD(champion);
+        */
     }
 }
