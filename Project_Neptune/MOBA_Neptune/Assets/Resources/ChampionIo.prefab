@@ -146,7 +146,10 @@ GameObject:
   - component: {fileID: 434428232920986599}
   - component: {fileID: 7093485588091870439}
   - component: {fileID: 1239114571874846425}
+  - component: {fileID: 1454903073489934179}
   - component: {fileID: 4806538035275567804}
+  - component: {fileID: 2574456858352085549}
+  - component: {fileID: 8202111792943879854}
   m_Layer: 29
   m_Name: ChampionIo
   m_TagString: Untagged
@@ -191,18 +194,10 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   mousePositionSphere: {fileID: 1201535449586298286}
-  attackCapacity: {fileID: 0}
+  attackCapacity: {fileID: 1454903073489934179}
   capacity1: {fileID: 4806538035275567804}
-  capacity2: {fileID: 0}
-  ultimateCapacity: {fileID: 0}
-  canCastAutoAttack: 1
-  autoAttackCooldownDuration: 0
-  canCastCapacity1: 1
-  capacity1CooldownDuration: 0
-  canCastCapacity2: 1
-  capacity2CooldownDuration: 0
-  canCastUltimate: 1
-  ultimateCooldownDuration: 0
+  capacity2: {fileID: 2574456858352085549}
+  ultimateCapacity: {fileID: 8202111792943879854}
 --- !u!114 &3480681341667345174
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -445,6 +440,21 @@ LineRenderer:
     generateLightingData: 0
   m_UseWorldSpace: 1
   m_Loop: 0
+--- !u!114 &1454903073489934179
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3480681341667345177}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d8ce4854f8f80a545a68a611b6ff87ec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  caster: {fileID: 0}
+  canCastCapacity: 1
+  cooldownDuration: 0
 --- !u!114 &4806538035275567804
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -458,6 +468,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   caster: {fileID: 0}
+  canCastCapacity: 1
+  cooldownDuration: 5
   grabMaxDistance: 10
   grabableLayer:
     serializedVersion: 2
@@ -465,6 +477,36 @@ MonoBehaviour:
   passiveEffect: {fileID: 11400000, guid: 7b654e7fa8808ba469c348c5950028ea, type: 2}
   delayDuration: 0.1
   grabVFX: {fileID: 8539344772885261290}
+--- !u!114 &2574456858352085549
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3480681341667345177}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e38eab2632cad74da934086bff3e83c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  caster: {fileID: 0}
+  canCastCapacity: 1
+  cooldownDuration: 0
+--- !u!114 &8202111792943879854
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3480681341667345177}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 19b9a3d2c3e26dc4fbaa85e9e00d1ed1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  caster: {fileID: 0}
+  canCastCapacity: 1
+  cooldownDuration: 0
 --- !u!1 &3480681342087303709
 GameObject:
   m_ObjectHideFlags: 0

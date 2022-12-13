@@ -18,6 +18,8 @@ namespace Capacities.Passive_Capacities
         private IDisplaceable displaceable;
         private Champion grabbedChampion;
 
+        private float initDistance;
+
         protected override void OnAddedEffects()
         {
             InputManager.PlayerMap.Movement.Disable();
@@ -37,6 +39,10 @@ namespace Capacities.Passive_Capacities
                 return;
             }
 
+            var pointToReach = giverEntity != null ? giverEntity.transform.position : pos;
+            pointToReach.y = 1;
+            initDistance = Vector3.Distance(entityUnderEffect.transform.position, pointToReach); 
+            
             GameStateMachine.Instance.OnTick += MoveGrabbedEntity;
         }
 
@@ -47,8 +53,10 @@ namespace Capacities.Passive_Capacities
 
             var distance = Vector3.Distance(entityUnderEffect.transform.position, pointToReach);
 
+            var crossedDistance = Mathf.Abs(distance - initDistance);
+            
             var velocity = (pointToReach - entityUnderEffect.transform.position) *
-                           (distance * data.distanceSpeedFactor * data.speed);
+                           ((crossedDistance + .5f) * data.distanceSpeedFactor * data.speed);
             velocity.y = 0;
             displaceable.SetVelocity(velocity);
 
@@ -75,6 +83,7 @@ namespace Capacities.Passive_Capacities
                     giverEntity.transform.position - entityUnderEffect.transform.forward * .5f;
                 GameStateMachine.Instance.OnTick += SetVelocityOnHookedEntity;
             }
+            grabbedChampion.rb.velocity = Vector3.zero;
 
             GameStateMachine.Instance.OnTick += CheckTimer;
         }

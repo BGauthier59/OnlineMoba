@@ -14,7 +14,7 @@ public class GrabCapacity : NewActiveCapacity
     public GrabbedCapacitySO passiveEffect;
     
     public double delayDuration;
-    private double timer;
+    private double delayTimer;
 
     private Vector3 direction;
     private Vector3 casterInitPos;
@@ -37,11 +37,8 @@ public class GrabCapacity : NewActiveCapacity
 
         if (TryCast())
         {
-            Debug.Log("Grab worked!");
-        }
-        else
-        {
-            ((Champion) caster).controller.canCastCapacity1 = true;
+            StartCooldown();
+            GameStateMachine.Instance.OnTick += TimerCooldown;
         }
     }
 
@@ -67,12 +64,16 @@ public class GrabCapacity : NewActiveCapacity
             3);
 
         // Check conditions
-        if (!Physics.Raycast(casterInitPos + champion.rotateParent.forward, direction, out var hit,
-            grabMaxDistance, grabableLayer))
+        if (!canCastCapacity)
         {
-            Debug.Log("Raycast for grab hit nothing!");
+            Debug.LogWarning("Still on cooldown!");
             return false;
         }
+        
+        if (!Physics.Raycast(casterInitPos + champion.rotateParent.forward, direction, out var hit,
+            grabMaxDistance, grabableLayer)) return false;
+        
+        // Cast Succeeded!
 
         hitData = hit;
         GameStateMachine.Instance.OnTick += CheckTimer;
@@ -81,12 +82,13 @@ public class GrabCapacity : NewActiveCapacity
 
     private void CheckTimer()
     {
-        if (timer > delayDuration)
+        if (delayTimer > delayDuration)
         {
             GameStateMachine.Instance.OnTick -= CheckTimer;
+            delayTimer = 0f;
             CastGrab();
         }
-        else timer += 1.0 / GameStateMachine.Instance.tickRate;
+        else delayTimer += 1.0 / GameStateMachine.Instance.tickRate;
     }
 
     private void CastGrab()
@@ -133,5 +135,24 @@ public class GrabCapacity : NewActiveCapacity
     {
         grabVFX.transform.position = pos;
         grabVFX.Play();
+    }
+    
+    private void TimerCooldown()
+    {
+        cooldownTimer += 1.0 / GameStateMachine.Instance.tickRate;
+
+        if (cooldownTimer >= cooldownDuration)
+        {
+            photonView.RPC("SyncCanCastGrabCapacityRPC", RpcTarget.All, true);
+            cooldownTimer = 0f;
+            GameStateMachine.Instance.OnTick -= TimerCooldown;
+        }
+    }
+
+    [PunRPC]
+    private void SyncCanCastGrabCapacityRPC(bool canCast)
+    {
+        Debug.Log(canCast);
+        canCastCapacity = canCast;
     }
 }

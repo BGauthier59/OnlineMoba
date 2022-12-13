@@ -66,31 +66,6 @@ namespace Entities.Champion
         }
 
         [PunRPC]
-        public void SyncCancelCooldown(int cooldownIndex)
-        {
-            if (!photonView.IsMine) return;
-            switch (cooldownIndex)
-            {
-                case 0:
-                    controller.canCastAutoAttack = true;
-                    break;
-                case 1:
-                    controller.canCastCapacity1 = true;
-                    break;
-                case 2:
-                    controller.canCastCapacity2 = true;
-                    break;
-                case 3:
-                    controller.canCastUltimate = true;
-                    break;
-                default:
-                    Debug.LogError("Index is not valid.");
-                    return;
-            }
-            Debug.Log("Cancel cooldown.");
-        }
-
-        [PunRPC]
         public void SyncCastRPC(byte capacityIndex, int[] targetedEntities, Vector3[] targetedPositions)
         {
             var activeCapacity = CapacitySOCollectionManager.CreateActiveCapacity(capacityIndex, this);

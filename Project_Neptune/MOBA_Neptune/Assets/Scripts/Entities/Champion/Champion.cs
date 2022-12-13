@@ -113,6 +113,7 @@ namespace Entities.Champion
             rb.velocity = Vector3.zero;
             RequestSetCanDie(true);
             RequestSetCanMove(true);
+            
             isLinked = true;
         }
         
