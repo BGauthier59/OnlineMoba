@@ -31,6 +31,6 @@ public class DebugManager : MonoBehaviour
 
     public void OnDamageButtonClick()
     {
-        GameStateMachine.Instance.GetPlayerChampion().DecreaseCurrentHpRPC(2);
+        GameStateMachine.Instance.GetPlayerChampion().DecreaseCurrentHpRPC(2, 0);
     }
 }

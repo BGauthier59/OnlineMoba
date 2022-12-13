@@ -197,6 +197,7 @@ MonoBehaviour:
   canAddPassiveCapacity: 0
   canRemovePassiveCapacity: 0
   currentPointCarried: 0
+  lastEntityWhoAttackedMeIndex: 0
   uiTransform: {fileID: 0}
   guiOffset: {x: 0, y: 2, z: 0}
   rb: {fileID: 0}
@@ -264,7 +265,7 @@ Rigidbody:
   m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 112
-  m_CollisionDetection: 0
+  m_CollisionDetection: 3
 --- !u!1 &7168105127470395230
 GameObject:
   m_ObjectHideFlags: 0

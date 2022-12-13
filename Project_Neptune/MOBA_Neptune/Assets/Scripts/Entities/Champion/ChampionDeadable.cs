@@ -1,4 +1,5 @@
 using Entities.FogOfWar;
+using Entities.Minion;
 using GameStates;
 using Photon.Pun;
 using UnityEngine;
@@ -83,7 +84,13 @@ namespace Entities.Champion
             isAlive = false;
 
             SetCanDieRPC(false);
-            if (lastEntityWhoAttackedMe != null) ChampionRequestIncreaseScore(currentPointCarried / 2, lastEntityWhoAttackedMe);
+
+            if (lastEntityWhoAttackedMeIndex != 0)
+            {
+                var entity = EntityCollectionManager.GetEntityByIndex(lastEntityWhoAttackedMeIndex);
+                if (entity.GetComponent<Champion>()) ChampionRequestIncreaseScore(Mathf.Abs(currentPointCarried / 2), entity);
+            }
+            
             ChampionRequestRemoveScore(GetComponent<Entity>());
 
             // TODO - Disable collision, etc...

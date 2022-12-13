@@ -27,6 +27,11 @@ namespace Entities
         /// </summary>
         public int currentPointCarried = 0;
 
+        /// <summary>
+        /// The lastest entity who attacked this entity
+        /// </summary>
+        public int lastEntityWhoAttackedMeIndex;
+
         public Transform uiTransform;
         public Vector3 guiOffset = new Vector3(0, 2f, 0);
 

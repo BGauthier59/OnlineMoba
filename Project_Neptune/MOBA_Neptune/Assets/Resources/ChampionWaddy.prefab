@@ -143,7 +143,6 @@ GameObject:
   - component: {fileID: 2263356599250850540}
   - component: {fileID: 6530865356692434526}
   - component: {fileID: 434428232920986599}
-  - component: {fileID: 7093485588091870439}
   - component: {fileID: 1239114571874846425}
   m_Layer: 29
   m_Name: ChampionWaddy
@@ -193,13 +192,17 @@ MonoBehaviour:
   capacity2: {fileID: 0}
   ultimateCapacity: {fileID: 0}
   canCastAutoAttack: 1
-  autoAttackCooldownDuration: 0
+  autoAttackTimer: 0
+  autoAttackCooldownDuration: 0.3
   canCastCapacity1: 1
-  capacity1CooldownDuration: 0
+  capacity1Timer: 0
+  capacity1CooldownDuration: 1
   canCastCapacity2: 1
-  capacity2CooldownDuration: 0
+  capacity2Timer: 0
+  capacity2CooldownDuration: 0.45
   canCastUltimate: 1
-  ultimateCooldownDuration: 0
+  ultimateTimer: 0
+  ultimateCooldownDuration: 10
 --- !u!114 &3480681341667345174
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -239,7 +242,8 @@ MonoBehaviour:
   entityIndex: 0
   canAddPassiveCapacity: 1
   canRemovePassiveCapacity: 1
-  currentPointCarried: 0
+  currentPointCarried: 5
+  lastEntityWhoAttackedMeIndex: 0
   uiTransform: {fileID: 3480681342087303708}
   guiOffset: {x: 0, y: 2, z: 0}
   rb: {fileID: 6530865356692434526}
@@ -271,7 +275,6 @@ MonoBehaviour:
   canCast: 0
   maxHp: 0
   currentHp: 0
-  lastEntityWhoAttackedMe: {fileID: 0}
   isAlive: 0
   canDie: 0
   respawnDuration: 3
@@ -333,22 +336,6 @@ MonoBehaviour:
   m_SynchronizeAngularVelocity: 0
   m_TeleportEnabled: 1
   m_TeleportIfDistanceGreaterThan: 3
---- !u!208 &7093485588091870439
-NavMeshObstacle:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3480681341667345177}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Shape: 0
-  m_Extents: {x: 0.6, y: 1, z: 0.6}
-  m_MoveThreshold: 0.1
-  m_Carve: 0
-  m_CarveOnlyStationary: 1
-  m_Center: {x: 0, y: 1, z: 0}
-  m_TimeToStationary: 0.5
 --- !u!120 &1239114571874846425
 LineRenderer:
   m_ObjectHideFlags: 0

@@ -129,17 +129,17 @@ namespace Entities
         /// Sends an RPC to the master to decrease the entity's currentHp.
         /// </summary>
         /// <param name="amount">the decrease amount</param>
-        public void RequestDecreaseCurrentHp(float amount, [CanBeNull] Entity entityWhoAttacked );
+        public void RequestDecreaseCurrentHp(float amount, Entity entityWhoAttacked );
         /// <summary>
         /// Sends an RPC to all clients to decrease the entity's currentHp.
         /// </summary>
         /// <param name="amount">the decrease amount</param>
-        public void SyncDecreaseCurrentHpRPC(float amount, [CanBeNull] Entity entityWhoAttacked);
+        public void SyncDecreaseCurrentHpRPC(float amount, int entityWhoAttackedIndex);
         /// <summary>
         /// Decreases the entity's currentHp.
         /// </summary>
         /// <param name="amount">the decrease amount</param>
-        public void DecreaseCurrentHpRPC(float amount, [CanBeNull] Entity entityWhoAttacked);
+        public void DecreaseCurrentHpRPC(float amount, int entityWhoAttackedIndex);
 
         public event GlobalDelegates.FloatDelegate OnDecreaseCurrentHp;
         public event GlobalDelegates.FloatDelegate OnDecreaseCurrentHpFeedback;

@@ -169,5 +169,24 @@ namespace Entities.Champion
 
             isLinked = true;
         }
+        
+        private void OnGUI()
+        {
+            if (!GameStateMachine.Instance.GetPlayerChampion()) return;
+                
+            GUILayout.BeginArea(new Rect(200,200,200,500));
+            GUILayout.BeginVertical();
+
+            foreach (var players in GameStateMachine.Instance.debugList)
+            {
+                if (players.championPhotonViewId != 0)
+                {
+                    GUILayout.Label($"Player {players.championPhotonViewId} - points : {EntityCollectionManager.GetEntityByIndex(players.championPhotonViewId).currentPointCarried}");
+                }
+            }
+        
+            GUILayout.EndVertical();
+            GUILayout.EndArea();
+        }
     }
 }

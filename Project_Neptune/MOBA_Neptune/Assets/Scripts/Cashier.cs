@@ -20,17 +20,17 @@ public class Cashier : MonoBehaviour, IScorable
     {
         Entity tempEntity = other.gameObject.GetComponent<Entity>();
 
-        if (!tempEntity) return;
+        if (tempEntity == null) return;
 
-        if (tempEntity.team == teamToGoCashier)
-            CashierRequestIncreaseScore(tempEntity.currentPointCarried, tempEntity);
+        if (tempEntity.team == teamToGoCashier) CashierRequestIncreaseScore(tempEntity);
     }
 
-    /* ------- Scoreable Methods ------- */
+    /* ------- CashierIncreaseScore ------- */
 
-    public void CashierRequestIncreaseScore(int value, Entity entityWhoScored)
+    public void CashierRequestIncreaseScore(Entity entityWhoScored)
     {
-        _photonView.RPC("CashierIncreaseScoreRPC", RpcTarget.MasterClient, value);
+        _photonView.RPC("CashierIncreaseScoreRPC", RpcTarget.MasterClient, entityWhoScored.currentPointCarried);
+
         
         if (entityWhoScored.GetComponent<MinionBehaviour>())
         {
@@ -43,7 +43,7 @@ public class Cashier : MonoBehaviour, IScorable
             championScoreable?.ChampionRequestRemoveScore(entityWhoScored);
         }
     }
-    
+
     [PunRPC]
     public void SyncCashierIncreaseScoreRPC(int value)
     {
@@ -62,30 +62,27 @@ public class Cashier : MonoBehaviour, IScorable
 
         Debug.Log($"Team {teamToGoCashier} won the game !");
 
-        GameStateMachine.Instance.winner = teamToGoCashier;
-
-        // TODO - Faire gagner l'équipe teamToGoCashier
+        GameStateMachine.Instance.winner = teamToGoCashier; 
     }
 
     // ----------- Unused Methods ----------- //
-    
     public void ChampionRequestIncreaseScore(int value, Entity entityToInscreasePoints)
     {
     }
 
-    public void SyncChampionIncreaseScore(int value, Entity entityToInscreasePoints)
+    public void SyncChampionIncreaseScore(int value, int entityToInscreasePoints)
     {
     }
 
-    public void ChampionIncreaseScore(int value, Entity entityToInscreasePoints)
+    public void ChampionIncreaseScore(int value, int entityToInscreasePoints)
     {
     }
-    
+
     public void ChampionRequestRemoveScore(Entity entityWhoScored)
     {
     }
 
-    public void SyncChampionRemoveScore(Entity entityWhoScored)
+    public void SyncChampionRemoveScore(int entityWhoScored)
     {
     }
 }
