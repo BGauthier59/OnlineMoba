@@ -336,7 +336,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh47746
+  m_Name: pb_Mesh23234
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -500,7 +500,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh48426
+  m_Name: pb_Mesh23938
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -1119,6 +1119,7 @@ MonoBehaviour:
   canAddPassiveCapacity: 0
   canRemovePassiveCapacity: 0
   currentPointCarried: 0
+  lastEntityWhoAttackedMeIndex: 0
   uiTransform: {fileID: 0}
   guiOffset: {x: 0, y: 2, z: 0}
   rb: {fileID: 0}
@@ -1156,66 +1157,6 @@ MonoBehaviour:
   sceneViewId: 19
   InstantiationId: 0
   isRuntimeInstantiated: 0
---- !u!1 &99923867
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 99923868}
-  m_Layer: 0
-  m_Name: GameObject
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &99923868
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 99923867}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 60.5, y: 0, z: 11.8}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 7738572016639510461}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &125328699
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 125328700}
-  m_Layer: 0
-  m_Name: GameObject
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &125328700
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 125328699}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -3.122, y: 0, z: 1.48}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 7738572016639510467}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &156750485
 GameObject:
   m_ObjectHideFlags: 0
@@ -1286,6 +1227,7 @@ MonoBehaviour:
   canAddPassiveCapacity: 0
   canRemovePassiveCapacity: 0
   currentPointCarried: 0
+  lastEntityWhoAttackedMeIndex: 0
   uiTransform: {fileID: 0}
   guiOffset: {x: 0, y: 2, z: 0}
   rb: {fileID: 0}
@@ -1585,84 +1527,6 @@ MonoBehaviour:
   m_SelectedFaces: 
   m_SelectedEdges: []
   m_SelectedVertices: 
---- !u!1001 &190051436
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 7738572016639510467}
-    m_Modifications:
-    - target: {fileID: 3522580368828124196, guid: 7b4ee32591c74d04ab78b9d01885cb29, type: 3}
-      propertyPath: m_RootOrder
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3522580368828124196, guid: 7b4ee32591c74d04ab78b9d01885cb29, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3522580368828124196, guid: 7b4ee32591c74d04ab78b9d01885cb29, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3522580368828124196, guid: 7b4ee32591c74d04ab78b9d01885cb29, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3522580368828124196, guid: 7b4ee32591c74d04ab78b9d01885cb29, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -2.99
-      objectReference: {fileID: 0}
-    - target: {fileID: 3522580368828124196, guid: 7b4ee32591c74d04ab78b9d01885cb29, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3522580368828124196, guid: 7b4ee32591c74d04ab78b9d01885cb29, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 1.453
-      objectReference: {fileID: 0}
-    - target: {fileID: 3522580368828124196, guid: 7b4ee32591c74d04ab78b9d01885cb29, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3522580368828124196, guid: 7b4ee32591c74d04ab78b9d01885cb29, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3522580368828124196, guid: 7b4ee32591c74d04ab78b9d01885cb29, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3522580368828124196, guid: 7b4ee32591c74d04ab78b9d01885cb29, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3522580368828124196, guid: 7b4ee32591c74d04ab78b9d01885cb29, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3522580368828124196, guid: 7b4ee32591c74d04ab78b9d01885cb29, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3522580368828124196, guid: 7b4ee32591c74d04ab78b9d01885cb29, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4924447214370837390, guid: 7b4ee32591c74d04ab78b9d01885cb29, type: 3}
-      propertyPath: m_Name
-      value: Field Of View_FOW
-      objectReference: {fileID: 0}
-    - target: {fileID: 4924447214370837390, guid: 7b4ee32591c74d04ab78b9d01885cb29, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 7b4ee32591c74d04ab78b9d01885cb29, type: 3}
---- !u!33 &190051437 stripped
-MeshFilter:
-  m_CorrespondingSourceObject: {fileID: 7339930112782087322, guid: 7b4ee32591c74d04ab78b9d01885cb29, type: 3}
-  m_PrefabInstance: {fileID: 190051436}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &229148428
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1873,6 +1737,7 @@ MonoBehaviour:
   canAddPassiveCapacity: 0
   canRemovePassiveCapacity: 0
   currentPointCarried: 0
+  lastEntityWhoAttackedMeIndex: 0
   uiTransform: {fileID: 0}
   guiOffset: {x: 0, y: 2, z: 0}
   rb: {fileID: 0}
@@ -1978,7 +1843,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh48732
+  m_Name: pb_Mesh24288
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -2174,7 +2039,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh48752
+  m_Name: pb_Mesh24308
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -2386,6 +2251,7 @@ MonoBehaviour:
   canAddPassiveCapacity: 0
   canRemovePassiveCapacity: 0
   currentPointCarried: 0
+  lastEntityWhoAttackedMeIndex: 0
   uiTransform: {fileID: 0}
   guiOffset: {x: 0, y: 2, z: 0}
   rb: {fileID: 0}
@@ -2783,7 +2649,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh48138
+  m_Name: pb_Mesh23630
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -2947,7 +2813,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh48054
+  m_Name: pb_Mesh23546
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -3564,6 +3430,7 @@ MonoBehaviour:
   canAddPassiveCapacity: 0
   canRemovePassiveCapacity: 0
   currentPointCarried: 0
+  lastEntityWhoAttackedMeIndex: 0
   uiTransform: {fileID: 0}
   guiOffset: {x: 0, y: 2, z: 0}
   rb: {fileID: 0}
@@ -3695,6 +3562,7 @@ MonoBehaviour:
   canAddPassiveCapacity: 0
   canRemovePassiveCapacity: 0
   currentPointCarried: 0
+  lastEntityWhoAttackedMeIndex: 0
   uiTransform: {fileID: 0}
   guiOffset: {x: 0, y: 2, z: 0}
   rb: {fileID: 0}
@@ -3862,6 +3730,7 @@ MonoBehaviour:
   canAddPassiveCapacity: 0
   canRemovePassiveCapacity: 0
   currentPointCarried: 0
+  lastEntityWhoAttackedMeIndex: 0
   uiTransform: {fileID: 0}
   guiOffset: {x: 0, y: 2, z: 0}
   rb: {fileID: 0}
@@ -4292,6 +4161,7 @@ MonoBehaviour:
   canAddPassiveCapacity: 0
   canRemovePassiveCapacity: 0
   currentPointCarried: 0
+  lastEntityWhoAttackedMeIndex: 0
   uiTransform: {fileID: 0}
   guiOffset: {x: 0, y: 2, z: 0}
   rb: {fileID: 0}
@@ -4659,6 +4529,7 @@ MonoBehaviour:
   canAddPassiveCapacity: 0
   canRemovePassiveCapacity: 0
   currentPointCarried: 0
+  lastEntityWhoAttackedMeIndex: 0
   uiTransform: {fileID: 0}
   guiOffset: {x: 0, y: 2, z: 0}
   rb: {fileID: 0}
@@ -4826,6 +4697,7 @@ MonoBehaviour:
   canAddPassiveCapacity: 0
   canRemovePassiveCapacity: 0
   currentPointCarried: 0
+  lastEntityWhoAttackedMeIndex: 0
   uiTransform: {fileID: 0}
   guiOffset: {x: 0, y: 2, z: 0}
   rb: {fileID: 0}
@@ -5347,6 +5219,7 @@ MonoBehaviour:
   canAddPassiveCapacity: 0
   canRemovePassiveCapacity: 0
   currentPointCarried: 0
+  lastEntityWhoAttackedMeIndex: 0
   uiTransform: {fileID: 0}
   guiOffset: {x: 0, y: 2, z: 0}
   rb: {fileID: 0}
@@ -5390,7 +5263,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-99782
+  m_Name: pb_Mesh23748
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -5578,79 +5451,13 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1001 &531158279
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 7738572016639510468}
-    m_Modifications:
-    - target: {fileID: 3522580368828124196, guid: 7b4ee32591c74d04ab78b9d01885cb29, type: 3}
-      propertyPath: m_RootOrder
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3522580368828124196, guid: 7b4ee32591c74d04ab78b9d01885cb29, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0.86
-      objectReference: {fileID: 0}
-    - target: {fileID: 3522580368828124196, guid: 7b4ee32591c74d04ab78b9d01885cb29, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3522580368828124196, guid: 7b4ee32591c74d04ab78b9d01885cb29, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -5.71
-      objectReference: {fileID: 0}
-    - target: {fileID: 3522580368828124196, guid: 7b4ee32591c74d04ab78b9d01885cb29, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3522580368828124196, guid: 7b4ee32591c74d04ab78b9d01885cb29, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3522580368828124196, guid: 7b4ee32591c74d04ab78b9d01885cb29, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3522580368828124196, guid: 7b4ee32591c74d04ab78b9d01885cb29, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3522580368828124196, guid: 7b4ee32591c74d04ab78b9d01885cb29, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3522580368828124196, guid: 7b4ee32591c74d04ab78b9d01885cb29, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3522580368828124196, guid: 7b4ee32591c74d04ab78b9d01885cb29, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4924447214370837390, guid: 7b4ee32591c74d04ab78b9d01885cb29, type: 3}
-      propertyPath: m_Name
-      value: Field Of View_FOW
-      objectReference: {fileID: 0}
-    - target: {fileID: 4924447214370837390, guid: 7b4ee32591c74d04ab78b9d01885cb29, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 7b4ee32591c74d04ab78b9d01885cb29, type: 3}
---- !u!33 &531158280 stripped
-MeshFilter:
-  m_CorrespondingSourceObject: {fileID: 7339930112782087322, guid: 7b4ee32591c74d04ab78b9d01885cb29, type: 3}
-  m_PrefabInstance: {fileID: 531158279}
-  m_PrefabAsset: {fileID: 0}
 --- !u!43 &550671268
 Mesh:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh47650
+  m_Name: pb_Mesh23118
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -6061,7 +5868,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh48654
+  m_Name: pb_Mesh24188
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -6546,6 +6353,7 @@ MonoBehaviour:
   canAddPassiveCapacity: 0
   canRemovePassiveCapacity: 0
   currentPointCarried: 0
+  lastEntityWhoAttackedMeIndex: 0
   uiTransform: {fileID: 0}
   guiOffset: {x: 0, y: 2, z: 0}
   rb: {fileID: 0}
@@ -6699,6 +6507,7 @@ MonoBehaviour:
   canAddPassiveCapacity: 0
   canRemovePassiveCapacity: 0
   currentPointCarried: 0
+  lastEntityWhoAttackedMeIndex: 0
   uiTransform: {fileID: 0}
   guiOffset: {x: 0, y: 2, z: 0}
   rb: {fileID: 0}
@@ -6866,6 +6675,7 @@ MonoBehaviour:
   canAddPassiveCapacity: 0
   canRemovePassiveCapacity: 0
   currentPointCarried: 0
+  lastEntityWhoAttackedMeIndex: 0
   uiTransform: {fileID: 0}
   guiOffset: {x: 0, y: 2, z: 0}
   rb: {fileID: 0}
@@ -7018,6 +6828,7 @@ MonoBehaviour:
   canAddPassiveCapacity: 0
   canRemovePassiveCapacity: 0
   currentPointCarried: 0
+  lastEntityWhoAttackedMeIndex: 0
   uiTransform: {fileID: 0}
   guiOffset: {x: 0, y: 2, z: 0}
   rb: {fileID: 0}
@@ -7331,72 +7142,6 @@ Transform:
   m_Father: {fileID: 998269256}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1001 &756732454
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 7738572016639510461}
-    m_Modifications:
-    - target: {fileID: 3522580368828124196, guid: 7b4ee32591c74d04ab78b9d01885cb29, type: 3}
-      propertyPath: m_RootOrder
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3522580368828124196, guid: 7b4ee32591c74d04ab78b9d01885cb29, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 59.18
-      objectReference: {fileID: 0}
-    - target: {fileID: 3522580368828124196, guid: 7b4ee32591c74d04ab78b9d01885cb29, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 3522580368828124196, guid: 7b4ee32591c74d04ab78b9d01885cb29, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 11.13
-      objectReference: {fileID: 0}
-    - target: {fileID: 3522580368828124196, guid: 7b4ee32591c74d04ab78b9d01885cb29, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.01745245
-      objectReference: {fileID: 0}
-    - target: {fileID: 3522580368828124196, guid: 7b4ee32591c74d04ab78b9d01885cb29, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3522580368828124196, guid: 7b4ee32591c74d04ab78b9d01885cb29, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0.99984777
-      objectReference: {fileID: 0}
-    - target: {fileID: 3522580368828124196, guid: 7b4ee32591c74d04ab78b9d01885cb29, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3522580368828124196, guid: 7b4ee32591c74d04ab78b9d01885cb29, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3522580368828124196, guid: 7b4ee32591c74d04ab78b9d01885cb29, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 178
-      objectReference: {fileID: 0}
-    - target: {fileID: 3522580368828124196, guid: 7b4ee32591c74d04ab78b9d01885cb29, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4924447214370837390, guid: 7b4ee32591c74d04ab78b9d01885cb29, type: 3}
-      propertyPath: m_Name
-      value: Field Of View_FOW
-      objectReference: {fileID: 0}
-    - target: {fileID: 4924447214370837390, guid: 7b4ee32591c74d04ab78b9d01885cb29, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 7b4ee32591c74d04ab78b9d01885cb29, type: 3}
---- !u!33 &756732455 stripped
-MeshFilter:
-  m_CorrespondingSourceObject: {fileID: 7339930112782087322, guid: 7b4ee32591c74d04ab78b9d01885cb29, type: 3}
-  m_PrefabInstance: {fileID: 756732454}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &758223414
 GameObject:
   m_ObjectHideFlags: 0
@@ -7633,6 +7378,7 @@ MonoBehaviour:
   canAddPassiveCapacity: 0
   canRemovePassiveCapacity: 0
   currentPointCarried: 0
+  lastEntityWhoAttackedMeIndex: 0
   uiTransform: {fileID: 0}
   guiOffset: {x: 0, y: 2, z: 0}
   rb: {fileID: 0}
@@ -7752,7 +7498,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh53510
+  m_Name: pb_Mesh24226
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -8040,6 +7786,7 @@ MonoBehaviour:
   canAddPassiveCapacity: 0
   canRemovePassiveCapacity: 0
   currentPointCarried: 0
+  lastEntityWhoAttackedMeIndex: 0
   uiTransform: {fileID: 0}
   guiOffset: {x: 0, y: 2, z: 0}
   rb: {fileID: 0}
@@ -8082,7 +7829,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7738572016908867132, guid: 41b32416e789b9d4eaf874ee3b543f43, type: 3}
   m_PrefabInstance: {fileID: 7738572016639510460}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7738572016639510464}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 09093d79f79891d4a8258a182357efe1, type: 3}
@@ -8094,7 +7841,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh48528
+  m_Name: pb_Mesh24060
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -8660,6 +8407,7 @@ MonoBehaviour:
   canAddPassiveCapacity: 0
   canRemovePassiveCapacity: 0
   currentPointCarried: 0
+  lastEntityWhoAttackedMeIndex: 0
   uiTransform: {fileID: 0}
   guiOffset: {x: 0, y: 2, z: 0}
   rb: {fileID: 0}
@@ -8785,7 +8533,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh48568
+  m_Name: pb_Mesh24100
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -8997,6 +8745,7 @@ MonoBehaviour:
   canAddPassiveCapacity: 0
   canRemovePassiveCapacity: 0
   currentPointCarried: 0
+  lastEntityWhoAttackedMeIndex: 0
   uiTransform: {fileID: 0}
   guiOffset: {x: 0, y: 2, z: 0}
   rb: {fileID: 0}
@@ -9600,6 +9349,7 @@ MonoBehaviour:
   canAddPassiveCapacity: 0
   canRemovePassiveCapacity: 0
   currentPointCarried: 0
+  lastEntityWhoAttackedMeIndex: 0
   uiTransform: {fileID: 0}
   guiOffset: {x: 0, y: 2, z: 0}
   rb: {fileID: 0}
@@ -9643,7 +9393,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh48706
+  m_Name: pb_Mesh24262
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -9807,7 +9557,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh48548
+  m_Name: pb_Mesh24080
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -10135,6 +9885,7 @@ MonoBehaviour:
   canAddPassiveCapacity: 0
   canRemovePassiveCapacity: 0
   currentPointCarried: 0
+  lastEntityWhoAttackedMeIndex: 0
   uiTransform: {fileID: 0}
   guiOffset: {x: 0, y: 2, z: 0}
   rb: {fileID: 0}
@@ -10580,6 +10331,7 @@ MonoBehaviour:
   canAddPassiveCapacity: 0
   canRemovePassiveCapacity: 0
   currentPointCarried: 0
+  lastEntityWhoAttackedMeIndex: 0
   uiTransform: {fileID: 0}
   guiOffset: {x: 0, y: 2, z: 0}
   rb: {fileID: 0}
@@ -11057,36 +10809,6 @@ Transform:
   m_Father: {fileID: 769599195}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1006099230
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1006099231}
-  m_Layer: 0
-  m_Name: GameObject
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1006099231
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1006099230}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.01, y: 0, z: -5.64}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 7738572016639510468}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1025802884
 GameObject:
   m_ObjectHideFlags: 0
@@ -11156,6 +10878,7 @@ MonoBehaviour:
   canAddPassiveCapacity: 0
   canRemovePassiveCapacity: 0
   currentPointCarried: 0
+  lastEntityWhoAttackedMeIndex: 0
   uiTransform: {fileID: 0}
   guiOffset: {x: 0, y: 2, z: 0}
   rb: {fileID: 0}
@@ -11513,7 +11236,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh48158
+  m_Name: pb_Mesh23650
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -11677,7 +11400,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh48596
+  m_Name: pb_Mesh24128
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -12132,6 +11855,7 @@ MonoBehaviour:
   canAddPassiveCapacity: 0
   canRemovePassiveCapacity: 0
   currentPointCarried: 0
+  lastEntityWhoAttackedMeIndex: 0
   uiTransform: {fileID: 0}
   guiOffset: {x: 0, y: 2, z: 0}
   rb: {fileID: 0}
@@ -12300,6 +12024,7 @@ MonoBehaviour:
   canAddPassiveCapacity: 0
   canRemovePassiveCapacity: 0
   currentPointCarried: 0
+  lastEntityWhoAttackedMeIndex: 0
   uiTransform: {fileID: 0}
   guiOffset: {x: 0, y: 2, z: 0}
   rb: {fileID: 0}
@@ -12407,6 +12132,7 @@ MonoBehaviour:
   canAddPassiveCapacity: 0
   canRemovePassiveCapacity: 0
   currentPointCarried: 0
+  lastEntityWhoAttackedMeIndex: 0
   uiTransform: {fileID: 0}
   guiOffset: {x: 0, y: 2, z: 0}
   rb: {fileID: 0}
@@ -12836,6 +12562,7 @@ MonoBehaviour:
   canAddPassiveCapacity: 0
   canRemovePassiveCapacity: 0
   currentPointCarried: 0
+  lastEntityWhoAttackedMeIndex: 0
   uiTransform: {fileID: 0}
   guiOffset: {x: 0, y: 2, z: 0}
   rb: {fileID: 0}
@@ -13002,6 +12729,7 @@ MonoBehaviour:
   canAddPassiveCapacity: 0
   canRemovePassiveCapacity: 0
   currentPointCarried: 0
+  lastEntityWhoAttackedMeIndex: 0
   uiTransform: {fileID: 0}
   guiOffset: {x: 0, y: 2, z: 0}
   rb: {fileID: 0}
@@ -13177,7 +12905,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh48104
+  m_Name: pb_Mesh23596
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -13423,7 +13151,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh47806
+  m_Name: pb_Mesh23294
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -13794,6 +13522,7 @@ MonoBehaviour:
   canAddPassiveCapacity: 0
   canRemovePassiveCapacity: 0
   currentPointCarried: 0
+  lastEntityWhoAttackedMeIndex: 0
   uiTransform: {fileID: 0}
   guiOffset: {x: 0, y: 2, z: 0}
   rb: {fileID: 0}
@@ -13831,36 +13560,6 @@ MonoBehaviour:
   sceneViewId: 100
   InstantiationId: 0
   isRuntimeInstantiated: 0
---- !u!1 &1362152254
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1362152255}
-  m_Layer: 0
-  m_Name: GameObject
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1362152255
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1362152254}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -49.5, y: 0, z: 11.8}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 7738572016639510462}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1364829485
 GameObject:
   m_ObjectHideFlags: 0
@@ -14413,6 +14112,7 @@ MonoBehaviour:
   canAddPassiveCapacity: 0
   canRemovePassiveCapacity: 0
   currentPointCarried: 0
+  lastEntityWhoAttackedMeIndex: 0
   uiTransform: {fileID: 0}
   guiOffset: {x: 0, y: 2, z: 0}
   rb: {fileID: 0}
@@ -14728,6 +14428,7 @@ MonoBehaviour:
   canAddPassiveCapacity: 0
   canRemovePassiveCapacity: 0
   currentPointCarried: 0
+  lastEntityWhoAttackedMeIndex: 0
   uiTransform: {fileID: 0}
   guiOffset: {x: 0, y: 2, z: 0}
   rb: {fileID: 0}
@@ -14909,6 +14610,7 @@ MonoBehaviour:
   canAddPassiveCapacity: 0
   canRemovePassiveCapacity: 0
   currentPointCarried: 0
+  lastEntityWhoAttackedMeIndex: 0
   uiTransform: {fileID: 0}
   guiOffset: {x: 0, y: 2, z: 0}
   rb: {fileID: 0}
@@ -15212,6 +14914,7 @@ MonoBehaviour:
   canAddPassiveCapacity: 0
   canRemovePassiveCapacity: 0
   currentPointCarried: 0
+  lastEntityWhoAttackedMeIndex: 0
   uiTransform: {fileID: 0}
   guiOffset: {x: 0, y: 2, z: 0}
   rb: {fileID: 0}
@@ -15569,7 +15272,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh47716
+  m_Name: pb_Mesh23204
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -16287,6 +15990,7 @@ MonoBehaviour:
   canAddPassiveCapacity: 0
   canRemovePassiveCapacity: 0
   currentPointCarried: 0
+  lastEntityWhoAttackedMeIndex: 0
   uiTransform: {fileID: 0}
   guiOffset: {x: 0, y: 2, z: 0}
   rb: {fileID: 0}
@@ -16443,7 +16147,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh47978
+  m_Name: pb_Mesh23468
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -16737,6 +16441,7 @@ MonoBehaviour:
   canAddPassiveCapacity: 0
   canRemovePassiveCapacity: 0
   currentPointCarried: 0
+  lastEntityWhoAttackedMeIndex: 0
   uiTransform: {fileID: 0}
   guiOffset: {x: 0, y: 2, z: 0}
   rb: {fileID: 0}
@@ -17182,6 +16887,7 @@ MonoBehaviour:
   canAddPassiveCapacity: 0
   canRemovePassiveCapacity: 0
   currentPointCarried: 0
+  lastEntityWhoAttackedMeIndex: 0
   uiTransform: {fileID: 0}
   guiOffset: {x: 0, y: 2, z: 0}
   rb: {fileID: 0}
@@ -17301,7 +17007,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh48446
+  m_Name: pb_Mesh23958
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -17529,6 +17235,7 @@ MonoBehaviour:
   canAddPassiveCapacity: 0
   canRemovePassiveCapacity: 0
   currentPointCarried: 0
+  lastEntityWhoAttackedMeIndex: 0
   uiTransform: {fileID: 0}
   guiOffset: {x: 0, y: 2, z: 0}
   rb: {fileID: 0}
@@ -17828,79 +17535,13 @@ MonoBehaviour:
   m_SelectedFaces: 
   m_SelectedEdges: []
   m_SelectedVertices: 
---- !u!1001 &1712584120
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 7738572016639510462}
-    m_Modifications:
-    - target: {fileID: 3522580368828124196, guid: 7b4ee32591c74d04ab78b9d01885cb29, type: 3}
-      propertyPath: m_RootOrder
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3522580368828124196, guid: 7b4ee32591c74d04ab78b9d01885cb29, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -49.99
-      objectReference: {fileID: 0}
-    - target: {fileID: 3522580368828124196, guid: 7b4ee32591c74d04ab78b9d01885cb29, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 3522580368828124196, guid: 7b4ee32591c74d04ab78b9d01885cb29, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 10.61
-      objectReference: {fileID: 0}
-    - target: {fileID: 3522580368828124196, guid: 7b4ee32591c74d04ab78b9d01885cb29, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.01745245
-      objectReference: {fileID: 0}
-    - target: {fileID: 3522580368828124196, guid: 7b4ee32591c74d04ab78b9d01885cb29, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3522580368828124196, guid: 7b4ee32591c74d04ab78b9d01885cb29, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0.99984777
-      objectReference: {fileID: 0}
-    - target: {fileID: 3522580368828124196, guid: 7b4ee32591c74d04ab78b9d01885cb29, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3522580368828124196, guid: 7b4ee32591c74d04ab78b9d01885cb29, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3522580368828124196, guid: 7b4ee32591c74d04ab78b9d01885cb29, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 178
-      objectReference: {fileID: 0}
-    - target: {fileID: 3522580368828124196, guid: 7b4ee32591c74d04ab78b9d01885cb29, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4924447214370837390, guid: 7b4ee32591c74d04ab78b9d01885cb29, type: 3}
-      propertyPath: m_Name
-      value: Field Of View_FOW
-      objectReference: {fileID: 0}
-    - target: {fileID: 4924447214370837390, guid: 7b4ee32591c74d04ab78b9d01885cb29, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 7b4ee32591c74d04ab78b9d01885cb29, type: 3}
---- !u!33 &1712584121 stripped
-MeshFilter:
-  m_CorrespondingSourceObject: {fileID: 7339930112782087322, guid: 7b4ee32591c74d04ab78b9d01885cb29, type: 3}
-  m_PrefabInstance: {fileID: 1712584120}
-  m_PrefabAsset: {fileID: 0}
 --- !u!43 &1714412295
 Mesh:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh47786
+  m_Name: pb_Mesh23274
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -18112,6 +17753,7 @@ MonoBehaviour:
   canAddPassiveCapacity: 0
   canRemovePassiveCapacity: 0
   currentPointCarried: 0
+  lastEntityWhoAttackedMeIndex: 0
   uiTransform: {fileID: 0}
   guiOffset: {x: 0, y: 2, z: 0}
   rb: {fileID: 0}
@@ -18557,6 +18199,7 @@ MonoBehaviour:
   canAddPassiveCapacity: 0
   canRemovePassiveCapacity: 0
   currentPointCarried: 0
+  lastEntityWhoAttackedMeIndex: 0
   uiTransform: {fileID: 0}
   guiOffset: {x: 0, y: 2, z: 0}
   rb: {fileID: 0}
@@ -19002,6 +18645,7 @@ MonoBehaviour:
   canAddPassiveCapacity: 0
   canRemovePassiveCapacity: 0
   currentPointCarried: 0
+  lastEntityWhoAttackedMeIndex: 0
   uiTransform: {fileID: 0}
   guiOffset: {x: 0, y: 2, z: 0}
   rb: {fileID: 0}
@@ -19861,6 +19505,7 @@ MonoBehaviour:
   canAddPassiveCapacity: 0
   canRemovePassiveCapacity: 0
   currentPointCarried: 0
+  lastEntityWhoAttackedMeIndex: 0
   uiTransform: {fileID: 0}
   guiOffset: {x: 0, y: 2, z: 0}
   rb: {fileID: 0}
@@ -19904,7 +19549,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh48484
+  m_Name: pb_Mesh23996
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -20182,7 +19827,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-52296
+  m_Name: pb_Mesh24034
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -20576,7 +20221,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh48344
+  m_Name: pb_Mesh23856
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -21236,6 +20881,7 @@ MonoBehaviour:
   canAddPassiveCapacity: 0
   canRemovePassiveCapacity: 0
   currentPointCarried: 0
+  lastEntityWhoAttackedMeIndex: 0
   uiTransform: {fileID: 0}
   guiOffset: {x: 0, y: 2, z: 0}
   rb: {fileID: 0}
@@ -21442,7 +21088,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-137476
+  m_Name: pb_Mesh23146
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -21857,6 +21503,7 @@ MonoBehaviour:
   canAddPassiveCapacity: 0
   canRemovePassiveCapacity: 0
   currentPointCarried: 0
+  lastEntityWhoAttackedMeIndex: 0
   uiTransform: {fileID: 0}
   guiOffset: {x: 0, y: 2, z: 0}
   rb: {fileID: 0}
@@ -22244,7 +21891,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh47840
+  m_Name: pb_Mesh23328
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -22408,7 +22055,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh48194
+  m_Name: pb_Mesh23686
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -22703,6 +22350,7 @@ MonoBehaviour:
   canAddPassiveCapacity: 0
   canRemovePassiveCapacity: 0
   currentPointCarried: 0
+  lastEntityWhoAttackedMeIndex: 0
   uiTransform: {fileID: 0}
   guiOffset: {x: 0, y: 2, z: 0}
   rb: {fileID: 0}
@@ -23698,6 +23346,7 @@ MonoBehaviour:
   canAddPassiveCapacity: 0
   canRemovePassiveCapacity: 0
   currentPointCarried: 0
+  lastEntityWhoAttackedMeIndex: 0
   uiTransform: {fileID: 0}
   guiOffset: {x: 0, y: 2, z: 0}
   rb: {fileID: 0}
@@ -24143,6 +23792,7 @@ MonoBehaviour:
   canAddPassiveCapacity: 0
   canRemovePassiveCapacity: 0
   currentPointCarried: 0
+  lastEntityWhoAttackedMeIndex: 0
   uiTransform: {fileID: 0}
   guiOffset: {x: 0, y: 2, z: 0}
   rb: {fileID: 0}
@@ -24185,7 +23835,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6522733858367387453, guid: 41b32416e789b9d4eaf874ee3b543f43, type: 3}
   m_PrefabInstance: {fileID: 7738572016639510460}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7738572016639510463}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 09093d79f79891d4a8258a182357efe1, type: 3}
@@ -24258,166 +23908,16 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 7738572017597770365, guid: 41b32416e789b9d4eaf874ee3b543f43, type: 3}
-      propertyPath: teamMat
-      value: 
-      objectReference: {fileID: 2100000, guid: 1ef5e282ebd4e2247b15abf2d66ec425, type: 2}
-    - target: {fileID: 7738572017597770365, guid: 41b32416e789b9d4eaf874ee3b543f43, type: 3}
-      propertyPath: viewAngle
-      value: 180
-      objectReference: {fileID: 0}
-    - target: {fileID: 7738572017597770365, guid: 41b32416e789b9d4eaf874ee3b543f43, type: 3}
-      propertyPath: viewRange
-      value: 50
-      objectReference: {fileID: 0}
-    - target: {fileID: 7738572017597770365, guid: 41b32416e789b9d4eaf874ee3b543f43, type: 3}
-      propertyPath: baseViewRange
-      value: 50
-      objectReference: {fileID: 0}
-    - target: {fileID: 7738572017597770365, guid: 41b32416e789b9d4eaf874ee3b543f43, type: 3}
-      propertyPath: meshFilterFoV
-      value: 
-      objectReference: {fileID: 1712584121}
-    - target: {fileID: 7738572017597770365, guid: 41b32416e789b9d4eaf874ee3b543f43, type: 3}
-      propertyPath: fogOfWarStartDetection
-      value: 
-      objectReference: {fileID: 1362152255}
     - target: {fileID: 7738572017597770366, guid: 41b32416e789b9d4eaf874ee3b543f43, type: 3}
       propertyPath: sceneViewId
       value: 55
       objectReference: {fileID: 0}
-    - target: {fileID: 7738572018196689405, guid: 41b32416e789b9d4eaf874ee3b543f43, type: 3}
-      propertyPath: canShow
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7738572018196689405, guid: 41b32416e789b9d4eaf874ee3b543f43, type: 3}
-      propertyPath: teamMat
-      value: 
-      objectReference: {fileID: 2100000, guid: cbcfbb57618f0564b832eefad78bb953, type: 2}
-    - target: {fileID: 7738572018196689405, guid: 41b32416e789b9d4eaf874ee3b543f43, type: 3}
-      propertyPath: viewAngle
-      value: 183
-      objectReference: {fileID: 0}
-    - target: {fileID: 7738572018196689405, guid: 41b32416e789b9d4eaf874ee3b543f43, type: 3}
-      propertyPath: viewRange
-      value: 50
-      objectReference: {fileID: 0}
-    - target: {fileID: 7738572018196689405, guid: 41b32416e789b9d4eaf874ee3b543f43, type: 3}
-      propertyPath: baseViewRange
-      value: 50
-      objectReference: {fileID: 0}
-    - target: {fileID: 7738572018196689405, guid: 41b32416e789b9d4eaf874ee3b543f43, type: 3}
-      propertyPath: meshFilterFoV
-      value: 
-      objectReference: {fileID: 756732455}
-    - target: {fileID: 7738572018196689405, guid: 41b32416e789b9d4eaf874ee3b543f43, type: 3}
-      propertyPath: fogOfWarStartDetection
-      value: 
-      objectReference: {fileID: 99923868}
     - target: {fileID: 7738572018196689406, guid: 41b32416e789b9d4eaf874ee3b543f43, type: 3}
       propertyPath: sceneViewId
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 41b32416e789b9d4eaf874ee3b543f43, type: 3}
---- !u!4 &7738572016639510461 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 7738572018196689404, guid: 41b32416e789b9d4eaf874ee3b543f43, type: 3}
-  m_PrefabInstance: {fileID: 7738572016639510460}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &7738572016639510462 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 7738572017597770364, guid: 41b32416e789b9d4eaf874ee3b543f43, type: 3}
-  m_PrefabInstance: {fileID: 7738572016639510460}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &7738572016639510463 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6468382240359335288, guid: 41b32416e789b9d4eaf874ee3b543f43, type: 3}
-  m_PrefabInstance: {fileID: 7738572016639510460}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &7738572016639510464 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7738572016908867131, guid: 41b32416e789b9d4eaf874ee3b543f43, type: 3}
-  m_PrefabInstance: {fileID: 7738572016639510460}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &7738572016639510465
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7738572016639510463}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 984b5990e741b2543a9c652bc093b014, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  entityIndex: 0
-  canAddPassiveCapacity: 1
-  canRemovePassiveCapacity: 1
-  currentPointCarried: 0
-  uiTransform: {fileID: 0}
-  guiOffset: {x: 0, y: 2, z: 0}
-  rb: {fileID: 0}
-  animator: {fileID: 0}
-  canShow: 0
-  canHide: 0
-  elementsToShow: []
-  canChangeTeam: 0
-  team: 2
-  baseViewRange: 50
-  viewRange: 50
-  viewAngle: 180
-  canView: 0
-  meshFilterFoV: {fileID: 531158280}
-  fogOfWarStartDetection: {fileID: 1006099231}
-  isAlive: 0
-  maxHealth: 0
-  currentHealth: 0
---- !u!114 &7738572016639510466
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7738572016639510464}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 984b5990e741b2543a9c652bc093b014, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  entityIndex: 0
-  canAddPassiveCapacity: 1
-  canRemovePassiveCapacity: 1
-  currentPointCarried: 0
-  uiTransform: {fileID: 0}
-  guiOffset: {x: 0, y: 2, z: 0}
-  rb: {fileID: 0}
-  animator: {fileID: 0}
-  canShow: 0
-  canHide: 0
-  elementsToShow: []
-  canChangeTeam: 0
-  team: 1
-  baseViewRange: 50
-  viewRange: 50
-  viewAngle: 180
-  canView: 0
-  meshFilterFoV: {fileID: 190051437}
-  fogOfWarStartDetection: {fileID: 125328700}
-  isAlive: 0
-  maxHealth: 0
-  currentHealth: 0
---- !u!4 &7738572016639510467 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 7738572016908867128, guid: 41b32416e789b9d4eaf874ee3b543f43, type: 3}
-  m_PrefabInstance: {fileID: 7738572016639510460}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &7738572016639510468 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 4658393609253885918, guid: 41b32416e789b9d4eaf874ee3b543f43, type: 3}
-  m_PrefabInstance: {fileID: 7738572016639510460}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &8967942973711116909
 PrefabInstance:
   m_ObjectHideFlags: 0
