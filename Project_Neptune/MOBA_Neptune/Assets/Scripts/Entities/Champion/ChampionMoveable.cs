@@ -132,7 +132,7 @@ namespace Entities.Champion
             }
 
             var velocity = moveDirection * currentMoveSpeed;
-            var strength = StreamManager.GetStreamVector(currentStreamModifier, transform);
+            var strength = underStreamEffect ? StreamManager.GetStreamVector(currentStreamModifier, transform) : Vector3.zero;
 
             if (currentStreamModifier == null) animator.SetBool("IsRunning", true);
             else animator.SetBool("IsSliding", true);

@@ -22,5 +22,20 @@ namespace Entities.Minion
         {
             currentStreamModifier = modifier;
         }
+
+        public void RequestSetIsUnderStreamEffect(bool value)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public void SetIsUnderStreamEffectRPC(bool value)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public void SyncSetIsUnderStreamEffectRPC(bool value)
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }

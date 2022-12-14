@@ -157,7 +157,6 @@ public class GrabCapacity : NewActiveCapacity
     [PunRPC]
     private void SyncCanCastGrabCapacityRPC(bool canCast)
     {
-        Debug.Log(canCast);
         canCastCapacity = canCast;
     }
 }

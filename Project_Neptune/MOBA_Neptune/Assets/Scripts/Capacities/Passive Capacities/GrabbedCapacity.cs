@@ -17,6 +17,7 @@ namespace Capacities.Passive_Capacities
         private GrabbedCapacitySO data;
         private IDisplaceable displaceable;
         private Champion grabbedChampion;
+        private IStreamable streamable;
 
         private float initDistance;
 
@@ -84,6 +85,12 @@ namespace Capacities.Passive_Capacities
                 GameStateMachine.Instance.OnTick += SetVelocityOnHookedEntity;
             }
             grabbedChampion.rb.velocity = Vector3.zero;
+            
+            grabbedChampion.OnUnGrabbed();
+
+            InputManager.PlayerMap.Movement.Enable();
+            streamable = entityUnderEffect.GetComponent<IStreamable>();
+            streamable?.SetIsUnderStreamEffectRPC(false);
 
             GameStateMachine.Instance.OnTick += CheckTimer;
         }
@@ -113,15 +120,13 @@ namespace Capacities.Passive_Capacities
 
         protected override void OnRemovedEffects(Entity target)
         {
-            Debug.Log("Not grabbed anymore");
             if (giverEntity != null)
             {
                 entityUnderEffect.rb.velocity = Vector3.zero;
                 GameStateMachine.Instance.OnTick -= SetVelocityOnHookedEntity;
             }
 
-            grabbedChampion.OnUnGrabbed();
-            InputManager.PlayerMap.Movement.Enable();
+            streamable?.SetIsUnderStreamEffectRPC(true);
         }
 
         protected override void OnRemovedFeedbackEffects(Entity target)

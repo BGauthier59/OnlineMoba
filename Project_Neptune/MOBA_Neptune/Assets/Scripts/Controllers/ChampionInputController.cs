@@ -85,6 +85,8 @@ namespace Controllers.Inputs
             moveInput = ctx.ReadValue<Vector2>();
             moveVector = new Vector3(moveInput.x, 0, moveInput.y);
             champion.SetMoveDirection(moveVector);
+
+            if (!champion.underStreamEffect && champion.currentStreamModifier != null) champion.RequestSetIsUnderStreamEffect(true);
         }
 
         protected override void Link(Entity entity)
