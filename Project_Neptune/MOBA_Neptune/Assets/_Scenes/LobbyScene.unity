@@ -420,6 +420,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameStateMachine
       objectReference: {fileID: 0}
+    - target: {fileID: 166142745878382477, guid: 1fb64722b0d48bf43bdb68223d31f9ad, type: 3}
+      propertyPath: tickRate
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 166142745878382478, guid: 1fb64722b0d48bf43bdb68223d31f9ad, type: 3}
       propertyPath: sceneViewId
       value: 2

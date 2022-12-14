@@ -113,8 +113,11 @@ namespace Capacities.Passive_Capacities
 
         private void SetLineFeedback()
         {
-            grabbedChampion.grabLine.SetPosition(0, grabbedChampion.transform.position);
+            var initPos = grabbedChampion.transform.position;
+            initPos.y = 1;
+            grabbedChampion.grabLine.SetPosition(0, initPos);
             var p = giverEntity == null ? pos : giverEntity.transform.position;
+            p.y = 1;
             grabbedChampion.grabLine.SetPosition(1, p);
         }
 
