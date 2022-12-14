@@ -328,6 +328,30 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4826138203476421315, guid: d64bdd76e7c6a7a42b598530d2fc30d1, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4826138203731386115, guid: d64bdd76e7c6a7a42b598530d2fc30d1, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6902798891859604287, guid: d64bdd76e7c6a7a42b598530d2fc30d1, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8292541375058839284, guid: d64bdd76e7c6a7a42b598530d2fc30d1, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8464154122984128126, guid: d64bdd76e7c6a7a42b598530d2fc30d1, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9056852135837125343, guid: d64bdd76e7c6a7a42b598530d2fc30d1, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d64bdd76e7c6a7a42b598530d2fc30d1, type: 3}
 --- !u!43 &30368095
@@ -11671,6 +11695,14 @@ PrefabInstance:
       propertyPath: sceneViewId
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 2983732105347116086, guid: 80fefcb4f83a0b14db760960cf24ee68, type: 3}
+      propertyPath: poolElements.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2983732105347116086, guid: 80fefcb4f83a0b14db760960cf24ee68, type: 3}
+      propertyPath: poolElements.Array.data[1].Element
+      value: 
+      objectReference: {fileID: 3480681341667345175, guid: 8cf6ed5d694588d48a5cb7018a1b0ac8, type: 3}
     - target: {fileID: 6697169192466650589, guid: 80fefcb4f83a0b14db760960cf24ee68, type: 3}
       propertyPath: allPassiveCapacitiesSo.Array.size
       value: 1
