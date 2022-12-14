@@ -21,7 +21,11 @@ public partial class Tower : Building
     public float brainSpeed;
     public float timeBetweenShots;
     public bool isCycleAttack = false;
-
+    
+    // Prep liaison tour - player
+    public bool isActive;
+    public int entityLinkIndex;
+    
     private float brainTimer;
     [SerializeField] private ActiveCapacitySO attackCapa;
 

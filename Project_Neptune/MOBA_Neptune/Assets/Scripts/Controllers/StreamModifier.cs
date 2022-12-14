@@ -95,7 +95,9 @@ namespace Controllers
     public enum StreamDirection
     {
         LeftToRight,
-        RightToLeft
+        RightToLeft,
+        UpToDown,
+        DownToUp
     }
 
     public enum CircleEntrance

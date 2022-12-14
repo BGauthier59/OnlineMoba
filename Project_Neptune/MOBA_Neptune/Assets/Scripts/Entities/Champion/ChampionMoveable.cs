@@ -131,6 +131,15 @@ namespace Entities.Champion
                 return;
             }
 
+            if (team == Enums.Team.Team2) // Border gauche & droite selon la team
+            {
+                if (transform.position.x <= -48 &&  moveDirection.x < 0) moveDirection.x = 0f;
+            }
+            else
+            {
+                if (transform.position.x >= 48 &&  moveDirection.x > 0) moveDirection.x = 0f;
+            }
+            
             var velocity = moveDirection * currentMoveSpeed;
             var strength = StreamManager.GetStreamVector(currentStreamModifier, transform);
 
