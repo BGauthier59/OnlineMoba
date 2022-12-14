@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 7163509429167197480}
   - component: {fileID: 4212728313499162487}
   - component: {fileID: 7580214713370394717}
-  - component: {fileID: 3578513988365198446}
   m_Layer: 0
   m_Name: TeamCone
   m_TagString: Untagged
@@ -543,20 +542,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3059368735790269678}
   m_Mesh: {fileID: 0}
---- !u!64 &3578513988365198446
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3059368735790269678}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 0}
 --- !u!1 &3480681341152264626
 GameObject:
   m_ObjectHideFlags: 0
@@ -835,6 +820,7 @@ MonoBehaviour:
     m_Bits: 64
   maxResource: 0
   currentResource: 0
+  underStreamEffect: 0
   currentStreamModifier: {fileID: 0}
 --- !u!136 &2263356599250850540
 CapsuleCollider:
@@ -1383,14 +1369,14 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 5daf0e6df77c05c47a6571ad2e5a14a7, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ed14f72de45053641b2c8358e38100a3, type: 3}
---- !u!1 &7098174285819608203 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: ed14f72de45053641b2c8358e38100a3, type: 3}
-  m_PrefabInstance: {fileID: 7944541291111236058}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &7622930930816427569 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: ed14f72de45053641b2c8358e38100a3, type: 3}
+  m_PrefabInstance: {fileID: 7944541291111236058}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &7098174285819608203 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: ed14f72de45053641b2c8358e38100a3, type: 3}
   m_PrefabInstance: {fileID: 7944541291111236058}
   m_PrefabAsset: {fileID: 0}
 --- !u!95 &3046681633329482926
