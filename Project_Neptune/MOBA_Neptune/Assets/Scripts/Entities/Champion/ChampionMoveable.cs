@@ -43,7 +43,6 @@ namespace Entities.Champion
         public void SyncSetCanMoveRPC(bool value)
         {
             canMove = value;
-            Debug.Log($"{name} set can move at {canMove}!");
         }
 
         [PunRPC]

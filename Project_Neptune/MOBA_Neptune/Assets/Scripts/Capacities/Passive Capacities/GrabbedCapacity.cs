@@ -70,12 +70,12 @@ namespace Capacities.Passive_Capacities
             }
 
             if (!(distance < 1.2f)) return;
-            Debug.Log("Should have reached point!");
             GrabbedEntityHitTarget();
         }
 
         private void GrabbedEntityHitTarget()
         {
+            Debug.Log("Grabbed entity hit target!");
             GameStateMachine.Instance.OnTick -= MoveGrabbedEntity;
 
             if (giverEntity != null && giverEntity.team == entityUnderEffect.team)
@@ -120,13 +120,14 @@ namespace Capacities.Passive_Capacities
 
         protected override void OnRemovedEffects(Entity target)
         {
+            Debug.Log("Grabbed entity is not grabbed anymore");
             if (giverEntity != null)
             {
                 entityUnderEffect.rb.velocity = Vector3.zero;
                 GameStateMachine.Instance.OnTick -= SetVelocityOnHookedEntity;
             }
 
-            streamable?.SetIsUnderStreamEffectRPC(true);
+            if(!grabbedChampion.underStreamEffect) streamable?.SetIsUnderStreamEffectRPC(true);
         }
 
         protected override void OnRemovedFeedbackEffects(Entity target)
@@ -138,7 +139,7 @@ namespace Capacities.Passive_Capacities
         private void CheckTimer()
         {
             timer += 1.0 / GameStateMachine.Instance.tickRate;
-            if (timer >= duration - .1)
+            if (timer >= duration - .1 || entityUnderEffect.rb.velocity.magnitude != 0)
             {
                 timer = 0;
                 GameStateMachine.Instance.OnTick -= CheckTimer;

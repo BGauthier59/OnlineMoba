@@ -82,7 +82,6 @@ namespace Entities.Capacities
 
         public PassiveCapacity CreatePassiveCapacity(byte soIndex, Entity entity)
         {
-            Debug.Log($"Trying to create passive capacity of so at {soIndex}");
             if (soIndex >= allPassiveCapacitiesSo.Count) return null;
             var so = allPassiveCapacitiesSo[soIndex];
             PassiveCapacity capacity;

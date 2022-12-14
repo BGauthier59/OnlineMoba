@@ -141,7 +141,6 @@ public class IoAutoAttackCapacity : NewActiveCapacity
     [PunRPC]
     private void SyncCanCastIoAutoAttackCapacityRPC(bool canCast)
     {
-        Debug.Log(canCast);
         canCastCapacity = canCast;
     }
 }

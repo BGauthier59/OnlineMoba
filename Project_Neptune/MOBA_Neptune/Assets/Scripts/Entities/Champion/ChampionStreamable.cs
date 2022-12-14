@@ -35,7 +35,7 @@ namespace Entities.Champion
         public void SetIsUnderStreamEffectRPC(bool value)
         {
             underStreamEffect = value;
-            photonView.RPC("SyncSetIsUnderStreamEffect", RpcTarget.All, underStreamEffect);
+            photonView.RPC("SyncSetIsUnderStreamEffectRPC", RpcTarget.All, underStreamEffect);
         }
 
         [PunRPC]
