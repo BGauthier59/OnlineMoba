@@ -4,7 +4,7 @@ using GameStates;
 using Photon.Pun;
 using UnityEngine;
 
-namespace Entities.Minion
+namespace Entities.Minion.MinionStream
 {
     public class MinionSpawner : Building
     {
@@ -45,10 +45,10 @@ namespace Entities.Minion
             Entity minionGO = PoolNetworkManager.Instance.PoolInstantiate(minionPrefab, spawnPointForMinion.position,
                 Quaternion.identity, transform.root);
 
-            MinionBehaviour minionScript = minionGO.GetComponent<MinionBehaviour>();
-            minionScript.myWayPoint = goToPointBeforeStream;
-            minionScript.ChangeTeamRPC((byte)team);
-            minionScript.currentPointCarried = pointsCarriedAtStartByMinions;
+            MinionStream.MinionStreamBehaviour minionStreamScript = minionGO.GetComponent<MinionStream.MinionStreamBehaviour>();
+            minionStreamScript.myWayPoint = goToPointBeforeStream;
+            minionStreamScript.ChangeTeamRPC((byte)team);
+            minionStreamScript.currentPointCarried = pointsCarriedAtStartByMinions;
             //minionScript.myMeshRenderer.materials[1] = teamMat;
         }
     }

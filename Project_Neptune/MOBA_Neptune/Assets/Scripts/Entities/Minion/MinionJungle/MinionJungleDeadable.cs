@@ -1,11 +1,10 @@
 using System;
 using Entities.FogOfWar;
 using Photon.Pun;
-using UnityEngine;
 
-namespace Entities.Minion
+namespace Entities.Minion.MinionJungle
 {
-    public partial class MinionBehaviour : IDeadable
+    public partial class MinionJungle : IDeadable
     {
         public bool IsAlive()
         {
@@ -43,15 +42,19 @@ namespace Entities.Minion
         [PunRPC]
         public void SyncDieRPC()
         {
+            /* 
             PoolNetworkManager.Instance.PoolRequeue(this);
-            if(FogOfWarManager.Instance != null) FogOfWarManager.Instance.RemoveFOWViewable(this);
+            if(FogOfWarManager.Instance != null) FogOfWarManager.Instance.RemoveFOWViewable(this); */
             gameObject.SetActive(false);
         }
 
         [PunRPC]
         public void DieRPC()
         {
+            myCamp.isInRepop = true; // Lancement du timer de repop sur le camp de jungle
+            
             photonView.RPC("SyncDieRPC", RpcTarget.All);
+            
             
             if (lastEntityWhoAttackedMeIndex != 0)
             {
