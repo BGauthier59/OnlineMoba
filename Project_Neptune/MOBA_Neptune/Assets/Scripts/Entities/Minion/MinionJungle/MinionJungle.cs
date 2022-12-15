@@ -62,7 +62,7 @@ namespace Entities.Minion.MinionJungle
             myAgent = GetComponent<NavMeshAgent>();
             currentHealth = maxHealth;
             currentState = MinionState.Attacking;
-            basePos = transform.position;
+            basePos = this.transform.position;
             myAgent.stoppingDistance = attackRange;
         }
 
@@ -94,8 +94,7 @@ namespace Entities.Minion.MinionJungle
 
         private void IdleState()
         {
-            if (Vector3.Distance(transform.position, basePos) > wanderRange)
-                myAgent.SetDestination(basePos);
+            if (Vector3.Distance(transform.position, basePos) > wanderRange) myAgent.SetDestination(basePos);
         }
 
         private void AttackState()

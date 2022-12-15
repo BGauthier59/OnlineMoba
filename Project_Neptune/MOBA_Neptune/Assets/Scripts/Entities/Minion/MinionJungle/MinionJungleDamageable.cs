@@ -127,6 +127,7 @@ namespace Entities.Minion.MinionJungle
         {
             currentHealth = amount;
             lastEntityWhoAttackedMeIndex = entityWhoAttackedMeIndex;
+            currentAttackTarget = EntityCollectionManager.GetEntityByIndex(lastEntityWhoAttackedMeIndex);
             currentState = MinionState.Attacking;
         }
 

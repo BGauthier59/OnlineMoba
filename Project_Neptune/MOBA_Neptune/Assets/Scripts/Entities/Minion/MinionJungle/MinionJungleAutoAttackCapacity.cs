@@ -1,5 +1,6 @@
 using System;
 using Entities;
+using Entities.Champion;
 using GameStates;
 using JetBrains.Annotations;
 using Photon.Pun;
@@ -16,23 +17,24 @@ public class MinionJungleAutoAttackCapacity : NewActiveCapacity
         photonView.RPC("CastMinionJungleAutoAttackCapacityRPC", RpcTarget.MasterClient, targetedEntities, targetedPositions);
     }
 
-    [PunRPC] [UsedImplicitly]
+    [PunRPC]
     public void CastMinionJungleAutoAttackCapacityRPC(int[] targetedEntities, Vector3[] targetedPositions)
     {
-        photonView.RPC("SyncDataIoAutoAttackCapacityRPC", RpcTarget.All, targetedEntities, targetedPositions[0]);
+        photonView.RPC("SyncDataJungleAutoAttackCapacityRPC", RpcTarget.All, targetedEntities, targetedPositions);
         
         foreach (var c in targetedEntities)
         {
             var damageable = EntityCollectionManager.GetEntityByIndex(c).GetComponent<IDamageable>();
             damageable?.DecreaseCurrentHpRPC(damage, caster.entityIndex);
+            Debug.LogFormat($"{caster.name} attacked {EntityCollectionManager.GetEntityByIndex(c)} !");
+            Debug.LogFormat($"{EntityCollectionManager.GetEntityByIndex(c)} current health : {EntityCollectionManager.GetEntityByIndex(c).GetComponent<Champion>().currentHp}");
         }
     }
 
-    [PunRPC] [UsedImplicitly]
+    [PunRPC]
     public void SyncDataJungleAutoAttackCapacityRPC(int[] targetedEntities, Vector3[] targetedPositions)
     {
         caster = GetComponent<Entity>();
-        casterPos = GetCasterPos();
     }
     
     public override bool TryCast()

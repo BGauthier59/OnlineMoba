@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 5096569864970827415}
   - component: {fileID: 5096569864970827368}
   - component: {fileID: 5096569864970827369}
+  - component: {fileID: -1589397683609098391}
   m_Layer: 29
   m_Name: Prefab_JungleBoss
   m_TagString: Untagged
@@ -72,8 +73,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   entityIndex: 0
-  canAddPassiveCapacity: 1
-  canRemovePassiveCapacity: 1
+  canAddPassiveCapacity: 0
+  canRemovePassiveCapacity: 0
   currentPointCarried: 0
   lastEntityWhoAttackedMeIndex: 0
   uiTransform: {fileID: 0}
@@ -97,15 +98,16 @@ MonoBehaviour:
   championMask:
     serializedVersion: 2
     m_Bits: 0
+  attackCapacity: {fileID: -1589397683609098391}
   currentAggroState: 0
   currentAttackTarget: {fileID: 0}
   whoIsAttackingMe: []
   attackCycle: 0
-  maxHealth: 0
+  maxHealth: 30
   currentHealth: 0
-  attackDamage: 0
-  attackSpeed: 0
-  attackRange: 0
+  attackDamage: 8
+  attackSpeed: 3
+  attackRange: 4.5
   wanderRange: 0
   myCamp: {fileID: 0}
 --- !u!114 &5096569864970827414
@@ -177,6 +179,24 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
+--- !u!114 &-1589397683609098391
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5096569864970827370}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 71a9257739ebf964abc086bff046d80c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  caster: {fileID: 5096569864970827413}
+  canCastCapacity: 0
+  cooldownDuration: 0
+  damage: 7
+  casterPos: {x: 0, y: 0, z: 0}
+  targetPos: {x: 0, y: 0, z: 0}
 --- !u!1 &5096569865641354928
 GameObject:
   m_ObjectHideFlags: 0
@@ -235,7 +255,7 @@ Transform:
   m_GameObject: {fileID: 5367110549584868214}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 5, y: 5, z: 5}
+  m_LocalScale: {x: 7, y: 7, z: 7}
   m_Children: []
   m_Father: {fileID: 5096569865641354943}
   m_RootOrder: 0
