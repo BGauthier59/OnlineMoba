@@ -21,6 +21,7 @@ namespace Entities
         [SerializeField] private bool canRemovePassiveCapacity = true;
 
         public readonly List<PassiveCapacity> passiveCapacitiesList = new List<PassiveCapacity>();
+        public List<NewPassiveCapacity> newPassiveCapacitiesList = new List<NewPassiveCapacity>();
 
         /// <summary>
         /// The current amount of point currently carried by the entity
