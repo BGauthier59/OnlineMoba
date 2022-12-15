@@ -141,7 +141,7 @@ namespace Entities
         public event GlobalDelegates.FloatDelegate OnDecreaseCurrentMoveSpeed;
         public event GlobalDelegates.FloatDelegate OnDecreaseCurrentMoveSpeedFeedback;
 
-        public event GlobalDelegates.Vector3Delegate OnMove;
-        public event GlobalDelegates.Vector3Delegate OnMoveFeedback;
+        public event GlobalDelegates.NoParameterDelegate OnMove;
+        public event GlobalDelegates.NoParameterDelegate OnMoveFeedback;
     }
 }

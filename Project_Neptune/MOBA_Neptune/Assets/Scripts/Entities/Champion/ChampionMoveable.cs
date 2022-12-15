@@ -131,16 +131,16 @@ namespace Entities.Champion
             }
 
             var velocity = moveDirection * currentMoveSpeed;
-            var strength = underStreamEffect ? StreamManager.GetStreamVector(currentStreamModifier, transform) : Vector3.zero;
+            //var strength = underStreamEffect ? StreamManager.GetStreamVector(currentStreamModifier, transform) : Vector3.zero;
+            var strength = StreamManager.GetStreamVector(currentStreamModifier, transform);
 
             if (currentStreamModifier == null) animator.SetBool("IsRunning", true);
             else animator.SetBool("IsSliding", true);
-
-
+            
             Debug.DrawRay(transform.position, velocity, Color.green);
             Debug.DrawRay(transform.position, strength, Color.magenta);
             if (velocity + strength == rb.velocity) return;
-
+            
             rb.velocity = velocity + strength;
 
             if (rb.velocity.magnitude == 0)
@@ -148,6 +148,18 @@ namespace Entities.Champion
                 animator.SetBool("IsRunning", false);
                 animator.SetBool("IsSliding", false);
             }
+        }
+
+        public void RequestCastOnMoveEvent()
+        {
+            photonView.RPC("CastOnMoveEventRPC", RpcTarget.MasterClient, rb.velocity);
+        }
+
+        [PunRPC]
+        public void CastOnMoveEventRPC(Vector3 velocity)
+        {
+            Debug.Log("Cast OnMove Event");
+            OnMove?.Invoke();
         }
 
         private void RotateMath()
@@ -179,7 +191,7 @@ namespace Entities.Champion
             return moveDirection;
         }
 
-        public event GlobalDelegates.Vector3Delegate OnMove;
-        public event GlobalDelegates.Vector3Delegate OnMoveFeedback;
+        public event GlobalDelegates.NoParameterDelegate OnMove;
+        public event GlobalDelegates.NoParameterDelegate OnMoveFeedback;
     }
 }

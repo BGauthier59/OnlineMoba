@@ -16,8 +16,10 @@ namespace Capacities.Passive_Capacities
 
         private GrabbedCapacitySO data;
         private IDisplaceable displaceable;
-        private Champion grabbedChampion;
+        private Champion championUnderEffect;
         private IStreamable streamable;
+
+        private bool attached;
 
         private float initDistance;
 
@@ -28,7 +30,7 @@ namespace Capacities.Passive_Capacities
 
             var grabable = entityUnderEffect.GetComponent<IGrabable>();
             grabable?.OnGrabbed();
-            grabbedChampion = (Champion)entityUnderEffect;
+            championUnderEffect = (Champion)entityUnderEffect;
 
             duration = data.duration;
             timer = 0;
@@ -42,8 +44,8 @@ namespace Capacities.Passive_Capacities
 
             var pointToReach = giverEntity != null ? giverEntity.transform.position : pos;
             pointToReach.y = 1;
-            initDistance = Vector3.Distance(entityUnderEffect.transform.position, pointToReach); 
-            
+            initDistance = Vector3.Distance(entityUnderEffect.transform.position, pointToReach);
+
             GameStateMachine.Instance.OnTick += MoveGrabbedEntity;
         }
 
@@ -55,7 +57,7 @@ namespace Capacities.Passive_Capacities
             var distance = Vector3.Distance(entityUnderEffect.transform.position, pointToReach);
 
             var crossedDistance = Mathf.Abs(distance - initDistance);
-            
+
             var velocity = (pointToReach - entityUnderEffect.transform.position) *
                            ((crossedDistance + .5f) * data.distanceSpeedFactor * data.speed);
             velocity.y = 0;
@@ -84,13 +86,15 @@ namespace Capacities.Passive_Capacities
                     giverEntity.transform.position - entityUnderEffect.transform.forward * .5f;
                 GameStateMachine.Instance.OnTick += SetVelocityOnHookedEntity;
             }
-            grabbedChampion.rb.velocity = Vector3.zero;
-            
-            grabbedChampion.OnUnGrabbed();
+
+            championUnderEffect.rb.velocity = Vector3.zero;
+            attached = true;
 
             InputManager.PlayerMap.Movement.Enable();
+            championUnderEffect.OnMove += OnMoveWhileAttached;
+
             streamable = entityUnderEffect.GetComponent<IStreamable>();
-            streamable?.SetIsUnderStreamEffectRPC(false);
+            //streamable?.SetIsUnderStreamEffectRPC(false);
 
             GameStateMachine.Instance.OnTick += CheckTimer;
         }
@@ -102,23 +106,23 @@ namespace Capacities.Passive_Capacities
 
         protected override void OnAddedFeedbackEffects()
         {
-            grabbedChampion = (Champion)entityUnderEffect;
-            grabbedChampion.grabLine.SetPosition(0, grabbedChampion.transform.position);
+            championUnderEffect = (Champion)entityUnderEffect;
+            championUnderEffect.grabLine.SetPosition(0, championUnderEffect.transform.position);
             var p = giverEntity == null ? pos : giverEntity.transform.position;
-            grabbedChampion.grabLine.SetPosition(1, p);
-            grabbedChampion.grabLine.enabled = true;
+            championUnderEffect.grabLine.SetPosition(1, p);
+            championUnderEffect.grabLine.enabled = true;
 
             GameStateMachine.Instance.OnTickFeedback += SetLineFeedback;
         }
 
         private void SetLineFeedback()
         {
-            var initPos = grabbedChampion.transform.position;
+            var initPos = championUnderEffect.transform.position;
             initPos.y = 1;
-            grabbedChampion.grabLine.SetPosition(0, initPos);
+            championUnderEffect.grabLine.SetPosition(0, initPos);
             var p = giverEntity == null ? pos : giverEntity.transform.position;
             p.y = 1;
-            grabbedChampion.grabLine.SetPosition(1, p);
+            championUnderEffect.grabLine.SetPosition(1, p);
         }
 
         protected override void OnRemovedEffects(Entity target)
@@ -130,24 +134,36 @@ namespace Capacities.Passive_Capacities
                 GameStateMachine.Instance.OnTick -= SetVelocityOnHookedEntity;
             }
 
-            if(!grabbedChampion.underStreamEffect) streamable?.SetIsUnderStreamEffectRPC(true);
+            //if (!championUnderEffect.underStreamEffect) streamable?.SetIsUnderStreamEffectRPC(true);
         }
 
         protected override void OnRemovedFeedbackEffects(Entity target)
         {
-            grabbedChampion.grabLine.enabled = false;
+            championUnderEffect.grabLine.enabled = false;
             GameStateMachine.Instance.OnTickFeedback -= SetLineFeedback;
         }
 
         private void CheckTimer()
         {
             timer += 1.0 / GameStateMachine.Instance.tickRate;
-            if (timer >= duration - .1 || entityUnderEffect.rb.velocity.magnitude != 0)
+            if (timer >= duration - .1 || !attached)
+
             {
+                championUnderEffect.OnUnGrabbed();
+                attached = false;
+
                 timer = 0;
                 GameStateMachine.Instance.OnTick -= CheckTimer;
                 entityUnderEffect.RemovePassiveCapacityByIndex(indexOfSo);
             }
+        }
+
+        private void OnMoveWhileAttached()
+        {
+            Debug.Log("Unattached!");
+            championUnderEffect.OnUnGrabbed();
+            attached = false;
+            championUnderEffect.OnMove -= OnMoveWhileAttached;
         }
     }
 }
