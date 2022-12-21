@@ -10,13 +10,17 @@ namespace Entities
         private static readonly Dictionary<int, Entity> allEntitiesDict = new Dictionary<int, Entity>();
 
         private static PhotonView view;
+        
+        // 0 = Orange Io / 1 = Orange Waddy / 2 = Violet Io / 3 = Violet Waddy
+        public static List<Tower> towerList = new List<Tower>();
+        public List<Tower> towerListNonStatic = new List<Tower>();
 
         private void Awake()
         {
             view = GetComponent<PhotonView>();
             allEntitiesDict.Clear();
         }
-
+        
         /// <summary>
         /// Returns the entity corresponding to the index.
         /// </summary>

@@ -1,42 +1,37 @@
-using System;
-using Capacities.Passive_Capacities;
-using Controllers;
 using Controllers.Inputs;
-using Entities.Capacities;
-using Entities.FogOfWar;
 using GameStates;
+using JetBrains.Annotations;
 using Photon.Pun;
 using UnityEngine;
-using UnityEngine.AI;
 
 namespace Entities.Champion
 {
     public partial class Champion : Entity
     {
+        public string championName;
         public ChampionInputController controller;
         public Transform rotateParent;
         private Vector3 respawnPos;
-
         private UIManager uiManager;
         public Camera camera;
-
         public CollisionBlocker blocker;
-        
         public LineRenderer grabLine;
         private bool isLinked;
-
+    
         [SerializeField] private MeshRenderer teamConeRenderer;
 
+        // Which tower is link
+        private int towerLinkedIndex;
+        
         protected override void OnStart()
         {
             base.OnStart();
             uiManager = UIManager.Instance;
             camera = Camera.main;
-
             blocker.characterColliderBlocker.enabled = true;
             blocker.SetUpBlocker();
         }
-
+        
         protected override void OnUpdate()
         {
             if (!isLinked) return;
@@ -126,6 +121,7 @@ namespace Entities.Champion
             RequestSetCanMove(true);
             
             isLinked = true;
+            LinkTower();
         }
         
         private void OnGUI()
@@ -145,6 +141,52 @@ namespace Entities.Champion
         
             GUILayout.EndVertical();
             GUILayout.EndArea();
+        }
+        
+        private void LinkTower()
+        {
+            var towerList = EntityCollectionManager.towerList;
+
+            if (championName == "Io")
+            {
+                if (team == Enums.Team.Team1)
+                {
+                    var tower0 = towerList[0];
+                    towerLinkedIndex = tower0.entityIndex;
+                    tower0.entityLinkIndex = entityIndex;
+                }
+                else
+                {
+                    var tower1 = towerList[1];
+                    towerLinkedIndex = tower1.entityIndex;
+                    tower1.entityLinkIndex = entityIndex;
+                }
+            }
+            else if (championName == "Waddy")
+            {
+                if (team == Enums.Team.Team1)
+                {
+                    var tower2 = towerList[2];
+                    towerLinkedIndex = tower2.entityIndex;
+                    towerList[2].entityLinkIndex = entityIndex;
+                }
+                else
+                {
+                    var tower3 = towerList[3];
+                    towerLinkedIndex = tower3.entityIndex;
+                    towerList[3].entityLinkIndex = entityIndex;
+                }
+            }
+            
+            photonView.RPC("SyncTowerActiveRpc", RpcTarget.All, towerLinkedIndex);
+        }
+
+        [PunRPC] [UsedImplicitly]
+        public void SyncTowerActiveRpc(int myTowerIndex)
+        {
+            var myTower = EntityCollectionManager.GetEntityByIndex(myTowerIndex).GetComponent<Tower>();
+            myTower.isActive = true;
+            myTower.desactivateIcon.SetActive(false);
         }
     }
 }
