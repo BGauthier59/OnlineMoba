@@ -145,36 +145,34 @@ namespace Entities.Champion
         
         private void LinkTower()
         {
-            var towerList = EntityCollectionManager.towerList;
-
             if (championName == "Io")
             {
                 if (team == Enums.Team.Team1)
                 {
-                    var tower0 = towerList[0];
-                    towerLinkedIndex = tower0.entityIndex;
-                    tower0.entityLinkIndex = entityIndex;
-                }
-                else
-                {
-                    var tower1 = towerList[1];
+                    var tower1 = EntityCollectionManager.GetEntityByIndex(8).GetComponent<Tower>();
                     towerLinkedIndex = tower1.entityIndex;
                     tower1.entityLinkIndex = entityIndex;
                 }
+                else if (team == Enums.Team.Team2)
+                {
+                    var tower3 = EntityCollectionManager.GetEntityByIndex(10).GetComponent<Tower>();
+                    towerLinkedIndex = tower3.entityIndex;
+                    tower3.entityLinkIndex = entityIndex;
+                }
             }
-            else if (championName == "Waddy")
+            else
             {
                 if (team == Enums.Team.Team1)
                 {
-                    var tower2 = towerList[2];
-                    towerLinkedIndex = tower2.entityIndex;
-                    towerList[2].entityLinkIndex = entityIndex;
+                    var tower0 = EntityCollectionManager.GetEntityByIndex(7).GetComponent<Tower>();
+                    towerLinkedIndex = tower0.entityIndex;
+                    tower0.entityLinkIndex = entityIndex;
                 }
-                else
+                else if (team == Enums.Team.Team2)
                 {
-                    var tower3 = towerList[3];
-                    towerLinkedIndex = tower3.entityIndex;
-                    towerList[3].entityLinkIndex = entityIndex;
+                    var tower2 = EntityCollectionManager.GetEntityByIndex(9).GetComponent<Tower>();
+                    towerLinkedIndex = tower2.entityIndex;
+                    tower2.entityLinkIndex = entityIndex;
                 }
             }
             

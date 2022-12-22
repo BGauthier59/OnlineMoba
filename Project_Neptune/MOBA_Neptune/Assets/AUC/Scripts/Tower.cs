@@ -41,6 +41,7 @@ public partial class Tower : Building
 
     protected override void OnStart()
     {
+        isActive = false;
         base.OnStart();
         EntityCollectionManager.towerList.Add(this);
         SetUpColor();

@@ -11,7 +11,6 @@ namespace Entities
 
         private static PhotonView view;
         
-        // 0 = Orange Io / 1 = Orange Waddy / 2 = Violet Io / 3 = Violet Waddy
         public static List<Tower> towerList = new List<Tower>();
         public List<Tower> towerListNonStatic = new List<Tower>();
 

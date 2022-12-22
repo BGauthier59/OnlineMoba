@@ -191,22 +191,6 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7736124330578283777, guid: 77cef67edeba3e947a92da8af352c84a, type: 3}
-      propertyPath: baseViewRange
-      value: 30
-      objectReference: {fileID: 0}
-    - target: {fileID: 7736124330578283777, guid: 77cef67edeba3e947a92da8af352c84a, type: 3}
-      propertyPath: desactivateIcon
-      value: 
-      objectReference: {fileID: 611408943}
-    - target: {fileID: 0}
-      propertyPath: m_RootOrder
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 7736124330578283777, guid: 77cef67edeba3e947a92da8af352c84a, type: 3}
-      propertyPath: isIoTower
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7736124330578283777, guid: 77cef67edeba3e947a92da8af352c84a, type: 3}
       propertyPath: viewRange
       value: 30
       objectReference: {fileID: 0}
@@ -214,6 +198,10 @@ PrefabInstance:
       propertyPath: baseViewRange
       value: 30
       objectReference: {fileID: 0}
+    - target: {fileID: 7736124330578283777, guid: 77cef67edeba3e947a92da8af352c84a, type: 3}
+      propertyPath: desactivateIcon
+      value: 
+      objectReference: {fileID: 611408943}
     - target: {fileID: 8674901361483710730, guid: 77cef67edeba3e947a92da8af352c84a, type: 3}
       propertyPath: m_Name
       value: OrangeTower (2)
@@ -22865,18 +22853,6 @@ PrefabInstance:
       propertyPath: desactivateIcon
       value: 
       objectReference: {fileID: 187508557}
-    - target: {fileID: 0}
-      propertyPath: m_RootOrder
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 7736124330578283777, guid: 77cef67edeba3e947a92da8af352c84a, type: 3}
-      propertyPath: team
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 7736124330578283777, guid: 77cef67edeba3e947a92da8af352c84a, type: 3}
-      propertyPath: isIoTower
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 8674901361483710730, guid: 77cef67edeba3e947a92da8af352c84a, type: 3}
       propertyPath: m_Name
       value: VioletTower (2)
@@ -23429,6 +23405,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7736124330578283777, guid: 77cef67edeba3e947a92da8af352c84a, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7736124330578283777, guid: 77cef67edeba3e947a92da8af352c84a, type: 3}
       propertyPath: desactivateIcon
       value: 
       objectReference: {fileID: 1496167284}
@@ -23868,21 +23848,13 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7736124330578283777, guid: 77cef67edeba3e947a92da8af352c84a, type: 3}
-      propertyPath: desactivateIcon
-      value: 
-      objectReference: {fileID: 675618214}
-    - target: {fileID: 0}
-      propertyPath: m_RootOrder
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 7736124330578283777, guid: 77cef67edeba3e947a92da8af352c84a, type: 3}
-      propertyPath: team
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 7736124330578283777, guid: 77cef67edeba3e947a92da8af352c84a, type: 3}
       propertyPath: isIoTower
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7736124330578283777, guid: 77cef67edeba3e947a92da8af352c84a, type: 3}
+      propertyPath: desactivateIcon
+      value: 
+      objectReference: {fileID: 675618214}
     - target: {fileID: 8674901361483710730, guid: 77cef67edeba3e947a92da8af352c84a, type: 3}
       propertyPath: m_Name
       value: VioletTower (1)
