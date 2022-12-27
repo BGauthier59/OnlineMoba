@@ -1,6 +1,8 @@
 using Entities.Minion;
+using Entities.Minion.MinionStream;
 using Photon.Pun;
 using UnityEngine;
+using MinionStreamBehaviour = Entities.Minion.MinionStream.MinionStreamBehaviour;
 
 public class TriggerToCashier : MonoBehaviour
 {
@@ -11,7 +13,7 @@ public class TriggerToCashier : MonoBehaviour
     {
         if(!PhotonNetwork.IsMasterClient) return;
         
-        MinionBehaviour m_behavior = other.gameObject.GetComponent<MinionBehaviour>();
+        MinionStreamBehaviour m_behavior = other.gameObject.GetComponent<MinionStreamBehaviour>();
 
         if (!m_behavior) return;
 
@@ -19,9 +21,9 @@ public class TriggerToCashier : MonoBehaviour
             MinionReorientation(m_behavior);
     }
 
-    void MinionReorientation(MinionBehaviour mB)
+    void MinionReorientation(MinionStreamBehaviour mB)
     {
-        mB.myController.currentState = MinionController.MinionState.LookingForPathing;
+        mB.myStreamController.currentState = MinionStreamController.MinionState.LookingForPathing;
         mB.myWayPoint = cashierPos;
     }
 }

@@ -5,9 +5,9 @@ using Controllers;
 using Photon.Pun;
 using UnityEngine;
 
-namespace Entities.Minion
+namespace Entities.Minion.MinionStream
 {
-    public class MinionController : Controller
+    public class MinionStreamController : Controller
     {
         public enum MinionState
         {
@@ -19,14 +19,14 @@ namespace Entities.Minion
         public MinionState currentState = MinionState.Idle;
         public float updateTickSpeed = .5f;
         private float tickTimer;
-        private MinionBehaviour _myMinionBehaviour;
+        private MinionStream.MinionStreamBehaviour _myMinionStreamBehaviour;
 
         private void Start()
         {
             // Master client deals with State Machine
             if (!PhotonNetwork.IsMasterClient) return;
             
-            _myMinionBehaviour = controlledEntity.GetComponent<MinionBehaviour>();
+            _myMinionStreamBehaviour = controlledEntity.GetComponent<MinionStream.MinionStreamBehaviour>();
             currentState = MinionState.LookingForPathing;
         }
 
@@ -48,13 +48,13 @@ namespace Entities.Minion
             switch (currentState)
             {
                 case MinionState.Idle:
-                    _myMinionBehaviour.IdleState();
+                    _myMinionStreamBehaviour.IdleState();
                     break;
                 case MinionState.Walking:
-                    _myMinionBehaviour.WalkingState();
+                    _myMinionStreamBehaviour.WalkingState();
                     break;
                 case MinionState.LookingForPathing:
-                    _myMinionBehaviour.LookingForPathingState();
+                    _myMinionStreamBehaviour.LookingForPathingState();
                     break;
                 default: throw new ArgumentOutOfRangeException();
             }

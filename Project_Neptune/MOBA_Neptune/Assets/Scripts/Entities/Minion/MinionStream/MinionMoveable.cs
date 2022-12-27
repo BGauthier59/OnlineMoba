@@ -1,8 +1,8 @@
 using Entities;
 
-namespace Entities.Minion
+namespace Entities.Minion.MinionStream
 {
-    public partial class MinionBehaviour : IMoveable
+    public partial class MinionStreamBehaviour : IMoveable
     {
         public bool CanMove()
         {

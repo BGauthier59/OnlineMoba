@@ -1,17 +1,16 @@
 using Controllers;
 using GameStates;
-using Photon.Pun;
 using UnityEngine;
 using UnityEngine.AI;
 
-namespace Entities.Minion
+namespace Entities.Minion.MinionStream
 {
-    public partial class MinionBehaviour : Entity
+    public partial class MinionStreamBehaviour : Entity
     {
         #region MinionVariables
 
         [Space] public NavMeshAgent myAgent;
-        public MinionController myController;
+        public MinionStreamController myStreamController;
 
         [Header("Pathfinding")] [SerializeField]
         private StreamModifier currentStreamModifier;
@@ -32,7 +31,7 @@ namespace Entities.Minion
         {
             base.OnStart();
             myAgent = GetComponent<NavMeshAgent>();
-            myController = GetComponent<MinionController>();
+            myStreamController = GetComponent<MinionStreamController>();
             currentHealth = maxHealth;
 
             foreach (var tc in GameStateMachine.Instance.teamColors)
@@ -62,7 +61,7 @@ namespace Entities.Minion
             myAgent.SetDestination(myWayPoint.position);
 
             if (Vector3.Distance(transform.position, myWayPoint.position) < myAgent.stoppingDistance)
-                myController.currentState = MinionController.MinionState.Walking;
+                myStreamController.currentState = MinionStreamController.MinionState.Walking;
         }
     }
 }

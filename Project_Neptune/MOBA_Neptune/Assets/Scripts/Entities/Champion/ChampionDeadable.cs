@@ -1,5 +1,4 @@
 using Entities.FogOfWar;
-using Entities.Minion;
 using GameStates;
 using Photon.Pun;
 using UnityEngine;
@@ -92,6 +91,9 @@ namespace Entities.Champion
             }
             
             ChampionRequestRemoveScore(GetComponent<Entity>());
+            
+            // Tower disable
+            EntityCollectionManager.GetEntityByIndex(towerLinkedIndex).GetComponent<Tower>().RequestDie();
 
             // TODO - Disable collision, etc...
 

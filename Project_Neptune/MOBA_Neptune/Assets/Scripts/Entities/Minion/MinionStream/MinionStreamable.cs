@@ -4,9 +4,9 @@ using Controllers;
 using Entities.Interfaces;
 using UnityEngine;
 
-namespace Entities.Minion
+namespace Entities.Minion.MinionStream
 {
-    public partial class MinionBehaviour : IStreamable
+    public partial class MinionStreamBehaviour : IStreamable
     {
         public Vector3 GetCurrentPosition()
         {

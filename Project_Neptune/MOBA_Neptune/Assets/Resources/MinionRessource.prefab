@@ -91,12 +91,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4555090259929885742}
-  - component: {fileID: 4555090259929885729}
   - component: {fileID: 4555090259929885741}
   - component: {fileID: 4555090259929885738}
   - component: {fileID: 4555090259929885739}
   - component: {fileID: 4555090259929885740}
   - component: {fileID: 2637466631205122503}
+  - component: {fileID: 4555090259929885729}
   - component: {fileID: 2610927020216715510}
   m_Layer: 29
   m_Name: MinionRessource
@@ -122,20 +122,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!136 &4555090259929885729
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4555090259929885730}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.5
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!195 &4555090259929885741
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -214,7 +200,7 @@ MonoBehaviour:
   meshFilterFoV: {fileID: 6974560254418586115}
   fogOfWarStartDetection: {fileID: 2444940989112848549}
   myAgent: {fileID: 4555090259929885741}
-  myController: {fileID: 0}
+  myStreamController: {fileID: 0}
   currentStreamModifier: {fileID: 0}
   myWayPoint: {fileID: 0}
   currentHealth: 20
@@ -250,6 +236,20 @@ MonoBehaviour:
   m_SynchronizeRotation: 1
   m_SynchronizeScale: 0
   m_UseLocal: 1
+--- !u!136 &4555090259929885729
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4555090259929885730}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.5
+  m_Height: 2
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &2610927020216715510
 Rigidbody:
   m_ObjectHideFlags: 0

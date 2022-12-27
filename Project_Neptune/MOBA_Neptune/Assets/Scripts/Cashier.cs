@@ -3,6 +3,7 @@ using Entities.Minion;
 using GameStates;
 using Photon.Pun;
 using UnityEngine;
+using MinionStreamBehaviour = Entities.Minion.MinionStream.MinionStreamBehaviour;
 
 public class Cashier : MonoBehaviour, IScorable
 {
@@ -32,7 +33,7 @@ public class Cashier : MonoBehaviour, IScorable
         _photonView.RPC("CashierIncreaseScoreRPC", RpcTarget.MasterClient, entityWhoScored.currentPointCarried);
 
         
-        if (entityWhoScored.GetComponent<MinionBehaviour>())
+        if (entityWhoScored.GetComponent<MinionStreamBehaviour>())
         {
             var deadable = entityWhoScored.GetComponent<IDeadable>(); // Tue le sbire
             deadable?.RequestDie();

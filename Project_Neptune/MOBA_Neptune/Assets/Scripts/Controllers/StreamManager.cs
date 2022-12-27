@@ -28,6 +28,8 @@ namespace Controllers
                 {
                     StreamDirection.LeftToRight => Vector3.right,
                     StreamDirection.RightToLeft => Vector3.left,
+                    StreamDirection.UpToDown => Vector3.back,
+                    StreamDirection.DownToUp => Vector3.forward,
                     _ => Vector3.zero
                 };
                 return dir * (sM.streamStrength * sM.linearFactor * Time.fixedDeltaTime);

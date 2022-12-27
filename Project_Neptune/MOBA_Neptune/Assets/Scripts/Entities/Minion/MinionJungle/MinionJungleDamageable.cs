@@ -1,12 +1,9 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using Photon.Pun;
-using UnityEngine;
 
-namespace Entities.Minion
+namespace Entities.Minion.MinionJungle
 {
-    public partial class MinionBehaviour : IDamageable
+    public partial class MinionJungle : IDamageable
     {
        public float GetMaxHp()
         {
@@ -130,6 +127,8 @@ namespace Entities.Minion
         {
             currentHealth = amount;
             lastEntityWhoAttackedMeIndex = entityWhoAttackedMeIndex;
+            currentAttackTarget = EntityCollectionManager.GetEntityByIndex(lastEntityWhoAttackedMeIndex);
+            currentState = MinionState.Attacking;
         }
 
         [PunRPC]

@@ -496,6 +496,7 @@ MonoBehaviour:
   canAddPassiveCapacity: 0
   canRemovePassiveCapacity: 0
   currentPointCarried: 0
+  lastEntityWhoAttackedMeIndex: 0
   uiTransform: {fileID: 0}
   guiOffset: {x: 0, y: 2, z: 0}
   rb: {fileID: 0}
@@ -525,6 +526,9 @@ MonoBehaviour:
   brainSpeed: 0.7
   timeBetweenShots: 0
   isCycleAttack: 0
+  isActive: 0
+  isIoTower: 0
+  entityLinkIndex: 0
   attackCapa: {fileID: 11400000, guid: 36fc4f6e74087054dbff028990139ea0, type: 2}
   colorfulMeshes:
   - {fileID: 4916109074525861216}
@@ -533,6 +537,8 @@ MonoBehaviour:
   playerID: 0
   localEnemiesInRange: 0
   localPlayerFocused: 0
+  respawnDuration: 3
+  desactivateIcon: {fileID: 0}
 --- !u!120 &534188894117641888
 LineRenderer:
   m_ObjectHideFlags: 0

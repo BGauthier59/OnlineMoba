@@ -8,7 +8,6 @@ using GameStates;
 using JetBrains.Annotations;
 using Photon.Pun;
 using UnityEngine;
-using static UnityEngine.Debug;
 
 public partial class Tower : Building
 {
@@ -21,7 +20,12 @@ public partial class Tower : Building
     public float brainSpeed;
     public float timeBetweenShots;
     public bool isCycleAttack = false;
-
+    
+    // Prep liaison tour - player
+    public bool isActive;
+    public bool isIoTower;
+    public int entityLinkIndex;
+    
     private float brainTimer;
     [SerializeField] private ActiveCapacitySO attackCapa;
 
@@ -37,7 +41,9 @@ public partial class Tower : Building
 
     protected override void OnStart()
     {
+        isActive = false;
         base.OnStart();
+        EntityCollectionManager.towerList.Add(this);
         SetUpColor();
         _lineRenderer = GetComponent<LineRenderer>();
     }
@@ -60,15 +66,13 @@ public partial class Tower : Building
     // ReSharper disable Unity.PerformanceAnalysis
     protected override void OnUpdate()
     {
+        
+        if (!isActive) return;
+
         // Local
-
-        if (playerID == 0)
-            playerID = GameStateMachine.Instance.GetPlayerChampionPhotonViewId();
+        if (playerID == 0) playerID = GameStateMachine.Instance.GetPlayerChampionPhotonViewId();
         
-
-        if (localEnemiesInRange > 0) 
-            warningPoint.SetActive(localPlayerFocused == playerID);
-        
+        if (localEnemiesInRange > 0) warningPoint.SetActive(localPlayerFocused == playerID);
         
         // Multi
 
@@ -195,6 +199,11 @@ public partial class Tower : Building
 
 public partial class Tower : IAttackable, IDeadable
 {
+    // TODO: Delete when TickManager is implemented
+    public float respawnDuration = 3;
+    private double respawnTimer;
+    public GameObject desactivateIcon;
+    
     public bool CanAttack()
     {
         throw new System.NotImplementedException();
@@ -270,7 +279,7 @@ public partial class Tower : IAttackable, IDeadable
 
     public bool IsAlive()
     {
-        throw new NotImplementedException();
+        return isActive;
     }
 
     public bool CanDie()
@@ -305,13 +314,14 @@ public partial class Tower : IAttackable, IDeadable
     [PunRPC]
     public void SyncDieRPC()
     {
-        isAlive = false;
-        Destroy(gameObject);
+        isActive = false;
+        desactivateIcon.SetActive(true);
     }
 
     [PunRPC]
     public void DieRPC()
     {
+        GameStateMachine.Instance.OnTick += ReActivate;
         photonView.RPC("SyncDieRPC", RpcTarget.All);
     }
 
@@ -320,19 +330,33 @@ public partial class Tower : IAttackable, IDeadable
 
     public void RequestRevive()
     {
-        throw new NotImplementedException();
+        photonView.RPC("ReviveRPC", RpcTarget.MasterClient);
     }
 
+    [PunRPC]
     public void SyncReviveRPC()
     {
-        throw new NotImplementedException();
+        respawnDuration += 3f;
+        isActive = true;
+        desactivateIcon.SetActive(false);
     }
 
+    [PunRPC]
     public void ReviveRPC()
     {
-        throw new NotImplementedException();
+        photonView.RPC("SyncReviveRPC", RpcTarget.All);
     }
 
+    private void ReActivate()
+    {
+        respawnTimer += 1 / GameStateMachine.Instance.tickRate;
+
+        if (!(respawnTimer >= respawnDuration)) return;
+        GameStateMachine.Instance.OnTick -= ReActivate;
+        respawnTimer = 0f;
+        RequestRevive();
+    }
+    
     public event GlobalDelegates.NoParameterDelegate OnRevive;
     public event GlobalDelegates.NoParameterDelegate OnReviveFeedback;
 }
