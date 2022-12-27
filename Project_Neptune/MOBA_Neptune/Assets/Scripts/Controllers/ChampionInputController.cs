@@ -26,6 +26,9 @@ namespace Controllers.Inputs
         public NewActiveCapacity capacity2;
         public NewActiveCapacity ultimateCapacity;
 
+        public NewPassiveCapacity grabbedEffect;
+        public NewPassiveCapacity markedEffect;
+
         private void Update()
         {
             if (!photonView.IsMine) return;

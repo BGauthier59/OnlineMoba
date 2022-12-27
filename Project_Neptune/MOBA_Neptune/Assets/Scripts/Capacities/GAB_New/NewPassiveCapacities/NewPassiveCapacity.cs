@@ -1,13 +1,23 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Entities;
+using Photon.Pun;
 using UnityEngine;
 
-public abstract class NewPassiveCapacity : MonoBehaviour
+public abstract class NewPassiveCapacity : MonoBehaviourPun
 {
-    public abstract void OnAddEffect(Entity giver = null, Vector3 position = default);
+    public bool isActive;
+
+    public virtual void OnAddEffect(Entity giver = null, Vector3 position = default)
+    {
+        isActive = true;
+    }
 
     public abstract void OnUpdateEffect();
 
-    public abstract void OnRemoveEffect();
+    public virtual void OnRemoveEffect()
+    {
+        isActive = false;
+    }
 }

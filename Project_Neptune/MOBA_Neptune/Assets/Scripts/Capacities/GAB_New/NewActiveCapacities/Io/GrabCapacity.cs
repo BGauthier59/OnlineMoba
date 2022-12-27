@@ -109,25 +109,38 @@ public class GrabCapacity : NewActiveCapacity
             return;
         }
 
-        var team = entity.team;
-        var capacityIndex = CapacitySOCollectionManager.GetPassiveCapacitySOIndex(passiveEffect);
+        //var capacityIndex = CapacitySOCollectionManager.GetPassiveCapacitySOIndex(passiveEffect);
 
-        if (team == caster.team)
+
+        // Caster : celui qui lance le grab
+        // Entity : celui qui est touché par le grab
+
+        var grabCaster = (Champion) caster;
+        var grabHit = (Champion) entity;
+        var team = grabHit.team;
+
+        if (team == grabCaster.team)
         {
-            caster.AddPassiveCapacityRPC(capacityIndex, entity.entityIndex);
+            grabCaster.controller.grabbedEffect.OnAddEffect(grabHit);
+            //caster.AddPassiveCapacityRPC(capacityIndex, entity.entityIndex);
         }
         else if (team == Enums.Team.Neutral)
         {
             var point = hitData.point;
             point.y = 1;
-            caster.AddPassiveCapacityRPC(capacityIndex, default, point);
+            grabCaster.controller.grabbedEffect.OnAddEffect(default, point);
+            //caster.AddPassiveCapacityRPC(capacityIndex, default, point);
         }
         else
         {
             Debug.Log("You grabbed an enemy");
-            var point = (entity.transform.position + caster.transform.position) * .5f;
-            entity.AddPassiveCapacityRPC(capacityIndex, default, point);
-            caster.AddPassiveCapacityRPC(capacityIndex, default, point);
+            var point = (grabHit.transform.position + grabCaster.transform.position) * .5f;
+            
+            grabCaster.controller.grabbedEffect.OnAddEffect(default, point);
+            grabHit.controller.grabbedEffect.OnAddEffect(default, point);
+            
+            //entity.AddPassiveCapacityRPC(capacityIndex, default, point);
+            //caster.AddPassiveCapacityRPC(capacityIndex, default, point);
         }
     }
 
@@ -137,7 +150,7 @@ public class GrabCapacity : NewActiveCapacity
         grabVFX.transform.position = pos;
         grabVFX.Play();
     }
-    
+
     protected override void StartCooldown()
     {
         photonView.RPC("SyncCanCastGrabCapacityRPC", RpcTarget.All, false);
