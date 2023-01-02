@@ -1,0 +1,44 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: M_IOSoulCoaster_02
+  m_Shader: {fileID: -6465566751694194690, guid: a682af1633851d94cb18e099a2356b17, type: 3}
+  m_ShaderKeywords: 
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - Texture2D_736813412c5a4e3cbe89b3a63591032c:
+        m_Texture: {fileID: 2800000, guid: 63a0aad4c23d5494c9df580f87e7cd4b, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_Lightmaps:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_LightmapsInd:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_ShadowMasks:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Floats:
+    - Vector1_0aae5a4eeb464e20baeac67e29bd3c26: 0.5
+    - Vector1_0e625ea69f2143629b52f5211311c8c8: 4.19
+    - Vector1_ef1a8e058ccd461e84ec735a3e5d26c9: 1.09
+    m_Colors:
+    - Vector2_efb48787c2f242a8a71e263f241cfbcc: {r: 0.11, g: 1, b: 0, a: 0}
+  m_BuildTextureStacks: []
