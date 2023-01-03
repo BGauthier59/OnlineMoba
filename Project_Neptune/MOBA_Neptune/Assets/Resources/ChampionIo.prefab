@@ -74,7 +74,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3480681341397647662}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.5, z: 0}
+  m_LocalPosition: {x: 0, y: 0.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 3480681341667345171}
@@ -198,6 +198,8 @@ MonoBehaviour:
   capacity1: {fileID: 4806538035275567804}
   capacity2: {fileID: 2574456858352085549}
   ultimateCapacity: {fileID: 8202111792943879854}
+  grabbedEffect: {fileID: 0}
+  markedEffect: {fileID: 0}
 --- !u!114 &3480681341667345174
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -249,8 +251,8 @@ MonoBehaviour:
   elementsToShow: []
   canChangeTeam: 0
   team: 0
-  baseViewRange: 10
-  viewRange: 10
+  baseViewRange: 1
+  viewRange: 1
   viewAngle: 360
   canView: 1
   meshFilterFoV: {fileID: 3480681341397647661}
