@@ -129,6 +129,7 @@ public class GrabbedCapacity : NewPassiveCapacity
         if (securityTimer >= 5)
         {
             Debug.LogWarning($"Can't reach its target at pos {point}");
+            securityTimer = 0f;
             SwitchState(GrabbedState.Hitting);
         }
         else securityTimer += Time.deltaTime;
@@ -150,7 +151,10 @@ public class GrabbedCapacity : NewPassiveCapacity
 
     private void HookEntityToTarget()
     {
-        if (giver != null) timer = duration;
+        if (giver != null)
+        {
+            timer = duration;
+        }
 
         if (timer >= duration)
         {
