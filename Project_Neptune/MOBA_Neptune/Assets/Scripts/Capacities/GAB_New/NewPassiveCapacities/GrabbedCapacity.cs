@@ -1,6 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
 using Entities;
+using Entities.Champion;
 using Photon.Pun;
 using UnityEngine;
 
@@ -11,7 +11,7 @@ public class GrabbedCapacity : NewPassiveCapacity
 
     private Entity giver;
     private Vector3 point;
-    
+
     private IDisplaceable displaceable;
 
     private float initDistance;
@@ -24,7 +24,9 @@ public class GrabbedCapacity : NewPassiveCapacity
 
     private enum GrabbedState
     {
-        Moving, Hitting, Hooking
+        Moving,
+        Hitting,
+        Hooking
     }
 
     // Se lance sur le Master
@@ -36,7 +38,7 @@ public class GrabbedCapacity : NewPassiveCapacity
         var pointToReach = giver == null ? position : giver.transform.position;
         pointToReach.y = 1;
         initDistance = Vector3.Distance(transform.position, pointToReach);
-        
+
         SwitchState(GrabbedState.Moving);
         base.OnAddEffect(giver, position);
     }
@@ -48,7 +50,7 @@ public class GrabbedCapacity : NewPassiveCapacity
 
         point = pos;
         giver = index == -1 ? null : EntityCollectionManager.GetEntityByIndex(index);
-        
+
         displaceable = GetComponent<IDisplaceable>();
         if (displaceable == null)
         {
@@ -58,13 +60,19 @@ public class GrabbedCapacity : NewPassiveCapacity
 
         if (!photonView.IsMine) return;
         InputManager.PlayerMap.Movement.Disable();
+        ((Champion) entityUnderEffect).OnGrabbed();
+    }
+
+    private void Start()
+    {
+        entityUnderEffect = GetComponent<Entity>();
     }
 
     private void Update()
     {
         if (!PhotonNetwork.IsMasterClient) return;
         if (!isActive) return;
-        
+
         OnUpdateEffect();
     }
 
@@ -112,7 +120,7 @@ public class GrabbedCapacity : NewPassiveCapacity
                        ((crossedDistance + .5f) * distanceSpeedFactor * speed);
         velocity.y = 0;
         displaceable.SetVelocity(velocity);
-        
+
         CheckEntityHitTarget(distance);
     }
 
@@ -123,6 +131,7 @@ public class GrabbedCapacity : NewPassiveCapacity
             Debug.LogWarning($"Can't reach its target at pos {point}");
             SwitchState(GrabbedState.Hitting);
         }
+        else securityTimer += Time.deltaTime;
 
         if (!(distance < 1.2f)) return;
         SwitchState(GrabbedState.Hitting);
@@ -131,16 +140,18 @@ public class GrabbedCapacity : NewPassiveCapacity
     private void GrabbedEntityHitTarget()
     {
         // Set velocity to 0
-        
-        // Enable Input here? 
-        
+        displaceable.SetVelocity(Vector3.zero);
+
         // RPC Feedbacks
+        photonView.RPC("OnHitTargetRPC", RpcTarget.All);
 
         SwitchState(GrabbedState.Hooking);
     }
 
     private void HookEntityToTarget()
     {
+        if (giver != null) timer = duration;
+
         if (timer >= duration)
         {
             timer = 0f;
@@ -158,9 +169,34 @@ public class GrabbedCapacity : NewPassiveCapacity
         photonView.RPC("RemoveGrabbedEffectRPC", RpcTarget.All);
     }
 
+    public void MoveWhileHooked()
+    {
+        if (!isActive) return;
+        photonView.RPC("MoveWhileHookedRPC", RpcTarget.MasterClient);
+    }
+
+    [PunRPC]
+    public void MoveWhileHookedRPC()
+    {
+        timer = duration;
+    }
+
     [PunRPC]
     private void RemoveGrabbedEffectRPC()
     {
+        if (!photonView.IsMine) return;
+        ((Champion) entityUnderEffect).OnUnGrabbed();
+    }
+
+    [PunRPC]
+    private void OnHitTargetRPC()
+    {
+        // Feedbacks
+
+
+        // Global?
+
+
         if (!photonView.IsMine) return;
         InputManager.PlayerMap.Movement.Enable();
     }

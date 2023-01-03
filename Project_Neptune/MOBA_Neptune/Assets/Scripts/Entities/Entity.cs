@@ -23,6 +23,8 @@ namespace Entities
         public readonly List<PassiveCapacity> passiveCapacitiesList = new List<PassiveCapacity>();
         public List<NewPassiveCapacity> newPassiveCapacitiesList = new List<NewPassiveCapacity>();
 
+        public GrabbedCapacity grabbed;
+
         /// <summary>
         /// The current amount of point currently carried by the entity
         /// </summary>

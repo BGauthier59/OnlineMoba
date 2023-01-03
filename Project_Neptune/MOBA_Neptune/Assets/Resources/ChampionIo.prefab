@@ -149,6 +149,7 @@ GameObject:
   - component: {fileID: 4806538035275567804}
   - component: {fileID: 2574456858352085549}
   - component: {fileID: 8202111792943879854}
+  - component: {fileID: 8650591300149490378}
   m_Layer: 29
   m_Name: ChampionIo
   m_TagString: Untagged
@@ -238,6 +239,7 @@ MonoBehaviour:
   canAddPassiveCapacity: 1
   canRemovePassiveCapacity: 1
   newPassiveCapacitiesList: []
+  grabbed: {fileID: 8650591300149490378}
   currentPointCarried: 0
   lastEntityWhoAttackedMeIndex: 0
   uiTransform: {fileID: 3480681342087303708}
@@ -469,7 +471,6 @@ MonoBehaviour:
   grabableLayer:
     serializedVersion: 2
     m_Bits: 1610612736
-  passiveEffect: {fileID: 11400000, guid: 7b654e7fa8808ba469c348c5950028ea, type: 2}
   delayDuration: 0.1
   grabVFX: {fileID: 8539344772885261290}
 --- !u!114 &2574456858352085549
@@ -502,6 +503,23 @@ MonoBehaviour:
   caster: {fileID: 0}
   canCastCapacity: 1
   cooldownDuration: 0
+--- !u!114 &8650591300149490378
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3480681341667345177}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14da1903f00d97141b3d4958e8ad3cb1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isActive: 0
+  entityUnderEffect: {fileID: 0}
+  duration: 5
+  distanceSpeedFactor: 1
+  speed: 1
 --- !u!1 &3480681342087303709
 GameObject:
   m_ObjectHideFlags: 0
@@ -1406,14 +1424,14 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 5daf0e6df77c05c47a6571ad2e5a14a7, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 855a27534ec80fa41bd77ff59fded899, type: 3}
---- !u!4 &4148641380166140127 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 855a27534ec80fa41bd77ff59fded899, type: 3}
-  m_PrefabInstance: {fileID: 4474420958181418804}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &3664030098978921061 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 855a27534ec80fa41bd77ff59fded899, type: 3}
+  m_PrefabInstance: {fileID: 4474420958181418804}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &4148641380166140127 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 855a27534ec80fa41bd77ff59fded899, type: 3}
   m_PrefabInstance: {fileID: 4474420958181418804}
   m_PrefabAsset: {fileID: 0}
 --- !u!95 &615758738450810623

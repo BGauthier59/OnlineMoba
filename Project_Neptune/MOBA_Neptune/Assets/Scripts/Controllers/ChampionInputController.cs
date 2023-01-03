@@ -26,9 +26,6 @@ namespace Controllers.Inputs
         public NewActiveCapacity capacity2;
         public NewActiveCapacity ultimateCapacity;
 
-        public NewPassiveCapacity grabbedEffect;
-        public NewPassiveCapacity markedEffect;
-
         private void Update()
         {
             if (!photonView.IsMine) return;
@@ -89,8 +86,7 @@ namespace Controllers.Inputs
             moveVector = new Vector3(moveInput.x, 0, moveInput.y);
             champion.SetMoveDirection(moveVector);
 
-            //if (!champion.underStreamEffect && champion.currentStreamModifier != null) champion.RequestSetIsUnderStreamEffect(true);
-            champion.RequestCastOnMoveEvent();
+            champion.grabbed.MoveWhileHooked();
         }
 
         protected override void Link(Entity entity)

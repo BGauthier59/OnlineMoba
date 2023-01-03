@@ -12,7 +12,6 @@ public class GrabCapacity : NewActiveCapacity
 {
     public float grabMaxDistance;
     public LayerMask grabableLayer;
-    public GrabbedCapacitySO passiveEffect;
 
     public double delayDuration;
     private double delayTimer;
@@ -79,7 +78,7 @@ public class GrabCapacity : NewActiveCapacity
         hitData = hit;
         GameStateMachine.Instance.OnTick += CheckTimer;
         return true;
-    }
+    } // Raycast
 
     private void CheckTimer()
     {
@@ -90,7 +89,7 @@ public class GrabCapacity : NewActiveCapacity
             CastGrab();
         }
         else delayTimer += 1.0 / GameStateMachine.Instance.tickRate;
-    }
+    } // Timer between Input & RaycastHit application
 
     private void CastGrab()
     {
@@ -99,7 +98,11 @@ public class GrabCapacity : NewActiveCapacity
 
         // We get hit IGrabable data
         var grabable = hitData.collider.gameObject.GetComponent<IGrabable>();
-        if (grabable == null) return;
+        if (grabable == null)
+        {
+            Debug.LogWarning("Target not grabable!");
+            return;
+        }
 
         // We get hit entity data
         var entity = hitData.collider.gameObject.GetComponent<Entity>();
@@ -108,39 +111,26 @@ public class GrabCapacity : NewActiveCapacity
             Debug.LogWarning("Touched itself!");
             return;
         }
-
-        //var capacityIndex = CapacitySOCollectionManager.GetPassiveCapacitySOIndex(passiveEffect);
-
-
+        
         // Caster : celui qui lance le grab
         // Entity : celui qui est touché par le grab
 
         var grabCaster = (Champion) caster;
-        var grabHit = (Champion) entity;
-        var team = grabHit.team;
+        var team = entity.team;
 
-        if (team == grabCaster.team)
-        {
-            grabCaster.controller.grabbedEffect.OnAddEffect(grabHit);
-            //caster.AddPassiveCapacityRPC(capacityIndex, entity.entityIndex);
-        }
-        else if (team == Enums.Team.Neutral)
+        if (team == Enums.Team.Neutral)
         {
             var point = hitData.point;
             point.y = 1;
-            grabCaster.controller.grabbedEffect.OnAddEffect(default, point);
-            //caster.AddPassiveCapacityRPC(capacityIndex, default, point);
+            grabCaster.grabbed.OnAddEffect(null, point);
+        }
+        else if (team != grabCaster.team)
+        {
+            entity.grabbed.OnAddEffect(grabCaster);
         }
         else
         {
-            Debug.Log("You grabbed an enemy");
-            var point = (grabHit.transform.position + grabCaster.transform.position) * .5f;
-            
-            grabCaster.controller.grabbedEffect.OnAddEffect(default, point);
-            grabHit.controller.grabbedEffect.OnAddEffect(default, point);
-            
-            //entity.AddPassiveCapacityRPC(capacityIndex, default, point);
-            //caster.AddPassiveCapacityRPC(capacityIndex, default, point);
+            Debug.Log("You hit an ally!");
         }
     }
 
