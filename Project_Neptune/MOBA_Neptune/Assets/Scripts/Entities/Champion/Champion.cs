@@ -16,6 +16,7 @@ namespace Entities.Champion
         public Camera camera;
         public CollisionBlocker blocker;
         public LineRenderer grabLine;
+        public TargetIndicator targetIndicator;
         private bool isLinked;
     
         [SerializeField] private MeshRenderer teamConeRenderer;
@@ -30,6 +31,7 @@ namespace Entities.Champion
             camera = Camera.main;
             blocker.characterColliderBlocker.enabled = true;
             blocker.SetUpBlocker();
+            targetIndicator.GetComponentInChildren<TargetIndicator>();
         }
         
         protected override void OnUpdate()
@@ -122,6 +124,8 @@ namespace Entities.Champion
             
             isLinked = true;
             LinkTower();
+            
+            EntityCollectionManager.AllChampion.Add(this);
         }
         
         private void OnGUI()
