@@ -172,7 +172,7 @@ public class GrabbedCapacity : NewPassiveCapacity
     public void MoveWhileHooked()
     {
         if (!isActive) return;
-        photonView.RPC("MoveWhileHookedRPC", RpcTarget.MasterClient);
+        photonView.RPC("MoveWhileHookedRPC", RpcTarget.MasterClient); 
     }
 
     [PunRPC]
