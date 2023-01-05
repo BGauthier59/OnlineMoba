@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Controllers.Inputs;
 using GameStates;
 using JetBrains.Annotations;
@@ -16,7 +17,7 @@ namespace Entities.Champion
         public Camera camera;
         public CollisionBlocker blocker;
         public LineRenderer grabLine;
-        public TargetIndicator targetIndicator;
+        public List<TargetIndicator> targetIndicators;
         private bool isLinked;
     
         [SerializeField] private MeshRenderer teamConeRenderer;
@@ -31,7 +32,6 @@ namespace Entities.Champion
             camera = Camera.main;
             blocker.characterColliderBlocker.enabled = true;
             blocker.SetUpBlocker();
-            targetIndicator.GetComponentInChildren<TargetIndicator>();
         }
         
         protected override void OnUpdate()

@@ -22,7 +22,10 @@ public class VisionSpot : MonoBehaviourPun
             {
                 if (t.team == other.GetComponent<Champion>().team)
                 {
-                    t.targetIndicator.RequestDisplayEnemies(t.entityIndex);
+                    foreach (var t1 in t.targetIndicators)
+                    {
+                        t1.RequestDisplayEnemies(t.entityIndex);
+                    }
                 }
             }
         }

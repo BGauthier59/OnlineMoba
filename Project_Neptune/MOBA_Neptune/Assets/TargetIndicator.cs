@@ -13,6 +13,7 @@ public class TargetIndicator : MonoBehaviourPun
     public Champion myEntity;
     public List<Vector3> targetPositions;
     public List<GameObject> arrowSprites;
+    public bool isFirstIndicator;
 
     public float hideDistance;
     public int displayTime = 15;
@@ -29,7 +30,6 @@ public class TargetIndicator : MonoBehaviourPun
         if (!displayEnemyPos)
         {
             arrowSprites[0].SetActive(false);
-            arrowSprites[1].SetActive(false);
             return;
         }
 
@@ -42,13 +42,30 @@ public class TargetIndicator : MonoBehaviourPun
                 targetPositions.Add(t.transform.position);
             }
         }
-
+        
         for (int i = 0; i < targetPositions.Count; i++)
         {
-            var dir = targetPositions[i] - transform.position;
-            var angle = Mathf.Atan2(dir.z, dir.x) * Mathf.Rad2Deg;
-            transform.rotation = Quaternion.AngleAxis(angle, Vector3.down);
-            arrowSprites[i].SetActive(dir.magnitude > hideDistance);
+            if (isFirstIndicator)
+            {
+                if (i == 0)
+                {
+                    var dir = targetPositions[0] - transform.position;
+                    var angle = Mathf.Atan2(dir.z, dir.x) * Mathf.Rad2Deg;
+                    transform.rotation = Quaternion.AngleAxis(angle, Vector3.down);
+                    arrowSprites[0].SetActive(dir.magnitude > hideDistance);
+                }
+            }
+            else
+            {
+                if (i == 1)
+                {
+                    var dir = targetPositions[1] - transform.position;
+                    var angle = Mathf.Atan2(dir.z, dir.x) * Mathf.Rad2Deg;
+                    transform.rotation = Quaternion.AngleAxis(angle, Vector3.down);
+                    arrowSprites[0].SetActive(dir.magnitude > hideDistance);
+                }
+            }
+            Debug.Log(i + "  " + targetPositions[i]);
         }
     }
     
@@ -59,15 +76,17 @@ public class TargetIndicator : MonoBehaviourPun
 
     [PunRPC] [UsedImplicitly]
     public void DisplayEnemiesRPC(int EntityIndex)
-    {
-        EntityCollectionManager.GetEntityByIndex(EntityIndex).GetComponent<Champion>().targetIndicator.displayEnemyPos = true;
+    {   
         photonView.RPC("SyncDisplayEnemiesRPC", RpcTarget.All, EntityIndex);
     }
 
     [PunRPC] [UsedImplicitly]
     public void SyncDisplayEnemiesRPC(int EntityIndex)
     {
-        EntityCollectionManager.GetEntityByIndex(EntityIndex).GetComponent<Champion>().targetIndicator.displayEnemyPos = true;
+        for (int i = 0; i < EntityCollectionManager.GetEntityByIndex(EntityIndex).GetComponent<Champion>().targetIndicators.Count; i++)
+        {
+            EntityCollectionManager.GetEntityByIndex(EntityIndex).GetComponent<Champion>().targetIndicators[i].displayEnemyPos = true;
+        }
         StartCoroutine(CoolDownIndicator(EntityIndex));
     }
     
@@ -79,19 +98,25 @@ public class TargetIndicator : MonoBehaviourPun
     [PunRPC] [UsedImplicitly]
     public void UndisplayEnemiesRPC(int EntityIndex)
     {
-        EntityCollectionManager.GetEntityByIndex(EntityIndex).GetComponent<Champion>().targetIndicator.displayEnemyPos = false;
         photonView.RPC("SyncUndisplayEnemiesRPC", RpcTarget.All, EntityIndex);
     }
 
     [PunRPC] [UsedImplicitly]
     public void SyncUndisplayEnemiesRPC(int EntityIndex)
     {
-        EntityCollectionManager.GetEntityByIndex(EntityIndex).GetComponent<Champion>().targetIndicator.displayEnemyPos = false;
+        for (int i = 0; i < EntityCollectionManager.GetEntityByIndex(EntityIndex).GetComponent<Champion>().targetIndicators.Count; i++)
+        {
+            EntityCollectionManager.GetEntityByIndex(EntityIndex).GetComponent<Champion>().targetIndicators[i].displayEnemyPos = false;
+        }
     }
     
     private IEnumerator CoolDownIndicator(int EntityIndex)
     {
         yield return new WaitForSeconds(displayTime);
-        EntityCollectionManager.GetEntityByIndex(EntityIndex).GetComponent<Champion>().targetIndicator.RequestUndisplayEnemies(EntityIndex);
+        
+        for (int i = 0; i < EntityCollectionManager.GetEntityByIndex(EntityIndex).GetComponent<Champion>().targetIndicators.Count; i++)
+        {
+            EntityCollectionManager.GetEntityByIndex(EntityIndex).GetComponent<Champion>().targetIndicators[i].RequestUndisplayEnemies(EntityIndex);
+        }
     }
 }
