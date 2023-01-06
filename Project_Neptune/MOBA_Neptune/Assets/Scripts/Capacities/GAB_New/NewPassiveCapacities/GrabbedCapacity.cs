@@ -22,6 +22,8 @@ public class GrabbedCapacity : NewPassiveCapacity
 
     private GrabbedState state;
 
+    [SerializeField] private LineRenderer grabLine;
+
     private enum GrabbedState
     {
         Moving,
@@ -60,7 +62,7 @@ public class GrabbedCapacity : NewPassiveCapacity
 
         if (!photonView.IsMine) return;
         InputManager.PlayerMap.Movement.Disable();
-        ((Champion) entityUnderEffect).OnGrabbed();
+        ((Champion)entityUnderEffect).OnGrabbed();
     }
 
     private void Start()
@@ -85,6 +87,7 @@ public class GrabbedCapacity : NewPassiveCapacity
         {
             case GrabbedState.Moving:
                 SetVelocityToTarget(giver == null ? point : giver.transform.position);
+                SetLineFeedback();
                 break;
             case GrabbedState.Hitting:
                 GrabbedEntityHitTarget();
@@ -95,19 +98,52 @@ public class GrabbedCapacity : NewPassiveCapacity
         }
     }
 
+    private void SetLineFeedback()
+    {
+        var initPos = transform.position;
+        initPos.y = 1;
+        grabLine.SetPosition(0, initPos);
+        var p = giver == null ? point : giver.transform.position;
+        p.y = 1;
+        grabLine.SetPosition(1, p);
+
+        photonView.RPC("SyncLineFeedbackRPC", RpcTarget.All, initPos, p);
+    }
+
+    [PunRPC]
+    public void SyncLineFeedbackRPC(Vector3 pos1, Vector3 pos2)
+    {
+        grabLine.SetPosition(0, pos1);
+        grabLine.SetPosition(1, pos2);
+    }
+
     private void SwitchState(GrabbedState state)
     {
         switch (state)
         {
             case GrabbedState.Moving:
+                photonView.RPC("SyncSwitchStateMoving", RpcTarget.All);
                 break;
             case GrabbedState.Hitting:
+                photonView.RPC("SyncSwitchStateHitting", RpcTarget.All);
                 break;
             case GrabbedState.Hooking:
                 break;
         }
 
         this.state = state;
+    }
+
+    [PunRPC]
+    public void SyncSwitchStateMoving()
+    {
+        grabLine.enabled = true;
+    }
+
+    [PunRPC]
+    public void SyncSwitchStateHitting()
+    {
+        grabLine.enabled = false;
     }
 
     private void SetVelocityToTarget(Vector3 point)
@@ -140,9 +176,6 @@ public class GrabbedCapacity : NewPassiveCapacity
 
     private void GrabbedEntityHitTarget()
     {
-        // Set velocity to 0
-        displaceable.SetVelocity(Vector3.zero);
-
         // RPC Feedbacks
         photonView.RPC("OnHitTargetRPC", RpcTarget.All);
 
@@ -176,7 +209,7 @@ public class GrabbedCapacity : NewPassiveCapacity
     public void MoveWhileHooked()
     {
         if (!isActive) return;
-        photonView.RPC("MoveWhileHookedRPC", RpcTarget.MasterClient); 
+        photonView.RPC("MoveWhileHookedRPC", RpcTarget.MasterClient);
     }
 
     [PunRPC]
@@ -189,7 +222,7 @@ public class GrabbedCapacity : NewPassiveCapacity
     private void RemoveGrabbedEffectRPC()
     {
         if (!photonView.IsMine) return;
-        ((Champion) entityUnderEffect).OnUnGrabbed();
+        ((Champion)entityUnderEffect).OnUnGrabbed();
     }
 
     [PunRPC]
@@ -197,9 +230,8 @@ public class GrabbedCapacity : NewPassiveCapacity
     {
         // Feedbacks
 
-
         // Global?
-
+        displaceable.SetVelocity(Vector3.zero);
 
         if (!photonView.IsMine) return;
         InputManager.PlayerMap.Movement.Enable();
