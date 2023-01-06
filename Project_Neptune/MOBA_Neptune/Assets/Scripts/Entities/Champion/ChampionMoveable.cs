@@ -167,14 +167,15 @@ namespace Entities.Champion
         [PunRPC]
         public void CastOnMoveEventRPC(Vector3 velocity)
         {
-            Debug.Log("Cast OnMove Event");
+            //Debug.Log("Cast OnMove Event");
             OnMove?.Invoke();
         }
 
         private void RotateMath()
         {
             if (!photonView.IsMine) return;
-
+            if (!canMove) return;
+            
             var ray = camera.ScreenPointToRay(Input.mousePosition);
 
             if (!Physics.Raycast(ray, out var hit, float.PositiveInfinity, groundMask)) return;

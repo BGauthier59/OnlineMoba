@@ -25,49 +25,59 @@ public class MinionJungleSecondaryCapacity : NewActiveCapacity
     
     public override void RequestCastCapacity(int[] targetedEntities, Vector3[] targetedPositions)
     {
-        photonView.RPC("CastSecondaryMinionJungleCapacityRPC", RpcTarget.MasterClient);
+        photonView.RPC("CastSecondaryMinionJungleCapacityRPC", RpcTarget.MasterClient, targetedPositions);
     }
-    
+
+    private Collider[] colliders;
     [PunRPC]
-    public IEnumerator CastSecondaryMinionJungleCapacityRPC(int[] targetedEntities, Vector3[] targetedPositions)
+    public void CastSecondaryMinionJungleCapacityRPC(Vector3[] targetedPositions)
     {
         photonView.RPC("SyncCastSecondaryMinionJungleCapacityRPC", RpcTarget.All);
         caster = GetComponent<Entity>();
         
         // Calcul de la capa
         var aimedZone = targetedPositions[0]; // Endroit où le joueur se situe
-        var colliders = Physics.OverlapSphere(aimedZone, capacityRange, capacityLayerMask);
+        colliders = Physics.OverlapSphere(aimedZone, capacityRange, capacityLayerMask);
         
         foreach (var entityStuned in colliders)
         {
-            if (entityStuned.GetComponent<Champion>() && entityStuned.GetComponent<Entity>() != caster)
+            Champion thisChampion = entityStuned.GetComponent<Champion>();
+            
+            if (thisChampion && entityStuned.GetComponent<Entity>() != caster)
             {
-                entityStuned.GetComponent<Champion>().RequestSetCanMove(false);
-                entityStuned.GetComponent<Champion>().RequestSetCanAttack(false);
-                entityStuned.GetComponent<Champion>().RequestSetCanCast(false);
+                Debug.Log("STUN PLAYER");
+                thisChampion.rb.velocity = Vector3.zero;
+                thisChampion.RequestSetCanMove(false);
+                thisChampion.RequestSetCanCast(false);
             }
         }
 
+        StartCoroutine(EndStun());
+    }
+
+    private IEnumerator EndStun()
+    {
         yield return new WaitForSeconds(capacityDuration);
         
         foreach (var entityStuned in colliders)
         {
-            if (entityStuned.GetComponent<Champion>())
+            Champion thisChampion = entityStuned.GetComponent<Champion>();
+            
+            if (thisChampion)
             {
-                entityStuned.GetComponent<Champion>().RequestSetCanMove(true);
-                entityStuned.GetComponent<Champion>().RequestSetCanAttack(true);
-                entityStuned.GetComponent<Champion>().RequestSetCanCast(true);
+                Debug.Log("FINI");
+                thisChampion.RequestSetCanMove(true);
+                thisChampion.RequestSetCanCast(true);
             }
         }
     }
+    
 
     [PunRPC]
     public void SyncCastSecondaryMinionJungleCapacityRPC()
     {
-        
         // TODO - Afficher FX
     }
-    
     
     public override bool TryCast()
     {

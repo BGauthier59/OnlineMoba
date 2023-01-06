@@ -28,12 +28,21 @@ namespace Entities.Minion.MinionJungle
             Champion
         };
 
+        public enum lastCapacityUsed
+        {
+            None,
+            AutoAttackCapacity,
+            SecondCapacity
+        };
+
         [Header("Attack Logic")] 
+        public lastCapacityUsed lastCapacity = lastCapacityUsed.None;
         public NewActiveCapacity autoAttackCapacity;
         public int autoAttackDamage;
         
         [Space]
         public NewActiveCapacity secondaryCapacity;
+        [Range(1, 100)] public int capacityProbability = 20;
         [Range(1,10)] public float stunRange;
         [Range(0.1f, 6)] public float stunDuration;
         
@@ -50,6 +59,7 @@ namespace Entities.Minion.MinionJungle
         [Range(1.5f, 10)] public float attackRange;
         public float wanderRange;
         public CampJungle myCamp;
+        public bool isBoss;
 
         // Private variable
         private NavMeshAgent myAgent;
@@ -134,8 +144,20 @@ namespace Entities.Minion.MinionJungle
                 {
                     if (attackCycle) return;    
                     myAgent.SetDestination(this.transform.position);
-                    // Lancement de la capacité !
-                    Debug.Log("Lancement de la section Jungle Mob AA");
+                    
+                    // Decision de l'attaque 
+                    
+                    if (lastCapacity == lastCapacityUsed.SecondCapacity)
+                    {
+                        lastCapacity = lastCapacityUsed.AutoAttackCapacity;
+                        StartCoroutine(AttackLogic());
+                        return;
+                    }
+
+                    var rand = Random.Range(1, 101);
+                    if (rand > capacityProbability) lastCapacity = lastCapacityUsed.AutoAttackCapacity;
+                    else lastCapacity = lastCapacityUsed.SecondCapacity;
+                    
                     StartCoroutine(AttackLogic());
                 }
             }
@@ -144,7 +166,7 @@ namespace Entities.Minion.MinionJungle
                 currentState = MinionState.Idle;
             }
         }
-
+        
         private IEnumerator AttackLogic()
         {
             attackCycle = true;
@@ -152,17 +174,24 @@ namespace Entities.Minion.MinionJungle
             // Receuil d'info
             int[] uwu = new int[1]; uwu[0] = currentAttackTarget.entityIndex;
             Vector3[] owo = new Vector3[1]; owo[0] = currentAttackTarget.transform.position;
-            
-            Debug.Log("Lancement de la capacité Jungle Mob AA avec : " + uwu[0] + " comme cible");
-            autoAttackCapacity.RequestCastCapacity(uwu, owo); // Lancement de la capacité
+
+            if (lastCapacity == lastCapacityUsed.AutoAttackCapacity)
+            {
+                autoAttackCapacity.RequestCastCapacity(uwu, owo); // Lancement de la capacité
+            }
+            else if (lastCapacity == lastCapacityUsed.SecondCapacity)
+            {
+                secondaryCapacity.RequestCastCapacity(uwu, owo); // Lancement de la capacité
+            }
             
             yield return new WaitForSeconds(attackSpeed);
             attackCycle = false;
         }
-
+        
         private void OnDrawGizmos()
         {
             Gizmos.DrawWireSphere(basePos, wanderRange);
+            Gizmos.DrawWireSphere(basePos, attackRange);
         }
     }
 }
