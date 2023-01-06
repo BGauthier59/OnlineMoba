@@ -32,30 +32,31 @@ public class MinionJungleSecondaryCapacity : NewActiveCapacity
     public IEnumerator CastSecondaryMinionJungleCapacityRPC(int[] targetedEntities, Vector3[] targetedPositions)
     {
         photonView.RPC("SyncCastSecondaryMinionJungleCapacityRPC", RpcTarget.All);
+        caster = GetComponent<Entity>();
         
         // Calcul de la capa
         var aimedZone = targetedPositions[0]; // Endroit où le joueur se situe
         var colliders = Physics.OverlapSphere(aimedZone, capacityRange, capacityLayerMask);
         
-        foreach (var VARIABLE in colliders)
+        foreach (var entityStuned in colliders)
         {
-            if (VARIABLE.GetComponent<Champion>())
+            if (entityStuned.GetComponent<Champion>() && entityStuned.GetComponent<Entity>() != caster)
             {
-                VARIABLE.GetComponent<Champion>().RequestSetCanMove(false);
-                VARIABLE.GetComponent<Champion>().RequestSetCanAttack(false);
-                VARIABLE.GetComponent<Champion>().RequestSetCanCast(false);
+                entityStuned.GetComponent<Champion>().RequestSetCanMove(false);
+                entityStuned.GetComponent<Champion>().RequestSetCanAttack(false);
+                entityStuned.GetComponent<Champion>().RequestSetCanCast(false);
             }
         }
 
         yield return new WaitForSeconds(capacityDuration);
         
-        foreach (var VARIABLE in colliders)
+        foreach (var entityStuned in colliders)
         {
-            if (VARIABLE.GetComponent<Champion>())
+            if (entityStuned.GetComponent<Champion>())
             {
-                VARIABLE.GetComponent<Champion>().RequestSetCanMove(true);
-                VARIABLE.GetComponent<Champion>().RequestSetCanAttack(true);
-                VARIABLE.GetComponent<Champion>().RequestSetCanCast(true);
+                entityStuned.GetComponent<Champion>().RequestSetCanMove(true);
+                entityStuned.GetComponent<Champion>().RequestSetCanAttack(true);
+                entityStuned.GetComponent<Champion>().RequestSetCanCast(true);
             }
         }
     }
@@ -63,7 +64,7 @@ public class MinionJungleSecondaryCapacity : NewActiveCapacity
     [PunRPC]
     public void SyncCastSecondaryMinionJungleCapacityRPC()
     {
-        caster = GetComponent<Entity>();
+        
         // TODO - Afficher FX
     }
     
