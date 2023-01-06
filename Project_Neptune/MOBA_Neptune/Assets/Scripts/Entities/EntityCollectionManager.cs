@@ -14,6 +14,8 @@ namespace Entities
         public static List<Tower> towerList = new List<Tower>();
         public List<Tower> towerListNonStatic = new List<Tower>();
 
+        public static List<Champion.Champion> AllChampion = new List<Champion.Champion>();
+
         private void Awake()
         {
             view = GetComponent<PhotonView>();

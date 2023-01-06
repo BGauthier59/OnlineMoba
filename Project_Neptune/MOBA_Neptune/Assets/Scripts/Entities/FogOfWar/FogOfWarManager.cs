@@ -231,8 +231,7 @@ namespace Entities.FogOfWar
         {
             Vector3 dir = DirFromAngle(globalAngle, true, entity);
             RaycastHit hit;
-            if (Physics.Raycast(entity.fogOfWarStartDetection.position, dir, out hit, entity.viewRange,
-                    layerTargetFogOfWar))
+            if (Physics.Raycast(entity.fogOfWarStartDetection.position, dir, out hit, entity.viewRange, layerTargetFogOfWar))
             {
                 Entity candidateEntity = hit.collider.gameObject.GetComponent<Entity>();
                 if (candidateEntity != null)

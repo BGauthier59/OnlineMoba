@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Controllers.Inputs;
 using GameStates;
 using JetBrains.Annotations;
@@ -16,6 +17,7 @@ namespace Entities.Champion
         public Camera camera;
         public CollisionBlocker blocker;
         public LineRenderer grabLine;
+        public List<TargetIndicator> targetIndicators;
         private bool isLinked;
     
         [SerializeField] private MeshRenderer teamConeRenderer;
@@ -122,6 +124,8 @@ namespace Entities.Champion
             
             isLinked = true;
             LinkTower();
+            
+            EntityCollectionManager.AllChampion.Add(this);
         }
         
         private void OnGUI()
