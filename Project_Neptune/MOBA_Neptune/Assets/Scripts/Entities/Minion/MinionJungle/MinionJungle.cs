@@ -29,7 +29,14 @@ namespace Entities.Minion.MinionJungle
         };
 
         [Header("Attack Logic")] 
-        public NewActiveCapacity attackCapacity;
+        public NewActiveCapacity autoAttackCapacity;
+        public int autoAttackDamage;
+        
+        [Space]
+        public NewActiveCapacity secondaryCapacity;
+        [Range(1,10)] public float stunRange;
+        [Range(0.1f, 6)] public float stunDuration;
+        
         public minionAggroState currentAggroState = minionAggroState.None;
         public Entity currentAttackTarget;
         public List<GameObject> whoIsAttackingMe = new List<GameObject>();
@@ -38,9 +45,9 @@ namespace Entities.Minion.MinionJungle
         [Header("Stats")] 
         public int maxHealth;
         public float currentHealth;
-        public int attackDamage;
+        
         public float attackSpeed;
-        [Range(2, 10)] public float attackRange;
+        [Range(1.5f, 10)] public float attackRange;
         public float wanderRange;
         public CampJungle myCamp;
 
@@ -63,7 +70,6 @@ namespace Entities.Minion.MinionJungle
             currentHealth = maxHealth;
             currentState = MinionState.Attacking;
             basePos = this.transform.position;
-            myAgent.stoppingDistance = attackRange;
         }
 
         protected override void OnUpdate()
@@ -126,8 +132,8 @@ namespace Entities.Minion.MinionJungle
                 }
                 else
                 {
-                    if (attackCycle) return;
-                    myAgent.SetDestination(transform.position);
+                    if (attackCycle) return;    
+                    myAgent.SetDestination(this.transform.position);
                     // Lancement de la capacité !
                     Debug.Log("Lancement de la section Jungle Mob AA");
                     StartCoroutine(AttackLogic());
@@ -148,18 +154,12 @@ namespace Entities.Minion.MinionJungle
             Vector3[] owo = new Vector3[1]; owo[0] = currentAttackTarget.transform.position;
             
             Debug.Log("Lancement de la capacité Jungle Mob AA avec : " + uwu[0] + " comme cible");
-            attackCapacity.RequestCastCapacity(uwu, owo); // Lancement de la capacité
+            autoAttackCapacity.RequestCastCapacity(uwu, owo); // Lancement de la capacité
             
             yield return new WaitForSeconds(attackSpeed);
             attackCycle = false;
         }
 
-        private void AttackTarget(GameObject target) // Attaque de l'entité référencée 
-        {
-            var targetDamageable = target.GetComponent<IDamageable>();
-            targetDamageable?.RequestDecreaseCurrentHp(attackDamage, this);
-        }
-        
         private void OnDrawGizmos()
         {
             Gizmos.DrawWireSphere(basePos, wanderRange);

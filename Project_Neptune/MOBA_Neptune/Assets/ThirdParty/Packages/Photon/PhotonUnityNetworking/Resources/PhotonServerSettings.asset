@@ -261,11 +261,8 @@ MonoBehaviour:
   - SyncDisplayEnemiesRPC
   - SyncUndisplayEnemiesRPC
   - UndisplayEnemiesRPC
-  - MoveWhileHookedRPC
-  - OnHitTargetRPC
-  - SyncLineFeedbackRPC
-  - SyncSwitchStateHitting
-  - SyncSwitchStateMoving
+  - CastSecondaryMinionJungleCapacityRPC
+  - SyncCastSecondaryMinionJungleCapacityRPC
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1
