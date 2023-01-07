@@ -1,4 +1,3 @@
-using Capacities.Passive_Capacities;
 using Entities.Capacities;
 using UnityEngine;
 
@@ -23,7 +22,7 @@ namespace Entities.Champion
         public float attackDamage;
         
         [Header("Abilities")]
-        public PassiveCapacitySO[] passiveCapacities;
+        //public PassiveCapacitySO[] passiveCapacities;
         [HideInInspector] public byte[] passiveCapacitiesIndexes;
         public ActiveCapacitySO[] activeCapacities; 
         [HideInInspector] public byte[] activeCapacitiesIndexes;
@@ -36,6 +35,7 @@ namespace Entities.Champion
             attackAbilityIndex = CapacitySOCollectionManager.GetActiveCapacitySOIndex(attackAbility);
         
             // Passives
+            /*
             passiveCapacitiesIndexes = new byte[passiveCapacities.Length];
             for (var index = 0; index < passiveCapacities.Length; index++)
             {
@@ -43,6 +43,8 @@ namespace Entities.Champion
                 passiveCapacitiesIndexes[index] =
                     CapacitySOCollectionManager.GetPassiveCapacitySOIndex(passiveCapacitySo);
             }
+            */
+            
             // Actives
             activeCapacitiesIndexes = new byte[activeCapacities.Length];
             for (var index = 0; index < activeCapacitiesIndexes.Length; index++)

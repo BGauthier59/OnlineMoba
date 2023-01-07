@@ -85,7 +85,7 @@ namespace Controllers.Inputs
             moveInput = ctx.ReadValue<Vector2>();
             moveVector = new Vector3(moveInput.x, 0, moveInput.y);
             champion.SetMoveDirection(moveVector);
-
+            champion.animator.SetBool("IsRunning", true);
             champion.grabbed.MoveWhileHooked();
         }
 

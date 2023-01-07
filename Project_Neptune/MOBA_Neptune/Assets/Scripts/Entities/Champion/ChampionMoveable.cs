@@ -143,8 +143,7 @@ namespace Entities.Champion
             //var strength = underStreamEffect ? StreamManager.GetStreamVector(currentStreamModifier, transform) : Vector3.zero;
             var strength = StreamManager.GetStreamVector(currentStreamModifier, transform);
 
-            if (currentStreamModifier == null) animator.SetBool("IsRunning", true);
-            else animator.SetBool("IsSliding", true);
+            if (currentStreamModifier != null) animator.SetBool("IsSliding", true);
             
             Debug.DrawRay(transform.position, velocity, Color.green);
             Debug.DrawRay(transform.position, strength, Color.magenta);
