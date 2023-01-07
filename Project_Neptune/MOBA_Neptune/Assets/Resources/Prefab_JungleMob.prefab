@@ -10,12 +10,13 @@ GameObject:
   m_Component:
   - component: {fileID: 6289120641470716827}
   - component: {fileID: 6289120641470716801}
-  - component: {fileID: 6289120641470716826}
-  - component: {fileID: 6289120641470716829}
-  - component: {fileID: 6289120641470716828}
-  - component: {fileID: 5379231645317470454}
   - component: {fileID: 6289120641470716831}
   - component: {fileID: 6289120641470716830}
+  - component: {fileID: 6289120641470716829}
+  - component: {fileID: 6289120641470716828}
+  - component: {fileID: 6289120641470716826}
+  - component: {fileID: 5379231645317470454}
+  - component: {fileID: 3947247432492200877}
   m_Layer: 29
   m_Name: Prefab_JungleMob
   m_TagString: Untagged
@@ -60,58 +61,36 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 5
   m_ObstacleAvoidanceType: 4
---- !u!114 &6289120641470716826
-MonoBehaviour:
+--- !u!136 &6289120641470716831
+CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6289120641470716824}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
   m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3795437c924a79c4086c4bfb870ad1b5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  entityIndex: 0
-  canAddPassiveCapacity: 0
-  canRemovePassiveCapacity: 0
-  newPassiveCapacitiesList: []
-  grabbed: {fileID: 0}
-  currentPointCarried: 0
-  lastEntityWhoAttackedMeIndex: 0
-  uiTransform: {fileID: 0}
-  guiOffset: {x: 0, y: 2, z: 0}
-  rb: {fileID: 0}
-  animator: {fileID: 0}
-  canShow: 0
-  canHide: 0
-  elementsToShow: []
-  canChangeTeam: 0
-  team: 0
-  baseViewRange: 0
-  viewRange: 0
-  viewAngle: 0
-  canView: 0
-  meshFilterFoV: {fileID: 0}
-  fogOfWarStartDetection: {fileID: 0}
-  currentState: 0
-  brainSpeed: 0.4
-  basePos: {x: 0, y: 0, z: 0}
-  championMask:
-    serializedVersion: 2
-    m_Bits: 536870912
-  attackCapacity: {fileID: 5379231645317470454}
-  currentAggroState: 0
-  currentAttackTarget: {fileID: 0}
-  whoIsAttackingMe: []
-  attackCycle: 0
-  maxHealth: 10
-  currentHealth: 10
-  attackDamage: 2
-  attackSpeed: 1.5
-  attackRange: 2
-  wanderRange: 3.5
-  myCamp: {fileID: 0}
+  m_Radius: 0.5
+  m_Height: 1.5
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.7, z: 0}
+--- !u!54 &6289120641470716830
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6289120641470716824}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 112
+  m_CollisionDetection: 0
 --- !u!114 &6289120641470716829
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -151,6 +130,63 @@ MonoBehaviour:
   m_SynchronizeRotation: 1
   m_SynchronizeScale: 0
   m_UseLocal: 1
+--- !u!114 &6289120641470716826
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6289120641470716824}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3795437c924a79c4086c4bfb870ad1b5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  entityIndex: 0
+  canAddPassiveCapacity: 0
+  canRemovePassiveCapacity: 0
+  newPassiveCapacitiesList: []
+  currentPointCarried: 0
+  lastEntityWhoAttackedMeIndex: 0
+  uiTransform: {fileID: 0}
+  guiOffset: {x: 0, y: 2, z: 0}
+  rb: {fileID: 0}
+  animator: {fileID: 0}
+  canShow: 0
+  canHide: 0
+  elementsToShow: []
+  canChangeTeam: 0
+  team: 0
+  baseViewRange: 0
+  viewRange: 0
+  viewAngle: 0
+  canView: 0
+  meshFilterFoV: {fileID: 0}
+  fogOfWarStartDetection: {fileID: 0}
+  currentState: 0
+  brainSpeed: 0.4
+  basePos: {x: 0, y: 0, z: 0}
+  championMask:
+    serializedVersion: 2
+    m_Bits: 536870912
+  lastCapacity: 0
+  autoAttackCapacity: {fileID: 5379231645317470454}
+  autoAttackDamage: 4
+  secondaryCapacity: {fileID: 3947247432492200877}
+  capacityProbability: 10
+  stunRange: 1.5
+  stunDuration: 0.5
+  currentAggroState: 0
+  currentAttackTarget: {fileID: 0}
+  whoIsAttackingMe: []
+  attackCycle: 0
+  maxHealth: 10
+  currentHealth: 10
+  attackSpeed: 1.5
+  attackRange: 3.5
+  wanderRange: 3.5
+  myCamp: {fileID: 0}
+  isBoss: 0
 --- !u!114 &5379231645317470454
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -166,39 +202,31 @@ MonoBehaviour:
   caster: {fileID: 6289120641470716826}
   canCastCapacity: 1
   cooldownDuration: 0
-  damage: 2
+  capacityDamage: 0
   casterPos: {x: 0, y: 0, z: 0}
   targetPos: {x: 0, y: 0, z: 0}
---- !u!136 &6289120641470716831
-CapsuleCollider:
+--- !u!114 &3947247432492200877
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6289120641470716824}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.5
-  m_Height: 1.5
-  m_Direction: 1
-  m_Center: {x: 0, y: 0.7, z: 0}
---- !u!54 &6289120641470716830
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6289120641470716824}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 0
-  m_IsKinematic: 1
-  m_Interpolate: 0
-  m_Constraints: 112
-  m_CollisionDetection: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a9b36280749571c4fbd5ce182ce5b0b0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  caster: {fileID: 6289120641470716826}
+  canCastCapacity: 0
+  cooldownDuration: 0
+  capacityRange: 0
+  capacityDuration: 0
+  capacityLayerMask:
+    serializedVersion: 2
+    m_Bits: 536870912
+  casterPos: {x: 0, y: 0, z: 0}
+  targetPos: {x: 0, y: 0, z: 0}
 --- !u!1 &6289120641551470989
 GameObject:
   m_ObjectHideFlags: 0
