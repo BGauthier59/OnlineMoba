@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Capacities.Passive_Capacities;
 using Entities.Capacities;
 using Entities.FogOfWar;
 using Photon.Pun;
@@ -19,11 +18,9 @@ namespace Entities
 
         [SerializeField] private bool canAddPassiveCapacity = true;
         [SerializeField] private bool canRemovePassiveCapacity = true;
-
-        public readonly List<PassiveCapacity> passiveCapacitiesList = new List<PassiveCapacity>();
-        public List<NewPassiveCapacity> newPassiveCapacitiesList = new List<NewPassiveCapacity>();
-
+        
         public GrabbedCapacity grabbed;
+        public MarkedCapacity marked;
 
         /// <summary>
         /// The current amount of point currently carried by the entity
@@ -99,11 +96,6 @@ namespace Entities
             OnInstantiatedFeedback();
         }
 
-        public PassiveCapacity GetPassiveCapacityBySOIndex(byte soIndex)
-        {
-            return passiveCapacitiesList.FirstOrDefault(item => item.indexOfSo == soIndex);
-        }
-
         public virtual void OnInstantiatedFeedback()
         {
         }
@@ -133,6 +125,7 @@ namespace Entities
             canRemovePassiveCapacity = value;
         }
 
+        /*
         [PunRPC]
         public void AddPassiveCapacityRPC(byte index, int giverIndex = default, Vector3 pos = default)
         {
@@ -169,15 +162,18 @@ namespace Entities
             capacity.OnAddedFeedback(this, giver, pos);
             OnPassiveCapacityAddedFeedback?.Invoke(capacityIndex);
         }
+        */
 
         public event GlobalDelegates.ByteDelegate OnPassiveCapacityAdded;
         public event GlobalDelegates.ByteDelegate OnPassiveCapacityAddedFeedback;
 
+        /*
         public void RemovePassiveCapacityByIndex(byte index)
         {
             photonView.RPC("SyncRemovePassiveCapacityRPC", RpcTarget.All, index);
         }
-
+        
+    
         [PunRPC]
         public void SyncRemovePassiveCapacityRPC(byte index)
         {
@@ -193,6 +189,7 @@ namespace Entities
             capacity.OnRemovedFeedback(this);
             OnPassiveCapacityRemovedFeedback?.Invoke(index);
         }
+        */
 
         public event GlobalDelegates.ByteDelegate OnPassiveCapacityRemoved;
         public event GlobalDelegates.ByteDelegate OnPassiveCapacityRemovedFeedback;
