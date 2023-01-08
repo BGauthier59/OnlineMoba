@@ -269,6 +269,10 @@ MonoBehaviour:
   - SyncSwitchStateHitting
   - SyncSwitchStateMoving
   - GetMarkedFeedbackRPC
+  - CancelSlowFeedback
+  - GetSlowedFeedback
+  - PlayIceImpactFeedback
+  - PlayIceMuzzleFeedback
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1

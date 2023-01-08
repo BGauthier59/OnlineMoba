@@ -26,6 +26,10 @@ public class IoAutoAttackCapacity : NewActiveCapacity
     private Vector3 hitPoint;
     private Champion champion;
 
+    [SerializeField] private ParticleSystem iceImpactFx;
+    [SerializeField] private ParticleSystem iceMuzzleFx;
+
+
     public override void RequestCastCapacity(int[] targetedEntities, Vector3[] targetedPositions)
     {
         photonView.RPC("CastIoAutoAttackCapacityRPC", RpcTarget.MasterClient, targetedEntities, targetedPositions);
@@ -55,18 +59,18 @@ public class IoAutoAttackCapacity : NewActiveCapacity
         casterInitPos = GetCasterPos();
         direction = -(casterInitPos - target);
         direction.y = 0;
-        direction.Normalize();
+        //direction.Normalize();
     }
 
     [PunRPC]
     public void SyncCastIoAutoAttackCapacityRPC(int[] targetedEntities, Vector3[] targetedPositions)
     {
-        throw new System.NotImplementedException();
+        
     }
 
     public override bool TryCast()
     {
-        Debug.DrawRay(casterInitPos + champion.rotateParent.forward, direction * skillshotMaxDistance, Color.yellow,
+        Debug.DrawRay(casterInitPos + champion.rotateParent.forward, direction, Color.yellow,
             3);
 
         // Check conditions
@@ -85,12 +89,21 @@ public class IoAutoAttackCapacity : NewActiveCapacity
         canShootNewOne = false;
 
         hitPoint = Physics.Raycast(casterInitPos + champion.rotateParent.forward, direction, out var hit,
-            skillshotMaxDistance, targetableLayer)
+            direction.magnitude, targetableLayer)
             ? hit.point
-            : casterInitPos + champion.rotateParent.forward + direction * skillshotMaxDistance;
+            : casterInitPos + champion.rotateParent.forward + direction;
 
+        photonView.RPC("PlayIceMuzzleFeedback", RpcTarget.All, hitPoint);
+        
         GameStateMachine.Instance.OnTick += CheckTimer;
         return true;
+    }
+
+    [PunRPC]
+    public void PlayIceMuzzleFeedback(Vector3 pos)
+    {
+        iceMuzzleFx.transform.position = pos;
+        iceMuzzleFx.Play();
     }
 
     private void CheckTimer()
@@ -111,13 +124,33 @@ public class IoAutoAttackCapacity : NewActiveCapacity
         Debug.DrawLine(hitPoint, hitPoint - Vector3.right * .5f, Color.red, 2f);
         Debug.DrawLine(hitPoint, hitPoint + Vector3.forward * .5f, Color.red, 2f);
         Debug.DrawLine(hitPoint, hitPoint - Vector3.forward * .5f, Color.red, 2f);
+        
+        photonView.RPC("PlayIceImpactFeedback", RpcTarget.All, hitPoint);
+        
         foreach (var c in allTargets)
         {
             var damageable = c.GetComponent<IDamageable>();
             damageable?.DecreaseCurrentHpRPC(damage, caster.entityIndex);
+            var entity = c.GetComponent<Entity>();
+            if (entity == null)
+            {
+                Debug.LogWarning("Entity is null!");
+                return;
+            }
+
+            if (entity.marked == null) return;
+            if (entity.team == caster.team) return;
+            entity.marked.OnAddEffect();
         }
 
         canShootNewOne = true;
+    }
+
+    [PunRPC]
+    public void PlayIceImpactFeedback(Vector3 pos)
+    {
+        iceImpactFx.transform.position = pos;
+        iceImpactFx.Play();
     }
 
     protected override void StartCooldown()
@@ -142,5 +175,6 @@ public class IoAutoAttackCapacity : NewActiveCapacity
     private void SyncCanCastIoAutoAttackCapacityRPC(bool canCast)
     {
         canCastCapacity = canCast;
+        canShootNewOne = true;
     }
 }

@@ -65,11 +65,6 @@ public class GrabbedCapacity : NewPassiveCapacity
         ((Champion)entityUnderEffect).OnGrabbed();
     }
 
-    private void Start()
-    {
-        entityUnderEffect = GetComponent<Entity>();
-    }
-
     private void Update()
     {
         if (!PhotonNetwork.IsMasterClient) return;

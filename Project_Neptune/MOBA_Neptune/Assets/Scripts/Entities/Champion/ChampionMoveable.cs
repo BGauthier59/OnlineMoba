@@ -91,10 +91,17 @@ namespace Entities.Champion
         public void RequestSetCurrentMoveSpeed(float value) { }
 
         [PunRPC]
-        public void SyncSetCurrentMoveSpeedRPC(float value) { }
+        public void SyncSetCurrentMoveSpeedRPC(float value)
+        {
+            currentMoveSpeed = value;
+        }
 
         [PunRPC]
-        public void SetCurrentMoveSpeedRPC(float value) { }
+        public void SetCurrentMoveSpeedRPC(float value)
+        {
+            currentMoveSpeed = value;
+            photonView.RPC("SyncSetCurrentMoveSpeedRPC", RpcTarget.Others, currentMoveSpeed);
+        }
 
         public event GlobalDelegates.FloatDelegate OnSetCurrentMoveSpeed;
         public event GlobalDelegates.FloatDelegate OnSetCurrentMoveSpeedFeedback;

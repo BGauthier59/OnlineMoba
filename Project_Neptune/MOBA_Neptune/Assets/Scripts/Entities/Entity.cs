@@ -21,6 +21,7 @@ namespace Entities
         
         public GrabbedCapacity grabbed;
         public MarkedCapacity marked;
+        public SlowedCapacity slowed;
 
         /// <summary>
         /// The current amount of point currently carried by the entity

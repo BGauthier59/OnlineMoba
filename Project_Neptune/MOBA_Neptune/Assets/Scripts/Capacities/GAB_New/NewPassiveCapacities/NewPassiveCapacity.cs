@@ -10,6 +10,11 @@ public abstract class NewPassiveCapacity : MonoBehaviourPun
     public bool isActive;
     public Entity entityUnderEffect;
 
+    private void Start()
+    {
+        entityUnderEffect = GetComponent<Entity>();
+    }
+    
     public virtual void OnAddEffect(Entity giver = null, Vector3 position = default)
     {
         isActive = true;
