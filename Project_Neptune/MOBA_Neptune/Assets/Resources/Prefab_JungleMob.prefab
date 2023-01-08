@@ -147,23 +147,24 @@ MonoBehaviour:
   canRemovePassiveCapacity: 0
   grabbed: {fileID: 0}
   marked: {fileID: 0}
-  currentPointCarried: 0
+  currentPointCarried: 4
   lastEntityWhoAttackedMeIndex: 0
   uiTransform: {fileID: 0}
   guiOffset: {x: 0, y: 2, z: 0}
-  rb: {fileID: 0}
+  rb: {fileID: 6289120641470716830}
   animator: {fileID: 0}
   canShow: 0
   canHide: 0
-  elementsToShow: []
+  elementsToShow:
+  - {fileID: 6594985329007305743}
   canChangeTeam: 0
   team: 0
   baseViewRange: 0
   viewRange: 0
   viewAngle: 0
-  canView: 0
-  meshFilterFoV: {fileID: 0}
-  fogOfWarStartDetection: {fileID: 0}
+  canView: 1
+  meshFilterFoV: {fileID: 7449537688079429904}
+  fogOfWarStartDetection: {fileID: 6289120641470716827}
   currentState: 0
   brainSpeed: 0.4
   basePos: {x: 0, y: 0, z: 0}
@@ -187,7 +188,6 @@ MonoBehaviour:
   attackRange: 3.5
   wanderRange: 3.5
   myCamp: {fileID: 0}
-  isBoss: 0
 --- !u!114 &5379231645317470454
 MonoBehaviour:
   m_ObjectHideFlags: 0

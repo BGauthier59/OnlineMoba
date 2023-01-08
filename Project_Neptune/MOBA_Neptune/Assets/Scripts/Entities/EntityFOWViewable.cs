@@ -86,24 +86,24 @@ namespace Entities
         public event GlobalDelegates.BoolDelegate OnSetCanView;
         public event GlobalDelegates.BoolDelegate OnSetCanViewFeedback;
 
-        public void RequestSetViewRange(float value)
+        public void RequestSetViewRange(int entityIndex, float value)
         {
-            photonView.RPC("SyncSetViewRangeRPC", RpcTarget.MasterClient, value);
+            photonView.RPC("SyncSetViewRangeRPC", RpcTarget.MasterClient, entityIndex, value);
         }
 
         [PunRPC]
-        public void SyncSetViewRangeRPC(float value)
+        public void SyncSetViewRangeRPC(int entityIndex, float value)
         {
-            viewRange = value;
+            EntityCollectionManager.GetEntityByIndex(entityIndex).viewRange = value;
             OnSetViewRangeFeedback?.Invoke(value);
         }
 
         [PunRPC]
-        public void SetViewRangeRPC(float value)
+        public void SetViewRangeRPC(int entityIndex, float value)
         {
-            viewRange = value;
+            EntityCollectionManager.GetEntityByIndex(entityIndex).viewRange = value;
             OnSetViewRange?.Invoke(value);
-            photonView.RPC("SyncSetViewRangeRPC", RpcTarget.All, value);
+            photonView.RPC("SyncSetViewRangeRPC", RpcTarget.All, entityIndex, value);
         }
 
         public event GlobalDelegates.FloatDelegate OnSetViewRange;
@@ -156,10 +156,10 @@ namespace Entities
         public void AddShowable(int seenEntityIndex)
         {
             var entity = EntityCollectionManager.GetEntityByIndex(seenEntityIndex);
-            if (entity == null) return;
-
+                if (entity == null) return;
+    
             var showable = entity.GetComponent<IFOWShowable>();
-            if (showable == null) return;
+                if (showable == null) return;
 
             AddShowable(showable);
         }
@@ -169,16 +169,12 @@ namespace Entities
             if (seenShowables.Contains(showable)) return;
 
             seenShowables.Add(showable);
-            //Debug.Log("seen Showable Add");
             showable.TryAddFOWViewable(this);
-            //Debug.Log("Try add This FowViewable");
             var seenEntityIndex = ((Entity)showable).entityIndex;
-            //Debug.Log("Entity index : " + seenEntityIndex);
             OnAddShowableFeedback?.Invoke(seenEntityIndex);
-
             
-         //   if (!PhotonNetwork.IsMasterClient) return;
-           // OnAddShowable?.Invoke(seenEntityIndex);
+            //   if (!PhotonNetwork.IsMasterClient) return;
+            // OnAddShowable?.Invoke(seenEntityIndex);
             //photonView.RPC("SyncAddShowableRPC", RpcTarget.All, seenEntityIndex);
         }
 
