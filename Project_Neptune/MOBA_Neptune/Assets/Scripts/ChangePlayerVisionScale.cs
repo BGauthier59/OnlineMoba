@@ -1,40 +1,42 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using Entities.Champion;
+using Entities;
+using Photon.Pun;
 using UnityEngine;
 
-public class ChangePlayerVisionScale : MonoBehaviour
+public class ChangePlayerVisionScale : MonoBehaviourPun
 {
     public bool isTopEntry;
-    public int newViewRange;
+    public float newViewRange;
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.GetComponent<Champion>() == null) return;
+        if (other.GetComponent<Entity>() == null) return;
 
-        var newChampCollide = other.GetComponent<Champion>();
+        var newChampCollide = other.GetComponent<Entity>();
         
         if (isTopEntry)
         {
             if (other.transform.position.z > transform.position.z) // Entre dans la jungle par le haut 
             {
-                newChampCollide.RequestSetViewRange(newViewRange);
+                Debug.Log("Entered Jungle");
+                newChampCollide.photonView.RPC("SetViewRangeRPC", RpcTarget.MasterClient, newChampCollide.entityIndex, 3.5f);
             }
             else // Sort de la jungle
             {
-                newChampCollide.RequestSetViewRange(newChampCollide.baseViewRange);
+                Debug.Log("Exit Jungle");
+                newChampCollide.photonView.RPC("SetViewRangeRPC", RpcTarget.MasterClient, newChampCollide.entityIndex, 1);
             }
         }
         else
         {
             if (other.transform.position.z < transform.position.z) // Trigger collide par le haut 
             {
-                newChampCollide.RequestSetViewRange(newViewRange);
+                Debug.Log("Entered Jungle");
+                newChampCollide.photonView.RPC("SetViewRangeRPC", RpcTarget.MasterClient, newChampCollide.entityIndex, 3.5f);
             }
-            else // Sort de la jungle par le bas 
+            else // Sort de la jungle
             {
-                newChampCollide.RequestSetViewRange(newChampCollide.baseViewRange);
+                Debug.Log("Exit Jungle");
+                newChampCollide.photonView.RPC("SetViewRangeRPC", RpcTarget.MasterClient, newChampCollide.entityIndex, 1);
             }
         }
     }

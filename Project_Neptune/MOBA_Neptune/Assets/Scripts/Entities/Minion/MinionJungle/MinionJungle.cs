@@ -59,7 +59,6 @@ namespace Entities.Minion.MinionJungle
         [Range(1.5f, 10)] public float attackRange;
         public float wanderRange;
         public CampJungle myCamp;
-        public bool isBoss;
 
         // Private variable
         private NavMeshAgent myAgent;
