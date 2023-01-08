@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using Capacities.Active_Capacities;
-using Capacities.Passive_Capacities;
 using UnityEditor;
 using UnityEngine;
 
@@ -19,7 +18,7 @@ namespace Entities.Capacities
         /// <summary>
         /// Reference of All Passive Capacities 
         /// </summary>
-        [SerializeField] private List<PassiveCapacitySO> allPassiveCapacitiesSo = new List<PassiveCapacitySO>();
+        //[SerializeField] private List<PassiveCapacitySO> allPassiveCapacitiesSo = new List<PassiveCapacitySO>();
 
         private void Awake()
         {
@@ -39,10 +38,12 @@ namespace Entities.Capacities
                 allActiveCapacities[i].indexInCollection = i;
             }
 
+            /*
             for (byte i = 0; i < allPassiveCapacitiesSo.Count; i++)
             {
                 allPassiveCapacitiesSo[i].indexInCollection = i;
             }
+            */
         }
 
         #region Active Capacities
@@ -73,6 +74,7 @@ namespace Entities.Capacities
 
         #endregion
 
+        /*
         #region Passive Capacities
 
         public static byte GetPassiveCapacitySOIndex(PassiveCapacitySO so)
@@ -113,5 +115,6 @@ namespace Entities.Capacities
         }
 
         #endregion
+        */
     }
 }

@@ -1,5 +1,4 @@
 using System;
-using Capacities.Passive_Capacities;
 using Entities;
 using Entities.Capacities;
 using Entities.Champion;
@@ -75,6 +74,7 @@ public class GrabCapacity : NewActiveCapacity
 
         // Cast Succeeded!
 
+        champion.animator.SetBool("IsGrabbing", true);
         hitData = hit;
         GameStateMachine.Instance.OnTick += CheckTimer;
         return true;
@@ -95,6 +95,7 @@ public class GrabCapacity : NewActiveCapacity
     {
         Debug.DrawLine(casterInitPos, hitData.point, Color.red, 3);
         photonView.RPC("PlayHitEffect", RpcTarget.All, hitData.point);
+        champion.animator.SetBool("IsGrabbing", false);
 
         // We get hit IGrabable data
         var grabable = hitData.collider.gameObject.GetComponent<IGrabable>();
