@@ -22,7 +22,7 @@ public class DiveCapacity : NewActiveCapacity
     }
     
     [PunRPC]
-    public void SyncDataGrabCapacityRPC()
+    public void SyncDataDiveCapacityRPC()
     {
         caster = GetComponent<Entity>();
     }
@@ -31,7 +31,7 @@ public class DiveCapacity : NewActiveCapacity
     public void CastDiveCapacityRPC(int[] targetedEntities, Vector3[] targetedPositions)
     {
         // Set data
-        photonView.RPC("SyncDataGrabCapacityRPC", RpcTarget.All);
+        photonView.RPC("SyncDataDiveCapacityRPC", RpcTarget.All);
         
         if (TryCast())
         {
