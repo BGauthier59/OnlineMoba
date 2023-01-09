@@ -25,6 +25,10 @@ namespace Entities.Champion
     
         [SerializeField] private MeshRenderer teamConeRenderer;
 
+        [SerializeField] private Renderer[] meshes;
+        [SerializeField] private Material orangeTeam;
+        [SerializeField] private Material violetTeam;
+
         // Which tower is link
         private int towerLinkedIndex;
         
@@ -64,6 +68,19 @@ namespace Entities.Champion
         public void ApplyChampionSO(byte championSoIndex, Enums.Team newTeam)
         {
             team = newTeam;
+
+            if (team == Enums.Team.Neutral)
+            {
+                Debug.LogError("Neutral team?");
+                return;
+            }
+            
+            var material = team == Enums.Team.Team1 ? orangeTeam : violetTeam;
+
+            foreach (var rd in meshes)
+            {
+                rd.material = material;
+            }
 
             foreach (var tc in GameStateMachine.Instance.teamColors)
             {

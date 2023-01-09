@@ -50,17 +50,7 @@ public partial class Tower : Building
 
     private void SetUpColor()
     {
-        var color = Color.white;
-
-        foreach (var tc in GameStateMachine.Instance.teamColors)
-        {
-            if (tc.team == team) color = tc.color;
-        }
         
-        foreach (var rd in colorfulMeshes)
-        {
-            rd.material.SetColor(EmissionColor, color * 1);
-        }
     }
 
     // ReSharper disable Unity.PerformanceAnalysis
