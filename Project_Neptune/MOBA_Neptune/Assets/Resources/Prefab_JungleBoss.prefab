@@ -83,17 +83,18 @@ MonoBehaviour:
   lastEntityWhoAttackedMeIndex: 0
   uiTransform: {fileID: 0}
   guiOffset: {x: 0, y: 2, z: 0}
-  rb: {fileID: 0}
+  rb: {fileID: 5096569864970827369}
   animator: {fileID: 0}
   canShow: 0
   canHide: 0
-  elementsToShow: []
+  elementsToShow:
+  - {fileID: 5367110549584868214}
   canChangeTeam: 0
   team: 0
   baseViewRange: 0
   viewRange: 0
   viewAngle: 0
-  canView: 0
+  canView: 1
   meshFilterFoV: {fileID: 0}
   fogOfWarStartDetection: {fileID: 0}
   currentState: 0
@@ -119,7 +120,6 @@ MonoBehaviour:
   attackRange: 5.5
   wanderRange: 0.1
   myCamp: {fileID: 0}
-  isBoss: 1
 --- !u!114 &5096569864970827414
 MonoBehaviour:
   m_ObjectHideFlags: 0
