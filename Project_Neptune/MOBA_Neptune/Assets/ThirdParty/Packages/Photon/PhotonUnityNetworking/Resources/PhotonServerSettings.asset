@@ -275,6 +275,11 @@ MonoBehaviour:
   - GetSlowedFeedback
   - PlayIceImpactFeedback
   - PlayIceMuzzleFeedback
+  - CastDiveCapacityRPC
+  - SyncCanCastDiveCapacityRPC
+  - SyncCastDiveCapacityRPC
+  - SyncImpactFeedback
+  - EnableInputAfterHitGround
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1

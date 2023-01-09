@@ -122,26 +122,28 @@ public class IoAutoAttackCapacity : NewActiveCapacity
     private void CastSkillShot()
     {
         var allTargets = Physics.OverlapSphere(hitPoint, radius, targetableLayer);
-        Debug.DrawLine(hitPoint, hitPoint + Vector3.right * .5f, Color.red, 2f);
-        Debug.DrawLine(hitPoint, hitPoint - Vector3.right * .5f, Color.red, 2f);
-        Debug.DrawLine(hitPoint, hitPoint + Vector3.forward * .5f, Color.red, 2f);
-        Debug.DrawLine(hitPoint, hitPoint - Vector3.forward * .5f, Color.red, 2f);
+        Debug.DrawLine(hitPoint, hitPoint + Vector3.right * radius, Color.red, 2f);
+        Debug.DrawLine(hitPoint, hitPoint - Vector3.right * radius, Color.red, 2f);
+        Debug.DrawLine(hitPoint, hitPoint + Vector3.forward * radius, Color.red, 2f);
+        Debug.DrawLine(hitPoint, hitPoint - Vector3.forward * radius, Color.red, 2f);
         
         photonView.RPC("PlayIceImpactFeedback", RpcTarget.All, hitPoint);
         
         foreach (var c in allTargets)
         {
-            var damageable = c.GetComponent<IDamageable>();
-            damageable?.DecreaseCurrentHpRPC(damage, caster.entityIndex);
             var entity = c.GetComponent<Entity>();
             if (entity == null)
             {
                 Debug.LogWarning("Entity is null!");
-                return;
+                continue;
             }
+            if (entity.team == caster.team) continue;
+            
+            var damageable = c.GetComponent<IDamageable>();
+            damageable?.DecreaseCurrentHpRPC(damage, caster.entityIndex);
+           
 
-            if (entity.marked == null) return;
-            if (entity.team == caster.team) return;
+            if (entity.marked == null) continue;
             entity.marked.OnAddEffect();
         }
 

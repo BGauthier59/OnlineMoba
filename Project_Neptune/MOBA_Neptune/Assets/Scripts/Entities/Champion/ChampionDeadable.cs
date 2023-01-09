@@ -76,8 +76,8 @@ namespace Entities.Champion
         {
             if (!canDie)
             {
-                Debug.LogWarning($"{name} can't die!");
-                return;
+                Debug.LogWarning($"{name} can't die! mais on s'en fout c bon");
+                //return;
             }
 
             isAlive = false;
