@@ -1,3 +1,4 @@
+using Entities.Champion;
 using GameStates;
 using UnityEngine;
 
@@ -9,16 +10,13 @@ public partial class UIManager
     {
         Debug.Log("Has to be modified.");
         
-        /*
+        
         var champion = GameStateMachine.Instance.GetPlayerChampion();
 
         if (champion == null) return;
         if (!champion.photonView.IsMine) return;
-
-        var canvasIndex = champion.championSo.canvasIndex;
-        if (canvasIndex >= championOverlays.Length) canvasIndex = 0;
-        var canvasChampion = Instantiate(championOverlays[canvasIndex], transform);
+        
+        var canvasChampion = Instantiate(championOverlays[0], transform);
         canvasChampion.InitHUD(champion);
-        */
     }
 }

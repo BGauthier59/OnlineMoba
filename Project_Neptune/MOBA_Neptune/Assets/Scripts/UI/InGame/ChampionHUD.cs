@@ -62,12 +62,9 @@ public class ChampionHUD : MonoBehaviour
     public void InitHUD(Champion newChampion)
     {
         champion = newChampion;
-        lifeable = champion.GetComponent<IDamageable>();
-        //resourceable = champion.GetComponent<IResourceable>();
         castable = champion.GetComponent<ICastable>();
-
+        lifeable = champion.GetComponent<IDamageable>();
         healthBar.fillAmount = lifeable.GetCurrentHpPercent();
-        //resourceBar.fillAmount = resourceable.GetCurrentResourcePercent();
         LinkToEvents();
         UpdateIcons(champion);
     }

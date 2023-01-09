@@ -3,7 +3,9 @@ using Controllers.Inputs;
 using GameStates;
 using JetBrains.Annotations;
 using Photon.Pun;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Entities.Champion
 {
@@ -19,6 +21,7 @@ namespace Entities.Champion
         public LineRenderer grabLine;
         public List<TargetIndicator> targetIndicators;
         private bool isLinked;
+        public TextMeshProUGUI pointsText;
     
         [SerializeField] private MeshRenderer teamConeRenderer;
 

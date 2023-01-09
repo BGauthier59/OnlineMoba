@@ -11,6 +11,8 @@ namespace UIComponents
         
         public void InitHealthBar(Entity entity)
         {
+            GetComponent<Canvas>().renderMode = RenderMode.ScreenSpaceOverlay;
+            
             lifeable = (IDamageable)entity;
             
             transform.LookAt(transform.position + Camera.main.transform.rotation * Vector3.forward, Camera.main.transform.rotation * Vector3.up);

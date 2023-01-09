@@ -103,6 +103,8 @@ public class IoAutoAttackCapacity : NewActiveCapacity
     public void PlayIceMuzzleFeedback(Vector3 pos)
     {
         iceMuzzleFx.transform.position = pos;
+        var rotation = Mathf.Atan2(direction.z, direction.x) * Mathf.Rad2Deg ;
+        iceMuzzleFx.transform.rotation = Quaternion.Euler(0,0,rotation);
         iceMuzzleFx.Play();
     }
 
