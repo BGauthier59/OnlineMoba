@@ -14,6 +14,7 @@ namespace UIComponents
             GetComponent<Canvas>().renderMode = RenderMode.ScreenSpaceOverlay;
             
             lifeable = (IDamageable)entity;
+            entity.elementsToShow.Add(transform.GetChild(0).gameObject);
             
             transform.LookAt(transform.position + Camera.main.transform.rotation * Vector3.forward, Camera.main.transform.rotation * Vector3.up);
             healthBar.fillAmount = lifeable.GetCurrentHpPercent();

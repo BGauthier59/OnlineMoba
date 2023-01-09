@@ -45,7 +45,7 @@ GameObject:
   - component: {fileID: 4869544389690288109}
   - component: {fileID: 4869544389690288111}
   - component: {fileID: 4869544389690288110}
-  - component: {fileID: 688581485}
+  - component: {fileID: 2295322371953131875}
   m_Layer: 0
   m_Name: VisionSpotTop
   m_TagString: Untagged
@@ -61,7 +61,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4869544389690288104}
   m_LocalRotation: {x: 0, y: -0.38268343, z: 0, w: 0.92387956}
-  m_LocalPosition: {x: -40.215, y: 0.11, z: 19.752}
+  m_LocalPosition: {x: -40.215, y: -0.06, z: 19.752}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 7587967015256271326}
@@ -152,8 +152,8 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &688581485
-MeshCollider:
+--- !u!65 &2295322371953131875
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -162,10 +162,9 @@ MeshCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: -58269183931493439, guid: 23d916909ca4af64c8c001639f7237f9, type: 3}
+  serializedVersion: 2
+  m_Size: {x: 4.13, y: 4.29, z: 3.07}
+  m_Center: {x: 0.09092057, y: 2, z: -0.0087862015}
 --- !u!1 &4869544390329958374
 GameObject:
   m_ObjectHideFlags: 0
