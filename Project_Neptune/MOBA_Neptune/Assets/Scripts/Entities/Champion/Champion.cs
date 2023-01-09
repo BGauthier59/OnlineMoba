@@ -153,13 +153,13 @@ namespace Entities.Champion
             {
                 if (team == Enums.Team.Team1)
                 {
-                    var tower1 = EntityCollectionManager.GetEntityByIndex(8).GetComponent<Tower>();
+                    var tower1 = EntityCollectionManager.GetEntityByIndex(300).GetComponent<Tower>();
                     towerLinkedIndex = tower1.entityIndex;
                     tower1.entityLinkIndex = entityIndex;
                 }
                 else if (team == Enums.Team.Team2)
                 {
-                    var tower3 = EntityCollectionManager.GetEntityByIndex(10).GetComponent<Tower>();
+                    var tower3 = EntityCollectionManager.GetEntityByIndex(301).GetComponent<Tower>();
                     towerLinkedIndex = tower3.entityIndex;
                     tower3.entityLinkIndex = entityIndex;
                 }
@@ -168,13 +168,13 @@ namespace Entities.Champion
             {
                 if (team == Enums.Team.Team1)
                 {
-                    var tower0 = EntityCollectionManager.GetEntityByIndex(7).GetComponent<Tower>();
+                    var tower0 = EntityCollectionManager.GetEntityByIndex(302).GetComponent<Tower>();
                     towerLinkedIndex = tower0.entityIndex;
                     tower0.entityLinkIndex = entityIndex;
                 }
                 else if (team == Enums.Team.Team2)
                 {
-                    var tower2 = EntityCollectionManager.GetEntityByIndex(9).GetComponent<Tower>();
+                    var tower2 = EntityCollectionManager.GetEntityByIndex(303).GetComponent<Tower>();
                     towerLinkedIndex = tower2.entityIndex;
                     tower2.entityLinkIndex = entityIndex;
                 }
