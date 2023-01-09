@@ -55,7 +55,9 @@ namespace Entities.Champion
         {
             var entity = EntityCollectionManager.GetEntityByIndex(entityIndex);
             entity.currentPointCarried = 0;
-            if (entity.GetComponent<Champion>()) entity.GetComponent<Champion>().pointsText.text = entity.currentPointCarried.ToString();
+            var champ = entity.GetComponent<Champion>();
+            if (champ == null) return;
+            champ.pointsText.text = entity.currentPointCarried.ToString();
         }
     }
 }

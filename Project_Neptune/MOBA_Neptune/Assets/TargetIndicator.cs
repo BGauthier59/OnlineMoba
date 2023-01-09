@@ -65,7 +65,6 @@ public class TargetIndicator : MonoBehaviourPun
                     arrowSprites[0].SetActive(dir.magnitude > hideDistance);
                 }
             }
-            Debug.Log(i + "  " + targetPositions[i]);
         }
     }
     

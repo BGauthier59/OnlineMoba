@@ -14,11 +14,16 @@ public class SlowedCapacity : NewPassiveCapacity
     [SerializeField] private float speedModifier;
     private float initSpeed;
 
-    public override void OnUpdateEffect()
+    private void Update()
     {
         if (!PhotonNetwork.IsMasterClient) return;
         if (!isActive) return;
 
+        OnUpdateEffect();
+    }
+    
+    public override void OnUpdateEffect()
+    {
         CheckTimer();
     }
 
@@ -26,21 +31,22 @@ public class SlowedCapacity : NewPassiveCapacity
     public override void OnAddEffect(Entity giver = null, Vector3 position = default)
     {
         Debug.Log("slowed!");
+        if (isActive) return;
+        
         var moveable = entityUnderEffect.GetComponent<IMoveable>();
         if (moveable == null) return;
 
         photonView.RPC("GetSlowedFeedback", RpcTarget.All);
 
         var championUnderEffect = ((Champion)entityUnderEffect);
-        initSpeed = championUnderEffect.currentMoveSpeed;
-        moveable.SetCurrentMoveSpeedRPC(championUnderEffect.currentMoveSpeed / speedModifier);
+        initSpeed = championUnderEffect.referenceMoveSpeed;
+        moveable.SetCurrentMoveSpeedRPC(championUnderEffect.referenceMoveSpeed / speedModifier);
 
         base.OnAddEffect(giver, position);
     }
 
     private void CheckTimer()
     {
-        Debug.Log(timer);
         if (timer >= duration)
         {
             timer = 0f;
