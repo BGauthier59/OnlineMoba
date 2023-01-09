@@ -32,7 +32,7 @@ namespace Entities.Champion
             var entity = EntityCollectionManager.GetEntityByIndex(entityIndex);
             entity.currentPointCarried = value;
             
-            if (entity.GetComponent<Champion>()) entity.GetComponent<Champion>().pointsText.text = entity.currentPointCarried.ToString();
+            //if (entity.GetComponent<Champion>()) entity.GetComponent<Champion>().pointsText.text = entity.currentPointCarried.ToString();
         }
 
         [PunRPC]
@@ -55,7 +55,8 @@ namespace Entities.Champion
         {
             var entity = EntityCollectionManager.GetEntityByIndex(entityIndex);
             entity.currentPointCarried = 0;
-            if (entity.GetComponent<Champion>()) entity.GetComponent<Champion>().pointsText.text = entity.currentPointCarried.ToString();
+            
+            //if (entity.GetComponent<Champion>()) entity.GetComponent<Champion>().pointsText.text = entity.currentPointCarried.ToString();
         }
     }
 }
