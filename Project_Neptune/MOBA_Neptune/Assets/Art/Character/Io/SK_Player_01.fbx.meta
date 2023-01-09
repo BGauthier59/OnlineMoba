@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: c30bf255eb3bec344be133f542667889
+guid: f89e9c53086685c489d5acec3620b63c
 ModelImporter:
   serializedVersion: 20300
   internalIDToNameTable: []
@@ -7,13 +7,8 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: Map_Blocking_Algues1
-    second: {fileID: 2100000, guid: 5a49f40134be4ff43abeff97ab4dccc3, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: pasted__pasted__Algues1
-    second: {fileID: 2100000, guid: 5a49f40134be4ff43abeff97ab4dccc3, type: 2}
+      name: M_Player_01
+    second: {fileID: 2100000, guid: 5daf0e6df77c05c47a6571ad2e5a14a7, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
@@ -31,7 +26,7 @@ ModelImporter:
     animationImportWarnings: 
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
-    importAnimatedCustomProperties: 0
+    importAnimatedCustomProperties: 1
     importConstraints: 0
     animationCompression: 1
     animationRotationError: 0.5
