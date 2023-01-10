@@ -14,24 +14,34 @@ public class SlowedCapacity : NewPassiveCapacity
     [SerializeField] private float speedModifier;
     private float initSpeed;
 
-    public override void OnUpdateEffect()
+    private void Update()
     {
-        if(isActive) CheckTimer();
+        if (!PhotonNetwork.IsMasterClient) return;
+        if (!isActive) return;
+
+        OnUpdateEffect();
     }
     
+    public override void OnUpdateEffect()
+    {
+        CheckTimer();
+    }
+
     // Se lance sur le Master
     public override void OnAddEffect(Entity giver = null, Vector3 position = default)
     {
         Debug.Log("slowed!");
+        if (isActive) return;
+        
         var moveable = entityUnderEffect.GetComponent<IMoveable>();
         if (moveable == null) return;
-        
+
         photonView.RPC("GetSlowedFeedback", RpcTarget.All);
 
-        var championUnderEffect = ((Champion) entityUnderEffect);
-        initSpeed = championUnderEffect.currentMoveSpeed;
-        moveable.SetCurrentMoveSpeedRPC(championUnderEffect.currentMoveSpeed / speedModifier);
-        
+        var championUnderEffect = ((Champion)entityUnderEffect);
+        initSpeed = championUnderEffect.referenceMoveSpeed;
+        moveable.SetCurrentMoveSpeedRPC(championUnderEffect.referenceMoveSpeed / speedModifier);
+
         base.OnAddEffect(giver, position);
     }
 
@@ -47,28 +57,27 @@ public class SlowedCapacity : NewPassiveCapacity
             timer += Time.deltaTime;
         }
     }
-    
+
     public override void OnRemoveEffect()
     {
         Debug.Log("not slowed any more");
         photonView.RPC("CancelSlowFeedback", RpcTarget.All);
-        var championUnderEffect = ((Champion) entityUnderEffect);
+        var championUnderEffect = ((Champion)entityUnderEffect);
         championUnderEffect.SetCurrentMoveSpeedRPC(initSpeed);
         base.OnRemoveEffect();
     }
-    
+
     [PunRPC]
     public void GetSlowedFeedback()
     {
         // Feedbacks
         slowedFx.Play();
     }
-    
+
     [PunRPC]
     public void CancelSlowFeedback()
     {
         // Feedbacks
         slowedFx.Stop();
     }
-
 }
