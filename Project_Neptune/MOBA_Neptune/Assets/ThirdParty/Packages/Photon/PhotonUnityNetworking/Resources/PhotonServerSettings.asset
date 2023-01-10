@@ -34,252 +34,183 @@ MonoBehaviour:
   RunInBackground: 1
   StartInOfflineMode: 0
   RpcList:
-  - ClickRpc
-  - DestroyRpc
-  - DestroySpaceship
-  - Fire
-  - RespawnSpaceship
-  - AddPassiveCapacityRPC
-  - RemoveEntityByIndexRPC
-  - AddPassiveCapacityByCapacitySOindexRPC
-  - RemovePassiveCapacityByIndexRPC
-  - AddPassiveCapacityByCapacitySOIndexRPC
-  - SetCanAddPassiveCapacityRPC
-  - SetCanRemovePassiveCapacityRPC
-  - SyncSetCanAddPassiveCapacityRPC
-  - SyncSetCanRemovePassiveCapacityRPC
-  - SyncRenderFogRPC
-  - AddItemRPC
+  - AddGrabbedEffectRPC
+  - AddPlayerRPC
+  - AttackEndFeedback
+  - AttackFeedback
   - AttackRPC
+  - CancelSlowFeedback
+  - CashierIncreaseScoreRPC
+  - CastCapacityRPC
+  - CastDiveCapacityRPC
+  - CastGrabCapacityRPC
+  - CastIoAutoAttackCapacityRPC
+  - CastMinionJungleAutoAttackCapacityRPC
+  - CastOnMoveEventRPC
   - CastRPC
+  - CastSecondaryMinionJungleCapacityRPC
+  - CastWaddyAutoAttackCapacityRPC
+  - ChampionIncreaseScore
   - ChangeTeamRPC
+  - ClickRpc
   - DecreaseCurrentHpRPC
   - DecreaseCurrentMoveSpeedRPC
-  - DecreaseCurrentRessourceRPC
+  - DecreaseCurrentResourceRPC
   - DecreaseMaxHpRPC
-  - DecreaseMaxRessourceRPC
+  - DecreaseMaxResourceRPC
   - DecreaseReferenceMoveSpeedRPC
+  - DestroyRpc
   - DieRPC
+  - DisableClairvoyanceSpotRpc
   - DisplaceRPC
+  - DisplayEnemiesRPC
+  - EnableClaivoyanceSpotRPC
+  - EnableInputAfterHitGround
+  - GetConnectedPlayersInformationRPC
+  - GetMarkedFeedbackRPC
+  - GetSlowedFeedback
   - IncreaseCurrentHpRPC
   - IncreaseCurrentMoveSpeedRPC
-  - IncreaseCurrentRessourceRPC
+  - IncreaseCurrentResourceRPC
   - IncreaseMaxHpRPC
-  - IncreaseMaxRessourceRPC
+  - IncreaseMaxResourceRPC
   - IncreaseReferenceMoveSpeedRPC
-  - MoveRPC
-  - RemoveItemRPC
+  - MoveToGameScene
+  - MoveWhileHookedRPC
+  - OnHitTargetRPC
+  - OnTargetedRPC
+  - OnUntargetedRPC
+  - PlayHitEffect
+  - PlayIceImpactFeedback
+  - PlayIceMuzzleFeedback
+  - RemoveEntityByIndexRPC
+  - RemoveGrabbedEffectRPC
+  - RemovePlayerRPC
+  - ResetLrRPC
   - ReviveRPC
+  - SendDataDictionaryRPC
+  - SetBaseViewRangeRPC
+  - SetCanAddPassiveCapacityRPC
   - SetCanAttackRPC
   - SetCanBeDisplacedRPC
+  - SetCanBeGrabbedRPC
+  - SetCanBeTargetedRPC
   - SetCanCastRPC
   - SetCanDieRPC
+  - SetCanHideRPC
   - SetCanMoveRPC
+  - SetCanRemovePassiveCapacityRPC
+  - SetCanShowRPC
+  - SetCanViewRPC
+  - SetChampionRPC
+  - SetCurrentHpPercentRPC
   - SetCurrentHpRPC
   - SetCurrentMoveSpeedRPC
-  - SetCurrentRessourcePercentRPC
-  - SetCurrentRessourceRPC
+  - SetCurrentResourcePercentRPC
+  - SetCurrentResourceRPC
+  - SetIsUnderStreamEffectRPC
   - SetMaxHpRPC
-  - SetMaxRessourceRPC
+  - SetMaxResourceRPC
+  - SetReadyRPC
   - SetReferenceMoveSpeedRPC
+  - SetTeamRPC
   - SetViewRangeRPC
-  - SyncAddItemRPC
+  - ShowRPC
+  - StartCurrentStateRPC
+  - SyncAddPlayerRPC
+  - SyncAddShowableRPC
+  - SyncAllScores
   - SyncAttackRPC
+  - SyncCanBeGrabbedRPC
+  - SyncCanCastDiveCapacityRPC
+  - SyncCanCastGrabCapacityRPC
+  - SyncCanCastIoAutoAttackCapacityRPC
+  - SyncCanCastWaddyAutoAttackCapacityRPC
+  - SyncCashierIncreaseScoreRPC
+  - SyncCastCapacityRPC
+  - SyncCastDiveCapacityRPC
+  - SyncCastGrabCapacityRPC
+  - SyncCastIoAutoAttackCapacityRPC
   - SyncCastRPC
+  - SyncCastSecondaryMinionJungleCapacityRPC
+  - SyncChampionIncreaseScore
+  - SyncChampionPhotonId
+  - SyncChampionRemoveScore
   - SyncChangeTeamRPC
+  - SyncDataDictionaryRPC
+  - SyncDataDiveCapacityRPC
+  - SyncDataGrabCapacityRPC
+  - SyncDataIoAutoAttackCapacityRPC
+  - SyncDataJungleAutoAttackCapacityRPC
+  - SyncDataWaddyAutoAttackCapacityRPC
   - SyncDecreaseCurrentHpRPC
   - SyncDecreaseCurrentMoveSpeedRPC
-  - SyncDecreaseCurrentRessourceRPC
+  - SyncDecreaseCurrentResourceRPC
   - SyncDecreaseMaxHpRPC
-  - SyncDecreaseMaxRessourceRPC
+  - SyncDecreaseMaxResourceRPC
   - SyncDecreaseReferenceMoveSpeedRPC
   - SyncDieRPC
+  - SyncDisableClairvoyanceSpotRPC
   - SyncDisplaceRPC
+  - SyncDisplayEnemiesRPC
+  - SyncEnableClaivoyanceSpotRPC
+  - SyncGetConnectedPlayersInformationRPC
+  - SyncImpactFeedback
   - SyncIncreaseCurrentHpRPC
   - SyncIncreaseCurrentMoveSpeedRPC
-  - SyncIncreaseCurrentRessourceRPC
+  - SyncIncreaseCurrentResourceRPC
   - SyncIncreaseMaxHpRPC
-  - SyncIncreaseMaxRessourceRPC
+  - SyncIncreaseMaxResourceRPC
   - SyncIncreaseReferenceMoveSpeedRPC
-  - SyncMoveRPC
-  - SyncRemoveItemRPC
+  - SyncInstantiateRPC
+  - SyncLaunchAARPC
+  - SyncLineFeedbackRPC
+  - SyncLineRendererRPC
+  - SyncOnGrabbedRPC
+  - SyncOnTargetedRPC
+  - SyncOnUnGrabbed
+  - SyncOnUntargetedRPC
+  - SyncPlayerInfoRPC
+  - SyncRemovePlayerRPC
+  - SyncRemoveShowableRPC
   - SyncReviveRPC
+  - SyncSetBaseViewRangeRPC
+  - SyncSetCanAddPassiveCapacityRPC
   - SyncSetCanAttackRPC
   - SyncSetCanBeDisplacedRPC
+  - SyncSetCanBeTargetedRPC
   - SyncSetCanCastRPC
   - SyncSetCanDieRPC
+  - SyncSetCanHideRPC
   - SyncSetCanMoveRPC
+  - SyncSetCanRemovePassiveCapacityRPC
+  - SyncSetCanViewRPC
+  - SyncSetChampionRPC
   - SyncSetCurrentHpPercentRPC
   - SyncSetCurrentHpRPC
   - SyncSetCurrentMoveSpeedRPC
-  - SyncSetCurrentRessourcePercentRPC
-  - SyncSetCurrentRessourceRPC
-  - SyncSetMaxHpRPC
-  - SyncSetMaxRessourceRPC
-  - SyncSetReferenceMoveSpeedRPC
-  - SyncSetViewRangeRPC
-  - SyncStatesRPC
-  - AddFOWSeeableRPC
-  - HideElementsRPC
-  - OnTargetedRPC
-  - OnUntargetedRPC
-  - RemoveFOWSeeableRPC
-  - RenderFOWRPC
-  - SetBaseViewRangeRPC
-  - SetCanBeTargetedRPC
-  - SetCanHideRPC
-  - SetCanShowRPC
-  - SetCanViewRPC
-  - SetCurrentHpPercentRPC
-  - ShowElementsRPC
-  - SyncAddFOWSeeableRPC
-  - SyncOnTargetedRPC
-  - SyncOnUntargetedRPC
-  - SyncRemoveFOWSeeableRPC
-  - SyncSetBaseViewRangeRPC
-  - SyncSetCanBeTargetedRPC
-  - SyncSetCanHideRPC
-  - SyncSetCanShowRPC
-  - SyncSetCanViewRPC
-  - AddToCurrentItemsRPC
-  - RemoveToCurrentItemsRPC
-  - DecreaseCurrentResourceRPC
-  - DecreaseMaxResourceRPC
-  - IncreaseCurrentResourceRPC
-  - IncreaseMaxResourceRPC
-  - SetCurrentResourcePercentRPC
-  - SetCurrentResourceRPC
-  - SetMaxResourceRPC
-  - SyncDecreaseCurrentResourceRPC
-  - SyncDecreaseMaxResourceRPC
-  - SyncIncreaseCurrentResourceRPC
-  - SyncIncreaseMaxResourceRPC
   - SyncSetCurrentResourcePercentRPC
   - SyncSetCurrentResourceRPC
-  - SyncSetMaxResourceRPC
-  - SyncInitStateRPC
-  - SyncSwitchStateRPC
-  - TickRPC
-  - AddPlayerRPC
-  - RemovePlayerRPC
-  - SyncAddPlayerRPC
-  - SyncRemovePlayerRPC
-  - ToggleReadyRPC
-  - SyncInstantiate
-  - LoadMapRPC
-  - SetReadyRPC
-  - SyncInstantiateRPC
-  - SetChampionRPC
-  - SetTeamRPC
-  - SyncSetChampionRPC
-  - SyncSetTeamRPC
-  - SyncAddShowableRPC
-  - SyncRemoveShowableRPC
-  - SyncTryAddViewableRPC
-  - SyncTryRemoveViewableRPC
-  - AssignInventory
-  - StartGameRPC
-  - SyncStartGameRPC
-  - ShowRPC
-  - SyncShowRPC
-  - GetConnectedPlayersInformationRPC
-  - SyncGetConnectedPlayersInformationRPC
-  - SetStartPosition
-  - StartCurrentStateRPC
-  - SyncStartCurrentStateRPC
-  - LinkToPlayerRPC
-  - ApplyChampionSORPC
-  - ActivateItemRPC
-  - SyncActivateItemRPC
-  - SetColorRPC
-  - SyncSetColorRPC
-  - MoveToGameScene
-  - SPAM
-  - SendDataDictionaryRPC
-  - SyncDataDictionaryRPC
-  - SyncWinnerRPC
-  - SyncChampionPhotonId
-  - StartFollowEntity
-  - StartFollowEntityRPC
-  - SyncChampionPhotonId
-  - RequestDecreaseCurrentHp
-  - RequestDie
-  - SyncAddPassiveCapacityRPC
-  - SyncRemovePassiveCapacityRPC
-  - SyncAddPassiveCapacityRPC
-  - SyncRemovePassiveCapacityRPC
-  - OnGrabbedRPC
-  - SetCanBeGrabbedRPC
-  - SyncCanBeGrabbedRPC
-  - SyncOnGrabbedRPC
-  - SetIncreaseScoreRPC
-  - SyncIncreaseScoreRPC
-  - SyncAllScores
-  - SyncOnUnGrabbed
-  - SyncSetVelocityRPC
-  - SyncShootRPC
-  - SyncMinionTeamRPC
-  - Shoot
-  - SyncLaunchAARPC
-  - SyncMinionColor
-  - CashierIncreaseScoreRPC
-  - ChampionIncreaseScore
-  - ResetLrRPC
-  - SyncCashierIncreaseScoreRPC
-  - SyncChampionIncreaseScore
-  - SyncChampionRemoveScore
-  - SyncLineRendererRPC
-  - SyncPlayerInfoRPC
-  - SyncCancelCooldown
-  - Please
-  - CastCapacityRPC
-  - PlayHitEffect
-  - SyncCastCapacityRPC
-  - SyncDataRPC
-  - SyncCanCastCapacityRPC
-  - SyncCanCastGrabCapacityRPC
-  - CastGrabCapacityRPC
-  - CastIoAutoAttackCapacityRPC
-  - SyncCastGrabCapacityRPC
-  - SyncCastIoAutoAttackCapacityRPC
-  - SyncDataGrabCapacityRPC
-  - SyncDataIoAutoAttackCapacityRPC
-  - SyncCanCastIoAutoAttackCapacityRPC
-  - SetIsUnderStreamEffectRPC
   - SyncSetIsUnderStreamEffectRPC
-  - CastOnMoveEventRPC
-  - CastMinionJungleAutoAttackCapacityRPC
-  - SyncDataJungleAutoAttackCapacityRPC
-  - SyncTowerActiveRpc
-  - AddGrabbedEffectRPC
-  - RemoveGrabbedEffectRPC
-  - DisableClairvoyanceSpotRpc
-  - EnableClaivoyanceSpotRPC
-  - SyncDisableClairvoyanceSpotRPC
-  - SyncEnableClaivoyanceSpotRPC
-  - DisplayEnemiesRPC
-  - SyncDisplayEnemiesRPC
-  - SyncUndisplayEnemiesRPC
-  - UndisplayEnemiesRPC
-  - CastSecondaryMinionJungleCapacityRPC
-  - SyncCastSecondaryMinionJungleCapacityRPC
-  - MoveWhileHookedRPC
-  - OnHitTargetRPC
-  - SyncLineFeedbackRPC
+  - SyncSetMaxHpRPC
+  - SyncSetMaxResourceRPC
+  - SyncSetReferenceMoveSpeedRPC
+  - SyncSetTeamRPC
+  - SyncSetVelocityRPC
+  - SyncSetViewRangeRPC
+  - SyncShowRPC
+  - SyncStartCurrentStateRPC
+  - SyncStartGameRPC
   - SyncSwitchStateHitting
   - SyncSwitchStateMoving
-  - CastSecondaryMinionJungleCapacityRPC
-  - SyncCastSecondaryMinionJungleCapacityRPC
-  - GetMarkedFeedbackRPC
-  - CancelSlowFeedback
-  - GetSlowedFeedback
-  - PlayIceImpactFeedback
-  - PlayIceMuzzleFeedback
-  - CastDiveCapacityRPC
-  - SyncCanCastDiveCapacityRPC
-  - SyncCastDiveCapacityRPC
-  - SyncImpactFeedback
-  - EnableInputAfterHitGround
+  - SyncSwitchStateRPC
+  - SyncTowerActiveRpc
+  - SyncTryAddViewableRPC
+  - SyncTryRemoveViewableRPC
+  - SyncUndisplayEnemiesRPC
+  - SyncWaddyAutoAttackCastCapacityRPC
+  - SyncWinnerRPC
+  - UndisplayEnemiesRPC
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1

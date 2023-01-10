@@ -55,6 +55,5 @@ namespace Entities.Champion
         {
             var entity = EntityCollectionManager.GetEntityByIndex(entityIndex);
             entity.currentPointCarried = 0;
-        }
     }
 }

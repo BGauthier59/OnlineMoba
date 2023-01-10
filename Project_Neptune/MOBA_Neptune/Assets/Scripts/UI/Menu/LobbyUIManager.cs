@@ -32,6 +32,8 @@ public class LobbyUIManager : MonoBehaviourPun
     [SerializeField] private Animation ioAnim;
 
     [Header("Network")] [SerializeField] private ClientInformation[] allClientsInformation;
+    [SerializeField] private Color readyColor;
+    [SerializeField] private Color notReadyColor;
 
     [Header("Data")] private byte currentChampion;
     private Enums.Team currentTeam;
@@ -70,9 +72,6 @@ public class LobbyUIManager : MonoBehaviourPun
             if (tc.team == Enums.Team.Team1) firstTeamColor = tc.color;
             if (tc.team == Enums.Team.Team2) secondTeamColor = tc.color;
         }
-
-        //firstChampionColorImage.color = unselectedChampionColor;
-        //secondChampionColorImage.color = unselectedChampionColor;
 
         // Default is no champion selected
         currentChampion = 2;
@@ -201,8 +200,8 @@ public class LobbyUIManager : MonoBehaviourPun
         allClientsInformation[photonID - 1].obj.SetActive(true);
         allClientsInformation[photonID - 1].clientChampionNameText.text = champion switch
         {
-            0 => "Champion 1",
-            1 => "Champion 2",
+            0 => "Io",
+            1 => "Waddy",
             2 => "Waiting...",
             _ => "No valid!"
         };
@@ -215,7 +214,7 @@ public class LobbyUIManager : MonoBehaviourPun
             _ => allClientsInformation[photonID].clientTeamColorfulImage.color
         };
 
-        allClientsInformation[photonID - 1].clientReadyStateImage.color = ready ? Color.green : Color.red;
+        allClientsInformation[photonID - 1].clientReadyStateImage.color = ready ? readyColor : notReadyColor;
     }
 
     private void RequestGetConnectedPlayersInformation()

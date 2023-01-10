@@ -31,8 +31,9 @@ namespace Entities.Champion
 
         public void SetIndexes()
         {
+            return;
             // Attack
-            attackAbilityIndex = CapacitySOCollectionManager.GetActiveCapacitySOIndex(attackAbility);
+            //attackAbilityIndex = CapacitySOCollectionManager.GetActiveCapacitySOIndex(attackAbility);
         
             // Passives
             /*

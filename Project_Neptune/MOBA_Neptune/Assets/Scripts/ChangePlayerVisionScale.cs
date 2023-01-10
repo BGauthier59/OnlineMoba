@@ -9,6 +9,7 @@ public class ChangePlayerVisionScale : MonoBehaviourPun
 
     private void OnTriggerEnter(Collider other)
     {
+        return;
         if (other.GetComponent<Champion>() == null) return;
 
         var newChampCollide = other.GetComponent<Champion>();
