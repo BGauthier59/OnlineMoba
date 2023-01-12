@@ -45,7 +45,7 @@ GameObject:
   - component: {fileID: 7824304504136417106}
   - component: {fileID: 7824304504136417104}
   - component: {fileID: 7824304504136417105}
-  - component: {fileID: 3387159572626846682}
+  - component: {fileID: 3387159572626846680}
   m_Layer: 0
   m_Name: VisionSpotOrange
   m_TagString: Untagged
@@ -152,20 +152,19 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &3387159572626846682
-MeshCollider:
+--- !u!65 &3387159572626846680
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7824304504136417111}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: -58269183931493439, guid: 23d916909ca4af64c8c001639f7237f9, type: 3}
+  serializedVersion: 2
+  m_Size: {x: 5.11, y: 3, z: 2.9}
+  m_Center: {x: 0, y: 1, z: 0}
 --- !u!1 &7824304504436336473
 GameObject:
   m_ObjectHideFlags: 0
@@ -179,7 +178,7 @@ GameObject:
   - component: {fileID: 7824304504436336468}
   - component: {fileID: 7824304504436336474}
   - component: {fileID: 7824304504436336475}
-  - component: {fileID: 3387159572626846680}
+  - component: {fileID: 3387159572626846682}
   m_Layer: 0
   m_Name: VisionSpotViolet
   m_TagString: Untagged
@@ -286,17 +285,16 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &3387159572626846680
-MeshCollider:
+--- !u!65 &3387159572626846682
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7824304504436336473}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: -58269183931493439, guid: 23d916909ca4af64c8c001639f7237f9, type: 3}
+  serializedVersion: 2
+  m_Size: {x: 5.25, y: 3, z: 3.31}
+  m_Center: {x: 0, y: 1, z: 0}

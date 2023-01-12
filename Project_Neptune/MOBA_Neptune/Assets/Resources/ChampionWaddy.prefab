@@ -880,7 +880,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3480681341152264625}
   - component: {fileID: 5698148310340446966}
-  m_Layer: 29
+  m_Layer: 0
   m_Name: MeshParent
   m_TagString: Untagged
   m_Icon: {fileID: 4422084297763085224, guid: 0000000000000000d000000000000000, type: 0}
@@ -1129,11 +1129,14 @@ MonoBehaviour:
   animator: {fileID: 5626455476164154150}
   canShow: 0
   canHide: 0
-  elementsToShow: []
+  elementsToShow:
+  - {fileID: 3480681341152264626}
+  - {fileID: 3480681342087303709}
+  - {fileID: 438317598091365069}
   canChangeTeam: 0
   team: 0
-  baseViewRange: 7
-  viewRange: 7
+  baseViewRange: 1
+  viewRange: 1
   viewAngle: 360
   canView: 1
   meshFilterFoV: {fileID: 3480681341397647661}
