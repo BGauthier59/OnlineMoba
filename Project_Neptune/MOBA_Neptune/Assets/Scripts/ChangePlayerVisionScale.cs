@@ -9,14 +9,13 @@ public class ChangePlayerVisionScale : MonoBehaviourPun
 
     private void OnTriggerEnter(Collider other)
     {
-        return;
         if (other.GetComponent<Champion>() == null) return;
 
         var newChampCollide = other.GetComponent<Champion>();
         
         if (isTopEntry)
         {
-            if (other.transform.position.z > transform.position.z) // Entre dans la jungle par le haut 
+            if (other.transform.position.z < transform.position.z) // Entre dans la jungle par le haut 
             {
                 Debug.Log("Exit Jungle");
                 newChampCollide.photonView.RPC("SetViewRangeRPC", RpcTarget.MasterClient, newChampCollide.entityIndex, newChampCollide.baseViewRange);
@@ -29,7 +28,7 @@ public class ChangePlayerVisionScale : MonoBehaviourPun
         }
         else
         {
-            if (other.transform.position.z < transform.position.z) // Trigger collide par le haut 
+            if (other.transform.position.z > transform.position.z) // Trigger collide par le haut 
             {
                 Debug.Log("Exit Jungle");
                 newChampCollide.photonView.RPC("SetViewRangeRPC", RpcTarget.MasterClient, newChampCollide.entityIndex, newChampCollide.baseViewRange);
