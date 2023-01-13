@@ -5817,6 +5817,10 @@ PrefabInstance:
       value: Jungle_Rock_05
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 113ab49df215b3246bcf3efaa762880e, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 113ab49df215b3246bcf3efaa762880e, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 0
       objectReference: {fileID: 0}
@@ -14967,6 +14971,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: VioletTower
       objectReference: {fileID: 0}
+    - target: {fileID: 1933726386559772343, guid: efa95dbe8bd90d0459de9d3968974d54, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 2697394326763812274, guid: efa95dbe8bd90d0459de9d3968974d54, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -19599,6 +19607,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: OrangeTower
       objectReference: {fileID: 0}
+    - target: {fileID: 1933726386559772343, guid: efa95dbe8bd90d0459de9d3968974d54, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 2697394326763812274, guid: efa95dbe8bd90d0459de9d3968974d54, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -23977,7 +23989,7 @@ MonoBehaviour:
   spawnMinionInterval: 1.5
   spawnCycleTime: 30
   goToPointBeforeStream: {fileID: 1332538914}
-  pointsCarriedAtStartByMinions: 2
+  pointsCarriedAtStartByMinions: 1
   teamMat: {fileID: 2100000, guid: 1ef5e282ebd4e2247b15abf2d66ec425, type: 2}
 --- !u!114 &1227025858
 MonoBehaviour:
@@ -31745,6 +31757,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: OrangeTower
       objectReference: {fileID: 0}
+    - target: {fileID: 1933726386559772343, guid: efa95dbe8bd90d0459de9d3968974d54, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 2697394326763812274, guid: efa95dbe8bd90d0459de9d3968974d54, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -34566,7 +34582,7 @@ MonoBehaviour:
   spawnMinionInterval: 1.5
   spawnCycleTime: 30
   goToPointBeforeStream: {fileID: 1786296966}
-  pointsCarriedAtStartByMinions: 2
+  pointsCarriedAtStartByMinions: 1
   teamMat: {fileID: 2100000, guid: cbcfbb57618f0564b832eefad78bb953, type: 2}
 --- !u!114 &1844950594
 MonoBehaviour:
@@ -47624,8 +47640,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 1, y: 3.2249572, z: 1}
+  m_Center: {x: 0, y: 1.1124786, z: 0}
 --- !u!1 &2517927490510145697
 GameObject:
   m_ObjectHideFlags: 0
@@ -47656,7 +47672,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0015da4a20444d479ad83b46a697425, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isTopEntry: 1
+  isTopEntry: 0
   newViewRange: 3.5
 --- !u!4 &2517927490510145725
 Transform:
@@ -47715,8 +47731,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 1, y: 3.2305105, z: 1}
+  m_Center: {x: 0, y: 1.1152552, z: 0}
 --- !u!114 &2517927491006292223
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -47729,7 +47745,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0015da4a20444d479ad83b46a697425, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isTopEntry: 0
+  isTopEntry: 1
   newViewRange: 3.5
 --- !u!114 &2522770648544111440
 MonoBehaviour:
@@ -73179,6 +73195,10 @@ PrefabInstance:
     - target: {fileID: 1698140850512539205, guid: efa95dbe8bd90d0459de9d3968974d54, type: 3}
       propertyPath: m_Name
       value: VioletTower
+      objectReference: {fileID: 0}
+    - target: {fileID: 1933726386559772343, guid: efa95dbe8bd90d0459de9d3968974d54, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 2919068966489587762, guid: efa95dbe8bd90d0459de9d3968974d54, type: 3}
       propertyPath: m_RootOrder
