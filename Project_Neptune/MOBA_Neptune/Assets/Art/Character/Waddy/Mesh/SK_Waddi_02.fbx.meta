@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 9cc98af97c942964e9550dd52232bd89
+guid: 213ec6b8fbede7b4d8a3878a0a84f8a3
 ModelImporter:
   serializedVersion: 20300
   internalIDToNameTable: []
@@ -33,8 +33,8 @@ ModelImporter:
     clipAnimations:
     - serializedVersion: 16
       name: Anim_Waddi_Idle
-      takeName: Take 001
-      internalID: 1827226128182048838
+      takeName: Armature|Armature|Take 001|BaseLayer
+      internalID: 5862543501114407046
       firstFrame: 2
       lastFrame: 28
       wrapMode: 0
@@ -62,8 +62,8 @@ ModelImporter:
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
       name: Anim_Waddi_Swim
-      takeName: Take 001
-      internalID: -998496362607748373
+      takeName: Armature|Armature|Take 001|BaseLayer
+      internalID: -116377980659431767
       firstFrame: 42
       lastFrame: 74
       wrapMode: 0
@@ -90,9 +90,9 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Anim_Waddi_MoveJungle
-      takeName: Take 001
-      internalID: 3060872287085348379
+      name: Anim_Waddi_JungleMove
+      takeName: Armature|Armature|Take 001|BaseLayer
+      internalID: 6278076655783655555
       firstFrame: 80
       lastFrame: 106
       wrapMode: 0
@@ -119,11 +119,11 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Anim_Waddi_AttackJump
-      takeName: Take 001
-      internalID: 6641085478485924818
+      name: Anim_Waddi_JumpAttack
+      takeName: Armature|Armature|Take 001|BaseLayer
+      internalID: 7977021332590339227
       firstFrame: 120
-      lastFrame: 150
+      lastFrame: 120
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -149,10 +149,10 @@ ModelImporter:
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
       name: Anim_Waddi_AutoAttack
-      takeName: Take 001
-      internalID: -5059006814000262888
+      takeName: Armature|Armature|Take 001|BaseLayer
+      internalID: 8886541931632710349
       firstFrame: 160
-      lastFrame: 183
+      lastFrame: 180
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
