@@ -163,7 +163,7 @@ MonoBehaviour:
   baseViewRange: 0
   viewRange: 0
   viewAngle: 0
-  canView: 1
+  canView: 0
   meshFilterFoV: {fileID: 0}
   fogOfWarStartDetection: {fileID: 5822530463735283381}
   currentState: 0
@@ -271,7 +271,7 @@ GameObject:
   - component: {fileID: 5822530463735283381}
   - component: {fileID: 7449537688079429904}
   - component: {fileID: 4649654659920365018}
-  m_Layer: 30
+  m_Layer: 0
   m_Name: S_Meduse_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
