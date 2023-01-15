@@ -10,6 +10,7 @@ public class KickCollider : MonoBehaviour
 {
     public uint damage;
     public Enums.Team team;
+    public Entity casterEntity;
     
     private void OnTriggerEnter(Collider other)
     {
@@ -20,6 +21,6 @@ public class KickCollider : MonoBehaviour
         if (entity.team == team) return;
 
         var damageable = other.GetComponent<IDamageable>();
-        damageable?.DecreaseCurrentHpRPC(damage, default);
+        damageable?.DecreaseCurrentHpRPC(damage, casterEntity.entityIndex);
     }
 }

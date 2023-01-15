@@ -57,8 +57,8 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 60
-  orthographic: 1
+  field of view: 97
+  orthographic: 0
   orthographic size: 12
   m_Depth: 0
   m_CullingMask:
@@ -98,7 +98,7 @@ MonoBehaviour:
     m_Bits: 2147483648
   m_VolumeTrigger: {fileID: 0}
   m_VolumeFrameworkUpdateModeOption: 2
-  m_RenderPostProcessing: 0
+  m_RenderPostProcessing: 1
   m_Antialiasing: 0
   m_AntialiasingQuality: 2
   m_StopNaN: 0
@@ -174,14 +174,12 @@ MonoBehaviour:
   cameraFog: {fileID: 1126480335}
   sceneToRenderFog:
   - InGameScene
-  - _FogOfWarDebugTest
-  - FOG_InGameScene
   fogColor: {r: 0.18867922, g: 0.17710927, b: 0.17710927, a: 1}
   layerTargetFogOfWar:
     serializedVersion: 2
     m_Bits: 1610612736
   fogMat: {fileID: 2100000, guid: 269845f80d310d74db13180ca168d3e1, type: 2}
-  worldSize: 350
+  worldSize: 86
   worldSizeGizmos: 1
   settingsFOV:
     meshResolution: 1

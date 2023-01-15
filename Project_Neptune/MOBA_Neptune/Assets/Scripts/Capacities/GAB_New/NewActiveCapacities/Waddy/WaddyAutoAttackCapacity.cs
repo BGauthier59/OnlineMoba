@@ -10,7 +10,6 @@ public class WaddyAutoAttackCapacity : NewActiveCapacity
 {
     public double delayDuration;
     private double delayTimer;
-
     public double attackDuration;
     private double attackTimer;
 
@@ -18,13 +17,9 @@ public class WaddyAutoAttackCapacity : NewActiveCapacity
     public KickCollider kickCollider;
     public Renderer colliderRd;
     
-    private void Start()
-    {
-        kickCollider.team = GetComponent<Entity>().team;
-    }
-
     public override void RequestCastCapacity(int[] targetedEntities, Vector3[] targetedPositions)
     {
+        kickCollider.team = GetComponent<Entity>().team;
         photonView.RPC("CastWaddyAutoAttackCapacityRPC", RpcTarget.MasterClient, targetedEntities, targetedPositions);
     }
 
@@ -62,7 +57,7 @@ public class WaddyAutoAttackCapacity : NewActiveCapacity
             return false;
         }
 
-        // Play anim
+        // TODO - Play Anim
         GameStateMachine.Instance.OnTick += CheckTimer;
         return true;
     }
