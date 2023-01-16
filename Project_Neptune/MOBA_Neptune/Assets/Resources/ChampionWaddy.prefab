@@ -1145,8 +1145,8 @@ MonoBehaviour:
   - {fileID: 316691570877403490}
   canChangeTeam: 0
   team: 1
-  baseViewRange: 10
-  viewRange: 10
+  baseViewRange: 15
+  viewRange: 15
   viewAngle: 360
   canView: 1
   meshFilterFoV: {fileID: 3480681341397647661}
@@ -1192,6 +1192,8 @@ MonoBehaviour:
   groundMask:
     serializedVersion: 2
     m_Bits: 64
+  accelerator: 4.5
+  velocity: {x: 0, y: 0, z: 0}
   maxResource: 0
   currentResource: 0
   underStreamEffect: 0
