@@ -128,8 +128,12 @@ namespace Entities.Champion
         public event GlobalDelegates.FloatDelegate OnDecreaseCurrentMoveSpeed;
         public event GlobalDelegates.FloatDelegate OnDecreaseCurrentMoveSpeedFeedback;
 
+        public float accelerator = 0;
+        public Vector3 velocity;
         private void Move()
         {
+          
+            
             if (!canMove)
             {
                 animator.SetBool("IsRunning", false);
@@ -146,23 +150,54 @@ namespace Entities.Champion
                 if (transform.position.x >= 48 &&  moveDirection.x > 0) moveDirection.x = 0f;
             }
             
-            var velocity = moveDirection * currentMoveSpeed;
+            
+            
             //var strength = underStreamEffect ? StreamManager.GetStreamVector(currentStreamModifier, transform) : Vector3.zero;
             var strength = StreamManager.GetStreamVector(currentStreamModifier, transform);
 
-            if (currentStreamModifier != null) animator.SetBool("IsSliding", true);
-            
-            Debug.DrawRay(transform.position, velocity, Color.green);
-            Debug.DrawRay(transform.position, strength, Color.magenta);
-            if (velocity + strength == rb.velocity) return;
-            
-            rb.velocity = velocity + strength;
+            if (currentStreamModifier != null)
+            {
+                animator.SetBool("IsSliding", true);
+                velocity = new Vector3(
+                    Mathf.Lerp(velocity.x, currentMoveSpeed * moveDirection.x, accelerator * Time.deltaTime), 0,
+                    Mathf.Lerp(velocity.z, currentMoveSpeed * moveDirection.z, accelerator * Time.deltaTime));
+                
+                if (strength.x > 3f)
+                {
+                    velocity.x = Mathf.Clamp(velocity.x, -strength.x/2,10);
+                }
+                else if (strength.x < -3f)
+                {
+                    velocity.x = Mathf.Clamp(velocity.x, -10,-strength.x/2);
+                }
 
+                if (strength.z > 3f)
+                {
+                    velocity.z = Mathf.Clamp(velocity.z, -strength.z/2,10);
+                }
+                else if (strength.z < -3f)
+                {
+                    velocity.z = Mathf.Clamp(velocity.z, -10,-strength.z/2);
+                }
+                
+                rb.velocity = velocity + strength;
+            }
+            else
+            {
+                velocity = moveDirection * currentMoveSpeed;
+                rb.velocity = velocity + strength;
+            }
+            
+            
             if (rb.velocity.magnitude == 0)
             {
                 animator.SetBool("IsRunning", false);
                 animator.SetBool("IsSliding", false);
             }
+            
+            Debug.DrawRay(transform.position, velocity, Color.green);
+            Debug.DrawRay(transform.position, strength, Color.magenta);
+            Debug.Log(strength);
         }
 
         public void RequestCastOnMoveEvent()
