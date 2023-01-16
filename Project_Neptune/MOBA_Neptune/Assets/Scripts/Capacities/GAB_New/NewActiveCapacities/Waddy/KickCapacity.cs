@@ -33,4 +33,13 @@ public class KickCapacity : NewActiveCapacity
     {
         throw new System.NotImplementedException();
     }
+
+    public override void RequestSetPreview(bool active) { }
+
+    public override void Update() { }
+
+    public override void UpdatePreview()
+    {
+        throw new System.NotImplementedException();
+    }
 }

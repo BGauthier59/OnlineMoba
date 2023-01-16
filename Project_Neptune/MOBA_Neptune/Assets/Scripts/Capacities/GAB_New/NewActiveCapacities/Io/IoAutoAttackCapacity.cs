@@ -24,15 +24,14 @@ public class IoAutoAttackCapacity : NewActiveCapacity
     private Vector3 casterInitPos;
 
     private Vector3 hitPoint;
-    private Champion champion;
 
     [SerializeField] private ParticleSystem iceImpactFx;
     [SerializeField] private ParticleSystem iceMuzzleFx;
 
-
     public override void RequestCastCapacity(int[] targetedEntities, Vector3[] targetedPositions)
     {
         photonView.RPC("CastIoAutoAttackCapacityRPC", RpcTarget.MasterClient, targetedEntities, targetedPositions);
+        RequestSetPreview(false);
     }
 
     [PunRPC]
@@ -54,8 +53,6 @@ public class IoAutoAttackCapacity : NewActiveCapacity
     [PunRPC]
     public void SyncDataIoAutoAttackCapacityRPC(Vector3 target)
     {
-        caster = GetComponent<Entity>();
-        champion = (Champion) caster;
         casterInitPos = GetCasterPos();
         direction = -(casterInitPos - target);
         direction.y = 0;
@@ -70,7 +67,7 @@ public class IoAutoAttackCapacity : NewActiveCapacity
 
     public override bool TryCast()
     {
-        Debug.DrawRay(casterInitPos + champion.rotateParent.forward, direction, Color.yellow,
+        Debug.DrawRay(casterInitPos + championCaster.rotateParent.forward, direction, Color.yellow,
             3);
 
         // Check conditions
@@ -88,10 +85,10 @@ public class IoAutoAttackCapacity : NewActiveCapacity
         count++;
         canShootNewOne = false;
 
-        hitPoint = Physics.Raycast(casterInitPos + champion.rotateParent.forward, direction, out var hit,
+        hitPoint = Physics.Raycast(casterInitPos + championCaster.rotateParent.forward, direction, out var hit,
             direction.magnitude, targetableLayer)
             ? hit.point
-            : casterInitPos + champion.rotateParent.forward + direction;
+            : casterInitPos + championCaster.rotateParent.forward + direction;
 
         photonView.RPC("PlayIceMuzzleFeedback", RpcTarget.All, hitPoint);
         
@@ -173,6 +170,32 @@ public class IoAutoAttackCapacity : NewActiveCapacity
             count = 0;
             GameStateMachine.Instance.OnTick -= TimerCooldown;
         }
+    }
+    
+    public override void RequestSetPreview(bool active)
+    {
+        photonView.RPC("SetPreviewIoAutoAttackRPC", RpcTarget.All, active);
+    }
+    
+    [PunRPC]
+    public void SetPreviewIoAutoAttackRPC(bool active)
+    {
+        if (!photonView.IsMine) return;
+        previewActivate = active;
+        previewObject.gameObject.SetActive(active);
+    }
+
+    public override void Update()
+    {
+        if(previewActivate) UpdatePreview();
+    }
+
+    public override void UpdatePreview()
+    {
+        if (!photonView.IsMine) return;
+        var pos = championCaster.controller.cursorWorldPos[0];
+        pos.y = 1;
+        previewObject.position = pos;
     }
 
     [PunRPC]

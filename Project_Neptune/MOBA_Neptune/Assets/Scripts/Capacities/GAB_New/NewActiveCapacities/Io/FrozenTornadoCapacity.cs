@@ -36,4 +36,10 @@ public class FrozenTornadoCapacity : NewActiveCapacity
     {
         throw new System.NotImplementedException();
     }
+
+    public override void RequestSetPreview(bool active) { }
+
+    public override void Update() { }
+
+    public override void UpdatePreview() { }
 }

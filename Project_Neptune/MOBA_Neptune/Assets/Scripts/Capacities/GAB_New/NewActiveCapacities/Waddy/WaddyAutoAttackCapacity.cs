@@ -21,6 +21,8 @@ public class WaddyAutoAttackCapacity : NewActiveCapacity
     {
         kickCollider.team = GetComponent<Entity>().team;
         photonView.RPC("CastWaddyAutoAttackCapacityRPC", RpcTarget.MasterClient, targetedEntities, targetedPositions);
+        RequestSetPreview(false);
+
     }
 
     [PunRPC]
@@ -124,6 +126,30 @@ public class WaddyAutoAttackCapacity : NewActiveCapacity
             cooldownTimer = 0f;
             GameStateMachine.Instance.OnTick -= TimerCooldown;
         }
+    }
+    
+    public override void RequestSetPreview(bool active)
+    {
+        photonView.RPC("SetPreviewWaddyAutoAttackRPC", RpcTarget.All, active);
+    }
+    
+    [PunRPC]
+    public void SetPreviewWaddyAutoAttackRPC(bool active)
+    {
+        if (!photonView.IsMine) return;
+        previewActivate = active;
+        previewObject.gameObject.SetActive(active);
+    }
+
+    public override void Update()
+    {
+        if(previewActivate) UpdatePreview();
+    }
+
+    public override void UpdatePreview()
+    {
+        if (!photonView.IsMine) return;
+        
     }
 
     [PunRPC]

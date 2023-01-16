@@ -11,7 +11,7 @@ namespace Controllers.Inputs
     {
         private Champion champion;
         private int[] selectedEntity;
-        private Vector3[] cursorWorldPos;
+        public Vector3[] cursorWorldPos;
         private bool isMoving;
         private Vector2 mousePos;
         private Vector2 moveInput;
@@ -37,25 +37,53 @@ namespace Controllers.Inputs
                 Vector3.Lerp(mousePositionSphere.position, cursorWorldPos[0], Time.deltaTime * 15);
             Debug.DrawLine(pos, cursorWorldPos[0], Color.black);
         }
-        
+
+        private void OnPreviewAttack(InputAction.CallbackContext ctx)
+        {
+            if (!attackCapacity) return;
+
+            attackCapacity.RequestSetPreview(true);
+        }
+
+        private void OnPreviewCapacity0(InputAction.CallbackContext ctx)
+        {
+            if (!capacity1) return;
+            capacity1.RequestSetPreview(true);
+
+        }
+
+        private void OnPreviewCapacity1(InputAction.CallbackContext ctx)
+        {
+            if (!capacity2) return;
+            capacity2.RequestSetPreview(true);
+
+        }
+
+        private void OnPreviewUltimate(InputAction.CallbackContext ctx)
+        {
+            if (!ultimateCapacity) return;
+            ultimateCapacity.RequestSetPreview(true);
+
+        }
+
         private void OnAttack(InputAction.CallbackContext ctx)
         {
             if (!attackCapacity) return;
-            
+
             attackCapacity.RequestCastCapacity(selectedEntity, cursorWorldPos);
         }
 
         private void OnActivateCapacity0(InputAction.CallbackContext ctx)
         {
             if (!capacity1) return;
-            
+
             capacity1.RequestCastCapacity(selectedEntity, cursorWorldPos);
         }
 
         private void OnActivateCapacity1(InputAction.CallbackContext ctx)
         {
             if (!capacity2) return;
-            
+
             capacity2.RequestCastCapacity(selectedEntity, cursorWorldPos);
         }
 
@@ -66,9 +94,7 @@ namespace Controllers.Inputs
             ultimateCapacity.RequestCastCapacity(selectedEntity, cursorWorldPos);
         }
 
-        void OnMouseClick(InputAction.CallbackContext ctx)
-        {
-        }
+        void OnMouseClick(InputAction.CallbackContext ctx) { }
 
         private Vector3 GetMouseOverWorldPos()
         {
@@ -99,11 +125,15 @@ namespace Controllers.Inputs
             cursorWorldPos = new Vector3[1];
             mousePositionSphere.gameObject.SetActive(true);
 
-            inputs.Attack.Attack.performed += OnAttack;
-
-            inputs.Capacity.Capacity0.performed += OnActivateCapacity0;
-            inputs.Capacity.Capacity1.performed += OnActivateCapacity1;
-            inputs.Capacity.Capacity2.performed += OnActivateUltimateAbility;
+            inputs.Attack.Attack.performed += OnPreviewAttack;
+            inputs.Capacity.Capacity0.performed += OnPreviewCapacity0;
+            inputs.Capacity.Capacity1.performed += OnPreviewCapacity1;
+            inputs.Capacity.Capacity2.performed += OnPreviewUltimate;
+            
+            inputs.Attack.Attack.canceled += OnAttack;
+            inputs.Capacity.Capacity0.canceled += OnActivateCapacity0;
+            inputs.Capacity.Capacity1.canceled += OnActivateCapacity1;
+            inputs.Capacity.Capacity2.canceled += OnActivateUltimateAbility;
 
             inputs.Movement.Move.performed += OnMoveChange;
             inputs.Movement.Move.canceled += OnMoveChange;
@@ -111,11 +141,15 @@ namespace Controllers.Inputs
 
         protected override void Unlink()
         {
-            inputs.Attack.Attack.performed -= OnAttack;
-
-            inputs.Capacity.Capacity0.performed -= OnActivateCapacity0;
-            inputs.Capacity.Capacity1.performed -= OnActivateCapacity1;
-            inputs.Capacity.Capacity2.performed -= OnActivateUltimateAbility;
+            inputs.Attack.Attack.performed -= OnPreviewAttack;
+            inputs.Capacity.Capacity0.performed -= OnPreviewCapacity0;
+            inputs.Capacity.Capacity1.performed -= OnPreviewCapacity1;
+            inputs.Capacity.Capacity2.performed -= OnPreviewUltimate;
+            
+            inputs.Attack.Attack.canceled -= OnAttack;
+            inputs.Capacity.Capacity0.canceled -= OnActivateCapacity0;
+            inputs.Capacity.Capacity1.canceled -= OnActivateCapacity1;
+            inputs.Capacity.Capacity2.canceled -= OnActivateUltimateAbility;
 
             inputs.Movement.Move.performed -= OnMoveChange;
             inputs.Movement.Move.canceled -= OnMoveChange;

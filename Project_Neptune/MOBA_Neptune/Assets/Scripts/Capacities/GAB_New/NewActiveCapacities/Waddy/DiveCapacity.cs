@@ -18,7 +18,7 @@ public class DiveCapacity : NewActiveCapacity
     public override void RequestCastCapacity(int[] targetedEntities, Vector3[] targetedPositions)
     {
         photonView.RPC("CastDiveCapacityRPC", RpcTarget.MasterClient, targetedEntities, targetedPositions);
-
+        RequestSetPreview(false);
     }
     
     [PunRPC]
@@ -131,6 +131,31 @@ public class DiveCapacity : NewActiveCapacity
             cooldownTimer = 0f;
             GameStateMachine.Instance.OnTick -= TimerCooldown;
         }
+    }
+    
+    public override void RequestSetPreview(bool active)
+    {
+        photonView.RPC("SetPreviewDiveRPC", RpcTarget.All, active);
+    }
+    
+    [PunRPC]
+    public void SetPreviewDiveRPC(bool active)
+    {
+        if (!photonView.IsMine) return;
+        previewActivate = active;
+        previewObject.gameObject.SetActive(active);
+    }
+
+    public override void Update()
+    {
+        if(previewActivate) UpdatePreview();
+    }
+
+    public override void UpdatePreview()
+    {
+        if (!photonView.IsMine) return;
+        var pos = GetCasterPos();
+        previewObject.position = pos;
     }
 
     [PunRPC]

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Photon.Pun;
 using UnityEngine;
 
 public class IceSculptureCapacity : NewActiveCapacity
@@ -33,4 +34,10 @@ public class IceSculptureCapacity : NewActiveCapacity
     {
         throw new System.NotImplementedException();
     }
+
+    public override void RequestSetPreview(bool active) { }
+
+    public override void Update() { }
+
+    public override void UpdatePreview() { }
 }

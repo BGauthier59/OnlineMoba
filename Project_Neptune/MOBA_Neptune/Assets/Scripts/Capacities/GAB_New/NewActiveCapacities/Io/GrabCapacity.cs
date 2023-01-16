@@ -19,13 +19,13 @@ public class GrabCapacity : NewActiveCapacity
     private Vector3 casterInitPos;
 
     private RaycastHit hitData;
-    private Champion champion;
 
     public ParticleSystem grabVFX;
 
     public override void RequestCastCapacity(int[] targetedEntities, Vector3[] targetedPositions)
     {
         photonView.RPC("CastGrabCapacityRPC", RpcTarget.MasterClient, targetedEntities, targetedPositions);
+        RequestSetPreview(false);
     }
 
     [PunRPC]
@@ -44,8 +44,7 @@ public class GrabCapacity : NewActiveCapacity
     [PunRPC]
     public void SyncDataGrabCapacityRPC(Vector3 target)
     {
-        caster = GetComponent<Entity>();
-        champion = (Champion) caster;
+        
         casterInitPos = GetCasterPos();
         direction = -(casterInitPos - target);
         direction.y = 0;
@@ -59,7 +58,7 @@ public class GrabCapacity : NewActiveCapacity
 
     public override bool TryCast()
     {
-        Debug.DrawRay(casterInitPos + champion.rotateParent.forward, direction * grabMaxDistance, Color.yellow,
+        Debug.DrawRay(casterInitPos + championCaster.rotateParent.forward, direction * grabMaxDistance, Color.yellow,
             3);
 
         // Check conditions
@@ -69,12 +68,12 @@ public class GrabCapacity : NewActiveCapacity
             return false;
         }
 
-        if (!Physics.Raycast(casterInitPos + champion.rotateParent.forward, direction, out var hit,
+        if (!Physics.Raycast(casterInitPos + championCaster.rotateParent.forward, direction, out var hit,
             grabMaxDistance, grabableLayer)) return false;
 
         // Cast Succeeded!
 
-        champion.animator.SetBool("IsGrabbing", true);
+        championCaster.animator.SetBool("IsGrabbing", true);
         hitData = hit;
         GameStateMachine.Instance.OnTick += CheckTimer;
         return true;
@@ -95,7 +94,7 @@ public class GrabCapacity : NewActiveCapacity
     {
         Debug.DrawLine(casterInitPos, hitData.point, Color.red, 3);
         photonView.RPC("PlayHitEffect", RpcTarget.All, hitData.point);
-        champion.animator.SetBool("IsGrabbing", false);
+        championCaster.animator.SetBool("IsGrabbing", false);
 
         // We get hit IGrabable data
         var grabable = hitData.collider.gameObject.GetComponent<IGrabable>();
@@ -157,6 +156,35 @@ public class GrabCapacity : NewActiveCapacity
             cooldownTimer = 0f;
             GameStateMachine.Instance.OnTick -= TimerCooldown;
         }
+    }
+    
+    public override void RequestSetPreview(bool active)
+    {
+        photonView.RPC("SetPreviewGrabRPC", RpcTarget.All, active);
+    }
+    
+    [PunRPC]
+    public void SetPreviewGrabRPC(bool active)
+    {
+        if (!photonView.IsMine) return;
+        previewActivate = active;
+        previewObject.gameObject.SetActive(active);
+    }
+
+    public override void Update()
+    {
+        if(previewActivate) UpdatePreview();
+    }
+
+    public override void UpdatePreview()
+    {
+        if (!photonView.IsMine) return;
+        var pos = championCaster.transform.position;
+        previewObject.rotation = Quaternion.Lerp(previewObject.rotation, Quaternion.LookRotation(championCaster.controller.cursorWorldPos[0] - pos), Time.deltaTime * 15);
+        var euler = previewObject.eulerAngles;
+        euler.x = 90;
+        euler.z = 0;
+        previewObject.eulerAngles = euler;
     }
 
     [PunRPC]
