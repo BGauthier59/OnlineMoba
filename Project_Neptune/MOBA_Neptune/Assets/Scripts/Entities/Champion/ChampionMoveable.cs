@@ -197,7 +197,6 @@ namespace Entities.Champion
             
             Debug.DrawRay(transform.position, velocity, Color.green);
             Debug.DrawRay(transform.position, strength, Color.magenta);
-            Debug.Log(strength);
         }
 
         public void RequestCastOnMoveEvent()
