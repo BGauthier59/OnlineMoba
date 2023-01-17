@@ -41,7 +41,7 @@ namespace Entities.Champion
         {
             canDie = value;
             OnSetCanDie?.Invoke(value);
-            photonView.RPC("SyncSetCanDieRPC", RpcTarget.All, value);
+            photonView.RPC("SyncSetCanDieRPC", RpcTarget.All, canDie);
         }
 
         public event GlobalDelegates.BoolDelegate OnSetCanDie;
@@ -76,8 +76,7 @@ namespace Entities.Champion
         {
             if (!canDie)
             {
-                Debug.LogWarning($"{name} can't die! mais on s'en fout c bon");
-                //return;
+                return;
             }
 
             isAlive = false;
