@@ -17,8 +17,7 @@ public class MarkedCapacity : NewPassiveCapacity
     public override void OnAddEffect(Entity giver = null, Vector3 position = default)
     {
         markCount++;
-        markDebugText.text = $"Marks: {markCount}";
-        Debug.Log("got marked");
+        photonView.RPC("SyncMarkCountFeedback", RpcTarget.All, markCount);
         photonView.RPC("GetMarkedFeedbackRPC", RpcTarget.All);
         base.OnAddEffect(giver, position);
 
@@ -31,7 +30,7 @@ public class MarkedCapacity : NewPassiveCapacity
     private void GetBlownUp()
     {
         markCount = 0;
-        markDebugText.text = $"Marks: {markCount}";
+        photonView.RPC("SyncMarkCountFeedback", RpcTarget.All, markCount);
 
         // Explosion
         Debug.Log("Get blown up");
@@ -48,6 +47,12 @@ public class MarkedCapacity : NewPassiveCapacity
     {
         // Feedbacks
         iceExplosionFx.Play();
+    }
+
+    [PunRPC]
+    private void SyncMarkCountFeedback(int count)
+    {
+        markDebugText.text = $"Marks: {count} / 3";
     }
     
     public override void OnUpdateEffect()

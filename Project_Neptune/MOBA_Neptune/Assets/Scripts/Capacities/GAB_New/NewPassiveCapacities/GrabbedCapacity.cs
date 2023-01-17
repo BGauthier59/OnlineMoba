@@ -1,6 +1,6 @@
 using System;
 using Entities;
-using Entities.Champion;
+using Entities.Interfaces;
 using Photon.Pun;
 using UnityEngine;
 
@@ -13,6 +13,7 @@ public class GrabbedCapacity : NewPassiveCapacity
     private Vector3 point;
 
     private IDisplaceable displaceable;
+    private IGrabable grabable;
 
     private float initDistance;
     [SerializeField] private float distanceSpeedFactor;
@@ -54,15 +55,16 @@ public class GrabbedCapacity : NewPassiveCapacity
         giver = index == -1 ? null : EntityCollectionManager.GetEntityByIndex(index);
 
         displaceable = GetComponent<IDisplaceable>();
-        if (displaceable == null)
+        grabable = GetComponent<IGrabable>();
+        if (displaceable == null || grabable == null)
         {
-            Debug.LogWarning("Can't displace this grabable entity?");
+            Debug.LogWarning("Can't displace or grab this grabable entity?");
             return;
         }
 
         if (!photonView.IsMine) return;
         InputManager.PlayerMap.Movement.Disable();
-        ((Champion)entityUnderEffect).OnGrabbed();
+        grabable.OnGrabbed();
     }
 
     private void Update()
@@ -217,7 +219,7 @@ public class GrabbedCapacity : NewPassiveCapacity
     private void RemoveGrabbedEffectRPC()
     {
         if (!photonView.IsMine) return;
-        ((Champion)entityUnderEffect).OnUnGrabbed();
+        grabable?.OnUnGrabbed();
     }
 
     [PunRPC]
