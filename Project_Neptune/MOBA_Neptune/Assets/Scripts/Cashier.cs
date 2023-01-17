@@ -59,11 +59,7 @@ public class Cashier : MonoBehaviour, IScorable
     [PunRPC]
     public void CashierIncreaseScoreRPC(int value, int entityIndex)
     {
-        if (value < 1)
-        {
-            Debug.Log("0 point.");
-            return;
-        }
+        if (value < 1) return;
         
         cashierPoint += value;
 
