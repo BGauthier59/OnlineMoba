@@ -14,13 +14,13 @@ public class DiveCapacity : NewActiveCapacity
     [SerializeField] private uint damage;
 
     [SerializeField] private ParticleSystem impactFx;
-    
+
     public override void RequestCastCapacity(int[] targetedEntities, Vector3[] targetedPositions)
     {
         photonView.RPC("CastDiveCapacityRPC", RpcTarget.MasterClient, targetedEntities, targetedPositions);
         RequestSetPreview(false);
     }
-    
+
     [PunRPC]
     public void SyncDataDiveCapacityRPC()
     {
@@ -32,7 +32,7 @@ public class DiveCapacity : NewActiveCapacity
     {
         // Set data
         photonView.RPC("SyncDataDiveCapacityRPC", RpcTarget.All);
-        
+
         if (TryCast())
         {
             StartCooldown();
@@ -82,9 +82,9 @@ public class DiveCapacity : NewActiveCapacity
         Debug.DrawLine(pos, pos - Vector3.right * radius, Color.red, 2f);
         Debug.DrawLine(pos, pos + Vector3.forward * radius, Color.red, 2f);
         Debug.DrawLine(pos, pos - Vector3.forward * radius, Color.red, 2f);
-        
+
         photonView.RPC("SyncImpactFeedback", RpcTarget.All);
-        
+
         foreach (var c in allTargets)
         {
             var entity = c.GetComponent<Entity>();
@@ -93,14 +93,14 @@ public class DiveCapacity : NewActiveCapacity
                 Debug.LogWarning("Entity is null!");
                 continue;
             }
+
             if (entity.team == caster.team) continue;
-            
+
             var damageable = c.GetComponent<IDamageable>();
             damageable?.DecreaseCurrentHpRPC(damage, caster.entityIndex);
         }
-        
-        photonView.RPC("EnableInputAfterHitGround", RpcTarget.All);
 
+        photonView.RPC("EnableInputAfterHitGround", RpcTarget.All);
     }
 
     [PunRPC]
@@ -132,23 +132,25 @@ public class DiveCapacity : NewActiveCapacity
             GameStateMachine.Instance.OnTick -= TimerCooldown;
         }
     }
-    
+
     public override void RequestSetPreview(bool active)
     {
-        photonView.RPC("SetPreviewDiveRPC", RpcTarget.All, active);
+        photonView.RPC("SetPreviewDiveRPC", RpcTarget.All, active, canCastCapacity);
     }
-    
+
     [PunRPC]
-    public void SetPreviewDiveRPC(bool active)
+    public void SetPreviewDiveRPC(bool active, bool canCast)
     {
         if (!photonView.IsMine) return;
         previewActivate = active;
         previewObject.gameObject.SetActive(active);
+        var color = canCast ? Color.blue : Color.red;
+        previewRenderer.material.SetColor("_EmissionColor", color);
     }
 
     public override void Update()
     {
-        if(previewActivate) UpdatePreview();
+        if (previewActivate) UpdatePreview();
     }
 
     public override void UpdatePreview()
@@ -161,6 +163,12 @@ public class DiveCapacity : NewActiveCapacity
     [PunRPC]
     private void SyncCanCastDiveCapacityRPC(bool canCast)
     {
+        Debug.Log("Deactivate");
         canCastCapacity = canCast;
+        if (previewActivate && photonView.IsMine)
+        {
+            var color = canCast ? Color.blue : Color.red;
+            previewRenderer.material.SetColor("_EmissionColor", color);
+        }
     }
 }

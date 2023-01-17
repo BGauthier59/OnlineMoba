@@ -16,13 +16,12 @@ public class WaddyAutoAttackCapacity : NewActiveCapacity
     [SerializeField] private Collider attackCollider;
     public KickCollider kickCollider;
     public Renderer colliderRd;
-    
+
     public override void RequestCastCapacity(int[] targetedEntities, Vector3[] targetedPositions)
     {
         kickCollider.team = GetComponent<Entity>().team;
         photonView.RPC("CastWaddyAutoAttackCapacityRPC", RpcTarget.MasterClient, targetedEntities, targetedPositions);
         RequestSetPreview(false);
-
     }
 
     [PunRPC]
@@ -127,34 +126,42 @@ public class WaddyAutoAttackCapacity : NewActiveCapacity
             GameStateMachine.Instance.OnTick -= TimerCooldown;
         }
     }
-    
+
     public override void RequestSetPreview(bool active)
     {
-        photonView.RPC("SetPreviewWaddyAutoAttackRPC", RpcTarget.All, active);
+        photonView.RPC("SetPreviewWaddyAutoAttackRPC", RpcTarget.All, active, canCastCapacity);
     }
-    
+
     [PunRPC]
-    public void SetPreviewWaddyAutoAttackRPC(bool active)
+    public void SetPreviewWaddyAutoAttackRPC(bool active, bool canCast)
     {
         if (!photonView.IsMine) return;
         previewActivate = active;
         previewObject.gameObject.SetActive(active);
+        var color = canCast ? Color.blue : Color.red;
+        previewRenderer.material.SetColor("_EmissionColor", color);
     }
 
     public override void Update()
     {
-        if(previewActivate) UpdatePreview();
+        if (previewActivate) UpdatePreview();
     }
 
     public override void UpdatePreview()
     {
         if (!photonView.IsMine) return;
-        
     }
 
     [PunRPC]
     private void SyncCanCastWaddyAutoAttackCapacityRPC(bool canCast)
     {
+        Debug.Log("Deactivate");
+
         canCastCapacity = canCast;
+        if (previewActivate && photonView.IsMine)
+        {
+            var color = canCast ? Color.blue : Color.red;
+            previewRenderer.material.SetColor("_EmissionColor", color);
+        }
     }
 }

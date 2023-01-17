@@ -160,15 +160,17 @@ public class GrabCapacity : NewActiveCapacity
     
     public override void RequestSetPreview(bool active)
     {
-        photonView.RPC("SetPreviewGrabRPC", RpcTarget.All, active);
+        photonView.RPC("SetPreviewGrabRPC", RpcTarget.All, active, canCastCapacity);
     }
     
     [PunRPC]
-    public void SetPreviewGrabRPC(bool active)
+    public void SetPreviewGrabRPC(bool active, bool canCast)
     {
         if (!photonView.IsMine) return;
         previewActivate = active;
         previewObject.gameObject.SetActive(active);
+        var color = canCast ? Color.blue : Color.red;
+        previewRenderer.material.SetColor("_EmissionColor", color);
     }
 
     public override void Update()
@@ -191,5 +193,9 @@ public class GrabCapacity : NewActiveCapacity
     private void SyncCanCastGrabCapacityRPC(bool canCast)
     {
         canCastCapacity = canCast;
-    }
+        if (previewActivate && photonView.IsMine)
+        {
+            var color = canCast ? Color.blue : Color.red;
+            previewRenderer.material.SetColor("_EmissionColor", color);
+        }    }
 }

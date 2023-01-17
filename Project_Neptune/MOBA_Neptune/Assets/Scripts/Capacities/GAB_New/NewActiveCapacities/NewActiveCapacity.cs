@@ -14,6 +14,7 @@ public abstract class NewActiveCapacity : MonoBehaviourPun
     protected double cooldownTimer;
     protected bool previewActivate = false;
     [SerializeField] protected Transform previewObject;
+    [SerializeField] protected SpriteRenderer previewRenderer;
 
     private void Start()
     {

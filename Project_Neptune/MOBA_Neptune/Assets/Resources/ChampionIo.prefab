@@ -661,13 +661,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   caster: {fileID: 3480681341667345175}
   canCastCapacity: 1
-  cooldownDuration: 3
+  cooldownDuration: 1.5
   previewObject: {fileID: 6529070122378889130}
+  previewRenderer: {fileID: 2255554266194254358}
   skillshotMaxDistance: 7
   targetableLayer:
     serializedVersion: 2
     m_Bits: 536870912
   delayDuration: 0.1
+  resetDuration: 1
   radius: 3
   damage: 10
   maxCount: 3
@@ -689,6 +691,7 @@ MonoBehaviour:
   canCastCapacity: 1
   cooldownDuration: 5
   previewObject: {fileID: 1049829277909489811}
+  previewRenderer: {fileID: 7153881017966326234}
   grabMaxDistance: 10
   grabableLayer:
     serializedVersion: 2
@@ -711,6 +714,7 @@ MonoBehaviour:
   canCastCapacity: 1
   cooldownDuration: 0
   previewObject: {fileID: 0}
+  previewRenderer: {fileID: 0}
 --- !u!114 &8202111792943879854
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -727,6 +731,7 @@ MonoBehaviour:
   canCastCapacity: 1
   cooldownDuration: 0
   previewObject: {fileID: 0}
+  previewRenderer: {fileID: 0}
 --- !u!114 &8650591300149490378
 MonoBehaviour:
   m_ObjectHideFlags: 0

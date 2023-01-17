@@ -1258,8 +1258,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   caster: {fileID: 0}
   canCastCapacity: 1
-  cooldownDuration: 8
+  cooldownDuration: 6
   previewObject: {fileID: 3801297301610604867}
+  previewRenderer: {fileID: 7257404912225043647}
   delayDuration: 0.2
   attackDuration: 3
   attackCollider: {fileID: 9120351919577744094}
@@ -1281,6 +1282,7 @@ MonoBehaviour:
   canCastCapacity: 1
   cooldownDuration: 0
   previewObject: {fileID: 0}
+  previewRenderer: {fileID: 0}
 --- !u!114 &7344040446763861111
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1295,8 +1297,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   caster: {fileID: 0}
   canCastCapacity: 1
-  cooldownDuration: 5
+  cooldownDuration: 4
   previewObject: {fileID: 7867223321132074439}
+  previewRenderer: {fileID: 7789095844495347562}
   delayDuration: 0.5
   radius: 4
   targetableLayer:
@@ -1320,6 +1323,7 @@ MonoBehaviour:
   canCastCapacity: 1
   cooldownDuration: 0
   previewObject: {fileID: 0}
+  previewRenderer: {fileID: 0}
 --- !u!114 &2856018034496556069
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2486,7 +2490,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 34e2f4af5882afb4e9ac6155c2a265b2, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2508,7 +2512,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 48e93eef0688c4a259cb0eddcd8661f7, type: 3}
-  m_Color: {r: 0, g: 1, b: 0.7595043, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
