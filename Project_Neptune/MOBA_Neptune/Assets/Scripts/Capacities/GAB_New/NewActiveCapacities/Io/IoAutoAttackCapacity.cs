@@ -87,7 +87,7 @@ public class IoAutoAttackCapacity : NewActiveCapacity
             ? hit.point
             : casterInitPos + championCaster.rotateParent.forward + direction;
 
-        photonView.RPC("PlayIceMuzzleFeedback", RpcTarget.All, hitPoint);
+        photonView.RPC("PlayIceMuzzleFeedback", RpcTarget.All, GetCasterPos());
 
         GameStateMachine.Instance.OnTick += CheckTimer;
         return true;

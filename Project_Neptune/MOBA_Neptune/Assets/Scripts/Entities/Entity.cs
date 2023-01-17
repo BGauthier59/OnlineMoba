@@ -18,6 +18,9 @@ namespace Entities
 
         [SerializeField] private bool canAddPassiveCapacity = true;
         [SerializeField] private bool canRemovePassiveCapacity = true;
+
+        [SerializeField] private ParticleSystem orangeScoreVFX;
+        [SerializeField] private ParticleSystem violetScoreVFX;
         
         public GrabbedCapacity grabbed;
         public MarkedCapacity marked;
@@ -124,6 +127,24 @@ namespace Entities
         private void SetCanRemovePassiveCapacityRPC(bool value)
         {
             canRemovePassiveCapacity = value;
+        }
+
+        public void OnScore()
+        {
+            switch (team)
+            {
+                case Enums.Team.Neutral:
+                    Debug.LogWarning("No supposed to score when team is neutral");
+                    break;
+                case Enums.Team.Team1:
+                    orangeScoreVFX.Play();
+                    break;
+                case Enums.Team.Team2:
+                    violetScoreVFX.Play();
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
         }
 
         /*

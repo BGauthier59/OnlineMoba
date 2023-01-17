@@ -32,7 +32,8 @@ public class Cashier : MonoBehaviour, IScorable
     {
         Debug.Log(entityWhoScored.name);
         
-        _photonView.RPC("CashierIncreaseScoreRPC", RpcTarget.MasterClient, entityWhoScored.currentPointCarried);
+        _photonView.RPC("CashierIncreaseScoreRPC", RpcTarget.MasterClient, entityWhoScored.currentPointCarried, entityWhoScored.entityIndex);
+        
 
         if (entityWhoScored.GetComponent<MinionStreamBehaviour>())
         {
@@ -47,18 +48,26 @@ public class Cashier : MonoBehaviour, IScorable
     }
 
     [PunRPC]
-    public void SyncCashierIncreaseScoreRPC(int value)
+    public void SyncCashierIncreaseScoreRPC(int value, int entityIndex)
     {
         cashierPoint = value;
         UICommonPlayers.Instance.OnScoreChange();
+        var entity = EntityCollectionManager.GetEntityByIndex(entityIndex);
+        entity.OnScore();
     }
 
     [PunRPC]
-    public void CashierIncreaseScoreRPC(int value)
+    public void CashierIncreaseScoreRPC(int value, int entityIndex)
     {
+        if (value < 1)
+        {
+            Debug.Log("0 point.");
+            return;
+        }
+        
         cashierPoint += value;
 
-        _photonView.RPC("SyncCashierIncreaseScoreRPC", RpcTarget.All, cashierPoint);
+        _photonView.RPC("SyncCashierIncreaseScoreRPC", RpcTarget.All, cashierPoint, entityIndex);
 
         if (cashierPoint < pointsNeededToWin) return;
 
