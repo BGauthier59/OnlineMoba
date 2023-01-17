@@ -21,7 +21,7 @@ namespace Entities.Champion
         public LineRenderer grabLine;
         public List<TargetIndicator> targetIndicators;
         private bool isLinked;
-        public TextMeshProUGUI pointsText;
+        public TextMeshPro pointsText;
     
         [SerializeField] private MeshRenderer teamConeRenderer;
 
@@ -39,6 +39,7 @@ namespace Entities.Champion
             camera = Camera.main;
             blocker.characterColliderBlocker.enabled = true;
             blocker.SetUpBlocker();
+            dieCanvas.SetActive(false);
         }
         
         protected override void OnUpdate()

@@ -13,6 +13,8 @@ namespace Entities.Champion
         // TODO: Delete when TickManager is implemented
         public float respawnDuration = 3;
         private double respawnTimer;
+        public GameObject dieCanvas;
+
 
         public bool IsAlive()
         {
@@ -61,12 +63,13 @@ namespace Entities.Champion
                 InputManager.PlayerMap.Movement.Disable();
                 InputManager.PlayerMap.Attack.Disable();
                 InputManager.PlayerMap.Capacity.Disable();
+                dieCanvas.SetActive(true);
+                viewRange = 0.1f;
             }
-
-            rotateParent.gameObject.SetActive(false);
-            uiTransform.gameObject.SetActive(false);
-
-            if (FogOfWarManager.Instance != null) FogOfWarManager.Instance.RemoveFOWViewable(this);
+            
+            //rotateParent.gameObject.SetActive(false);
+            //uiTransform.gameObject.SetActive(false);
+            //if (FogOfWarManager.Instance != null) FogOfWarManager.Instance.RemoveFOWViewable(this);
 
             OnDieFeedback?.Invoke();
         }
@@ -87,11 +90,13 @@ namespace Entities.Champion
             if (lastEntityWhoAttackedMeIndex != 0)
             {
                 var entity = EntityCollectionManager.GetEntityByIndex(lastEntityWhoAttackedMeIndex);
-                if (entity.GetComponent<Champion>()) ChampionRequestIncreaseScore(Mathf.Abs(currentPointCarried / 2), entity);
+                if (entity.GetComponent<Champion>())
+                    ChampionRequestIncreaseScore(Mathf.Abs(currentPointCarried / 2), entity);
             }
-            
+
             ChampionRequestRemoveScore(GetComponent<Entity>());
-            
+
+
             // Tower disable
             EntityCollectionManager.GetEntityByIndex(towerLinkedIndex).GetComponent<Tower>().RequestDie();
 
@@ -119,11 +124,14 @@ namespace Entities.Champion
                 InputManager.PlayerMap.Movement.Enable();
                 InputManager.PlayerMap.Attack.Enable();
                 InputManager.PlayerMap.Capacity.Enable();
+                dieCanvas.SetActive(false);
+                viewRange = baseViewRange;
             }
 
-            if (FogOfWarManager.Instance != null) FogOfWarManager.Instance.AddFOWViewable(this);
-            rotateParent.gameObject.SetActive(true);
-            uiTransform.gameObject.SetActive(true);
+            // if (FogOfWarManager.Instance != null)FogOfWarManager.Instance.AddFOWViewable(this);
+            //rotateParent.SetActive(true);
+            //uiTransform.SetActive(true);
+
             OnReviveFeedback?.Invoke();
         }
 
@@ -134,7 +142,6 @@ namespace Entities.Champion
             SetCanDieRPC(true);
             SetCurrentHpRPC(maxHp);
             SetCurrentResourceRPC(maxResource);
-
             OnRevive?.Invoke();
             photonView.RPC("SyncReviveRPC", RpcTarget.All);
         }

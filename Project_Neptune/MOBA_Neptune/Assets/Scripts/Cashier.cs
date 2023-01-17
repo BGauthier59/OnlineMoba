@@ -30,9 +30,10 @@ public class Cashier : MonoBehaviour, IScorable
 
     public void CashierRequestIncreaseScore(Entity entityWhoScored)
     {
+        Debug.Log(entityWhoScored.name);
+        
         _photonView.RPC("CashierIncreaseScoreRPC", RpcTarget.MasterClient, entityWhoScored.currentPointCarried);
 
-        
         if (entityWhoScored.GetComponent<MinionStreamBehaviour>())
         {
             var deadable = entityWhoScored.GetComponent<IDeadable>(); // Tue le sbire

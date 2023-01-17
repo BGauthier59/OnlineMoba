@@ -100,7 +100,8 @@ namespace Entities
         {
             for (int i = 0; i < elementsToShow.Count; i++)
             {
-                elementsToShow[i].SetActive(true);
+                if (elementsToShow[i])
+                    elementsToShow[i].SetActive(true);
             }
 
             OnShowElementFeedback?.Invoke();
@@ -144,7 +145,8 @@ namespace Entities
         {
             for (int i = 0; i < elementsToShow.Count; i++)
             {
-                elementsToShow[i].SetActive(false);
+                if (elementsToShow[i])
+                    elementsToShow[i].SetActive(false);
             }
 
             OnHideElementFeedback?.Invoke();

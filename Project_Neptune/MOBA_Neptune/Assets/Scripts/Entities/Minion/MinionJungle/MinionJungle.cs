@@ -117,6 +117,7 @@ namespace Entities.Minion.MinionJungle
             if (Vector3.Distance(transform.position, basePos) >= wanderRange)
             {
                 currentState = MinionState.Idle;
+                currentAttackTarget = null;
                 return;
             }
 
@@ -174,10 +175,6 @@ namespace Entities.Minion.MinionJungle
             int[] uwu = new int[1]; uwu[0] = currentAttackTarget.entityIndex;
             Vector3[] owo = new Vector3[1]; owo[0] = currentAttackTarget.transform.position;
 
-            if (!EntityCollectionManager.GetEntityByIndex(currentAttackTarget.entityIndex).GetComponent<Champion.Champion>().isAlive) yield break;
-            
-            
-            
             if (lastCapacity == lastCapacityUsed.AutoAttackCapacity)
             {
                 autoAttackCapacity.RequestCastCapacity(uwu, owo); // Lancement de la capacité
