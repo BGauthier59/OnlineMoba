@@ -16,7 +16,6 @@ namespace Entities.Minion.MinionStream
         private readonly float spawnSpeed = 30;
         public Transform goToPointBeforeStream;
         public int pointsCarriedAtStartByMinions = 2;
-        public Material teamMat;
 
         private void Update()
         {
@@ -45,11 +44,10 @@ namespace Entities.Minion.MinionStream
             Entity minionGO = PoolNetworkManager.Instance.PoolInstantiate(minionPrefab, spawnPointForMinion.position,
                 Quaternion.identity, transform.root);
 
-            MinionStream.MinionStreamBehaviour minionStreamScript = minionGO.GetComponent<MinionStream.MinionStreamBehaviour>();
+            MinionStreamBehaviour minionStreamScript = minionGO.GetComponent<MinionStreamBehaviour>();
             minionStreamScript.myWayPoint = goToPointBeforeStream;
             minionStreamScript.ChangeTeamRPC((byte)team);
             minionStreamScript.currentPointCarried = pointsCarriedAtStartByMinions;
-            //minionScript.myMeshRenderer.materials[1] = teamMat;
         }
     }
 }
