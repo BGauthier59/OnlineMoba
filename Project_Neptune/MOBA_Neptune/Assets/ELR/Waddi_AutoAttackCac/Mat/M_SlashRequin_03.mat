@@ -1,0 +1,47 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: M_SlashRequin_03
+  m_Shader: {fileID: -6465566751694194690, guid: 8ec8fe790fd1ce843a21e274bda17c41, type: 3}
+  m_ShaderKeywords: 
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - Texture2D_3bfaf2db469e463b8653ad23bf117a9d:
+        m_Texture: {fileID: 2800000, guid: 55a1beb50f7d84f43a3ccaa3e9b72e25, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_Lightmaps:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_LightmapsInd:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_ShadowMasks:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Floats:
+    - Vector1_674334a34ad8496daa6061701c5f1647: 5.42
+    - Vector1_82eda7cb742d4972a4d010f445ff57e7: 5.06
+    - Vector1_a4d21648bad949b2a15f7115bdbb6775: 15.93
+    - Vector1_a618717c3fba48c1a29f915e63a49d1b: 1.38
+    - Vector1_eafda6964a034634ab7bf35431e888e3: 2.82
+    m_Colors:
+    - Color_4aacf9412f8841bf8708f02dac8e901d: {r: 47.937256, g: 36.64314, b: 12.54902, a: 0}
+    - Vector2_1df106b76acc472e8089ba40dd5a8bc6: {r: 1, g: 1, b: 0, a: 0}
+  m_BuildTextureStacks: []
