@@ -77,7 +77,7 @@ public class Cashier : MonoBehaviour, IScorable
     public void SyncPlayerGoaledRPC(int value)
     {
         scoreText.text = value.ToString();
-        scoreVFX.Play();
+        scoreVFX.PlayQueued("A_Scoring", QueueMode.CompleteOthers);
         confettiVFX.Play();
     }
 

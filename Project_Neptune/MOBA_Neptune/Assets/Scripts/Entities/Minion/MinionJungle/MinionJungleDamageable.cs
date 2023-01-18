@@ -6,18 +6,18 @@ namespace Entities.Minion.MinionJungle
     public partial class MinionJungle : IDamageable
     {
        public float GetMaxHp()
-        {
-            throw new NotImplementedException();
-        }
+       {
+           return maxHealth;
+       }
 
         public float GetCurrentHp()
         {
-            throw new NotImplementedException();
+            return currentHealth;
         }
 
         public float GetCurrentHpPercent()
         {
-            throw new NotImplementedException();
+            return currentHealth / maxHealth * 100f;
         }
 
         public void RequestSetMaxHp(float value)
@@ -129,6 +129,7 @@ namespace Entities.Minion.MinionJungle
             lastEntityWhoAttackedMeIndex = entityWhoAttackedMeIndex;
             currentAttackTarget = EntityCollectionManager.GetEntityByIndex(lastEntityWhoAttackedMeIndex);
             currentState = MinionState.Attacking;
+            OnDecreaseCurrentHpFeedback?.Invoke(amount);
         }
 
         [PunRPC]
