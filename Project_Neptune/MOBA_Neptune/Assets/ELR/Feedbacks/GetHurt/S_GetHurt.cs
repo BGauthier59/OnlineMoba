@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Hurto : MonoBehaviour
 {
-    public SpriteRenderer Renderer;
+    public SkinnedMeshRenderer Renderer;
   
 
     void Update()
@@ -12,11 +12,8 @@ public class Hurto : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
         {
             PlayFeedback();
-            
-            
         }
-
-    
+        
         //Debug.Log (Time.time + " ||| " + Renderer.material.GetFloat("_HitTime") + " ||| " + (Time.time - Renderer.material.GetFloat("_HitTime")< Renderer.material.GetFloat("_Duration")));
     }
 
@@ -24,8 +21,6 @@ public class Hurto : MonoBehaviour
     {
         Renderer.material.SetFloat("_HitTime", Time.time);
    
-      
-
     }
 
 
