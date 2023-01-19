@@ -7,9 +7,9 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: M_TurningCircle
-  m_Shader: {fileID: -6465566751694194690, guid: 1655f97cc36e2464981508075f993ca8, type: 3}
-  m_ShaderKeywords: 
+  m_Name: M_Hurt
+  m_Shader: {fileID: -6465566751694194690, guid: ec06f38d3d6dcde42829abd21351ba60, type: 3}
+  m_ShaderKeywords: ETC1_EXTERNAL_ALPHA
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -19,6 +19,14 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
+    - _MainTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MainText:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - unity_Lightmaps:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -32,7 +40,12 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
-    - Vector1_07ce73b4ebf54f87953c7e381261663a: 0
+    - Vector1_3846b2a8f32a4e3ab34ed3d427dcd17f: 0
+    - Vector1_43ae472b10c1493bb5e67ac91f928701: 0.1
+    - Vector1_ab14f7be80214486a94a0effe6857cce: 0
+    - _Duration: 0.2
+    - _HitTime: 0
     m_Colors:
-    - Color_e56c0128796d4578ba26f514f617c15b: {r: 0.12565444, g: 0.565445, b: 1, a: 1}
+    - Color_ec916723e8404ddaa74ae9c969b42e64: {r: 1, g: 1, b: 1, a: 0}
+    - Color_ec916723e8404ddaa74ae9c969b42e64_1: {r: 0.8584906, g: 0.13282296, b: 0.13282296, a: 1}
   m_BuildTextureStacks: []
