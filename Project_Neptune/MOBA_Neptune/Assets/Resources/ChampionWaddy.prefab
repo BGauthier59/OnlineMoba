@@ -1254,8 +1254,10 @@ MonoBehaviour:
   - {fileID: 5604031150618443111}
   - {fileID: 495527248594044764}
   - {fileID: 6541419760149111644}
-  orangeTeam: {fileID: 2100000, guid: 1e262b52e6641fc4bbff04122528cb3f, type: 2}
-  violetTeam: {fileID: 2100000, guid: 1271913e15a76394c8a65e6069b3bd56, type: 2}
+  orangeTeam: {fileID: 2100000, guid: c86828f178ddafd4da3756b64cde26a4, type: 2}
+  violetTeam: {fileID: 2100000, guid: 8c0c2e99ea43d944daef08d1b1099f86, type: 2}
+  championSpellKit: {fileID: 0}
+  championIcon: []
   canAttack: 0
   attackDamage: 0
   canCast: 0
@@ -2997,7 +2999,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 34e2f4af5882afb4e9ac6155c2a265b2, type: 2}
+  - {fileID: 2100000, guid: bcc21482209afe8438494e80ecfd814d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

@@ -2,14 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Hurto : MonoBehaviour
+public class S_GetHurt : MonoBehaviour
 {
     public SkinnedMeshRenderer Renderer;
   
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Escape))
         {
             PlayFeedback();
         }
