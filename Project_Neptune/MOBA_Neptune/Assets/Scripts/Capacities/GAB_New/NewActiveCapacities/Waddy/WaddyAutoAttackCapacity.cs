@@ -17,6 +17,8 @@ public class WaddyAutoAttackCapacity : NewActiveCapacity
     public KickCollider kickCollider;
     public Renderer colliderRd;
 
+    [SerializeField] private ParticleSystem slashVfx;
+
     public override void RequestCastCapacity(int[] targetedEntities, Vector3[] targetedPositions)
     {
         kickCollider.team = GetComponent<Entity>().team;
@@ -84,7 +86,8 @@ public class WaddyAutoAttackCapacity : NewActiveCapacity
     public void AttackFeedback()
     {
         attackCollider.enabled = true;
-        colliderRd.enabled = true;
+        //colliderRd.enabled = true;
+        slashVfx.Play();
     }
 
     private void CheckAttackTimer()
@@ -107,7 +110,7 @@ public class WaddyAutoAttackCapacity : NewActiveCapacity
     public void AttackEndFeedback()
     {
         attackCollider.enabled = false;
-        colliderRd.enabled = false;
+        //colliderRd.enabled = false;
     }
 
     protected override void StartCooldown()

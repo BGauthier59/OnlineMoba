@@ -11,6 +11,7 @@ public class KickCollider : MonoBehaviour
     public uint damage;
     public Enums.Team team;
     public Entity casterEntity;
+    [SerializeField] private ParticleSystem impactVfx;
     
     private void OnTriggerEnter(Collider other)
     {
@@ -22,5 +23,7 @@ public class KickCollider : MonoBehaviour
 
         var damageable = other.GetComponent<IDamageable>();
         damageable?.DecreaseCurrentHpRPC(damage, casterEntity.entityIndex);
+        impactVfx.transform.position = other.transform.position;
+        impactVfx.Play();
     }
 }
