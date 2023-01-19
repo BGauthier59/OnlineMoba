@@ -7,7 +7,7 @@ namespace Entities.Champion
     {
         //------------- Unused Methods ----------------------
         
-        public void CashierRequestIncreaseScore(Entity entityWhoScored)
+        public void CashierRequestIncreaseScore(Entity entityWhoScored, int value)
         {
         }
 

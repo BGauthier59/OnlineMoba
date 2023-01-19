@@ -17,9 +17,7 @@ namespace Entities.Minion.MinionStream
         private StreamModifier currentStreamModifier;
 
         public Transform myWayPoint;
-
-        [Header("Stats")] public float currentHealth;
-        public float maxHealth;
+        
         public MeshRenderer myMeshRenderer;
 
         #endregion
@@ -34,7 +32,7 @@ namespace Entities.Minion.MinionStream
             base.OnStart();
             myAgent = GetComponent<NavMeshAgent>();
             myStreamController = GetComponent<MinionStreamController>();
-            currentHealth = maxHealth;
+            currentHp = maxHp;
 
             foreach (var tc in GameStateMachine.Instance.teamColors)
             {

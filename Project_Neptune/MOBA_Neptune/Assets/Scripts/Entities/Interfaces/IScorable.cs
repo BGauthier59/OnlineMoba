@@ -4,9 +4,9 @@
  public interface IScorable
 {
     // Minion & Champion ---
-    public void CashierRequestIncreaseScore(Entity entityWhoScored);
-    public void SyncCashierIncreaseScoreRPC(int value, int entityIndex);
-    public void CashierIncreaseScoreRPC(int value, int entityIndex);
+    public void CashierRequestIncreaseScore(Entity entityWhoScored, int value);
+    public void SyncCashierIncreaseScoreRPC(int value);
+    public void CashierIncreaseScoreRPC(int value);
     
     // Champion Increase Score ---
     public void ChampionRequestIncreaseScore(int value, Entity entityToInscreasePoints);

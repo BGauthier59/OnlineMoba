@@ -1,7 +1,8 @@
 using Entities;
-using Entities.Minion;
 using GameStates;
+using JetBrains.Annotations;
 using Photon.Pun;
+using TMPro;
 using UnityEngine;
 using MinionStreamBehaviour = Entities.Minion.MinionStream.MinionStreamBehaviour;
 
@@ -11,6 +12,10 @@ public class Cashier : MonoBehaviour, IScorable
     public int cashierPoint;
     public int pointsNeededToWin;
     public Enums.Team teamToGoCashier;
+
+    public Animation scoreVFX;
+    public ParticleSystem confettiVFX;
+    public TextMeshPro scoreText;
 
     private void Start()
     {
@@ -23,17 +28,16 @@ public class Cashier : MonoBehaviour, IScorable
 
         if (tempEntity == null) return;
 
-        if (tempEntity.team == teamToGoCashier) CashierRequestIncreaseScore(tempEntity);
+        if (tempEntity.team == teamToGoCashier) CashierRequestIncreaseScore(tempEntity, tempEntity.currentPointCarried);
     }
 
     /* ------- CashierIncreaseScore ------- */
 
-    public void CashierRequestIncreaseScore(Entity entityWhoScored)
+    public void CashierRequestIncreaseScore(Entity entityWhoScored, int value)
     {
-        Debug.Log(entityWhoScored.name);
-        
-        _photonView.RPC("CashierIncreaseScoreRPC", RpcTarget.MasterClient, entityWhoScored.currentPointCarried, entityWhoScored.entityIndex);
-        
+        if (value == 0) return;
+
+        _photonView.RPC("CashierIncreaseScoreRPC", RpcTarget.MasterClient, value);
 
         if (entityWhoScored.GetComponent<MinionStreamBehaviour>())
         {
@@ -44,32 +48,37 @@ public class Cashier : MonoBehaviour, IScorable
         {
             var championScoreable = entityWhoScored.GetComponent<IScorable>(); // Retire les points
             championScoreable?.ChampionRequestRemoveScore(entityWhoScored);
+            _photonView.RPC("SyncPlayerGoaledRPC", RpcTarget.All, value);
         }
     }
 
     [PunRPC]
-    public void SyncCashierIncreaseScoreRPC(int value, int entityIndex)
+    public void SyncCashierIncreaseScoreRPC(int value)
     {
         cashierPoint = value;
         UICommonPlayers.Instance.OnScoreChange();
-        var entity = EntityCollectionManager.GetEntityByIndex(entityIndex);
-        entity.OnScore();
     }
 
     [PunRPC]
-    public void CashierIncreaseScoreRPC(int value, int entityIndex)
+    public void CashierIncreaseScoreRPC(int value)
     {
-        if (value < 1) return;
-        
         cashierPoint += value;
 
-        _photonView.RPC("SyncCashierIncreaseScoreRPC", RpcTarget.All, cashierPoint, entityIndex);
+        _photonView.RPC("SyncCashierIncreaseScoreRPC", RpcTarget.All, cashierPoint);
 
         if (cashierPoint < pointsNeededToWin) return;
 
         Debug.Log($"Team {teamToGoCashier} won the game !");
 
-        GameStateMachine.Instance.winner = teamToGoCashier; 
+        GameStateMachine.Instance.winner = teamToGoCashier;
+    }
+
+    [PunRPC] [UsedImplicitly]
+    public void SyncPlayerGoaledRPC(int value)
+    {
+        scoreText.text = value.ToString();
+        scoreVFX.PlayQueued("A_Scoring", QueueMode.CompleteOthers);
+        confettiVFX.Play();
     }
 
     // ----------- Unused Methods ----------- //

@@ -9,17 +9,13 @@ using UnityEngine.UI;
 public class ChampionHUD : MonoBehaviour
 {
     [SerializeField] private Image healthBar;
-    //[SerializeField] private Image resourceBar;
-    [SerializeField] private Image spellPassive;
-    [SerializeField] private Image spellOne;
-    [SerializeField] private Image spellTwo;
-    [SerializeField] private Image spellUltimate;
+    [SerializeField] private Image championIcon;
+    [SerializeField] private Image championSpell;
     [SerializeField] private Image spellPassiveCooldown;
+    [SerializeField] private Image autoAttackCooldown;
     [SerializeField] private Image spellOneCooldown;
-    [SerializeField] private Image spellTwoCooldown;
-    [SerializeField] private Image spellUltimateCooldown;
+    
     private Champion champion;
-    //private IResourceable resourceable;
     private IDamageable lifeable;
     private ICastable castable;
     private SpellHolder passiveHolder;
@@ -90,13 +86,6 @@ public class ChampionHUD : MonoBehaviour
         lifeable.OnDecreaseCurrentHpFeedback += UpdateFillPercentHealth;
         lifeable.OnIncreaseMaxHpFeedback += UpdateFillPercentHealth;
         lifeable.OnDecreaseMaxHpFeedback += UpdateFillPercentHealth;
-        
-        //resourceable.OnSetCurrentResourceFeedback += UpdateFillPercentResource;
-        //resourceable.OnSetCurrentResourcePercentFeedback += UpdateFillPercentByPercentResource;
-        //resourceable.OnIncreaseCurrentResourceFeedback += UpdateFillPercentResource;
-        //resourceable.OnDecreaseCurrentResourceFeedback += UpdateFillPercentResource;
-        //resourceable.OnIncreaseMaxResourceFeedback += UpdateFillPercentResource;
-        //resourceable.OnDecreaseMaxResourceFeedback += UpdateFillPercentResource;
     }
 
     private void UpdateIcons(Champion champion)
@@ -151,15 +140,5 @@ public class ChampionHUD : MonoBehaviour
     private void UpdateFillPercentHealth(float value)
     {
         healthBar.fillAmount = lifeable.GetCurrentHp()/lifeable.GetMaxHp();
-    }
-    
-    private void UpdateFillPercentByPercentResource(float value)
-    {
-        //resourceBar.fillAmount = value;
-    }
-
-    private void UpdateFillPercentResource(float value)
-    {
-        //resourceBar.fillAmount = resourceable.GetCurrentResource();
     }
 }

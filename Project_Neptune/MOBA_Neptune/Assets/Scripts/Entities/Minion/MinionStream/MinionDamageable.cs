@@ -5,19 +5,22 @@ namespace Entities.Minion.MinionStream
 {
     public partial class MinionStreamBehaviour : IDamageable
     {
-       public float GetMaxHp()
+        public float maxHp;
+        public float currentHp;
+        
+        public float GetMaxHp()
         {
-            throw new NotImplementedException();
+            return maxHp;
         }
 
         public float GetCurrentHp()
         {
-            throw new NotImplementedException();
+            return currentHp;
         }
 
         public float GetCurrentHpPercent()
         {
-            throw new NotImplementedException();
+            return currentHp / maxHp * 100f;
         }
 
         public void RequestSetMaxHp(float value)
@@ -125,20 +128,21 @@ namespace Entities.Minion.MinionStream
         [PunRPC]
         public void SyncDecreaseCurrentHpRPC(float amount, int entityWhoAttackedMeIndex)
         {
-            currentHealth = amount;
+            currentHp = amount;
             lastEntityWhoAttackedMeIndex = entityWhoAttackedMeIndex;
+            OnDecreaseCurrentHpFeedback?.Invoke(amount);
         }
 
         [PunRPC]
         public void DecreaseCurrentHpRPC(float amount, int entityWhoAttackedMeIndex)
         {
-            currentHealth -= amount;
+            currentHp -= amount;
             lastEntityWhoAttackedMeIndex = entityWhoAttackedMeIndex;
             
-            if (currentHealth < 0) currentHealth = 0;
+            if (currentHp < 0) currentHp = 0;
             
-            photonView.RPC("SyncDecreaseCurrentHpRPC", RpcTarget.All, currentHealth, lastEntityWhoAttackedMeIndex);
-            if (currentHealth <= 0) DieRPC();
+            photonView.RPC("SyncDecreaseCurrentHpRPC", RpcTarget.All, currentHp, lastEntityWhoAttackedMeIndex);
+            if (currentHp <= 0) DieRPC();
         }
 
         public event GlobalDelegates.FloatDelegate OnDecreaseCurrentHp;
