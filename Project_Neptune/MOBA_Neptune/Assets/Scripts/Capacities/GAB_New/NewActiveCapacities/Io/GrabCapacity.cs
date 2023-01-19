@@ -37,6 +37,7 @@ public class GrabCapacity : NewActiveCapacity
         if (TryCast())
         {
             StartCooldown();
+            caster.GetComponent<Champion>().myHud.spellHolderDict[this].StartTimer(cooldownDuration);
             GameStateMachine.Instance.OnTick += TimerCooldown;
         }
     }

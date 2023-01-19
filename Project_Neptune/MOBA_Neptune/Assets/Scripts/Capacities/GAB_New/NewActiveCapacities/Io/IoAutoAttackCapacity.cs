@@ -47,6 +47,7 @@ public class IoAutoAttackCapacity : NewActiveCapacity
         {
             if (count == maxCount)
             {
+                caster.GetComponent<Champion>().myHud.spellHolderDict[this].StartTimer(cooldownDuration);
                 photonView.RPC("SyncCanCastIoAutoAttackCapacityRPC", RpcTarget.All, false);
             }
         }
@@ -159,6 +160,8 @@ public class IoAutoAttackCapacity : NewActiveCapacity
     public void PlayIceImpactFeedback(Vector3 pos)
     {
         iceImpactFx.transform.position = pos;
+        var rotation = Mathf.Atan2(direction.z, direction.x) * Mathf.Rad2Deg;
+        iceImpactFx.transform.rotation = Quaternion.Euler(0, 0, rotation);
         iceImpactFx.Play();
     }
 

@@ -1091,8 +1091,8 @@ GameObject:
   - component: {fileID: 6530865356692434526}
   - component: {fileID: 434428232920986599}
   - component: {fileID: 4623264375627618466}
-  - component: {fileID: 3418616104100618397}
   - component: {fileID: 7344040446763861111}
+  - component: {fileID: 3418616104100618397}
   - component: {fileID: 1786555105780976107}
   - component: {fileID: 2856018034496556069}
   - component: {fileID: 6248514773965809750}
@@ -1256,8 +1256,11 @@ MonoBehaviour:
   - {fileID: 6541419760149111644}
   orangeTeam: {fileID: 2100000, guid: c86828f178ddafd4da3756b64cde26a4, type: 2}
   violetTeam: {fileID: 2100000, guid: 8c0c2e99ea43d944daef08d1b1099f86, type: 2}
-  championSpellKit: {fileID: 0}
-  championIcon: []
+  myHud: {fileID: 0}
+  championSpellKit: {fileID: 21300000, guid: bf0ac9e0540cf8648ade0686015c979c, type: 3}
+  championIcon:
+  - {fileID: 21300000, guid: 6a1b5a21d69f1ad4780881d3c200a6ec, type: 3}
+  - {fileID: 21300000, guid: 9d847960cdad2a942911db5a0ef3690b, type: 3}
   canAttack: 0
   attackDamage: 0
   canCast: 0
@@ -1342,7 +1345,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   caster: {fileID: 0}
   canCastCapacity: 1
-  cooldownDuration: 3
+  cooldownDuration: 1.5
   previewObject: {fileID: 3801297301610604867}
   previewRenderer: {fileID: 7257404912225043647}
   delayDuration: 0.1
@@ -1351,23 +1354,6 @@ MonoBehaviour:
   kickCollider: {fileID: 3265800608706468851}
   colliderRd: {fileID: 2592780296993248973}
   slashVfx: {fileID: 4211638063179274035}
---- !u!114 &3418616104100618397
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3480681341667345177}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a138f0454b78df846b9fc946762041f9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  caster: {fileID: 0}
-  canCastCapacity: 1
-  cooldownDuration: 0
-  previewObject: {fileID: 0}
-  previewRenderer: {fileID: 0}
 --- !u!114 &7344040446763861111
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1392,6 +1378,23 @@ MonoBehaviour:
     m_Bits: 536870912
   damage: 15
   impactFx: {fileID: 6635001046424660012}
+--- !u!114 &3418616104100618397
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3480681341667345177}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a138f0454b78df846b9fc946762041f9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  caster: {fileID: 0}
+  canCastCapacity: 1
+  cooldownDuration: 0
+  previewObject: {fileID: 0}
+  previewRenderer: {fileID: 0}
 --- !u!114 &1786555105780976107
 MonoBehaviour:
   m_ObjectHideFlags: 0

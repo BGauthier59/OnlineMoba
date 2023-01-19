@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Entities;
+using Entities.Champion;
 using GameStates;
 using Photon.Pun;
 using UnityEngine;
@@ -40,6 +41,7 @@ public class WaddyAutoAttackCapacity : NewActiveCapacity
 
         if (TryCast())
         {
+            caster.GetComponent<Champion>().myHud.spellHolderDict[this].StartTimer(cooldownDuration);
             StartCooldown();
             GameStateMachine.Instance.OnTick += TimerCooldown;
         }

@@ -584,6 +584,7 @@ MonoBehaviour:
   - {fileID: 72348269542190024}
   orangeTeam: {fileID: 2100000, guid: d79518be801c3db49a765beeb444d9bc, type: 2}
   violetTeam: {fileID: 2100000, guid: 9b8fc38a417eccb4ba57ec9c88cb71bc, type: 2}
+  myHud: {fileID: 0}
   championSpellKit: {fileID: 21300000, guid: 1db1412101ab04c4889b26fd0c31dfd0, type: 3}
   championIcon:
   - {fileID: 21300000, guid: 178eb31d42a7d3345a52af62d74746bb, type: 3}
@@ -700,7 +701,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   caster: {fileID: 0}
   canCastCapacity: 1
-  cooldownDuration: 5
+  cooldownDuration: 4
   previewObject: {fileID: 1049829277909489811}
   previewRenderer: {fileID: 7153881017966326234}
   grabMaxDistance: 10
@@ -1367,7 +1368,7 @@ Transform:
   m_GameObject: {fileID: 5865963541651086701}
   m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 2, y: 2, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 9103238337272370029}
   m_RootOrder: 0
@@ -2614,6 +2615,10 @@ PrefabInstance:
     - target: {fileID: 3137990178024155386, guid: 4711f4f527d17f34e9264e57e7842288, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8769455060752718684, guid: 4711f4f527d17f34e9264e57e7842288, type: 3}
+      propertyPath: m_RootOrder
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4711f4f527d17f34e9264e57e7842288, type: 3}

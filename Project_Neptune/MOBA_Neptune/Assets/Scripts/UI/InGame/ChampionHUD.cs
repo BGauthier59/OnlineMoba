@@ -12,23 +12,23 @@ public class ChampionHUD : MonoBehaviour
     [SerializeField] private Image healthBar;
     [SerializeField] private Image championIcon;
     [SerializeField] private Image championSpell;
-    
+
     //[SerializeField] private TextMeshProUGUI spellPassiveCooldownText;
     //[SerializeField] private Image spellPassiveCooldown;
-    
+
     [SerializeField] private TextMeshProUGUI autoAttackCooldownText;
     [SerializeField] private Image autoAttackCooldown;
-    
+
     [SerializeField] private TextMeshProUGUI spellOneCooldownText;
     [SerializeField] private Image spellOneCooldown;
 
     private Champion champion;
     private IDamageable lifeable;
-    private ICastable castable;
-    private SpellHolder passiveHolder;
-    private Dictionary<NewActiveCapacity, SpellHolder> spellHolderDict = new Dictionary<NewActiveCapacity, SpellHolder>();
 
-    private class SpellHolder
+    public Dictionary<NewActiveCapacity, SpellHolder>
+        spellHolderDict = new Dictionary<NewActiveCapacity, SpellHolder>();
+
+    public class SpellHolder
     {
         public Image spellCooldown;
         public TextMeshProUGUI spellCooldownText;
@@ -39,37 +39,41 @@ public class ChampionHUD : MonoBehaviour
             spellCooldown.fillAmount = 0;
             spellCooldownText = textMeshProUGUI;
         }
-        
-        public void StartTimer(float coolDown)
+
+        public void StartTimer(double cooldown)
         {
             var timer = 0.0;
             var tckRate = GameStateMachine.Instance.tickRate;
-            
-            
+
+
             GameStateMachine.Instance.OnTick += Tick;
-            
+
             void Tick()
             {
                 timer += 1.0 / tckRate;
-                spellCooldown.fillAmount = 1-(float)(timer / coolDown);
-                spellCooldownText.text = (1 - (float)(timer / coolDown)).ToString("F1");
-                if (!(timer > coolDown)) return;
+                spellCooldown.fillAmount = 1 - (float)(timer / cooldown);
+                spellCooldownText.text = (cooldown - timer).ToString("F1");
+                if (!(timer > cooldown)) return;
                 GameStateMachine.Instance.OnTick -= Tick;
                 spellCooldown.fillAmount = 0;
                 spellCooldownText.text = $"";
             }
         }
     }
-    
+
     public void InitHUD(Champion newChampion)
     {
-        //castable = champion.GetComponent<ICastable>();
+        champion = newChampion;
+        champion.myHud = this;
         lifeable = champion.GetComponent<IDamageable>();
         healthBar.fillAmount = lifeable.GetCurrentHpPercent();
         LinkToEvents();
         UpdateIcons(newChampion);
+
+        championIcon.sprite = champion.team == Enums.Team.Team1 ? champion.championIcon[0] : champion.championIcon[1];
+        championSpell.sprite = champion.championSpellKit;
     }
-    
+
     private void LinkToEvents()
     {
         lifeable.OnSetCurrentHpFeedback += UpdateFillPercentHealth;
@@ -83,7 +87,7 @@ public class ChampionHUD : MonoBehaviour
     private void UpdateIcons(Champion champion)
     {
         Debug.Log("Has to be modified.");
-        
+
         var autoAttackHolder = new SpellHolder
         {
             spellCooldown = autoAttackCooldown,
@@ -94,18 +98,18 @@ public class ChampionHUD : MonoBehaviour
             spellCooldown = spellOneCooldown,
             spellCooldownText = spellOneCooldownText
         };
-        
+
         spellHolderDict.Add(champion.GetComponent<ChampionInputController>().attackCapacity, autoAttackHolder);
         spellHolderDict.Add(champion.GetComponent<ChampionInputController>().capacity1, spellOneHolder);
     }
-    
+
     private void UpdateFillPercentByPercentHealth(float value)
     {
-        healthBar.fillAmount = lifeable.GetCurrentHp()/lifeable.GetMaxHp();
+        healthBar.fillAmount = lifeable.GetCurrentHp() / lifeable.GetMaxHp();
     }
-    
+
     private void UpdateFillPercentHealth(float value)
     {
-        healthBar.fillAmount = lifeable.GetCurrentHp()/lifeable.GetMaxHp();
+        healthBar.fillAmount = lifeable.GetCurrentHp() / lifeable.GetMaxHp();
     }
 }

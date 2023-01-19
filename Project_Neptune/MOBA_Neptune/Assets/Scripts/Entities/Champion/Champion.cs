@@ -33,10 +33,10 @@ namespace Entities.Champion
         private int towerLinkedIndex;
         
         // UI
-        [Space, Header("UI Variable")]
+        [Space, Header("UI Variable")] 
+        public ChampionHUD myHud;
         public Sprite   championSpellKit;
         public Sprite[] championIcon;
-        
         
         protected override void OnStart()
         {

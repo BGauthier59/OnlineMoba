@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Entities;
+using Entities.Champion;
 using GameStates;
 using Photon.Pun;
 using UnityEngine;
@@ -36,6 +37,7 @@ public class DiveCapacity : NewActiveCapacity
         if (TryCast())
         {
             StartCooldown();
+            caster.GetComponent<Champion>().myHud.spellHolderDict[this].StartTimer(cooldownDuration);
             GameStateMachine.Instance.OnTick += TimerCooldown;
         }
     }
