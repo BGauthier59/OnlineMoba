@@ -8,12 +8,16 @@ using UnityEngine.UI;
 
 public class ChampionHUD : MonoBehaviour
 {
+    [Header("General")]
     [SerializeField] private Image healthBar;
     [SerializeField] private Image championIcon;
     [SerializeField] private Image championSpell;
     [SerializeField] private Image spellPassiveCooldown;
     [SerializeField] private Image autoAttackCooldown;
     [SerializeField] private Image spellOneCooldown;
+
+    [Header("IO Specs")] 
+    [SerializeField] private GameObject ioAutoAttackSlotsHolder;
     
     private Champion champion;
     private IDamageable lifeable;
@@ -92,6 +96,14 @@ public class ChampionHUD : MonoBehaviour
     {
         Debug.Log("Has to be modified.");
         
+        championIcon.sprite = champion.team == Enums.Team.Team1 ? champion.championIcon[0] : champion.championIcon[1];
+        championSpell.sprite = champion.championSpellKit;
+
+        if (champion.championName == "Io")
+        {
+            ioAutoAttackSlotsHolder.SetActive(true);
+        }
+
         /*
         var so = champion.championSo;
         passiveHolder = new SpellHolder
@@ -99,7 +111,7 @@ public class ChampionHUD : MonoBehaviour
             spellIcon = spellPassive,
             spellCooldown = spellPassiveCooldown
         };
-        var spellOneHolder = new SpellHolder
+        var spellAutoAttack = new SpellHolder
         {
             spellIcon = spellOne,
             spellCooldown = spellOneCooldown

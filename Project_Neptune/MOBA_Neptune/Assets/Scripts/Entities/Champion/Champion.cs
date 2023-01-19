@@ -32,6 +32,12 @@ namespace Entities.Champion
         // Which tower is link
         private int towerLinkedIndex;
         
+        // UI
+        [Space, Header("UI Variable")]
+        public Sprite   championSpellKit;
+        public Sprite[] championIcon;
+        
+        
         protected override void OnStart()
         {
             base.OnStart();
