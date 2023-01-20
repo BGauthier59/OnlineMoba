@@ -49,21 +49,18 @@ namespace Controllers.Inputs
         {
             if (!capacity1) return;
             capacity1.RequestSetPreview(true);
-
         }
 
         private void OnPreviewCapacity1(InputAction.CallbackContext ctx)
         {
             if (!capacity2) return;
             capacity2.RequestSetPreview(true);
-
         }
 
         private void OnPreviewUltimate(InputAction.CallbackContext ctx)
         {
             if (!ultimateCapacity) return;
             ultimateCapacity.RequestSetPreview(true);
-
         }
 
         private void OnAttack(InputAction.CallbackContext ctx)
@@ -99,11 +96,34 @@ namespace Controllers.Inputs
         private Vector3 GetMouseOverWorldPos()
         {
             var mouseRay = cam.ScreenPointToRay(Input.mousePosition);
-            var point = Physics.Raycast(mouseRay, out var hit, float.PositiveInfinity, groundLayer)
-                ? hit.point
-                : Vector3.zero;
+
+            if (!Physics.Raycast(mouseRay, out var hit, float.PositiveInfinity, groundLayer))
+            {
+                if (selectedEntity[0] == 0) return Vector3.zero;
+                EntityCollectionManager.GetEntityByIndex(selectedEntity[0]).outline.enabled = false;
+                selectedEntity[0] = 0;
+                return Vector3.zero;
+            }
+            
+            var point = hit.point;
             point.y = 1;
+            GetEntityOnMouse(hit);
             return point;
+        }
+
+        private void GetEntityOnMouse(RaycastHit hit)
+        {
+            var entity = hit.transform.GetComponent<Entity>();
+            if (!entity || entity == champion)
+            {
+                if (selectedEntity[0] == 0) return;
+                EntityCollectionManager.GetEntityByIndex(selectedEntity[0]).outline.enabled = false;
+                selectedEntity[0] = 0;
+                return;
+            }
+            selectedEntity[0] = entity.entityIndex;
+            if (!entity.outline) return;
+            entity.outline.enabled = true;
         }
 
         void OnMoveChange(InputAction.CallbackContext ctx)
@@ -129,7 +149,7 @@ namespace Controllers.Inputs
             inputs.Capacity.Capacity0.performed += OnPreviewCapacity0;
             inputs.Capacity.Capacity1.performed += OnPreviewCapacity1;
             inputs.Capacity.Capacity2.performed += OnPreviewUltimate;
-            
+
             inputs.Attack.Attack.canceled += OnAttack;
             inputs.Capacity.Capacity0.canceled += OnActivateCapacity0;
             inputs.Capacity.Capacity1.canceled += OnActivateCapacity1;
@@ -145,7 +165,7 @@ namespace Controllers.Inputs
             inputs.Capacity.Capacity0.performed -= OnPreviewCapacity0;
             inputs.Capacity.Capacity1.performed -= OnPreviewCapacity1;
             inputs.Capacity.Capacity2.performed -= OnPreviewUltimate;
-            
+
             inputs.Attack.Attack.canceled -= OnAttack;
             inputs.Capacity.Capacity0.canceled -= OnActivateCapacity0;
             inputs.Capacity.Capacity1.canceled -= OnActivateCapacity1;
