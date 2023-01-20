@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 2654301662090319034}
   - component: {fileID: 645752604322479918}
   - component: {fileID: 8567230197879013280}
+  - component: {fileID: 2302129809506833602}
   m_Layer: 0
   m_Name: S_Minion
   m_TagString: Untagged
@@ -96,6 +97,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Renderer: {fileID: 645752604322479918}
+--- !u!114 &2302129809506833602
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2259915626154006612}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 0
+  outlineColor: {r: 0.2783019, g: 0.9349466, b: 1, a: 1}
+  outlineWidth: 4
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
 --- !u!1 &3140709889222919451
 GameObject:
   m_ObjectHideFlags: 0
@@ -511,6 +530,7 @@ MonoBehaviour:
   guiOffset: {x: 0, y: 2, z: 0}
   rb: {fileID: 0}
   animator: {fileID: 0}
+  outline: {fileID: 2302129809506833602}
   canShow: 0
   canHide: 0
   elementsToShow: []

@@ -147,7 +147,7 @@ public class DiveCapacity : NewActiveCapacity
         if (!photonView.IsMine) return;
         previewActivate = active;
         previewObject.gameObject.SetActive(active);
-        var color = canCast ? Color.blue : Color.red;
+        var color = canCast ? championCaster.previewColorEnable : championCaster.previewColorDisable;
         previewRenderer.material.SetColor("_EmissionColor", color);
     }
 
@@ -170,7 +170,7 @@ public class DiveCapacity : NewActiveCapacity
         canCastCapacity = canCast;
         if (previewActivate && photonView.IsMine)
         {
-            var color = canCast ? Color.blue : Color.red;
+            var color = canCast ? championCaster.previewColorEnable : championCaster.previewColorDisable;
             previewRenderer.material.SetColor("_EmissionColor", color);
         }
     }

@@ -42,6 +42,8 @@ namespace Entities
         public Rigidbody rb;
         public Animator animator;
 
+        public Outline outline;
+
         private void Start()
         {
             entityIndex = photonView.ViewID;

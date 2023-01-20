@@ -11,6 +11,7 @@ public class LobbyHover : MonoBehaviour
     [SerializeField] private float scaleMax;
     [SerializeField] private float scaleMin;
     private bool isHovering;
+    private bool needUpdate;
 
     private void Start()
     {
@@ -26,9 +27,11 @@ public class LobbyHover : MonoBehaviour
 
     private void IncreaseSize()
     {
+        if (!needUpdate) return;
         if (rt.localScale.x > scaleMax)
         {
             rt.localScale = Vector3.one * scaleMax;
+            needUpdate = false;
             return;
         }
         
@@ -37,9 +40,11 @@ public class LobbyHover : MonoBehaviour
     
     private void DecreaseSize()
     {
+        if (!needUpdate) return;
         if (rt.localScale.x < scaleMin)
         {
             rt.localScale = Vector3.one * scaleMin;
+            needUpdate = false;
             return;
         }
         
@@ -49,5 +54,6 @@ public class LobbyHover : MonoBehaviour
     public void SetHover(bool b)
     {
         isHovering = b;
+        needUpdate = true;
     }
 }
