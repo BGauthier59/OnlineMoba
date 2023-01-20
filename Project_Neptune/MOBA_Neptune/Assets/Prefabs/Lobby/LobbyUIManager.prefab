@@ -1244,6 +1244,7 @@ GameObject:
   - component: {fileID: 5669105840887929707}
   - component: {fileID: 3013358273959811238}
   - component: {fileID: 6301006371080998575}
+  - component: {fileID: 5613253725161987282}
   m_Layer: 5
   m_Name: WaddyButton
   m_TagString: Untagged
@@ -1381,26 +1382,26 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 7826763905975169743}
-          m_TargetAssemblyTypeName: LobbyUIManager, Assembly-CSharp
-          m_MethodName: PlayWaddyAnimation
-          m_Mode: 5
+        - m_Target: {fileID: 5613253725161987282}
+          m_TargetAssemblyTypeName: LobbyHover, Assembly-CSharp
+          m_MethodName: SetHover
+          m_Mode: 6
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
             m_IntArgument: 0
             m_FloatArgument: 0
             m_StringArgument: MouseOverEnter
-            m_BoolArgument: 0
+            m_BoolArgument: 1
           m_CallState: 2
   - eventID: 1
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 7826763905975169743}
-          m_TargetAssemblyTypeName: LobbyUIManager, Assembly-CSharp
-          m_MethodName: PlayWaddyAnimation
-          m_Mode: 5
+        - m_Target: {fileID: 5613253725161987282}
+          m_TargetAssemblyTypeName: LobbyHover, Assembly-CSharp
+          m_MethodName: SetHover
+          m_Mode: 6
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -1409,6 +1410,21 @@ MonoBehaviour:
             m_StringArgument: MouseOverExit
             m_BoolArgument: 0
           m_CallState: 2
+--- !u!114 &5613253725161987282
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2511826084164302911}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c6bf126abca1c854dabfaceee546fb34, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  image: {fileID: 1768413181860311276}
+  scaleMax: 1.2
+  scaleMin: 1
 --- !u!1 &2699424689852789060
 GameObject:
   m_ObjectHideFlags: 0
@@ -1900,6 +1916,7 @@ GameObject:
   - component: {fileID: 8298126379469172804}
   - component: {fileID: 2770757993682051648}
   - component: {fileID: 2777853218602492557}
+  - component: {fileID: 6676917733836718893}
   m_Layer: 5
   m_Name: IoButton
   m_TagString: Untagged
@@ -2037,26 +2054,26 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 7826763905975169743}
-          m_TargetAssemblyTypeName: LobbyUIManager, Assembly-CSharp
-          m_MethodName: PlayIoAnimation
-          m_Mode: 5
+        - m_Target: {fileID: 6676917733836718893}
+          m_TargetAssemblyTypeName: LobbyHover, Assembly-CSharp
+          m_MethodName: SetHover
+          m_Mode: 6
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
             m_IntArgument: 0
             m_FloatArgument: 0
             m_StringArgument: MouseOverEnter
-            m_BoolArgument: 0
+            m_BoolArgument: 1
           m_CallState: 2
   - eventID: 1
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 7826763905975169743}
-          m_TargetAssemblyTypeName: LobbyUIManager, Assembly-CSharp
-          m_MethodName: PlayIoAnimation
-          m_Mode: 5
+        - m_Target: {fileID: 6676917733836718893}
+          m_TargetAssemblyTypeName: LobbyHover, Assembly-CSharp
+          m_MethodName: SetHover
+          m_Mode: 6
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -2065,6 +2082,21 @@ MonoBehaviour:
             m_StringArgument: MouseOverExit
             m_BoolArgument: 0
           m_CallState: 2
+--- !u!114 &6676917733836718893
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3350146217039527869}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c6bf126abca1c854dabfaceee546fb34, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  image: {fileID: 9015931850281047383}
+  scaleMax: 1.2
+  scaleMin: 1
 --- !u!1 &3604262677837165353
 GameObject:
   m_ObjectHideFlags: 0
@@ -2173,7 +2205,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 40, y: -440}
+  m_AnchoredPosition: {x: 40, y: -350}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &4018243139169132078
@@ -3997,7 +4029,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 45.1
+  m_fontSize: 40
   m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -4179,8 +4211,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 400, y: 100}
-  m_SizeDelta: {x: 150, y: 75}
+  m_AnchoredPosition: {x: 40, y: 50}
+  m_SizeDelta: {x: 150, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7826763905973945431
 CanvasRenderer:
@@ -4203,7 +4235,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.6226415, g: 0.6226415, b: 0.6226415, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -4326,11 +4358,20 @@ MonoBehaviour:
   goTextObject: {fileID: 6537666051997530867}
   readyButton: {fileID: 7826763905973945433}
   readyButtonText: {fileID: 7826763905424999745}
-  selectedChampionColor: {r: 1, g: 0.19607843, b: 1, a: 1}
   unselectedChampionColor: {r: 0.0754717, g: 0.0754717, b: 0.0754717, a: 1}
-  teamColorText: {fileID: 0}
   waddyAnim: {fileID: 8930643684167987807}
   ioAnim: {fileID: 949234000969362433}
+  waddyImage: {fileID: 1768413181860311276}
+  ioImage: {fileID: 9015931850281047383}
+  buttonImage: {fileID: 7432035793107760415}
+  waddyNeutral: {fileID: 21300000, guid: 8e29caa6151373644ad01ea8dea628d4, type: 3}
+  waddyOrange: {fileID: 21300000, guid: f75c57f11e66a75478ff646dede6bc71, type: 3}
+  waddyViolet: {fileID: 21300000, guid: 0aa5a319f496b6d41b2ce2589b9130ba, type: 3}
+  ioNeutral: {fileID: 21300000, guid: 42bcf1fa2e7a104499ec2eddd610b7ed, type: 3}
+  ioOrange: {fileID: 21300000, guid: 565947fcb22cd9a43b0143661997827f, type: 3}
+  ioViolet: {fileID: 21300000, guid: 65f4adebfb7a5d54f90de988cf1b3938, type: 3}
+  buttonOrange: {fileID: 21300000, guid: 83dddb3f6954fdc4da3369a6a3a4ee54, type: 3}
+  buttonViolet: {fileID: 21300000, guid: ba90aa4cc6b9c504d9791f033429a679, type: 3}
   allClientsInformation:
   - obj: {fileID: 1681576287226647602}
     clientChampionNameText: {fileID: 6721805311946145390}

@@ -21,15 +21,28 @@ public class LobbyUIManager : MonoBehaviourPun
     private Button readyButton;
 
     [SerializeField] private TextMeshProUGUI readyButtonText;
-    [SerializeField] private Color selectedChampionColor;
     [SerializeField] private Color unselectedChampionColor;
     private Color firstTeamColor;
     private Color secondTeamColor;
-    [SerializeField] private TextMeshProUGUI teamColorText;
     private bool isFirstTeam = true;
 
     [SerializeField] private Animation waddyAnim;
     [SerializeField] private Animation ioAnim;
+
+    [SerializeField] private Image waddyImage;
+    [SerializeField] private Image ioImage;
+    [SerializeField] private Image buttonImage;
+
+    [Header("Sprites")]
+    
+    [SerializeField] private Sprite waddyNeutral;
+    [SerializeField] private Sprite waddyOrange;
+    [SerializeField] private Sprite waddyViolet;
+    [SerializeField] private Sprite ioNeutral;
+    [SerializeField] private Sprite ioOrange;
+    [SerializeField] private Sprite ioViolet;
+    [SerializeField] private Sprite buttonOrange;
+    [SerializeField] private Sprite buttonViolet;
 
     [Header("Network")] [SerializeField] private ClientInformation[] allClientsInformation;
     [SerializeField] private Color readyColor;
@@ -121,10 +134,14 @@ public class LobbyUIManager : MonoBehaviourPun
             case 0:
                 //firstChampionColorImage.color = selectedChampionColor;
                 //secondChampionColorImage.color = unselectedChampionColor;
+                ioImage.sprite = currentTeam == Enums.Team.Team1 ? ioOrange : ioViolet;
+                waddyImage.sprite = waddyNeutral;
                 break;
             case 1:
                 //firstChampionColorImage.color = unselectedChampionColor;
                 //secondChampionColorImage.color = selectedChampionColor;
+                waddyImage.sprite = currentTeam == Enums.Team.Team1 ? waddyOrange : waddyViolet;
+                ioImage.sprite = ioNeutral;
                 break;
             default:
                 Debug.LogError("Index is not valid. Must be 0 or 1.");
@@ -151,9 +168,19 @@ public class LobbyUIManager : MonoBehaviourPun
         currentTeam = (Enums.Team)index;
 
         // We change GUI
-        //teamColorImage.color = isFirstTeam ? firstTeamColor : secondTeamColor;
-        teamColorText.color = isFirstTeam ? firstTeamColor : secondTeamColor;
-        teamColorText.text = isFirstTeam ? "1" : "2";
+        buttonImage.sprite = currentTeam == Enums.Team.Team1 ? buttonOrange : buttonViolet;
+        if (currentTeam == Enums.Team.Team1)
+        {
+            if (waddyImage.sprite == waddyViolet) waddyImage.sprite = waddyOrange;
+            else if (ioImage.sprite == ioViolet) ioImage.sprite = ioOrange;
+        }
+        else
+        {
+            if (waddyImage.sprite == waddyOrange) waddyImage.sprite = waddyViolet;
+            else if (ioImage.sprite == ioOrange) ioImage.sprite = ioViolet;
+        }
+        
+        
 
         // We send request to Master
         sm.RequestSetTeam((byte)currentTeam);
@@ -238,14 +265,5 @@ public class LobbyUIManager : MonoBehaviourPun
     {
         sm.StartCoroutine(sm.StartingGame());
     }
-
-    public void PlayWaddyAnimation(string name)
-    {
-        waddyAnim.Play(name);
-    }
     
-    public void PlayIoAnimation(string name)
-    {
-        ioAnim.Play(name);
-    }
 }
