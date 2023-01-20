@@ -9,7 +9,7 @@ using UnityEngine;
 public class MarkedCapacity : NewPassiveCapacity
 {
     [SerializeField] private ParticleSystem iceExplosionFx;
-    private ushort markCount;
+    private int markCount;
     [SerializeField] private uint damage;
     [SerializeField] private TextMeshPro markDebugText;
     
