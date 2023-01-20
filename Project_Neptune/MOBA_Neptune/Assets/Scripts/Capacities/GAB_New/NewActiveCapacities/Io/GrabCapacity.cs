@@ -45,7 +45,6 @@ public class GrabCapacity : NewActiveCapacity
     [PunRPC]
     public void SyncDataGrabCapacityRPC(Vector3 target)
     {
-        
         casterInitPos = GetCasterPos();
         direction = -(casterInitPos - target);
         direction.y = 0;
@@ -71,7 +70,7 @@ public class GrabCapacity : NewActiveCapacity
         }
 
         if (!Physics.Raycast(casterInitPos + championCaster.rotateParent.forward, direction, out var hit,
-            grabMaxDistance, grabableLayer)) return false;
+                grabMaxDistance, grabableLayer)) return false;
 
         // Cast Succeeded!
 
@@ -113,11 +112,11 @@ public class GrabCapacity : NewActiveCapacity
             Debug.LogWarning("Touched itself!");
             return;
         }
-        
+
         // Caster : celui qui lance le grab
         // Entity : celui qui est touché par le grab
 
-        var grabCaster = (Champion) caster;
+        var grabCaster = (Champion)caster;
         var team = entity.team;
 
         if (team == Enums.Team.Neutral)
@@ -159,32 +158,33 @@ public class GrabCapacity : NewActiveCapacity
             GameStateMachine.Instance.OnTick -= TimerCooldown;
         }
     }
-    
+
     public override void RequestSetPreview(bool active)
     {
         photonView.RPC("SetPreviewGrabRPC", RpcTarget.All, active, canCastCapacity);
     }
-    
+
     [PunRPC]
     public void SetPreviewGrabRPC(bool active, bool canCast)
     {
         if (!photonView.IsMine) return;
         previewActivate = active;
         previewObject.gameObject.SetActive(active);
-        var color = canCast ? Color.blue : Color.red;
+        var color = canCast ? championCaster.previewColorEnable : championCaster.previewColorDisable;
         previewRenderer.material.SetColor("_EmissionColor", color);
     }
 
     public override void Update()
     {
-        if(previewActivate) UpdatePreview();
+        if (previewActivate) UpdatePreview();
     }
 
     public override void UpdatePreview()
     {
         if (!photonView.IsMine) return;
         var pos = championCaster.transform.position;
-        previewObject.rotation = Quaternion.Lerp(previewObject.rotation, Quaternion.LookRotation(championCaster.controller.cursorWorldPos[0] - pos), Time.deltaTime * 15);
+        previewObject.rotation = Quaternion.Lerp(previewObject.rotation,
+            Quaternion.LookRotation(championCaster.controller.cursorWorldPos[0] - pos), Time.deltaTime * 15);
         var euler = previewObject.eulerAngles;
         euler.x = 90;
         euler.z = 0;
@@ -197,7 +197,8 @@ public class GrabCapacity : NewActiveCapacity
         canCastCapacity = canCast;
         if (previewActivate && photonView.IsMine)
         {
-            var color = canCast ? Color.blue : Color.red;
+            var color = canCast ? championCaster.previewColorEnable : championCaster.previewColorDisable;
             previewRenderer.material.SetColor("_EmissionColor", color);
-        }    }
+        }
+    }
 }

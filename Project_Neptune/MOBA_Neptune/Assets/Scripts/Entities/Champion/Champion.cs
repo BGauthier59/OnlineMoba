@@ -25,6 +25,8 @@ namespace Entities.Champion
     
         [SerializeField] private MeshRenderer teamConeRenderer;
 
+        public Color previewColorEnable;
+        public Color previewColorDisable;
         [SerializeField] private Renderer[] meshes;
         [SerializeField] private Material orangeTeam;
         [SerializeField] private Material violetTeam;
