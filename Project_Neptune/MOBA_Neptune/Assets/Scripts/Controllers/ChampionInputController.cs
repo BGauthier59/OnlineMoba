@@ -100,7 +100,8 @@ namespace Controllers.Inputs
             if (!Physics.Raycast(mouseRay, out var hit, float.PositiveInfinity, groundLayer))
             {
                 if (selectedEntity[0] == 0) return Vector3.zero;
-                EntityCollectionManager.GetEntityByIndex(selectedEntity[0]).outline.enabled = false;
+                var ent = EntityCollectionManager.GetEntityByIndex(selectedEntity[0]);
+                if(ent.outline) ent.outline.enabled = false;
                 selectedEntity[0] = 0;
                 return Vector3.zero;
             }
@@ -117,7 +118,8 @@ namespace Controllers.Inputs
             if (!entity || entity == champion)
             {
                 if (selectedEntity[0] == 0) return;
-                EntityCollectionManager.GetEntityByIndex(selectedEntity[0]).outline.enabled = false;
+                var ent = EntityCollectionManager.GetEntityByIndex(selectedEntity[0]);
+                if(ent.outline) ent.outline.enabled = false;
                 selectedEntity[0] = 0;
                 return;
             }
