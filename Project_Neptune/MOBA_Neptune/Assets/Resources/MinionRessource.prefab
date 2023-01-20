@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 8994668809488603427}
   - component: {fileID: 2654301662090319034}
   - component: {fileID: 645752604322479918}
+  - component: {fileID: 8567230197879013280}
   m_Layer: 0
   m_Name: S_Minion
   m_TagString: Untagged
@@ -82,6 +83,19 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &8567230197879013280
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2259915626154006612}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7fe5c3f19dc771b41852c486ebd7f8f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Renderer: {fileID: 645752604322479918}
 --- !u!1 &3140709889222919451
 GameObject:
   m_ObjectHideFlags: 0
@@ -510,6 +524,7 @@ MonoBehaviour:
   fogOfWarStartDetection: {fileID: 2444940989112848549}
   maxHp: 30
   currentHp: 30
+  hurtOnSkinnedMeshVfx: {fileID: 8567230197879013280}
   myAgent: {fileID: 4555090259929885741}
   myStreamController: {fileID: 0}
   currentStreamModifier: {fileID: 0}

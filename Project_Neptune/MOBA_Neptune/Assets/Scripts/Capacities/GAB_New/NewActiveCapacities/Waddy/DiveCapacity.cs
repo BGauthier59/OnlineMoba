@@ -37,7 +37,7 @@ public class DiveCapacity : NewActiveCapacity
         if (TryCast())
         {
             StartCooldown();
-            caster.GetComponent<Champion>().myHud.spellHolderDict[this].StartTimer(cooldownDuration);
+            photonView.RPC("SyncCastDiveCapacityRPC", RpcTarget.Others);
             GameStateMachine.Instance.OnTick += TimerCooldown;
         }
     }
@@ -47,6 +47,7 @@ public class DiveCapacity : NewActiveCapacity
     {
         if (!photonView.IsMine) return;
         InputManager.EnablePlayerMap(false);
+        championCaster.myHud.spellHolderDict[this].StartTimer(cooldownDuration);
     }
 
     public override bool TryCast()

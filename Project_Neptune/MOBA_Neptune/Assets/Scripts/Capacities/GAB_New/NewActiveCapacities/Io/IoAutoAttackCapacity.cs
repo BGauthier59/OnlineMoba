@@ -47,8 +47,8 @@ public class IoAutoAttackCapacity : NewActiveCapacity
         {
             if (count == maxCount)
             {
-                caster.GetComponent<Champion>().myHud.spellHolderDict[this].StartTimer(cooldownDuration);
                 photonView.RPC("SyncCanCastIoAutoAttackCapacityRPC", RpcTarget.All, false);
+                photonView.RPC("SyncCastIoAutoAttackCapacityRPC", RpcTarget.All);
             }
         }
     }
@@ -62,8 +62,9 @@ public class IoAutoAttackCapacity : NewActiveCapacity
     }
 
     [PunRPC]
-    public void SyncCastIoAutoAttackCapacityRPC(int[] targetedEntities, Vector3[] targetedPositions)
+    public void SyncCastIoAutoAttackCapacityRPC()
     {
+        if (photonView.IsMine) championCaster.myHud.spellHolderDict[this].StartTimer(cooldownDuration);
     }
 
     public override bool TryCast()

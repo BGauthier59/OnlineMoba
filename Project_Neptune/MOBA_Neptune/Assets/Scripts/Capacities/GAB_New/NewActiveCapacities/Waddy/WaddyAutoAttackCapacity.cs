@@ -42,16 +42,19 @@ public class WaddyAutoAttackCapacity : NewActiveCapacity
         if (TryCast())
         {
             StartCooldown();
-            if (caster.GetComponent<Champion>().myHud != null)
-                caster.GetComponent<Champion>().myHud.spellHolderDict[this].StartTimer(cooldownDuration);
+            photonView.RPC("SyncCanCastWaddyAutoAttackCapacityRPC", RpcTarget.Others,false);
+            photonView.RPC("SyncWaddyAutoAttackCastCapacityRPC", RpcTarget.Others);
             GameStateMachine.Instance.OnTick += TimerCooldown;
         }
     }
 
     [PunRPC]
-    public void SyncWaddyAutoAttackCastCapacityRPC(int[] targetedEntities, Vector3[] targetedPositions)
+    public void SyncWaddyAutoAttackCastCapacityRPC()
     {
-        throw new System.NotImplementedException();
+        if (photonView.IsMine)
+        {
+            championCaster.myHud.spellHolderDict[this].StartTimer(cooldownDuration);
+        }
     }
 
     public override bool TryCast()

@@ -7,7 +7,7 @@ namespace Entities.Champion
     {
         public float maxHp;
         public float currentHp;
-
+        public S_GetHurtOnSkinnedMesh[] hurtVfx;
 
         public float GetMaxHp()
         {
@@ -186,10 +186,10 @@ namespace Entities.Champion
             lastEntityWhoAttackedMeIndex = entityWhoAttackedIndex;
             OnDecreaseCurrentHpFeedback?.Invoke(amount);
 
-            for (int i = 0; i < meshes.Length; i++)
+            /* for (int i = 0; i < hurtVfx.Length; i++)
             {
-                meshes[i].material.SetFloat("_HitTime", Time.time);
-            }
+                hurtVfx[i].PlayFeedback();
+            } */
         }
 
         [PunRPC]

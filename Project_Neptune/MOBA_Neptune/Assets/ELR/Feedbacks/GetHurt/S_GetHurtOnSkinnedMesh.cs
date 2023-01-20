@@ -2,11 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class S_GetHurt : MonoBehaviour
+public class S_GetHurtOnSkinnedMesh : MonoBehaviour
 {
     public SkinnedMeshRenderer Renderer;
-  
-
+    
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Space))
@@ -17,11 +16,8 @@ public class S_GetHurt : MonoBehaviour
         //Debug.Log (Time.time + " ||| " + Renderer.material.GetFloat("_HitTime") + " ||| " + (Time.time - Renderer.material.GetFloat("_HitTime")< Renderer.material.GetFloat("_Duration")));
     }
 
-    void PlayFeedback()
+    public void PlayFeedback()
     {
         Renderer.material.SetFloat("_HitTime", Time.time);
     }
-
-
-    
 }

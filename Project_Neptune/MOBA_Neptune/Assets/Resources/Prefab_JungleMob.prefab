@@ -470,6 +470,7 @@ MonoBehaviour:
   attackRange: 3.5
   wanderRange: 3.5
   myCamp: {fileID: 0}
+  hurtOnSkinnedMeshVfx: {fileID: 0}
 --- !u!114 &5379231645317470454
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -569,6 +570,7 @@ GameObject:
   - component: {fileID: 5822530463735283381}
   - component: {fileID: 7449537688079429904}
   - component: {fileID: 4649654659920365018}
+  - component: {fileID: 7215342114196062748}
   m_Layer: 0
   m_Name: S_Meduse_01
   m_TagString: Untagged
@@ -639,6 +641,19 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &7215342114196062748
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6594985329007305743}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7fe5c3f19dc771b41852c486ebd7f8f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Renderer: {fileID: 4649654659920365018}
 --- !u!1 &8906769916902463036
 GameObject:
   m_ObjectHideFlags: 0
