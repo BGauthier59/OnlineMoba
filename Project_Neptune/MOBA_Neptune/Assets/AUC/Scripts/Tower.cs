@@ -16,10 +16,13 @@ public partial class Tower : Building
     public int damage;
     public float detectionRange;
     public float delayBeforeAttack;
-    public float detectionDelay;
+    public float delayBeforeDamage;
     public float brainSpeed;
-    public float timeBetweenShots;
+    public float reloadTime;
     public bool isCycleAttack = false;
+    
+    [SerializeField] private float projectileSpeed;
+    [SerializeField] private GameObject towerProjectile;
     
     // Prep liaison tour - player
     public bool isActive;
@@ -53,26 +56,32 @@ public partial class Tower : Building
         
     }
 
-    // ReSharper disable Unity.PerformanceAnalysis
+    private float elapsedTime = 0f;
+    private bool projectileAlive = true;
     protected override void OnUpdate()
     {
-        
         if (!isActive) return;
 
         // Local
         if (playerID == 0) playerID = GameStateMachine.Instance.GetPlayerChampionPhotonViewId();
-        
         if (localEnemiesInRange > 0) warningPoint.SetActive(localPlayerFocused == playerID);
-        
-        // Multi
 
-        if (!PhotonNetwork.IsMasterClient) return;
-
+        // Master
+        if (!PhotonNetwork.IsMasterClient) return; 
         brainTimer += Time.deltaTime;
         if (brainTimer > brainSpeed)
         {
             TowerDetection();
             brainTimer = 0;
+        }
+
+        
+        if (isCycleAttack && projectileAlive)
+        {
+            elapsedTime += Time.deltaTime;
+            float percentageComplete = elapsedTime / delayBeforeDamage;
+            
+            tempProjectile.transform.position = Vector3.Lerp(transform.position + Vector3.up * 2, actualAimedEntity.transform.position, percentageComplete);
         }
         
         // Line Renderer 
@@ -155,18 +164,24 @@ public partial class Tower : Building
             StartCoroutine(AttackTarget());
         
     }
-    
+
+    private GameObject tempProjectile;
+
+    private Entity actualAimedEntity;
     private IEnumerator AttackTarget()
     {
         isCycleAttack = true;
-
-        yield return new WaitForSeconds(detectionDelay);
-
+        actualAimedEntity = enemiesInRange[0]; // Choix de la cible
+        // Instanciation du projectile
+        tempProjectile = PhotonNetwork.Instantiate(towerProjectile.name, transform.position + Vector3.up * 2.5f, Quaternion.identity);
+        projectileAlive = true;
+        yield return new WaitForSeconds(delayBeforeDamage);
+        projectileAlive = false;
+        Destroy(tempProjectile);
+        elapsedTime = 0;
         int[] targetEntity = new[] { enemiesInRange[0].GetComponent<Entity>().entityIndex };
-
         AttackRPC(attackCapa.indexInCollection, targetEntity, Array.Empty<Vector3>());
-
-        yield return new WaitForSeconds(timeBetweenShots);
+        yield return new WaitForSeconds(reloadTime);
         isCycleAttack = false;
     }
 

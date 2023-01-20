@@ -288,6 +288,8 @@ MonoBehaviour:
   entityIndex: 303
   canAddPassiveCapacity: 0
   canRemovePassiveCapacity: 0
+  orangeScoreVFX: {fileID: 0}
+  violetScoreVFX: {fileID: 0}
   grabbed: {fileID: 0}
   marked: {fileID: 0}
   slowed: {fileID: 0}
@@ -315,13 +317,15 @@ MonoBehaviour:
   canBeHitByTowerMask:
     serializedVersion: 2
     m_Bits: 536870912
-  damage: 2
+  damage: 7
   detectionRange: 10
   delayBeforeAttack: 0.3
-  detectionDelay: 0
+  delayBeforeDamage: 0.9
   brainSpeed: 0.7
-  timeBetweenShots: 0
+  reloadTime: 0.4
   isCycleAttack: 0
+  projectileSpeed: 30
+  towerProjectile: {fileID: 5312207399100205034, guid: 9b65ac9aba3d9fb4c9fb4219f577793a, type: 3}
   isActive: 0
   isIoTower: 1
   entityLinkIndex: 0

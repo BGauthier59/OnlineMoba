@@ -495,7 +495,11 @@ MonoBehaviour:
   entityIndex: 0
   canAddPassiveCapacity: 0
   canRemovePassiveCapacity: 0
-  newPassiveCapacitiesList: []
+  orangeScoreVFX: {fileID: 0}
+  violetScoreVFX: {fileID: 0}
+  grabbed: {fileID: 0}
+  marked: {fileID: 0}
+  slowed: {fileID: 0}
   currentPointCarried: 0
   lastEntityWhoAttackedMeIndex: 0
   uiTransform: {fileID: 0}
@@ -520,13 +524,15 @@ MonoBehaviour:
   canBeHitByTowerMask:
     serializedVersion: 2
     m_Bits: 536870912
-  damage: 2
-  detectionRange: 10
+  damage: 7
+  detectionRange: 13
   delayBeforeAttack: 0.3
-  detectionDelay: 0
+  delayBeforeDamage: 0.9
   brainSpeed: 0.7
-  timeBetweenShots: 0
+  reloadTime: 0.3
   isCycleAttack: 0
+  projectileSpeed: 0
+  towerProjectile: {fileID: 0}
   isActive: 0
   isIoTower: 0
   entityLinkIndex: 0
