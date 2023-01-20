@@ -1,10 +1,13 @@
 using System;
 using Photon.Pun;
+using UnityEngine;
 
 namespace Entities.Minion.MinionJungle
 {
     public partial class MinionJungle : IDamageable
     {
+        [SerializeField] private S_GetHurtOnSimpleMesh hurtOnSkinnedMeshVfx;
+        
        public float GetMaxHp()
        {
            return maxHealth;
@@ -130,6 +133,7 @@ namespace Entities.Minion.MinionJungle
             currentAttackTarget = EntityCollectionManager.GetEntityByIndex(lastEntityWhoAttackedMeIndex);
             currentState = MinionState.Attacking;
             OnDecreaseCurrentHpFeedback?.Invoke(amount);
+            //hurtOnSkinnedMeshVfx.PlayFeedback();
         }
 
         [PunRPC]

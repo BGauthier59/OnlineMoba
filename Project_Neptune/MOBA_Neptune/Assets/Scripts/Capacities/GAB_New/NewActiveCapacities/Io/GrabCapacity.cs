@@ -37,7 +37,7 @@ public class GrabCapacity : NewActiveCapacity
         if (TryCast())
         {
             StartCooldown();
-            caster.GetComponent<Champion>().myHud.spellHolderDict[this].StartTimer(cooldownDuration);
+            photonView.RPC("SyncCastGrabCapacityRPC", RpcTarget.All);
             GameStateMachine.Instance.OnTick += TimerCooldown;
         }
     }
@@ -53,8 +53,9 @@ public class GrabCapacity : NewActiveCapacity
     }
 
     [PunRPC]
-    public void SyncCastGrabCapacityRPC(int[] targetedEntities, Vector3[] targetedPosition)
+    public void SyncCastGrabCapacityRPC()
     {
+        if (photonView.IsMine) championCaster.myHud.spellHolderDict[this].StartTimer(cooldownDuration);
     }
 
     public override bool TryCast()

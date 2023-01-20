@@ -125,12 +125,14 @@ namespace Entities.Minion.MinionStream
             photonView.RPC("DecreaseCurrentHpRPC", RpcTarget.MasterClient, amount, entityWhoAttackedMinion.entityIndex);
         }
 
+        public S_GetHurtOnSimpleMesh hurtOnSkinnedMeshVfx;
         [PunRPC]
         public void SyncDecreaseCurrentHpRPC(float amount, int entityWhoAttackedMeIndex)
         {
             currentHp = amount;
             lastEntityWhoAttackedMeIndex = entityWhoAttackedMeIndex;
             OnDecreaseCurrentHpFeedback?.Invoke(amount);
+            //hurtOnSkinnedMeshVfx.PlayFeedback();
         }
 
         [PunRPC]

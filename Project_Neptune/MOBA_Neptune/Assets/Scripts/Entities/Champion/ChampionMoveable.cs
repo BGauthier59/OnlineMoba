@@ -128,12 +128,14 @@ namespace Entities.Champion
         public event GlobalDelegates.FloatDelegate OnDecreaseCurrentMoveSpeed;
         public event GlobalDelegates.FloatDelegate OnDecreaseCurrentMoveSpeedFeedback;
 
+
+        public GameObject waterFX1;
+        public GameObject waterFX2;
+            
         public float accelerator = 0;
         public Vector3 velocity;
         private void Move()
         {
-          
-            
             if (!canMove)
             {
                 animator.SetBool("IsRunning", false);
@@ -149,12 +151,20 @@ namespace Entities.Champion
             {
                 if (transform.position.x >= 48 &&  moveDirection.x > 0) moveDirection.x = 0f;
             }
-            
-            
-            
-            //var strength = underStreamEffect ? StreamManager.GetStreamVector(currentStreamModifier, transform) : Vector3.zero;
+
             var strength = StreamManager.GetStreamVector(currentStreamModifier, transform);
 
+            if (strength != Vector3.zero)
+            {
+                waterFX1.SetActive(true);
+                waterFX2.SetActive(true);
+            }
+            else
+            {
+                waterFX1.SetActive(false);
+                waterFX2.SetActive(false);
+            }
+            
             if (currentStreamModifier != null)
             {
                 animator.SetBool("IsSliding", true);
@@ -189,7 +199,7 @@ namespace Entities.Champion
             }
             
             
-            if (rb.velocity.magnitude == 0)
+            if (rb.velocity.magnitude <= 0.15f)
             {
                 animator.SetBool("IsRunning", false);
                 animator.SetBool("IsSliding", false);
