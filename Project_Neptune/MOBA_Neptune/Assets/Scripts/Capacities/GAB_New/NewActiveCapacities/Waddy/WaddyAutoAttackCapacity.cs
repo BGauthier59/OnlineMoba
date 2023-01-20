@@ -41,8 +41,9 @@ public class WaddyAutoAttackCapacity : NewActiveCapacity
 
         if (TryCast())
         {
-            caster.GetComponent<Champion>().myHud.spellHolderDict[this].StartTimer(cooldownDuration);
             StartCooldown();
+            if (caster.GetComponent<Champion>().myHud != null)
+                caster.GetComponent<Champion>().myHud.spellHolderDict[this].StartTimer(cooldownDuration);
             GameStateMachine.Instance.OnTick += TimerCooldown;
         }
     }

@@ -1,4 +1,5 @@
 using Photon.Pun;
+using UnityEngine;
 
 namespace Entities.Champion
 {
@@ -6,6 +7,7 @@ namespace Entities.Champion
     {
         public float maxHp;
         public float currentHp;
+
 
         public float GetMaxHp()
         {
@@ -183,6 +185,11 @@ namespace Entities.Champion
             currentHp = amount;
             lastEntityWhoAttackedMeIndex = entityWhoAttackedIndex;
             OnDecreaseCurrentHpFeedback?.Invoke(amount);
+
+            for (int i = 0; i < meshes.Length; i++)
+            {
+                meshes[i].material.SetFloat("_HitTime", Time.time);
+            }
         }
 
         [PunRPC]
@@ -190,10 +197,10 @@ namespace Entities.Champion
         {
             currentHp -= amount;
             if (currentHp < 0) currentHp = 0;
-            
+
             OnDecreaseCurrentHp?.Invoke(amount);
             photonView.RPC("SyncDecreaseCurrentHpRPC", RpcTarget.All, currentHp, entityWhoAttackedIndex);
-            
+
             if (currentHp <= 0) RequestDie();
         }
 

@@ -9,7 +9,7 @@ public class S_GetHurt : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Space))
         {
             PlayFeedback();
         }
@@ -20,7 +20,6 @@ public class S_GetHurt : MonoBehaviour
     void PlayFeedback()
     {
         Renderer.material.SetFloat("_HitTime", Time.time);
-   
     }
 
 

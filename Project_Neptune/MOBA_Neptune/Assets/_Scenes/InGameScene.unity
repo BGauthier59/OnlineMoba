@@ -4569,6 +4569,8 @@ MonoBehaviour:
   entityIndex: 0
   canAddPassiveCapacity: 1
   canRemovePassiveCapacity: 1
+  orangeScoreVFX: {fileID: 0}
+  violetScoreVFX: {fileID: 0}
   grabbed: {fileID: 0}
   marked: {fileID: 0}
   slowed: {fileID: 0}
@@ -5256,6 +5258,8 @@ MonoBehaviour:
   entityIndex: 0
   canAddPassiveCapacity: 1
   canRemovePassiveCapacity: 1
+  orangeScoreVFX: {fileID: 0}
+  violetScoreVFX: {fileID: 0}
   grabbed: {fileID: 0}
   marked: {fileID: 0}
   slowed: {fileID: 0}
@@ -7400,6 +7404,8 @@ MonoBehaviour:
   entityIndex: 0
   canAddPassiveCapacity: 0
   canRemovePassiveCapacity: 0
+  orangeScoreVFX: {fileID: 0}
+  violetScoreVFX: {fileID: 0}
   grabbed: {fileID: 0}
   marked: {fileID: 0}
   slowed: {fileID: 0}
@@ -8150,6 +8156,8 @@ MonoBehaviour:
   entityIndex: 0
   canAddPassiveCapacity: 0
   canRemovePassiveCapacity: 0
+  orangeScoreVFX: {fileID: 0}
+  violetScoreVFX: {fileID: 0}
   grabbed: {fileID: 0}
   marked: {fileID: 0}
   slowed: {fileID: 0}
@@ -8617,6 +8625,8 @@ MonoBehaviour:
   entityIndex: 0
   canAddPassiveCapacity: 0
   canRemovePassiveCapacity: 0
+  orangeScoreVFX: {fileID: 0}
+  violetScoreVFX: {fileID: 0}
   grabbed: {fileID: 0}
   marked: {fileID: 0}
   slowed: {fileID: 0}
@@ -8769,6 +8779,8 @@ MonoBehaviour:
   entityIndex: 0
   canAddPassiveCapacity: 1
   canRemovePassiveCapacity: 1
+  orangeScoreVFX: {fileID: 0}
+  violetScoreVFX: {fileID: 0}
   grabbed: {fileID: 0}
   marked: {fileID: 0}
   slowed: {fileID: 0}
@@ -9036,6 +9048,8 @@ MonoBehaviour:
   entityIndex: 0
   canAddPassiveCapacity: 0
   canRemovePassiveCapacity: 0
+  orangeScoreVFX: {fileID: 0}
+  violetScoreVFX: {fileID: 0}
   grabbed: {fileID: 0}
   marked: {fileID: 0}
   slowed: {fileID: 0}
@@ -9790,6 +9804,8 @@ MonoBehaviour:
   entityIndex: 0
   canAddPassiveCapacity: 0
   canRemovePassiveCapacity: 0
+  orangeScoreVFX: {fileID: 0}
+  violetScoreVFX: {fileID: 0}
   grabbed: {fileID: 0}
   marked: {fileID: 0}
   slowed: {fileID: 0}
@@ -10252,6 +10268,8 @@ MonoBehaviour:
   entityIndex: 0
   canAddPassiveCapacity: 1
   canRemovePassiveCapacity: 1
+  orangeScoreVFX: {fileID: 0}
+  violetScoreVFX: {fileID: 0}
   grabbed: {fileID: 0}
   marked: {fileID: 0}
   slowed: {fileID: 0}
@@ -10748,6 +10766,8 @@ MonoBehaviour:
   entityIndex: 0
   canAddPassiveCapacity: 0
   canRemovePassiveCapacity: 0
+  orangeScoreVFX: {fileID: 0}
+  violetScoreVFX: {fileID: 0}
   grabbed: {fileID: 0}
   marked: {fileID: 0}
   slowed: {fileID: 0}
@@ -12415,6 +12435,8 @@ MonoBehaviour:
   entityIndex: 0
   canAddPassiveCapacity: 1
   canRemovePassiveCapacity: 1
+  orangeScoreVFX: {fileID: 0}
+  violetScoreVFX: {fileID: 0}
   grabbed: {fileID: 0}
   marked: {fileID: 0}
   slowed: {fileID: 0}
@@ -17250,6 +17272,8 @@ MonoBehaviour:
   entityIndex: 0
   canAddPassiveCapacity: 0
   canRemovePassiveCapacity: 0
+  orangeScoreVFX: {fileID: 0}
+  violetScoreVFX: {fileID: 0}
   grabbed: {fileID: 0}
   marked: {fileID: 0}
   slowed: {fileID: 0}
@@ -21319,6 +21343,8 @@ MonoBehaviour:
   entityIndex: 0
   canAddPassiveCapacity: 0
   canRemovePassiveCapacity: 0
+  orangeScoreVFX: {fileID: 0}
+  violetScoreVFX: {fileID: 0}
   grabbed: {fileID: 0}
   marked: {fileID: 0}
   slowed: {fileID: 0}
@@ -22030,6 +22056,8 @@ MonoBehaviour:
   entityIndex: 0
   canAddPassiveCapacity: 1
   canRemovePassiveCapacity: 1
+  orangeScoreVFX: {fileID: 0}
+  violetScoreVFX: {fileID: 0}
   grabbed: {fileID: 0}
   marked: {fileID: 0}
   slowed: {fileID: 0}
@@ -22826,6 +22854,8 @@ MonoBehaviour:
   entityIndex: 0
   canAddPassiveCapacity: 0
   canRemovePassiveCapacity: 0
+  orangeScoreVFX: {fileID: 0}
+  violetScoreVFX: {fileID: 0}
   grabbed: {fileID: 0}
   marked: {fileID: 0}
   slowed: {fileID: 0}
@@ -22853,7 +22883,7 @@ MonoBehaviour:
   minionPrefab: {fileID: 4555090259929885739, guid: 959943504399ac74a8da2f2c8bb23385, type: 3}
   spawnMinionAmount: 5
   spawnMinionInterval: 1.5
-  spawnCycleTime: 30
+  spawnCycleTime: 40
   goToPointBeforeStream: {fileID: 1332538914}
   pointsCarriedAtStartByMinions: 1
 --- !u!114 &1227025858
@@ -23335,6 +23365,8 @@ MonoBehaviour:
   entityIndex: 0
   canAddPassiveCapacity: 0
   canRemovePassiveCapacity: 0
+  orangeScoreVFX: {fileID: 0}
+  violetScoreVFX: {fileID: 0}
   grabbed: {fileID: 0}
   marked: {fileID: 0}
   slowed: {fileID: 0}
@@ -27733,6 +27765,8 @@ MonoBehaviour:
   entityIndex: 0
   canAddPassiveCapacity: 1
   canRemovePassiveCapacity: 1
+  orangeScoreVFX: {fileID: 0}
+  violetScoreVFX: {fileID: 0}
   grabbed: {fileID: 0}
   marked: {fileID: 0}
   slowed: {fileID: 0}
@@ -29680,6 +29714,8 @@ MonoBehaviour:
   entityIndex: 0
   canAddPassiveCapacity: 1
   canRemovePassiveCapacity: 1
+  orangeScoreVFX: {fileID: 0}
+  violetScoreVFX: {fileID: 0}
   grabbed: {fileID: 0}
   marked: {fileID: 0}
   slowed: {fileID: 0}
@@ -31542,7 +31578,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1786296965}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 11.86, y: 0.5, z: 0}
+  m_LocalPosition: {x: 12.85, y: 0.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1556710700506264665}
@@ -31875,6 +31911,8 @@ MonoBehaviour:
   entityIndex: 0
   canAddPassiveCapacity: 0
   canRemovePassiveCapacity: 0
+  orangeScoreVFX: {fileID: 0}
+  violetScoreVFX: {fileID: 0}
   grabbed: {fileID: 0}
   marked: {fileID: 0}
   slowed: {fileID: 0}
@@ -32761,6 +32799,8 @@ MonoBehaviour:
   entityIndex: 0
   canAddPassiveCapacity: 0
   canRemovePassiveCapacity: 0
+  orangeScoreVFX: {fileID: 0}
+  violetScoreVFX: {fileID: 0}
   grabbed: {fileID: 0}
   marked: {fileID: 0}
   slowed: {fileID: 0}
@@ -32788,7 +32828,7 @@ MonoBehaviour:
   minionPrefab: {fileID: 4555090259929885739, guid: 959943504399ac74a8da2f2c8bb23385, type: 3}
   spawnMinionAmount: 5
   spawnMinionInterval: 1.5
-  spawnCycleTime: 30
+  spawnCycleTime: 40
   goToPointBeforeStream: {fileID: 1786296966}
   pointsCarriedAtStartByMinions: 1
 --- !u!114 &1844950594
@@ -33496,6 +33536,8 @@ MonoBehaviour:
   entityIndex: 0
   canAddPassiveCapacity: 1
   canRemovePassiveCapacity: 1
+  orangeScoreVFX: {fileID: 0}
+  violetScoreVFX: {fileID: 0}
   grabbed: {fileID: 0}
   marked: {fileID: 0}
   slowed: {fileID: 0}
@@ -34003,6 +34045,8 @@ MonoBehaviour:
   entityIndex: 0
   canAddPassiveCapacity: 1
   canRemovePassiveCapacity: 1
+  orangeScoreVFX: {fileID: 0}
+  violetScoreVFX: {fileID: 0}
   grabbed: {fileID: 0}
   marked: {fileID: 0}
   slowed: {fileID: 0}
@@ -35367,6 +35411,8 @@ MonoBehaviour:
   entityIndex: 0
   canAddPassiveCapacity: 1
   canRemovePassiveCapacity: 1
+  orangeScoreVFX: {fileID: 0}
+  violetScoreVFX: {fileID: 0}
   grabbed: {fileID: 0}
   marked: {fileID: 0}
   slowed: {fileID: 0}
@@ -36268,6 +36314,8 @@ MonoBehaviour:
   entityIndex: 0
   canAddPassiveCapacity: 1
   canRemovePassiveCapacity: 1
+  orangeScoreVFX: {fileID: 0}
+  violetScoreVFX: {fileID: 0}
   grabbed: {fileID: 0}
   marked: {fileID: 0}
   slowed: {fileID: 0}
@@ -37381,6 +37429,8 @@ MonoBehaviour:
   entityIndex: 0
   canAddPassiveCapacity: 1
   canRemovePassiveCapacity: 1
+  orangeScoreVFX: {fileID: 0}
+  violetScoreVFX: {fileID: 0}
   grabbed: {fileID: 0}
   marked: {fileID: 0}
   slowed: {fileID: 0}
@@ -38151,6 +38201,8 @@ MonoBehaviour:
   entityIndex: 0
   canAddPassiveCapacity: 1
   canRemovePassiveCapacity: 1
+  orangeScoreVFX: {fileID: 0}
+  violetScoreVFX: {fileID: 0}
   grabbed: {fileID: 0}
   marked: {fileID: 0}
   slowed: {fileID: 0}
@@ -38311,6 +38363,8 @@ MonoBehaviour:
   entityIndex: 0
   canAddPassiveCapacity: 1
   canRemovePassiveCapacity: 1
+  orangeScoreVFX: {fileID: 0}
+  violetScoreVFX: {fileID: 0}
   grabbed: {fileID: 0}
   marked: {fileID: 0}
   slowed: {fileID: 0}
@@ -38829,6 +38883,8 @@ MonoBehaviour:
   entityIndex: 0
   canAddPassiveCapacity: 0
   canRemovePassiveCapacity: 0
+  orangeScoreVFX: {fileID: 0}
+  violetScoreVFX: {fileID: 0}
   grabbed: {fileID: 0}
   marked: {fileID: 0}
   slowed: {fileID: 0}
@@ -38937,6 +38993,8 @@ MonoBehaviour:
   entityIndex: 0
   canAddPassiveCapacity: 0
   canRemovePassiveCapacity: 0
+  orangeScoreVFX: {fileID: 0}
+  violetScoreVFX: {fileID: 0}
   grabbed: {fileID: 0}
   marked: {fileID: 0}
   slowed: {fileID: 0}
@@ -38972,6 +39030,8 @@ MonoBehaviour:
   entityIndex: 0
   canAddPassiveCapacity: 0
   canRemovePassiveCapacity: 0
+  orangeScoreVFX: {fileID: 0}
+  violetScoreVFX: {fileID: 0}
   grabbed: {fileID: 0}
   marked: {fileID: 0}
   slowed: {fileID: 0}
@@ -39007,6 +39067,8 @@ MonoBehaviour:
   entityIndex: 0
   canAddPassiveCapacity: 0
   canRemovePassiveCapacity: 0
+  orangeScoreVFX: {fileID: 0}
+  violetScoreVFX: {fileID: 0}
   grabbed: {fileID: 0}
   marked: {fileID: 0}
   slowed: {fileID: 0}
@@ -39787,6 +39849,8 @@ MonoBehaviour:
   entityIndex: 0
   canAddPassiveCapacity: 0
   canRemovePassiveCapacity: 0
+  orangeScoreVFX: {fileID: 0}
+  violetScoreVFX: {fileID: 0}
   grabbed: {fileID: 0}
   marked: {fileID: 0}
   slowed: {fileID: 0}
@@ -40336,6 +40400,8 @@ MonoBehaviour:
   entityIndex: 0
   canAddPassiveCapacity: 0
   canRemovePassiveCapacity: 0
+  orangeScoreVFX: {fileID: 0}
+  violetScoreVFX: {fileID: 0}
   grabbed: {fileID: 0}
   marked: {fileID: 0}
   slowed: {fileID: 0}
@@ -40725,6 +40791,8 @@ MonoBehaviour:
   entityIndex: 0
   canAddPassiveCapacity: 0
   canRemovePassiveCapacity: 0
+  orangeScoreVFX: {fileID: 0}
+  violetScoreVFX: {fileID: 0}
   grabbed: {fileID: 0}
   marked: {fileID: 0}
   slowed: {fileID: 0}
@@ -41086,6 +41154,8 @@ MonoBehaviour:
   entityIndex: 0
   canAddPassiveCapacity: 0
   canRemovePassiveCapacity: 0
+  orangeScoreVFX: {fileID: 0}
+  violetScoreVFX: {fileID: 0}
   grabbed: {fileID: 0}
   marked: {fileID: 0}
   slowed: {fileID: 0}
@@ -42155,6 +42225,8 @@ MonoBehaviour:
   entityIndex: 0
   canAddPassiveCapacity: 0
   canRemovePassiveCapacity: 0
+  orangeScoreVFX: {fileID: 0}
+  violetScoreVFX: {fileID: 0}
   grabbed: {fileID: 0}
   marked: {fileID: 0}
   slowed: {fileID: 0}
@@ -42268,6 +42340,8 @@ MonoBehaviour:
   entityIndex: 0
   canAddPassiveCapacity: 0
   canRemovePassiveCapacity: 0
+  orangeScoreVFX: {fileID: 0}
+  violetScoreVFX: {fileID: 0}
   grabbed: {fileID: 0}
   marked: {fileID: 0}
   slowed: {fileID: 0}
@@ -43762,6 +43836,8 @@ MonoBehaviour:
   entityIndex: 0
   canAddPassiveCapacity: 0
   canRemovePassiveCapacity: 0
+  orangeScoreVFX: {fileID: 0}
+  violetScoreVFX: {fileID: 0}
   grabbed: {fileID: 0}
   marked: {fileID: 0}
   slowed: {fileID: 0}
@@ -43802,6 +43878,8 @@ MonoBehaviour:
   entityIndex: 0
   canAddPassiveCapacity: 0
   canRemovePassiveCapacity: 0
+  orangeScoreVFX: {fileID: 0}
+  violetScoreVFX: {fileID: 0}
   grabbed: {fileID: 0}
   marked: {fileID: 0}
   slowed: {fileID: 0}
@@ -45314,6 +45392,8 @@ MonoBehaviour:
   entityIndex: 0
   canAddPassiveCapacity: 0
   canRemovePassiveCapacity: 0
+  orangeScoreVFX: {fileID: 0}
+  violetScoreVFX: {fileID: 0}
   grabbed: {fileID: 0}
   marked: {fileID: 0}
   slowed: {fileID: 0}
@@ -45477,6 +45557,8 @@ MonoBehaviour:
   entityIndex: 0
   canAddPassiveCapacity: 0
   canRemovePassiveCapacity: 0
+  orangeScoreVFX: {fileID: 0}
+  violetScoreVFX: {fileID: 0}
   grabbed: {fileID: 0}
   marked: {fileID: 0}
   slowed: {fileID: 0}
@@ -45666,6 +45748,8 @@ MonoBehaviour:
   entityIndex: 0
   canAddPassiveCapacity: 0
   canRemovePassiveCapacity: 0
+  orangeScoreVFX: {fileID: 0}
+  violetScoreVFX: {fileID: 0}
   grabbed: {fileID: 0}
   marked: {fileID: 0}
   slowed: {fileID: 0}
@@ -45701,6 +45785,8 @@ MonoBehaviour:
   entityIndex: 0
   canAddPassiveCapacity: 0
   canRemovePassiveCapacity: 0
+  orangeScoreVFX: {fileID: 0}
+  violetScoreVFX: {fileID: 0}
   grabbed: {fileID: 0}
   marked: {fileID: 0}
   slowed: {fileID: 0}
@@ -46014,6 +46100,8 @@ MonoBehaviour:
   entityIndex: 0
   canAddPassiveCapacity: 0
   canRemovePassiveCapacity: 0
+  orangeScoreVFX: {fileID: 0}
+  violetScoreVFX: {fileID: 0}
   grabbed: {fileID: 0}
   marked: {fileID: 0}
   slowed: {fileID: 0}
@@ -47306,6 +47394,8 @@ MonoBehaviour:
   entityIndex: 0
   canAddPassiveCapacity: 0
   canRemovePassiveCapacity: 0
+  orangeScoreVFX: {fileID: 0}
+  violetScoreVFX: {fileID: 0}
   grabbed: {fileID: 0}
   marked: {fileID: 0}
   slowed: {fileID: 0}
@@ -47341,6 +47431,8 @@ MonoBehaviour:
   entityIndex: 0
   canAddPassiveCapacity: 0
   canRemovePassiveCapacity: 0
+  orangeScoreVFX: {fileID: 0}
+  violetScoreVFX: {fileID: 0}
   grabbed: {fileID: 0}
   marked: {fileID: 0}
   slowed: {fileID: 0}
@@ -49205,6 +49297,8 @@ MonoBehaviour:
   entityIndex: 0
   canAddPassiveCapacity: 0
   canRemovePassiveCapacity: 0
+  orangeScoreVFX: {fileID: 0}
+  violetScoreVFX: {fileID: 0}
   grabbed: {fileID: 0}
   marked: {fileID: 0}
   slowed: {fileID: 0}
@@ -50349,6 +50443,8 @@ MonoBehaviour:
   entityIndex: 0
   canAddPassiveCapacity: 0
   canRemovePassiveCapacity: 0
+  orangeScoreVFX: {fileID: 0}
+  violetScoreVFX: {fileID: 0}
   grabbed: {fileID: 0}
   marked: {fileID: 0}
   slowed: {fileID: 0}
@@ -51069,6 +51165,8 @@ MonoBehaviour:
   entityIndex: 0
   canAddPassiveCapacity: 1
   canRemovePassiveCapacity: 1
+  orangeScoreVFX: {fileID: 0}
+  violetScoreVFX: {fileID: 0}
   grabbed: {fileID: 0}
   marked: {fileID: 0}
   slowed: {fileID: 0}
@@ -52708,6 +52806,8 @@ MonoBehaviour:
   entityIndex: 0
   canAddPassiveCapacity: 0
   canRemovePassiveCapacity: 0
+  orangeScoreVFX: {fileID: 0}
+  violetScoreVFX: {fileID: 0}
   grabbed: {fileID: 0}
   marked: {fileID: 0}
   slowed: {fileID: 0}
@@ -53041,6 +53141,8 @@ MonoBehaviour:
   entityIndex: 0
   canAddPassiveCapacity: 0
   canRemovePassiveCapacity: 0
+  orangeScoreVFX: {fileID: 0}
+  violetScoreVFX: {fileID: 0}
   grabbed: {fileID: 0}
   marked: {fileID: 0}
   slowed: {fileID: 0}
@@ -53084,6 +53186,8 @@ MonoBehaviour:
   entityIndex: 0
   canAddPassiveCapacity: 0
   canRemovePassiveCapacity: 0
+  orangeScoreVFX: {fileID: 0}
+  violetScoreVFX: {fileID: 0}
   grabbed: {fileID: 0}
   marked: {fileID: 0}
   slowed: {fileID: 0}
@@ -53814,6 +53918,8 @@ MonoBehaviour:
   entityIndex: 0
   canAddPassiveCapacity: 0
   canRemovePassiveCapacity: 0
+  orangeScoreVFX: {fileID: 0}
+  violetScoreVFX: {fileID: 0}
   grabbed: {fileID: 0}
   marked: {fileID: 0}
   slowed: {fileID: 0}
@@ -54025,6 +54131,8 @@ MonoBehaviour:
   entityIndex: 0
   canAddPassiveCapacity: 0
   canRemovePassiveCapacity: 0
+  orangeScoreVFX: {fileID: 0}
+  violetScoreVFX: {fileID: 0}
   grabbed: {fileID: 0}
   marked: {fileID: 0}
   slowed: {fileID: 0}
@@ -54074,6 +54182,8 @@ MonoBehaviour:
   entityIndex: 0
   canAddPassiveCapacity: 0
   canRemovePassiveCapacity: 0
+  orangeScoreVFX: {fileID: 0}
+  violetScoreVFX: {fileID: 0}
   grabbed: {fileID: 0}
   marked: {fileID: 0}
   slowed: {fileID: 0}
@@ -54931,6 +55041,8 @@ MonoBehaviour:
   entityIndex: 0
   canAddPassiveCapacity: 0
   canRemovePassiveCapacity: 0
+  orangeScoreVFX: {fileID: 0}
+  violetScoreVFX: {fileID: 0}
   grabbed: {fileID: 0}
   marked: {fileID: 0}
   slowed: {fileID: 0}
@@ -55664,6 +55776,8 @@ MonoBehaviour:
   entityIndex: 0
   canAddPassiveCapacity: 0
   canRemovePassiveCapacity: 0
+  orangeScoreVFX: {fileID: 0}
+  violetScoreVFX: {fileID: 0}
   grabbed: {fileID: 0}
   marked: {fileID: 0}
   slowed: {fileID: 0}
@@ -56281,6 +56395,8 @@ MonoBehaviour:
   entityIndex: 0
   canAddPassiveCapacity: 0
   canRemovePassiveCapacity: 0
+  orangeScoreVFX: {fileID: 0}
+  violetScoreVFX: {fileID: 0}
   grabbed: {fileID: 0}
   marked: {fileID: 0}
   slowed: {fileID: 0}
@@ -57106,6 +57222,8 @@ MonoBehaviour:
   entityIndex: 0
   canAddPassiveCapacity: 0
   canRemovePassiveCapacity: 0
+  orangeScoreVFX: {fileID: 0}
+  violetScoreVFX: {fileID: 0}
   grabbed: {fileID: 0}
   marked: {fileID: 0}
   slowed: {fileID: 0}
@@ -57201,6 +57319,8 @@ MonoBehaviour:
   entityIndex: 0
   canAddPassiveCapacity: 0
   canRemovePassiveCapacity: 0
+  orangeScoreVFX: {fileID: 0}
+  violetScoreVFX: {fileID: 0}
   grabbed: {fileID: 0}
   marked: {fileID: 0}
   slowed: {fileID: 0}
@@ -57668,6 +57788,8 @@ MonoBehaviour:
   entityIndex: 0
   canAddPassiveCapacity: 0
   canRemovePassiveCapacity: 0
+  orangeScoreVFX: {fileID: 0}
+  violetScoreVFX: {fileID: 0}
   grabbed: {fileID: 0}
   marked: {fileID: 0}
   slowed: {fileID: 0}
@@ -58215,6 +58337,8 @@ MonoBehaviour:
   entityIndex: 0
   canAddPassiveCapacity: 0
   canRemovePassiveCapacity: 0
+  orangeScoreVFX: {fileID: 0}
+  violetScoreVFX: {fileID: 0}
   grabbed: {fileID: 0}
   marked: {fileID: 0}
   slowed: {fileID: 0}
@@ -58983,6 +59107,8 @@ MonoBehaviour:
   entityIndex: 0
   canAddPassiveCapacity: 0
   canRemovePassiveCapacity: 0
+  orangeScoreVFX: {fileID: 0}
+  violetScoreVFX: {fileID: 0}
   grabbed: {fileID: 0}
   marked: {fileID: 0}
   slowed: {fileID: 0}
@@ -59417,6 +59543,8 @@ MonoBehaviour:
   entityIndex: 0
   canAddPassiveCapacity: 0
   canRemovePassiveCapacity: 0
+  orangeScoreVFX: {fileID: 0}
+  violetScoreVFX: {fileID: 0}
   grabbed: {fileID: 0}
   marked: {fileID: 0}
   slowed: {fileID: 0}
@@ -60230,6 +60358,8 @@ MonoBehaviour:
   entityIndex: 0
   canAddPassiveCapacity: 0
   canRemovePassiveCapacity: 0
+  orangeScoreVFX: {fileID: 0}
+  violetScoreVFX: {fileID: 0}
   grabbed: {fileID: 0}
   marked: {fileID: 0}
   slowed: {fileID: 0}
@@ -60386,6 +60516,8 @@ MonoBehaviour:
   entityIndex: 0
   canAddPassiveCapacity: 0
   canRemovePassiveCapacity: 0
+  orangeScoreVFX: {fileID: 0}
+  violetScoreVFX: {fileID: 0}
   grabbed: {fileID: 0}
   marked: {fileID: 0}
   slowed: {fileID: 0}
@@ -60557,6 +60689,8 @@ MonoBehaviour:
   entityIndex: 0
   canAddPassiveCapacity: 0
   canRemovePassiveCapacity: 0
+  orangeScoreVFX: {fileID: 0}
+  violetScoreVFX: {fileID: 0}
   grabbed: {fileID: 0}
   marked: {fileID: 0}
   slowed: {fileID: 0}
@@ -60652,6 +60786,8 @@ MonoBehaviour:
   entityIndex: 0
   canAddPassiveCapacity: 0
   canRemovePassiveCapacity: 0
+  orangeScoreVFX: {fileID: 0}
+  violetScoreVFX: {fileID: 0}
   grabbed: {fileID: 0}
   marked: {fileID: 0}
   slowed: {fileID: 0}
@@ -61101,6 +61237,8 @@ MonoBehaviour:
   entityIndex: 0
   canAddPassiveCapacity: 0
   canRemovePassiveCapacity: 0
+  orangeScoreVFX: {fileID: 0}
+  violetScoreVFX: {fileID: 0}
   grabbed: {fileID: 0}
   marked: {fileID: 0}
   slowed: {fileID: 0}
@@ -61904,6 +62042,8 @@ MonoBehaviour:
   entityIndex: 0
   canAddPassiveCapacity: 0
   canRemovePassiveCapacity: 0
+  orangeScoreVFX: {fileID: 0}
+  violetScoreVFX: {fileID: 0}
   grabbed: {fileID: 0}
   marked: {fileID: 0}
   slowed: {fileID: 0}
@@ -62353,6 +62493,8 @@ MonoBehaviour:
   entityIndex: 0
   canAddPassiveCapacity: 0
   canRemovePassiveCapacity: 0
+  orangeScoreVFX: {fileID: 0}
+  violetScoreVFX: {fileID: 0}
   grabbed: {fileID: 0}
   marked: {fileID: 0}
   slowed: {fileID: 0}
@@ -62762,6 +62904,8 @@ MonoBehaviour:
   entityIndex: 0
   canAddPassiveCapacity: 0
   canRemovePassiveCapacity: 0
+  orangeScoreVFX: {fileID: 0}
+  violetScoreVFX: {fileID: 0}
   grabbed: {fileID: 0}
   marked: {fileID: 0}
   slowed: {fileID: 0}
@@ -62842,6 +62986,8 @@ MonoBehaviour:
   entityIndex: 0
   canAddPassiveCapacity: 0
   canRemovePassiveCapacity: 0
+  orangeScoreVFX: {fileID: 0}
+  violetScoreVFX: {fileID: 0}
   grabbed: {fileID: 0}
   marked: {fileID: 0}
   slowed: {fileID: 0}
@@ -63053,6 +63199,8 @@ MonoBehaviour:
   entityIndex: 0
   canAddPassiveCapacity: 0
   canRemovePassiveCapacity: 0
+  orangeScoreVFX: {fileID: 0}
+  violetScoreVFX: {fileID: 0}
   grabbed: {fileID: 0}
   marked: {fileID: 0}
   slowed: {fileID: 0}
@@ -63502,6 +63650,8 @@ MonoBehaviour:
   entityIndex: 0
   canAddPassiveCapacity: 0
   canRemovePassiveCapacity: 0
+  orangeScoreVFX: {fileID: 0}
+  violetScoreVFX: {fileID: 0}
   grabbed: {fileID: 0}
   marked: {fileID: 0}
   slowed: {fileID: 0}
@@ -64457,6 +64607,8 @@ MonoBehaviour:
   entityIndex: 0
   canAddPassiveCapacity: 0
   canRemovePassiveCapacity: 0
+  orangeScoreVFX: {fileID: 0}
+  violetScoreVFX: {fileID: 0}
   grabbed: {fileID: 0}
   marked: {fileID: 0}
   slowed: {fileID: 0}
@@ -64906,6 +65058,8 @@ MonoBehaviour:
   entityIndex: 0
   canAddPassiveCapacity: 0
   canRemovePassiveCapacity: 0
+  orangeScoreVFX: {fileID: 0}
+  violetScoreVFX: {fileID: 0}
   grabbed: {fileID: 0}
   marked: {fileID: 0}
   slowed: {fileID: 0}
@@ -65355,6 +65509,8 @@ MonoBehaviour:
   entityIndex: 0
   canAddPassiveCapacity: 0
   canRemovePassiveCapacity: 0
+  orangeScoreVFX: {fileID: 0}
+  violetScoreVFX: {fileID: 0}
   grabbed: {fileID: 0}
   marked: {fileID: 0}
   slowed: {fileID: 0}
@@ -65804,6 +65960,8 @@ MonoBehaviour:
   entityIndex: 0
   canAddPassiveCapacity: 0
   canRemovePassiveCapacity: 0
+  orangeScoreVFX: {fileID: 0}
+  violetScoreVFX: {fileID: 0}
   grabbed: {fileID: 0}
   marked: {fileID: 0}
   slowed: {fileID: 0}
@@ -65899,6 +66057,8 @@ MonoBehaviour:
   entityIndex: 0
   canAddPassiveCapacity: 0
   canRemovePassiveCapacity: 0
+  orangeScoreVFX: {fileID: 0}
+  violetScoreVFX: {fileID: 0}
   grabbed: {fileID: 0}
   marked: {fileID: 0}
   slowed: {fileID: 0}
@@ -66348,6 +66508,8 @@ MonoBehaviour:
   entityIndex: 0
   canAddPassiveCapacity: 0
   canRemovePassiveCapacity: 0
+  orangeScoreVFX: {fileID: 0}
+  violetScoreVFX: {fileID: 0}
   grabbed: {fileID: 0}
   marked: {fileID: 0}
   slowed: {fileID: 0}
@@ -67303,6 +67465,8 @@ MonoBehaviour:
   entityIndex: 0
   canAddPassiveCapacity: 0
   canRemovePassiveCapacity: 0
+  orangeScoreVFX: {fileID: 0}
+  violetScoreVFX: {fileID: 0}
   grabbed: {fileID: 0}
   marked: {fileID: 0}
   slowed: {fileID: 0}
@@ -67398,6 +67562,8 @@ MonoBehaviour:
   entityIndex: 0
   canAddPassiveCapacity: 0
   canRemovePassiveCapacity: 0
+  orangeScoreVFX: {fileID: 0}
+  violetScoreVFX: {fileID: 0}
   grabbed: {fileID: 0}
   marked: {fileID: 0}
   slowed: {fileID: 0}
@@ -67847,6 +68013,8 @@ MonoBehaviour:
   entityIndex: 0
   canAddPassiveCapacity: 0
   canRemovePassiveCapacity: 0
+  orangeScoreVFX: {fileID: 0}
+  violetScoreVFX: {fileID: 0}
   grabbed: {fileID: 0}
   marked: {fileID: 0}
   slowed: {fileID: 0}
@@ -69215,6 +69383,8 @@ MonoBehaviour:
   entityIndex: 0
   canAddPassiveCapacity: 0
   canRemovePassiveCapacity: 0
+  orangeScoreVFX: {fileID: 0}
+  violetScoreVFX: {fileID: 0}
   grabbed: {fileID: 0}
   marked: {fileID: 0}
   slowed: {fileID: 0}
@@ -71550,6 +71720,8 @@ MonoBehaviour:
   entityIndex: 0
   canAddPassiveCapacity: 0
   canRemovePassiveCapacity: 0
+  orangeScoreVFX: {fileID: 0}
+  violetScoreVFX: {fileID: 0}
   grabbed: {fileID: 0}
   marked: {fileID: 0}
   slowed: {fileID: 0}
@@ -71585,6 +71757,8 @@ MonoBehaviour:
   entityIndex: 0
   canAddPassiveCapacity: 0
   canRemovePassiveCapacity: 0
+  orangeScoreVFX: {fileID: 0}
+  violetScoreVFX: {fileID: 0}
   grabbed: {fileID: 0}
   marked: {fileID: 0}
   slowed: {fileID: 0}
@@ -72688,6 +72862,8 @@ MonoBehaviour:
   entityIndex: 0
   canAddPassiveCapacity: 0
   canRemovePassiveCapacity: 0
+  orangeScoreVFX: {fileID: 0}
+  violetScoreVFX: {fileID: 0}
   grabbed: {fileID: 0}
   marked: {fileID: 0}
   slowed: {fileID: 0}
@@ -74176,6 +74352,8 @@ MonoBehaviour:
   entityIndex: 0
   canAddPassiveCapacity: 0
   canRemovePassiveCapacity: 0
+  orangeScoreVFX: {fileID: 0}
+  violetScoreVFX: {fileID: 0}
   grabbed: {fileID: 0}
   marked: {fileID: 0}
   slowed: {fileID: 0}
@@ -74211,6 +74389,8 @@ MonoBehaviour:
   entityIndex: 0
   canAddPassiveCapacity: 0
   canRemovePassiveCapacity: 0
+  orangeScoreVFX: {fileID: 0}
+  violetScoreVFX: {fileID: 0}
   grabbed: {fileID: 0}
   marked: {fileID: 0}
   slowed: {fileID: 0}
@@ -74251,6 +74431,8 @@ MonoBehaviour:
   entityIndex: 0
   canAddPassiveCapacity: 0
   canRemovePassiveCapacity: 0
+  orangeScoreVFX: {fileID: 0}
+  violetScoreVFX: {fileID: 0}
   grabbed: {fileID: 0}
   marked: {fileID: 0}
   slowed: {fileID: 0}
@@ -75063,6 +75245,8 @@ MonoBehaviour:
   entityIndex: 0
   canAddPassiveCapacity: 0
   canRemovePassiveCapacity: 0
+  orangeScoreVFX: {fileID: 0}
+  violetScoreVFX: {fileID: 0}
   grabbed: {fileID: 0}
   marked: {fileID: 0}
   slowed: {fileID: 0}
@@ -75999,6 +76183,8 @@ MonoBehaviour:
   entityIndex: 0
   canAddPassiveCapacity: 0
   canRemovePassiveCapacity: 0
+  orangeScoreVFX: {fileID: 0}
+  violetScoreVFX: {fileID: 0}
   grabbed: {fileID: 0}
   marked: {fileID: 0}
   slowed: {fileID: 0}
@@ -76034,6 +76220,8 @@ MonoBehaviour:
   entityIndex: 0
   canAddPassiveCapacity: 0
   canRemovePassiveCapacity: 0
+  orangeScoreVFX: {fileID: 0}
+  violetScoreVFX: {fileID: 0}
   grabbed: {fileID: 0}
   marked: {fileID: 0}
   slowed: {fileID: 0}
@@ -76389,6 +76577,8 @@ MonoBehaviour:
   entityIndex: 0
   canAddPassiveCapacity: 0
   canRemovePassiveCapacity: 0
+  orangeScoreVFX: {fileID: 0}
+  violetScoreVFX: {fileID: 0}
   grabbed: {fileID: 0}
   marked: {fileID: 0}
   slowed: {fileID: 0}
@@ -76476,6 +76666,8 @@ MonoBehaviour:
   entityIndex: 0
   canAddPassiveCapacity: 0
   canRemovePassiveCapacity: 0
+  orangeScoreVFX: {fileID: 0}
+  violetScoreVFX: {fileID: 0}
   grabbed: {fileID: 0}
   marked: {fileID: 0}
   slowed: {fileID: 0}
@@ -76613,6 +76805,8 @@ MonoBehaviour:
   entityIndex: 0
   canAddPassiveCapacity: 0
   canRemovePassiveCapacity: 0
+  orangeScoreVFX: {fileID: 0}
+  violetScoreVFX: {fileID: 0}
   grabbed: {fileID: 0}
   marked: {fileID: 0}
   slowed: {fileID: 0}
@@ -78064,6 +78258,8 @@ MonoBehaviour:
   entityIndex: 0
   canAddPassiveCapacity: 0
   canRemovePassiveCapacity: 0
+  orangeScoreVFX: {fileID: 0}
+  violetScoreVFX: {fileID: 0}
   grabbed: {fileID: 0}
   marked: {fileID: 0}
   slowed: {fileID: 0}
@@ -81707,6 +81903,8 @@ MonoBehaviour:
   entityIndex: 0
   canAddPassiveCapacity: 0
   canRemovePassiveCapacity: 0
+  orangeScoreVFX: {fileID: 0}
+  violetScoreVFX: {fileID: 0}
   grabbed: {fileID: 0}
   marked: {fileID: 0}
   slowed: {fileID: 0}
@@ -81742,6 +81940,8 @@ MonoBehaviour:
   entityIndex: 0
   canAddPassiveCapacity: 0
   canRemovePassiveCapacity: 0
+  orangeScoreVFX: {fileID: 0}
+  violetScoreVFX: {fileID: 0}
   grabbed: {fileID: 0}
   marked: {fileID: 0}
   slowed: {fileID: 0}
@@ -81777,6 +81977,8 @@ MonoBehaviour:
   entityIndex: 0
   canAddPassiveCapacity: 0
   canRemovePassiveCapacity: 0
+  orangeScoreVFX: {fileID: 0}
+  violetScoreVFX: {fileID: 0}
   grabbed: {fileID: 0}
   marked: {fileID: 0}
   slowed: {fileID: 0}
@@ -82065,6 +82267,8 @@ MonoBehaviour:
   entityIndex: 0
   canAddPassiveCapacity: 0
   canRemovePassiveCapacity: 0
+  orangeScoreVFX: {fileID: 0}
+  violetScoreVFX: {fileID: 0}
   grabbed: {fileID: 0}
   marked: {fileID: 0}
   slowed: {fileID: 0}
