@@ -180,7 +180,7 @@ public partial class Tower : Building
         Destroy(tempProjectile);
         elapsedTime = 0;
         int[] targetEntity = new[] { enemiesInRange[0].GetComponent<Entity>().entityIndex };
-        AttackRPC(attackCapa.indexInCollection, targetEntity, Array.Empty<Vector3>());
+        RequestAttack(attackCapa.indexInCollection, targetEntity, Array.Empty<Vector3>());
         yield return new WaitForSeconds(reloadTime);
         isCycleAttack = false;
     }
@@ -257,7 +257,7 @@ public partial class Tower : IAttackable, IDeadable
 
     public void RequestAttack(byte capacityIndex, int[] targetedEntities, Vector3[] targetedPositions)
     {
-        throw new System.NotImplementedException();
+        photonView.RPC("AttackRPC", RpcTarget.MasterClient, capacityIndex, targetedEntities, targetedPositions);
     }
 
     [PunRPC]
