@@ -2386,6 +2386,21 @@
 
 {
     "m_SGVersion": 0,
+    "m_Type": "UnityEditor.ShaderGraph.Vector1MaterialSlot",
+    "m_ObjectId": "a17cdfc2c6cd4fb983e2e71c7fb46450",
+    "m_Id": 1328251147,
+    "m_DisplayName": "WindTweak",
+    "m_SlotType": 0,
+    "m_Hidden": false,
+    "m_ShaderOutputName": "Vector1_377ac69ded48493b9e481c1ede2701b2",
+    "m_StageCapability": 3,
+    "m_Value": 0.03999999910593033,
+    "m_DefaultValue": 0.0,
+    "m_Labels": []
+}
+
+{
+    "m_SGVersion": 0,
     "m_Type": "UnityEditor.ShaderGraph.AddNode",
     "m_ObjectId": "a6ecd3c7d02e4053acb7c100182ec6d1",
     "m_Group": {
@@ -3604,6 +3619,9 @@
             "m_Id": "0e111390ad7a4092a26272728024c1bf"
         },
         {
+            "m_Id": "a17cdfc2c6cd4fb983e2e71c7fb46450"
+        },
+        {
             "m_Id": "96cfdca001c0434cbb321a64ca24ff39"
         }
     ],
@@ -3617,11 +3635,13 @@
     "m_SerializedSubGraph": "{\n    \"subGraph\": {\n        \"fileID\": -5475051401550479605,\n        \"guid\": \"ad764a96d1762dc4a8058a7d47293a56\",\n        \"type\": 3\n    }\n}",
     "m_PropertyGuids": [
         "926c4b64-ec84-4fe1-91d6-8c2d52378c32",
-        "d0681eb7-2cd4-406d-8b4b-dbd8cd6b653f"
+        "d0681eb7-2cd4-406d-8b4b-dbd8cd6b653f",
+        "e8d0c61a-04fb-476a-9a3e-a38b9d0a487b"
     ],
     "m_PropertyIds": [
         -219675465,
-        666656485
+        666656485,
+        1328251147
     ]
 }
 
