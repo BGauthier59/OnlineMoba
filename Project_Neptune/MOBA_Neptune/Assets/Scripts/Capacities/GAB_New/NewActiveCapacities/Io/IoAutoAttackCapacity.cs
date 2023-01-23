@@ -166,8 +166,8 @@ public class IoAutoAttackCapacity : NewActiveCapacity
     public void PlayIceImpactFeedback(Vector3 pos)
     {
         iceImpactFx.transform.position = pos;
-        var rotation = Mathf.Atan2(direction.z, direction.x) * Mathf.Rad2Deg;
-        iceImpactFx.transform.rotation = Quaternion.Euler(0, 0, rotation);
+        //var rotation = Mathf.Atan2(direction.z, direction.x) * Mathf.Rad2Deg;
+        //iceImpactFx.transform.rotation = Quaternion.Euler(0, 0, rotation);
         iceImpactFx.Play();
     }
 
