@@ -35,7 +35,7 @@ public class LobbyHover : MonoBehaviour
             return;
         }
         
-        rt.localScale += Vector3.one * (Time.deltaTime * 1);
+        rt.localScale += Vector3.one * (Time.deltaTime * 2);
     }
     
     private void DecreaseSize()
@@ -48,7 +48,7 @@ public class LobbyHover : MonoBehaviour
             return;
         }
         
-        rt.localScale -= Vector3.one * (Time.deltaTime * 1);
+        rt.localScale -= Vector3.one * (Time.deltaTime * 2);
     }
     
     public void SetHover(bool b)
