@@ -22,8 +22,7 @@ public class MinionJungleAutoAttackCapacity : NewActiveCapacity
 
     public override void RequestCastCapacity(int[] targetedEntities, Vector3[] targetedPositions)
     {
-        photonView.RPC("CastMinionJungleAutoAttackCapacityRPC", RpcTarget.MasterClient, targetedEntities,
-            targetedPositions);
+        photonView.RPC("CastMinionJungleAutoAttackCapacityRPC", RpcTarget.MasterClient, targetedEntities, targetedPositions);
     }
 
     [PunRPC]
@@ -36,9 +35,6 @@ public class MinionJungleAutoAttackCapacity : NewActiveCapacity
         {
             var damageable = EntityCollectionManager.GetEntityByIndex(c).GetComponent<IDamageable>();
             damageable?.DecreaseCurrentHpRPC(capacityDamage, caster.entityIndex);
-            Debug.LogFormat($"{caster.name} attacked {EntityCollectionManager.GetEntityByIndex(c)} !");
-            Debug.LogFormat(
-                $"{EntityCollectionManager.GetEntityByIndex(c)} current health : {EntityCollectionManager.GetEntityByIndex(c).GetComponent<Champion>().currentHp}");
         }
     }
 
