@@ -132,7 +132,7 @@ namespace Entities.Minion.MinionStream
             currentHp = amount;
             lastEntityWhoAttackedMeIndex = entityWhoAttackedMeIndex;
             OnDecreaseCurrentHpFeedback?.Invoke(amount);
-            hurtOnSkinnedMeshVfx.PlayFeedback();
+            //hurtOnSkinnedMeshVfx.PlayFeedback();
         }
 
         [PunRPC]
