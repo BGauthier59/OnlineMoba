@@ -9,6 +9,7 @@ public class VisionSpot : MonoBehaviourPun
     public bool isSpotUsable;
     public int timeToEnable;
     public GameObject objToDisable;
+    
 
     private void OnTriggerEnter(Collider other)
     {
@@ -50,10 +51,10 @@ public class VisionSpot : MonoBehaviourPun
     {
         // Methods
         isSpotUsable = false;
-        GetComponent<MeshRenderer>().enabled = false;
+        //GetComponent<MeshRenderer>().enabled = false;
         
         Debug.Log("Changer par truc de GA plus tard");
-        // objToDisable.SetActive(false);
+        objToDisable.SetActive(false);
     }
 
     #endregion
@@ -75,9 +76,9 @@ public class VisionSpot : MonoBehaviourPun
     public void SyncEnableClaivoyanceSpotRPC()
     {
         isSpotUsable = true;
-        GetComponent<MeshRenderer>().enabled = true;
+        //GetComponent<MeshRenderer>().enabled = true;
         Debug.Log("Changer par truc de GA plus tard");
-        // objToDisable.SetActive(true);
+        objToDisable.SetActive(true);
     }
 
     #endregion

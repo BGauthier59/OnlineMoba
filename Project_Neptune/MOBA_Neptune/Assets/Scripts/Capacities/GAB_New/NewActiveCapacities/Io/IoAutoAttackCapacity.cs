@@ -30,7 +30,7 @@ public class IoAutoAttackCapacity : NewActiveCapacity
 
     [SerializeField] private ParticleSystem iceImpactFx;
     [SerializeField] private ParticleSystem iceMuzzleFx;
-
+    
     public override void RequestCastCapacity(int[] targetedEntities, Vector3[] targetedPositions)
     {
         photonView.RPC("CastIoAutoAttackCapacityRPC", RpcTarget.MasterClient, targetedEntities, targetedPositions);
