@@ -25,6 +25,7 @@ namespace Controllers
 
         private void Update()
         {
+            return;
             if (streamModifierType == StreamModifierType.Circular) CheckPlayerRelativePosition();
         }
 
@@ -62,7 +63,9 @@ namespace Controllers
             var streamable = other.GetComponent<IStreamable>();
 
             if (streamable == null) return;
+            streamable.SetStreamModifier(this);
 
+            return;
             if (streamModifierType == StreamModifierType.Linear) streamable.SetStreamModifier(this);
             else
             {
@@ -75,6 +78,11 @@ namespace Controllers
             var streamable = other.GetComponent<IStreamable>();
 
             if (streamable == null) return;
+            
+            if (streamable.GetCurrentStreamModifier() != this) return;
+            streamable.SetStreamModifier(null);
+
+            return;
 
             if (streamModifierType == StreamModifierType.Circular)
             {
