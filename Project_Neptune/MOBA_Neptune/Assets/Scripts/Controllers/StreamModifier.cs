@@ -13,7 +13,7 @@ namespace Controllers
         public CircleEntrance circleEntrance;
 
         public Transform circleStreamCenter;
-        [HideInInspector] public float streamStrength;
+        public float streamStrength;
         public float linearFactor = 60;
 
         private List<IStreamable> streamablesWaitingInCircle = new List<IStreamable>();
