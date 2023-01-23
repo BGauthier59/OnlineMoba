@@ -87,6 +87,10 @@ namespace Entities.Champion
             maxHp = amount;
             if (maxHp < currentHp)
                 currentHp = maxHp;
+            foreach (var rd in meshes)
+            {
+                rd.material.SetFloat("_HitTime", Time.time);
+            }
             OnDecreaseMaxHpFeedback?.Invoke(amount);
         }
 
