@@ -12,20 +12,21 @@ public partial class UIManager
 
     public void InstantiateHealthBarForEntity(int entityIndex)
     {
-        var entity = EntityCollectionManager.GetEntityByIndex(entityIndex);
+        // var entity = EntityCollectionManager.GetEntityByIndex(entityIndex);
+        // if (entity == null) return;
+        // if (!entity.photonView.IsMine) return;
+        // if (entity.GetComponent<IDamageable>() == null) return;
+        
+        
+        //var canvasHealth = PhotonNetwork.Instantiate(healthBarPrefab.name, entity.uiTransform.position + entity.guiOffset, Quaternion.identity);
+        //canvasHealth.transform.parent = entity.uiTransform;
+        //entity.elementsToShow.Add(canvasHealth);
+        
+        // if (entity.team != GameStateMachine.Instance.GetPlayerTeam())
+        // {
+        //     canvasHealth.SetActive(false);
+        // }
 
-        if (entity == null) return;
-        if (!entity.photonView.IsMine) return;
-
-        if (entity.GetComponent<IDamageable>() == null) return;
-        var canvasHealth = PhotonNetwork.Instantiate(healthBarPrefab.name, entity.uiTransform.position + entity.guiOffset, Quaternion.identity);
-        canvasHealth.transform.parent = entity.uiTransform;
-        entity.elementsToShow.Add(canvasHealth);
-        if (entity.team != GameStateMachine.Instance.GetPlayerTeam())
-        {
-            canvasHealth.SetActive(false);
-        }
-
-        canvasHealth.GetComponent<EntityHealthBar>().InitHealthBar(entity);
+        //canvasHealth.GetComponent<EntityHealthBar>().InitHealthBar(entity);
     }
 }
