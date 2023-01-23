@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Controllers.Inputs;
 using Entities;
 using Entities.Champion;
 using GameStates;
@@ -27,6 +28,7 @@ public class IoAutoAttackCapacity : NewActiveCapacity
     private Vector3 casterInitPos;
 
     private Vector3 hitPoint;
+    private ChampionInputController _championInputController;
 
     [SerializeField] private ParticleSystem iceImpactFx;
     [SerializeField] private ParticleSystem iceMuzzleFx;
@@ -64,7 +66,10 @@ public class IoAutoAttackCapacity : NewActiveCapacity
     [PunRPC]
     public void SyncCastIoAutoAttackCapacityRPC()
     {
-        if (photonView.IsMine) championCaster.myHud.spellHolderDict[this].StartTimer(resetDuration);
+        if (championCaster.myHud)
+        {
+            if (photonView.IsMine) championCaster.myHud.spellHolderDict[this].StartTimer(resetDuration + delayDuration);
+        }
     }
 
     public override bool TryCast()
@@ -192,8 +197,8 @@ public class IoAutoAttackCapacity : NewActiveCapacity
     public void SetPreviewIoAutoAttackRPC(bool active, bool canCast)
     {
         if (!photonView.IsMine) return;
-        previewActivate = active;
-        previewObject.gameObject.SetActive(active);
+        previewActivate = true;
+        previewObject.gameObject.SetActive(true);
         var color = canCast ? championCaster.previewColorEnable : championCaster.previewColorDisable;
         previewRenderer.material.SetColor("_EmissionColor", color);
     }
