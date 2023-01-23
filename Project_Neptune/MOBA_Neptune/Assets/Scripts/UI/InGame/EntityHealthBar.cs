@@ -9,6 +9,7 @@ namespace UIComponents
     {
         [SerializeField] private Image healthBar;
         private IDamageable lifeable;
+        //public PhotonView photonView;
         
         public void InitHealthBar(Entity entity)
         {

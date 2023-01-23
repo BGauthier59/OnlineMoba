@@ -1,6 +1,7 @@
 using Entities;
 using Entities.FogOfWar;
 using GameStates;
+using Photon.Pun;
 using UnityEngine;
 using UIComponents;
 
@@ -17,8 +18,8 @@ public partial class UIManager
         if (!entity.photonView.IsMine) return;
 
         if (entity.GetComponent<IDamageable>() == null) return;
-        var canvasHealth = Instantiate(healthBarPrefab, entity.uiTransform.position + entity.guiOffset,
-            Quaternion.identity, entity.uiTransform);
+        var canvasHealth = PhotonNetwork.Instantiate(healthBarPrefab.name, entity.uiTransform.position + entity.guiOffset, Quaternion.identity);
+        canvasHealth.transform.parent = entity.uiTransform;
         entity.elementsToShow.Add(canvasHealth);
         if (entity.team != GameStateMachine.Instance.GetPlayerTeam())
         {
