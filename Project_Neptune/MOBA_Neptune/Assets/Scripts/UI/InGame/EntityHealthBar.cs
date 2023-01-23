@@ -1,10 +1,11 @@
 using Entities;
+using Photon.Pun;
 using UnityEngine;
 using UnityEngine.UI;
 
 namespace UIComponents
 {
-    public class EntityHealthBar : MonoBehaviour
+    public class EntityHealthBar : MonoBehaviourPun
     {
         [SerializeField] private Image healthBar;
         private IDamageable lifeable;
@@ -14,7 +15,7 @@ namespace UIComponents
             GetComponent<Canvas>().renderMode = RenderMode.ScreenSpaceOverlay;
             
             lifeable = (IDamageable)entity;
-            entity.elementsToShow.Add(transform.GetChild(0).gameObject);
+            //photonView.RPC("SetHUDVisibleRPC", RpcTarget.MasterClient, entity.entityIndex);
             
             transform.LookAt(transform.position + Camera.main.transform.rotation * Vector3.forward, Camera.main.transform.rotation * Vector3.up);
             healthBar.fillAmount = lifeable.GetCurrentHpPercent();
@@ -36,6 +37,19 @@ namespace UIComponents
         {
             healthBar.fillAmount = lifeable.GetCurrentHp()/lifeable.GetMaxHp();
         }
-        
+
+        /*
+        [PunRPC]
+        public void SetHUDVisibleRPC(int entityIndex)
+        {
+            EntityCollectionManager.GetEntityByIndex(entityIndex).elementsToShow.Add(gameObject);
+            photonView.RPC("SyncSetHUDVisibleRPC", RpcTarget.All, entityIndex);
+        }
+
+        [PunRPC]
+        public void SyncSetHUDVisibleRPC(int entityIndex)
+        {
+            EntityCollectionManager.GetEntityByIndex(entityIndex).elementsToShow.Add(gameObject);
+        }*/
     }
 }
