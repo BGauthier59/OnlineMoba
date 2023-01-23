@@ -19,7 +19,7 @@ public class IoAutoAttackCapacity : NewActiveCapacity
 
     [SerializeField] private float radius;
     [SerializeField] private float damage;
-    [SerializeField] private int maxCount;
+    [SerializeField] private int maxCount = 1;
     private int count;
     private bool canShootNewOne = true;
 
@@ -64,7 +64,7 @@ public class IoAutoAttackCapacity : NewActiveCapacity
     [PunRPC]
     public void SyncCastIoAutoAttackCapacityRPC()
     {
-        if (photonView.IsMine) championCaster.myHud.spellHolderDict[this].StartTimer(cooldownDuration);
+        if (photonView.IsMine) championCaster.myHud.spellHolderDict[this].StartTimer(resetDuration);
     }
 
     public override bool TryCast()

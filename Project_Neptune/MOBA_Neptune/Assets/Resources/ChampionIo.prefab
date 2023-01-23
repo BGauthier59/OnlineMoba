@@ -602,12 +602,12 @@ MonoBehaviour:
   hurtVfx: []
   isAlive: 0
   canDie: 0
-  respawnDuration: 3
+  respawnDuration: 1
   dieCanvas: {fileID: 4614814664080336654}
   canBeDisplaced: 0
   canBeGrabbed: 0
-  referenceMoveSpeed: 10
-  currentMoveSpeed: 10
+  referenceMoveSpeed: 7.5
+  currentMoveSpeed: 7.5
   currentRotateSpeed: 15
   canMove: 0
   groundMask:
@@ -681,7 +681,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   caster: {fileID: 3480681341667345175}
   canCastCapacity: 1
-  cooldownDuration: 1.5
+  cooldownDuration: 0
   previewObject: {fileID: 6529070122378889130}
   previewRenderer: {fileID: 2255554266194254358}
   skillshotMaxDistance: 7
@@ -689,10 +689,10 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 536870912
   delayDuration: 0.1
-  resetDuration: 1
+  resetDuration: 0.35
   radius: 3
   damage: 10
-  maxCount: 3
+  maxCount: 1
   iceImpactFx: {fileID: 4389005163053099573}
   iceMuzzleFx: {fileID: 1925399621594516017}
 --- !u!114 &4806538035275567804
