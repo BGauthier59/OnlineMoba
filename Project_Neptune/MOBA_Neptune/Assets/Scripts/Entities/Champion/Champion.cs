@@ -157,6 +157,7 @@ namespace Entities.Champion
             EntityCollectionManager.AllChampion.Add(this);
         }
         
+        /*
         private void OnGUI()
         {
             if (!GameStateMachine.Instance.GetPlayerChampion()) return;
@@ -175,6 +176,7 @@ namespace Entities.Champion
             GUILayout.EndVertical();
             GUILayout.EndArea();
         }
+        */
         
         private void LinkTower()
         {
