@@ -15,12 +15,13 @@ namespace Controllers
         public Transform circleStreamCenter;
         public float streamStrength;
         public float linearFactor = 60;
+        [SerializeField] private bool managerAuthority;
 
         private List<IStreamable> streamablesWaitingInCircle = new List<IStreamable>();
 
         private void Start()
         {
-            streamStrength = StreamManager.Instance.streamStrength;
+            if(managerAuthority) streamStrength = StreamManager.Instance.streamStrength;
         }
 
         private void Update()
