@@ -10,7 +10,6 @@ namespace Entities.Minion.MinionJungle
     public partial class MinionJungle : Entity
     {
         #region Variables
-
         public enum MinionState
         {
             Idle,
@@ -39,12 +38,14 @@ namespace Entities.Minion.MinionJungle
         public lastCapacityUsed lastCapacity = lastCapacityUsed.None;
         public NewActiveCapacity autoAttackCapacity;
         public int autoAttackDamage;
+        public GameObject vfxAutoAttack;
         
         [Space]
         public NewActiveCapacity secondaryCapacity;
         [Range(1, 100)] public int capacityProbability = 20;
         [Range(1,10)] public float stunRange;
         [Range(0.1f, 6)] public float stunDuration;
+        public GameObject vfxStunAttack;
         
         public minionAggroState currentAggroState = minionAggroState.None;
         public Entity currentAttackTarget;
@@ -63,6 +64,8 @@ namespace Entities.Minion.MinionJungle
         // Private variable
         private NavMeshAgent myAgent;
         private float brainTimer;
+        
+        
         #endregion
 
         public override void OnInstantiated()

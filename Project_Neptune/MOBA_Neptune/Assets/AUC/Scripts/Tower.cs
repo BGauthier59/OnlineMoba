@@ -172,6 +172,7 @@ public partial class Tower : Building
     {
         isCycleAttack = true;
         actualAimedEntity = enemiesInRange[0]; // Choix de la cible
+        int[] targetEntity = new[] { enemiesInRange[0].GetComponent<Entity>().entityIndex };
         // Instanciation du projectile
         tempProjectile = PhotonNetwork.Instantiate(towerProjectile.name, transform.position + Vector3.up * 2.5f, Quaternion.identity);
         projectileAlive = true;
@@ -179,7 +180,6 @@ public partial class Tower : Building
         projectileAlive = false;
         Destroy(tempProjectile);
         elapsedTime = 0;
-        int[] targetEntity = new[] { enemiesInRange[0].GetComponent<Entity>().entityIndex };
         RequestAttack(attackCapa.indexInCollection, targetEntity, Array.Empty<Vector3>());
         yield return new WaitForSeconds(reloadTime);
         isCycleAttack = false;
