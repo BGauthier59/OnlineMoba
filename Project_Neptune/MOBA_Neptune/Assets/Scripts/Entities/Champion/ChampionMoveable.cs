@@ -187,26 +187,16 @@ namespace Entities.Champion
 
             var strength = StreamManager.GetStreamVector(currentStreamModifier, transform);
 
-            if (strength != Vector3.zero)
-            {
-                waterFX1.SetActive(true);
-                waterFX2.SetActive(true);
-            }
-            else
-            {
-                waterFX1.SetActive(false);
-                waterFX2.SetActive(false);
-            }
 
             if (currentStreamModifier != null)
             {
                 animator.SetBool("IsSliding", true);
-                
+
                 var tempAnimationSpeed = animator.speed;
                 tempAnimationSpeed = (rb.velocity.magnitude / referenceMoveSpeed);
                 animator.speed = tempAnimationSpeed;
-                
-                
+
+
                 velocity = new Vector3(
                     Mathf.Lerp(velocity.x, currentMoveSpeed * moveDirection.x, accelerator * Time.deltaTime), 0,
                     Mathf.Lerp(velocity.z, currentMoveSpeed * moveDirection.z, accelerator * Time.deltaTime));
@@ -244,6 +234,8 @@ namespace Entities.Champion
                 animator.SetBool("IsSliding", false);
             }
 
+            photonView.RPC("SetInStreamFXRPC", RpcTarget.MasterClient, entityIndex, strength);
+            
             Debug.DrawRay(transform.position, velocity, Color.green);
             Debug.DrawRay(transform.position, strength, Color.magenta);
         }
@@ -292,5 +284,23 @@ namespace Entities.Champion
 
         public event GlobalDelegates.NoParameterDelegate OnMove;
         public event GlobalDelegates.NoParameterDelegate OnMoveFeedback;
+
+        [PunRPC]
+        public void SetInStreamFXRPC(int entity, Vector3 strength)
+        {
+            Champion champion = (Champion)EntityCollectionManager.GetEntityByIndex(entity);
+            champion.waterFX1.SetActive(strength != Vector3.zero);
+            champion.waterFX2.SetActive(strength != Vector3.zero);
+
+            photonView.RPC("SyncSetInStreamFXRPC", RpcTarget.All, entity, strength);
+        }
+
+        [PunRPC]
+        public void SyncSetInStreamFXRPC(int entity, Vector3 strength)
+        {
+            Champion champion = (Champion)EntityCollectionManager.GetEntityByIndex(entity);
+            champion.waterFX1.SetActive(strength != Vector3.zero);
+            champion.waterFX2.SetActive(strength != Vector3.zero);
+        }
     }
 }

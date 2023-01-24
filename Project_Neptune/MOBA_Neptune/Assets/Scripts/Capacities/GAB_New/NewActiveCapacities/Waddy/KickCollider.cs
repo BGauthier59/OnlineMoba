@@ -15,6 +15,8 @@ public class KickCollider : MonoBehaviour
     
     private void OnTriggerEnter(Collider other)
     {
+        if (team == Enums.Team.Neutral) team = casterEntity.team;
+        
         if (!PhotonNetwork.IsMasterClient) return;
 
         var entity = other.GetComponent<Entity>();
