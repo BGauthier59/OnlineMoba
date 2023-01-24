@@ -37,17 +37,16 @@ public class DiveCapacity : NewActiveCapacity
         if (TryCast())
         {
             StartCooldown();
-            photonView.RPC("SyncCastDiveCapacityRPC", RpcTarget.Others);
             GameStateMachine.Instance.OnTick += TimerCooldown;
         }
     }
 
     [PunRPC]
-    public void SyncCastDiveCapacityRPC()
+    public void SyncCastDiveCapacityRPC(int entityIndex)
     {
         if (!photonView.IsMine) return;
         InputManager.EnablePlayerMap(false);
-        championCaster.myHud.spellHolderDict[this].StartTimer(cooldownDuration);
+        EntityCollectionManager.GetEntityByIndex(entityIndex).GetComponent<Champion>().myHud.spellHolderDict[this].StartTimer(cooldownDuration);
     }
 
     public override bool TryCast()
@@ -59,7 +58,7 @@ public class DiveCapacity : NewActiveCapacity
             return false;
         }
 
-        photonView.RPC("SyncCastDiveCapacityRPC", RpcTarget.All);
+        photonView.RPC("SyncCastDiveCapacityRPC", RpcTarget.All,caster.entityIndex);
         // Play anim
         GameStateMachine.Instance.OnTick += CheckTimer;
 

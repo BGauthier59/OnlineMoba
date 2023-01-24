@@ -25,8 +25,7 @@ public class ChampionHUD : MonoBehaviour
     private Champion champion;
     private IDamageable lifeable;
 
-    public Dictionary<NewActiveCapacity, SpellHolder>
-        spellHolderDict = new Dictionary<NewActiveCapacity, SpellHolder>();
+    public Dictionary<NewActiveCapacity, SpellHolder> spellHolderDict = new Dictionary<NewActiveCapacity, SpellHolder>();
 
     public class SpellHolder
     {
@@ -45,8 +44,7 @@ public class ChampionHUD : MonoBehaviour
             var timer = 0.0;
             var tckRate = GameStateMachine.Instance.tickRate;
 
-
-            GameStateMachine.Instance.OnTick += Tick;
+            GameStateMachine.Instance.OnTickFeedback += Tick;
 
             void Tick()
             {
@@ -54,7 +52,7 @@ public class ChampionHUD : MonoBehaviour
                 spellCooldown.fillAmount = 1 - (float)(timer / cooldown);
                 spellCooldownText.text = (cooldown - timer).ToString("F1");
                 if (!(timer > cooldown)) return;
-                GameStateMachine.Instance.OnTick -= Tick;
+                GameStateMachine.Instance.OnTickFeedback -= Tick;
                 spellCooldown.fillAmount = 0;
                 spellCooldownText.text = $"";
             }
