@@ -137,7 +137,6 @@ namespace Entities.Minion.MinionStream
             {
                 rd.material.SetFloat("_HitTime", Time.time);
             }
-            //hurtOnSkinnedMeshVfx.PlayFeedback();
         }
 
         [PunRPC]
