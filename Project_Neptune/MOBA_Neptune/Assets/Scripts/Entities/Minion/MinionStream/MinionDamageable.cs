@@ -1,5 +1,6 @@
 using System;
 using Photon.Pun;
+using UnityEngine;
 
 namespace Entities.Minion.MinionStream
 {
@@ -7,7 +8,7 @@ namespace Entities.Minion.MinionStream
     {
         public float maxHp;
         public float currentHp;
-        
+        [SerializeField] private Renderer[] meshes;
         public float GetMaxHp()
         {
             return maxHp;
@@ -132,7 +133,10 @@ namespace Entities.Minion.MinionStream
             currentHp = amount;
             lastEntityWhoAttackedMeIndex = entityWhoAttackedMeIndex;
             OnDecreaseCurrentHpFeedback?.Invoke(amount);
-            //hurtOnSkinnedMeshVfx.PlayFeedback();
+            foreach (var rd in meshes)
+            {
+                rd.material.SetFloat("_HitTime", Time.time);
+            }
         }
 
         [PunRPC]

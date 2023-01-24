@@ -55,40 +55,60 @@ namespace Entities.Champion
         public event GlobalDelegates.BoolDelegate OnSetCanMove;
         public event GlobalDelegates.BoolDelegate OnSetCanMoveFeedback;
 
-        public void RequestSetReferenceMoveSpeed(float value) { }
+        public void RequestSetReferenceMoveSpeed(float value)
+        {
+        }
 
         [PunRPC]
-        public void SyncSetReferenceMoveSpeedRPC(float value) { }
+        public void SyncSetReferenceMoveSpeedRPC(float value)
+        {
+        }
 
         [PunRPC]
-        public void SetReferenceMoveSpeedRPC(float value) { }
+        public void SetReferenceMoveSpeedRPC(float value)
+        {
+        }
 
         public event GlobalDelegates.FloatDelegate OnSetReferenceMoveSpeed;
         public event GlobalDelegates.FloatDelegate OnSetReferenceMoveSpeedFeedback;
 
-        public void RequestIncreaseReferenceMoveSpeed(float amount) { }
+        public void RequestIncreaseReferenceMoveSpeed(float amount)
+        {
+        }
 
         [PunRPC]
-        public void SyncIncreaseReferenceMoveSpeedRPC(float amount) { }
+        public void SyncIncreaseReferenceMoveSpeedRPC(float amount)
+        {
+        }
 
         [PunRPC]
-        public void IncreaseReferenceMoveSpeedRPC(float amount) { }
+        public void IncreaseReferenceMoveSpeedRPC(float amount)
+        {
+        }
 
         public event GlobalDelegates.FloatDelegate OnIncreaseReferenceMoveSpeed;
         public event GlobalDelegates.FloatDelegate OnIncreaseReferenceMoveSpeedFeedback;
 
-        public void RequestDecreaseReferenceMoveSpeed(float amount) { }
+        public void RequestDecreaseReferenceMoveSpeed(float amount)
+        {
+        }
 
         [PunRPC]
-        public void SyncDecreaseReferenceMoveSpeedRPC(float amount) { }
+        public void SyncDecreaseReferenceMoveSpeedRPC(float amount)
+        {
+        }
 
         [PunRPC]
-        public void DecreaseReferenceMoveSpeedRPC(float amount) { }
+        public void DecreaseReferenceMoveSpeedRPC(float amount)
+        {
+        }
 
         public event GlobalDelegates.FloatDelegate OnDecreaseReferenceMoveSpeed;
         public event GlobalDelegates.FloatDelegate OnDecreaseReferenceMoveSpeedFeedback;
 
-        public void RequestSetCurrentMoveSpeed(float value) { }
+        public void RequestSetCurrentMoveSpeed(float value)
+        {
+        }
 
         [PunRPC]
         public void SyncSetCurrentMoveSpeedRPC(float value)
@@ -106,24 +126,36 @@ namespace Entities.Champion
         public event GlobalDelegates.FloatDelegate OnSetCurrentMoveSpeed;
         public event GlobalDelegates.FloatDelegate OnSetCurrentMoveSpeedFeedback;
 
-        public void RequestIncreaseCurrentMoveSpeed(float amount) { }
+        public void RequestIncreaseCurrentMoveSpeed(float amount)
+        {
+        }
 
         [PunRPC]
-        public void SyncIncreaseCurrentMoveSpeedRPC(float amount) { }
+        public void SyncIncreaseCurrentMoveSpeedRPC(float amount)
+        {
+        }
 
         [PunRPC]
-        public void IncreaseCurrentMoveSpeedRPC(float amount) { }
+        public void IncreaseCurrentMoveSpeedRPC(float amount)
+        {
+        }
 
         public event GlobalDelegates.FloatDelegate OnIncreaseCurrentMoveSpeed;
         public event GlobalDelegates.FloatDelegate OnIncreaseCurrentMoveSpeedFeedback;
 
-        public void RequestDecreaseCurrentMoveSpeed(float amount) { }
+        public void RequestDecreaseCurrentMoveSpeed(float amount)
+        {
+        }
 
         [PunRPC]
-        public void SyncDecreaseCurrentMoveSpeedRPC(float amount) { }
+        public void SyncDecreaseCurrentMoveSpeedRPC(float amount)
+        {
+        }
 
         [PunRPC]
-        public void DecreaseCurrentMoveSpeedRPC(float amount) { }
+        public void DecreaseCurrentMoveSpeedRPC(float amount)
+        {
+        }
 
         public event GlobalDelegates.FloatDelegate OnDecreaseCurrentMoveSpeed;
         public event GlobalDelegates.FloatDelegate OnDecreaseCurrentMoveSpeedFeedback;
@@ -131,9 +163,10 @@ namespace Entities.Champion
 
         public GameObject waterFX1;
         public GameObject waterFX2;
-            
+
         public float accelerator = 0;
         public Vector3 velocity;
+
         private void Move()
         {
             if (!canMove)
@@ -145,51 +178,47 @@ namespace Entities.Champion
 
             if (team == Enums.Team.Team2) // Border gauche & droite selon la team
             {
-                if (transform.position.x <= -48 &&  moveDirection.x < 0) moveDirection.x = 0f;
+                if (transform.position.x <= -48 && moveDirection.x < 0) moveDirection.x = 0f;
             }
             else
             {
-                if (transform.position.x >= 48 &&  moveDirection.x > 0) moveDirection.x = 0f;
+                if (transform.position.x >= 48 && moveDirection.x > 0) moveDirection.x = 0f;
             }
 
             var strength = StreamManager.GetStreamVector(currentStreamModifier, transform);
 
-            if (strength != Vector3.zero)
-            {
-                waterFX1.SetActive(true);
-                waterFX2.SetActive(true);
-            }
-            else
-            {
-                waterFX1.SetActive(false);
-                waterFX2.SetActive(false);
-            }
-            
+
             if (currentStreamModifier != null)
             {
                 animator.SetBool("IsSliding", true);
+
+                var tempAnimationSpeed = animator.speed;
+                tempAnimationSpeed = (rb.velocity.magnitude / referenceMoveSpeed);
+                animator.speed = tempAnimationSpeed;
+
+
                 velocity = new Vector3(
                     Mathf.Lerp(velocity.x, currentMoveSpeed * moveDirection.x, accelerator * Time.deltaTime), 0,
                     Mathf.Lerp(velocity.z, currentMoveSpeed * moveDirection.z, accelerator * Time.deltaTime));
-                
+
                 if (strength.x > 3f)
                 {
-                    velocity.x = Mathf.Clamp(velocity.x, -strength.x/2,10);
+                    velocity.x = Mathf.Clamp(velocity.x, -strength.x / 2, 10);
                 }
                 else if (strength.x < -3f)
                 {
-                    velocity.x = Mathf.Clamp(velocity.x, -10,-strength.x/2);
+                    velocity.x = Mathf.Clamp(velocity.x, -10, -strength.x / 2);
                 }
 
                 if (strength.z > 3f)
                 {
-                    velocity.z = Mathf.Clamp(velocity.z, -strength.z/2,10);
+                    velocity.z = Mathf.Clamp(velocity.z, -strength.z / 2, 10);
                 }
                 else if (strength.z < -3f)
                 {
-                    velocity.z = Mathf.Clamp(velocity.z, -10,-strength.z/2);
+                    velocity.z = Mathf.Clamp(velocity.z, -10, -strength.z / 2);
                 }
-                
+
                 rb.velocity = velocity + strength;
             }
             else
@@ -197,13 +226,15 @@ namespace Entities.Champion
                 velocity = moveDirection * currentMoveSpeed;
                 rb.velocity = velocity + strength;
             }
-            
-            
+
+
             if (rb.velocity.magnitude <= 0.15f)
             {
                 animator.SetBool("IsRunning", false);
                 animator.SetBool("IsSliding", false);
             }
+
+            photonView.RPC("SetInStreamFXRPC", RpcTarget.MasterClient, entityIndex, strength);
             
             Debug.DrawRay(transform.position, velocity, Color.green);
             Debug.DrawRay(transform.position, strength, Color.magenta);
@@ -225,7 +256,7 @@ namespace Entities.Champion
         {
             if (!photonView.IsMine) return;
             if (!canMove) return;
-            
+
             var ray = camera.ScreenPointToRay(Input.mousePosition);
 
             if (!Physics.Raycast(ray, out var hit, float.PositiveInfinity, groundMask)) return;
@@ -253,5 +284,23 @@ namespace Entities.Champion
 
         public event GlobalDelegates.NoParameterDelegate OnMove;
         public event GlobalDelegates.NoParameterDelegate OnMoveFeedback;
+
+        [PunRPC]
+        public void SetInStreamFXRPC(int entity, Vector3 strength)
+        {
+            Champion champion = (Champion)EntityCollectionManager.GetEntityByIndex(entity);
+            champion.waterFX1.SetActive(strength != Vector3.zero);
+            champion.waterFX2.SetActive(strength != Vector3.zero);
+
+            photonView.RPC("SyncSetInStreamFXRPC", RpcTarget.All, entity, strength);
+        }
+
+        [PunRPC]
+        public void SyncSetInStreamFXRPC(int entity, Vector3 strength)
+        {
+            Champion champion = (Champion)EntityCollectionManager.GetEntityByIndex(entity);
+            champion.waterFX1.SetActive(strength != Vector3.zero);
+            champion.waterFX2.SetActive(strength != Vector3.zero);
+        }
     }
 }

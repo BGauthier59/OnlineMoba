@@ -87,6 +87,7 @@ namespace Entities.Champion
             maxHp = amount;
             if (maxHp < currentHp)
                 currentHp = maxHp;
+            
             OnDecreaseMaxHpFeedback?.Invoke(amount);
         }
 
@@ -190,6 +191,10 @@ namespace Entities.Champion
             {
                 hurtVfx[i].PlayFeedback();
             } */
+            foreach (var rd in meshes)
+            {
+                rd.material.SetFloat("_HitTime", Time.time);
+            }
         }
 
         [PunRPC]

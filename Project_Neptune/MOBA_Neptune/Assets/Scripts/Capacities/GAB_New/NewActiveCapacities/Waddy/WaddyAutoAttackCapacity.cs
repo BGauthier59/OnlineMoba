@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Entities;
 using Entities.Champion;
 using GameStates;
+using JetBrains.Annotations;
 using Photon.Pun;
 using UnityEngine;
 
@@ -22,11 +23,25 @@ public class WaddyAutoAttackCapacity : NewActiveCapacity
 
     public override void RequestCastCapacity(int[] targetedEntities, Vector3[] targetedPositions)
     {
-        kickCollider.team = GetComponent<Entity>().team;
+        if (kickCollider.team == Enums.Team.Neutral) photonView.RPC("SetKickColliderTeamRPC", RpcTarget.MasterClient, championCaster.entityIndex);
         photonView.RPC("CastWaddyAutoAttackCapacityRPC", RpcTarget.MasterClient, targetedEntities, targetedPositions);
         RequestSetPreview(false);
     }
 
+    [PunRPC] [UsedImplicitly]
+    public void SetKickColliderTeamRPC(int entityIndex)
+    {
+        kickCollider.team = EntityCollectionManager.GetEntityByIndex(entityIndex).team;
+        photonView.RPC("SyncSetKickColliderTeamRPC", RpcTarget.All, entityIndex);
+    }
+    
+    [PunRPC] [UsedImplicitly]
+    public void SyncSetKickColliderTeamRPC(int entityIndex)
+    {
+        kickCollider.team = EntityCollectionManager.GetEntityByIndex(entityIndex).team;
+    }
+    
+    
     [PunRPC]
     public void SyncDataWaddyAutoAttackCapacityRPC()
     {
@@ -42,7 +57,7 @@ public class WaddyAutoAttackCapacity : NewActiveCapacity
         if (TryCast())
         {
             StartCooldown();
-            photonView.RPC("SyncCanCastWaddyAutoAttackCapacityRPC", RpcTarget.Others,false);
+            photonView.RPC("SyncCanCastWaddyAutoAttackCapacityRPC", RpcTarget.Others, false);
             photonView.RPC("SyncWaddyAutoAttackCastCapacityRPC", RpcTarget.Others);
             GameStateMachine.Instance.OnTick += TimerCooldown;
         }
@@ -94,6 +109,7 @@ public class WaddyAutoAttackCapacity : NewActiveCapacity
         attackCollider.enabled = true;
         //colliderRd.enabled = true;
         slashVfx.Play();
+       
     }
 
     private void CheckAttackTimer()

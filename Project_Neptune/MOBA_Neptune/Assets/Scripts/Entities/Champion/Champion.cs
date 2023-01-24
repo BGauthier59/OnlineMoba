@@ -4,6 +4,7 @@ using GameStates;
 using JetBrains.Annotations;
 using Photon.Pun;
 using TMPro;
+using UIComponents;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -15,7 +16,8 @@ namespace Entities.Champion
         public ChampionInputController controller;
         public Transform rotateParent;
         private Vector3 respawnPos;
-        private UIManager uiManager;
+        //private UIManager uiManager;
+        public EntityHealthBar myEntityHealthBar;
         public Camera camera;
         public CollisionBlocker blocker;
         public LineRenderer grabLine;
@@ -43,11 +45,12 @@ namespace Entities.Champion
         protected override void OnStart()
         {
             base.OnStart();
-            uiManager = UIManager.Instance;
+            //uiManager = UIManager.Instance;
             camera = Camera.main;
             blocker.characterColliderBlocker.enabled = true;
             blocker.SetUpBlocker();
             dieCanvas.SetActive(false);
+            myEntityHealthBar.InitHealthBar(this);
         }
         
         protected override void OnUpdate()
@@ -139,13 +142,13 @@ namespace Entities.Champion
 
             respawnPos = transform.position = pos.position;
 
-            uiManager = UIManager.Instance;
-
-            if (uiManager != null)
-            {
-                uiManager.InstantiateHealthBarForEntity(entityIndex);
-                uiManager.InstantiateResourceBarForEntity(entityIndex);
-            }
+            // uiManager = UIManager.Instance;
+            //
+            // if (uiManager != null)
+            // {
+            //     uiManager.InstantiateHealthBarForEntity(entityIndex);
+            //     uiManager.InstantiateResourceBarForEntity(entityIndex);
+            // }
 
             rb.velocity = Vector3.zero;
             RequestSetCanDie(true);
@@ -157,6 +160,7 @@ namespace Entities.Champion
             EntityCollectionManager.AllChampion.Add(this);
         }
         
+        /*
         private void OnGUI()
         {
             if (!GameStateMachine.Instance.GetPlayerChampion()) return;
@@ -175,6 +179,7 @@ namespace Entities.Champion
             GUILayout.EndVertical();
             GUILayout.EndArea();
         }
+        */
         
         private void LinkTower()
         {

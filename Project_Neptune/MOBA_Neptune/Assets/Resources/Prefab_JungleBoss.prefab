@@ -316,10 +316,12 @@ MonoBehaviour:
   guiOffset: {x: 0, y: 2, z: 0}
   rb: {fileID: 5096569864970827369}
   animator: {fileID: 0}
+  outline: {fileID: 0}
   canShow: 0
   canHide: 0
   elementsToShow:
   - {fileID: 5367110549584868214}
+  - {fileID: 4406991625314292604}
   canChangeTeam: 0
   team: 0
   baseViewRange: 0
@@ -337,10 +339,12 @@ MonoBehaviour:
   lastCapacity: 0
   autoAttackCapacity: {fileID: -1589397683609098391}
   autoAttackDamage: 7
+  vfxAutoAttack: {fileID: 1633552978531286641, guid: 6c015b97c152caa4d8979d4141c5c3fc, type: 3}
   secondaryCapacity: {fileID: 5626305588135565926}
   capacityProbability: 35
   stunRange: 2.5
   stunDuration: 1.5
+  vfxStunAttack: {fileID: 292888104372464171, guid: c8bd420b7901c5c4a81ec982627248dc, type: 3}
   currentAggroState: 0
   currentAttackTarget: {fileID: 0}
   whoIsAttackingMe: []
@@ -351,7 +355,7 @@ MonoBehaviour:
   attackRange: 5.5
   wanderRange: 0.1
   myCamp: {fileID: 0}
-  hurtOnSkinnedMeshVfx: {fileID: 0}
+  meshes: []
 --- !u!114 &5096569864970827414
 MonoBehaviour:
   m_ObjectHideFlags: 0

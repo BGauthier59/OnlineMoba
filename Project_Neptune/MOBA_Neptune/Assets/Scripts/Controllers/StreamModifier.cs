@@ -13,18 +13,20 @@ namespace Controllers
         public CircleEntrance circleEntrance;
 
         public Transform circleStreamCenter;
-        [HideInInspector] public float streamStrength;
+        public float streamStrength;
         public float linearFactor = 60;
+        [SerializeField] private bool managerAuthority;
 
         private List<IStreamable> streamablesWaitingInCircle = new List<IStreamable>();
 
         private void Start()
         {
-            streamStrength = StreamManager.Instance.streamStrength;
+            if(managerAuthority) streamStrength = StreamManager.Instance.streamStrength;
         }
 
         private void Update()
         {
+            return;
             if (streamModifierType == StreamModifierType.Circular) CheckPlayerRelativePosition();
         }
 
@@ -62,7 +64,9 @@ namespace Controllers
             var streamable = other.GetComponent<IStreamable>();
 
             if (streamable == null) return;
+            streamable.SetStreamModifier(this);
 
+            return;
             if (streamModifierType == StreamModifierType.Linear) streamable.SetStreamModifier(this);
             else
             {
@@ -75,6 +79,11 @@ namespace Controllers
             var streamable = other.GetComponent<IStreamable>();
 
             if (streamable == null) return;
+            
+            if (streamable.GetCurrentStreamModifier() != this) return;
+            streamable.SetStreamModifier(null);
+
+            return;
 
             if (streamModifierType == StreamModifierType.Circular)
             {

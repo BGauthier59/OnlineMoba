@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Controllers.Inputs;
 using Entities;
 using Entities.Champion;
 using GameStates;
@@ -19,7 +20,7 @@ public class IoAutoAttackCapacity : NewActiveCapacity
 
     [SerializeField] private float radius;
     [SerializeField] private float damage;
-    [SerializeField] private int maxCount;
+    [SerializeField] private int maxCount = 1;
     private int count;
     private bool canShootNewOne = true;
 
@@ -27,10 +28,11 @@ public class IoAutoAttackCapacity : NewActiveCapacity
     private Vector3 casterInitPos;
 
     private Vector3 hitPoint;
+    private ChampionInputController _championInputController;
 
     [SerializeField] private ParticleSystem iceImpactFx;
     [SerializeField] private ParticleSystem iceMuzzleFx;
-
+    
     public override void RequestCastCapacity(int[] targetedEntities, Vector3[] targetedPositions)
     {
         photonView.RPC("CastIoAutoAttackCapacityRPC", RpcTarget.MasterClient, targetedEntities, targetedPositions);
@@ -64,7 +66,10 @@ public class IoAutoAttackCapacity : NewActiveCapacity
     [PunRPC]
     public void SyncCastIoAutoAttackCapacityRPC()
     {
-        if (photonView.IsMine) championCaster.myHud.spellHolderDict[this].StartTimer(cooldownDuration);
+        if (championCaster.myHud)
+        {
+            if (photonView.IsMine) championCaster.myHud.spellHolderDict[this].StartTimer(resetDuration + delayDuration);
+        }
     }
 
     public override bool TryCast()
@@ -161,8 +166,8 @@ public class IoAutoAttackCapacity : NewActiveCapacity
     public void PlayIceImpactFeedback(Vector3 pos)
     {
         iceImpactFx.transform.position = pos;
-        var rotation = Mathf.Atan2(direction.z, direction.x) * Mathf.Rad2Deg;
-        iceImpactFx.transform.rotation = Quaternion.Euler(0, 0, rotation);
+        //var rotation = Mathf.Atan2(direction.z, direction.x) * Mathf.Rad2Deg;
+        //iceImpactFx.transform.rotation = Quaternion.Euler(0, 0, rotation);
         iceImpactFx.Play();
     }
 
@@ -192,8 +197,8 @@ public class IoAutoAttackCapacity : NewActiveCapacity
     public void SetPreviewIoAutoAttackRPC(bool active, bool canCast)
     {
         if (!photonView.IsMine) return;
-        previewActivate = active;
-        previewObject.gameObject.SetActive(active);
+        previewActivate = true;
+        previewObject.gameObject.SetActive(true);
         var color = canCast ? championCaster.previewColorEnable : championCaster.previewColorDisable;
         previewRenderer.material.SetColor("_EmissionColor", color);
     }

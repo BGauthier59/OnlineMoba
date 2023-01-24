@@ -27,19 +27,20 @@ namespace Entities.Minion.MinionStream
             base.OnInstantiated();
         }
 
+        [SerializeField] private Material[] minionMat;
         protected override void OnStart()
         {
             base.OnStart();
             myAgent = GetComponent<NavMeshAgent>();
             myStreamController = GetComponent<MinionStreamController>();
             currentHp = maxHp;
-
-            foreach (var tc in GameStateMachine.Instance.teamColors)
-            {
-                if (tc.team != team) continue;
-                myMeshRenderer.materials[1].SetColor("_EmissionColor", tc.color);
-                break;
-            }
+            myMeshRenderer.material = team == Enums.Team.Team1 ? minionMat[0] : minionMat[1];
+            
+            // foreach (var tc in GameStateMachine.Instance.teamColors)
+            // {
+            //     if (tc.team != team) continue;
+            //     break;
+            // }
         }
 
         //------ State Methods

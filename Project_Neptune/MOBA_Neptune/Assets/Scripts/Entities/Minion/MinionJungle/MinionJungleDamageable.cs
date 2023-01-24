@@ -6,7 +6,7 @@ namespace Entities.Minion.MinionJungle
 {
     public partial class MinionJungle : IDamageable
     {
-        [SerializeField] private S_GetHurtOnSimpleMesh hurtOnSkinnedMeshVfx;
+        [SerializeField] private Renderer[] meshes;
         
        public float GetMaxHp()
        {
@@ -133,6 +133,10 @@ namespace Entities.Minion.MinionJungle
             currentAttackTarget = EntityCollectionManager.GetEntityByIndex(lastEntityWhoAttackedMeIndex);
             currentState = MinionState.Attacking;
             OnDecreaseCurrentHpFeedback?.Invoke(amount);
+            foreach (var rd in meshes)
+            {
+                rd.material.SetFloat("_HitTime", Time.time);
+            }
             //hurtOnSkinnedMeshVfx.PlayFeedback();
         }
 
