@@ -178,26 +178,30 @@ public partial class Tower : Building
         projectileAlive = true;
         yield return new WaitForSeconds(delayBeforeDamage);
         projectileAlive = false;
-        Destroy(tempProjectile);
-        elapsedTime = 0;
         RequestAttack(attackCapa.indexInCollection, targetEntity, Array.Empty<Vector3>());
+        photonView.RPC("SyncDestroyProjectileRPC", RpcTarget.All, tempProjectile.GetPhotonView());
+        elapsedTime = 0;
         yield return new WaitForSeconds(reloadTime);
         isCycleAttack = false;
     }
 
-    private void OnDrawGizmosSelected()
+    [PunRPC]
+    public void DestroyProjectileRPC(GameObject photonViewID)
     {
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, detectionRange);
-    }
-
-    private void OnDrawGizmos()
-    {
-        Gizmos.color = Color.yellow;
-
-        if (enemiesInRange.Count > 0)
+        if (photonViewID != null)
         {
-            Gizmos.DrawLine(transform.position, enemiesInRange[0].transform.position);
+            Destroy(photonViewID);
+            photonView.RPC("SyncDestroyProjectileRPC", RpcTarget.All, photonViewID);
+        }
+        
+    }
+    
+    [PunRPC]
+    public void SyncDestroyProjectileRPC(int photonViewID)
+    {
+        if (PhotonNetwork.GetPhotonView(photonViewID))
+        {
+            Destroy(PhotonNetwork.GetPhotonView(photonViewID).gameObject);
         }
     }
 }
