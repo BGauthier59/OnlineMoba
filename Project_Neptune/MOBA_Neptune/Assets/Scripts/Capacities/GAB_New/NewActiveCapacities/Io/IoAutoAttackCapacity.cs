@@ -95,6 +95,7 @@ public class IoAutoAttackCapacity : NewActiveCapacity
             : casterInitPos + championCaster.rotateParent.forward + direction;
 
         photonView.RPC("PlayIceMuzzleFeedback", RpcTarget.All, GetCasterPos());
+        photonView.RPC("PlayIceImpactFeedback", RpcTarget.All, hitPoint);
 
         GameStateMachine.Instance.OnTick += CheckTimer;
         return true;
@@ -123,8 +124,6 @@ public class IoAutoAttackCapacity : NewActiveCapacity
     private void CastSkillShot()
     {
         var allTargets = Physics.OverlapSphere(hitPoint, radius, targetableLayer);
-
-        photonView.RPC("PlayIceImpactFeedback", RpcTarget.All, hitPoint);
 
         foreach (var c in allTargets)
         {
