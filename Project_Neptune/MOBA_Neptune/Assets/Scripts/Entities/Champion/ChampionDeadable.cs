@@ -52,7 +52,6 @@ namespace Entities.Champion
         public void RequestDie()
         {
             photonView.RPC("DieRPC", RpcTarget.MasterClient);
-            Debug.Log("Request to die");
         }
 
         [PunRPC]
@@ -64,12 +63,8 @@ namespace Entities.Champion
                 InputManager.PlayerMap.Attack.Disable();
                 InputManager.PlayerMap.Capacity.Disable();
                 dieCanvas.SetActive(true);
-                viewRange = 0.1f;
+                //viewRange = 0.1f;
             }
-            
-            //rotateParent.gameObject.SetActive(false);
-            //uiTransform.gameObject.SetActive(false);
-            //if (FogOfWarManager.Instance != null) FogOfWarManager.Instance.RemoveFOWViewable(this);
 
             OnDieFeedback?.Invoke();
         }
@@ -77,13 +72,9 @@ namespace Entities.Champion
         [PunRPC]
         public void DieRPC()
         {
-            if (!canDie)
-            {
-                return;
-            }
-
+            if (!canDie) return;
+            
             isAlive = false;
-
             SetCanDieRPC(false);
 
             if (lastEntityWhoAttackedMeIndex != 0)
@@ -94,13 +85,10 @@ namespace Entities.Champion
             }
 
             ChampionRequestRemoveScore(GetComponent<Entity>());
-
-
+            
             // Tower disable
             EntityCollectionManager.GetEntityByIndex(towerLinkedIndex).GetComponent<Tower>().RequestDie();
-
-            // TODO - Disable collision, etc...
-
+            
             OnDie?.Invoke();
             GameStateMachine.Instance.OnTick += Revive;
             photonView.RPC("SyncDieRPC", RpcTarget.All);
@@ -127,9 +115,7 @@ namespace Entities.Champion
                 viewRange = baseViewRange;
             }
 
-            // if (FogOfWarManager.Instance != null)FogOfWarManager.Instance.AddFOWViewable(this);
-            //rotateParent.SetActive(true);
-            //uiTransform.SetActive(true);
+            photonView.RPC("SetReviveShaderRPC", RpcTarget.All);
 
             OnReviveFeedback?.Invoke();
         }
@@ -147,12 +133,34 @@ namespace Entities.Champion
 
         private void Revive()
         {
-            respawnTimer += 1 / GameStateMachine.Instance.tickRate;
+            respawnTimer += 1.0 / GameStateMachine.Instance.tickRate;
+            photonView.RPC("SetDieShaderRPC", RpcTarget.All, 
+                (float)(respawnTimer / respawnDuration));
 
             if (!(respawnTimer >= respawnDuration)) return;
             GameStateMachine.Instance.OnTick -= Revive;
             respawnTimer = 0f;
             RequestRevive();
+        }
+        
+        [PunRPC]
+        private void SetDieShaderRPC(float ratio)
+        {
+            foreach (var rd in meshes)
+            {
+                rd.material.SetFloat("_DieColor", Mathf.Lerp(1, 0, ratio));
+                rd.material.SetFloat("_DieDissolve", Mathf.Lerp(-2, 2, ratio));
+            }
+        }
+
+        [PunRPC]
+        private void SetReviveShaderRPC()
+        {
+            foreach (var rd in meshes)
+            {
+                rd.material.SetFloat("_DieColor", 1);
+                rd.material.SetFloat("_DieDissolve", -2);
+            }
         }
 
         public event GlobalDelegates.NoParameterDelegate OnRevive;

@@ -3497,16 +3497,16 @@
     },
     "m_Name": "Die_Dissolve",
     "m_DefaultReferenceName": "Vector1_a0277a7705774df5843646f0f7b95c46",
-    "m_OverrideReferenceName": "_Die_Dissolve",
+    "m_OverrideReferenceName": "_DieDissolve",
     "m_GeneratePropertyBlock": true,
     "m_Precision": 0,
     "overrideHLSLDeclaration": false,
     "hlslDeclarationOverride": 0,
     "m_Hidden": false,
-    "m_Value": 0.2800000011920929,
+    "m_Value": -2.0,
     "m_FloatType": 1,
     "m_RangeValues": {
-        "x": -6.0,
+        "x": -2.0,
         "y": 2.0
     }
 }
@@ -4668,7 +4668,7 @@
     },
     "m_Name": "Die_Color",
     "m_DefaultReferenceName": "Vector1_ec6e167dbe53418caca9fa647a379ba6",
-    "m_OverrideReferenceName": "",
+    "m_OverrideReferenceName": "_DieColor",
     "m_GeneratePropertyBlock": true,
     "m_Precision": 0,
     "overrideHLSLDeclaration": false,

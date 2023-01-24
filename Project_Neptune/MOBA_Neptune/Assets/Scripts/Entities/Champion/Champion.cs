@@ -45,7 +45,6 @@ namespace Entities.Champion
         protected override void OnStart()
         {
             base.OnStart();
-            //uiManager = UIManager.Instance;
             camera = Camera.main;
             blocker.characterColliderBlocker.enabled = true;
             blocker.SetUpBlocker();
@@ -141,15 +140,7 @@ namespace Entities.Champion
             }
 
             respawnPos = transform.position = pos.position;
-
-            // uiManager = UIManager.Instance;
-            //
-            // if (uiManager != null)
-            // {
-            //     uiManager.InstantiateHealthBarForEntity(entityIndex);
-            //     uiManager.InstantiateResourceBarForEntity(entityIndex);
-            // }
-
+            
             rb.velocity = Vector3.zero;
             RequestSetCanDie(true);
             RequestSetCanMove(true);
@@ -159,28 +150,7 @@ namespace Entities.Champion
             
             EntityCollectionManager.AllChampion.Add(this);
         }
-        
-        /*
-        private void OnGUI()
-        {
-            if (!GameStateMachine.Instance.GetPlayerChampion()) return;
-                
-            GUILayout.BeginArea(new Rect(200,200,200,500));
-            GUILayout.BeginVertical();
 
-            foreach (var players in GameStateMachine.Instance.debugList)
-            {
-                if (players.championPhotonViewId != 0)
-                {
-                    GUILayout.Label($"Player {players.championPhotonViewId} - points : {EntityCollectionManager.GetEntityByIndex(players.championPhotonViewId).currentPointCarried}");
-                }
-            }
-        
-            GUILayout.EndVertical();
-            GUILayout.EndArea();
-        }
-        */
-        
         private void LinkTower()
         {
             if (championName == "Io")
