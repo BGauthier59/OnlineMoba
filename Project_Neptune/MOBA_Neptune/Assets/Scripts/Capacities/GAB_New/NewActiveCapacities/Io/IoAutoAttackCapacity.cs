@@ -32,6 +32,8 @@ public class IoAutoAttackCapacity : NewActiveCapacity
     [SerializeField] private ParticleSystem iceImpactFx;
     [SerializeField] private ParticleSystem iceMuzzleFx;
 
+    private Vector3 savedPreviewPos;
+
     public override void Start()
     {
         base.Start();
@@ -100,7 +102,7 @@ public class IoAutoAttackCapacity : NewActiveCapacity
         iceMuzzleFx.transform.position = casterPos;
         iceMuzzleFx.Play();
 
-        iceImpactFx.transform.position = previewObject.position;
+        iceImpactFx.transform.position = savedPreviewPos;
         iceImpactFx.Play();
     }
 
@@ -191,6 +193,13 @@ public class IoAutoAttackCapacity : NewActiveCapacity
         var pos = championCaster.controller.cursorWorldPos[0];
         pos.y = 1;
         previewObject.position = pos;
+        photonView.RPC("SyncPreviewPosRPC", RpcTarget.All, previewObject.position);
+    }
+
+    [PunRPC]
+    public void SyncPreviewPosRPC(Vector3 pos)
+    {
+        savedPreviewPos = pos;
     }
 
     [PunRPC]
