@@ -1320,6 +1320,7 @@ MonoBehaviour:
   currentMoveSpeed: 11
   currentRotateSpeed: 15
   canMove: 0
+  canRotate: 0
   groundMask:
     serializedVersion: 2
     m_Bits: 64
@@ -1398,7 +1399,6 @@ MonoBehaviour:
   attackDuration: 1
   attackCollider: {fileID: 9120351919577744094}
   kickCollider: {fileID: 3265800608706468851}
-  colliderRd: {fileID: 2592780296993248973}
   slashVfx: {fileID: 4211638063179274035}
 --- !u!114 &7344040446763861111
 MonoBehaviour:
@@ -3178,7 +3178,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3468741952408808964, guid: e3f9ef8a5f57c5d45ac8478ea6c5dc07, type: 3}
       propertyPath: m_RenderMode
-      value: 2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3468741952408808966, guid: e3f9ef8a5f57c5d45ac8478ea6c5dc07, type: 3}
       propertyPath: m_IsActive
@@ -3262,7 +3262,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6705705499566337878, guid: e3f9ef8a5f57c5d45ac8478ea6c5dc07, type: 3}
       propertyPath: m_RenderMode
-      value: 2
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e3f9ef8a5f57c5d45ac8478ea6c5dc07, type: 3}

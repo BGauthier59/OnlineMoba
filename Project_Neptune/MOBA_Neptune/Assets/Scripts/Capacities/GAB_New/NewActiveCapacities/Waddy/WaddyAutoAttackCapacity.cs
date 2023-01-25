@@ -17,7 +17,6 @@ public class WaddyAutoAttackCapacity : NewActiveCapacity
 
     [SerializeField] private Collider attackCollider;
     public KickCollider kickCollider;
-    public Renderer colliderRd;
 
     [SerializeField] private ParticleSystem slashVfx;
 
@@ -54,14 +53,11 @@ public class WaddyAutoAttackCapacity : NewActiveCapacity
         // Set data
         photonView.RPC("SyncDataWaddyAutoAttackCapacityRPC", RpcTarget.All);
 
-        if (TryCast())
-        {
-            StartCooldown();
-            photonView.RPC("SyncCanCastWaddyAutoAttackCapacityRPC", RpcTarget.All, false);
-            photonView.RPC("SyncWaddyAutoAttackCastCapacityRPC", RpcTarget.All, caster.entityIndex);
-            GameStateMachine.Instance.OnTick += TimerCooldown;
-            
-        }
+        if (!TryCast()) return;
+        StartCooldown();
+        photonView.RPC("SyncCanCastWaddyAutoAttackCapacityRPC", RpcTarget.All, false);
+        photonView.RPC("SyncWaddyAutoAttackCastCapacityRPC", RpcTarget.All, caster.entityIndex);
+        GameStateMachine.Instance.OnTick += TimerCooldown;
     }
 
     [PunRPC]
@@ -69,13 +65,12 @@ public class WaddyAutoAttackCapacity : NewActiveCapacity
     {
         if (photonView.IsMine)
         {
-            championCaster.GetComponent<Champion>().myHud.spellHolderDict[this].StartTimer(cooldownDuration);
+            //championCaster.GetComponent<Champion>().myHud.spellHolderDict[this].StartTimer(cooldownDuration);
         }
     }
 
     public override bool TryCast()
     {
-        // Check conditions
         if (!canCastCapacity)
         {
             Debug.LogWarning("Still on cooldown!");
@@ -83,10 +78,13 @@ public class WaddyAutoAttackCapacity : NewActiveCapacity
         }
 
         // TODO - Play Anim
-        GameStateMachine.Instance.OnTick += CheckTimer;
+        Attack();
+        
+       // GameStateMachine.Instance.OnTick += CheckTimer;
         return true;
     }
 
+    /*
     private void CheckTimer()
     {
         if (delayTimer > delayDuration)
@@ -95,20 +93,22 @@ public class WaddyAutoAttackCapacity : NewActiveCapacity
             delayTimer = 0f;
             Attack();
         }
+        
         else delayTimer += 1.0 / GameStateMachine.Instance.tickRate;
     }
+    */
 
     private void Attack()
     {
-        photonView.RPC("AttackFeedback", RpcTarget.All);
+        championCaster.SetCanRotate(false);
+        photonView.RPC("AttackFeedbackRPC", RpcTarget.All);
         GameStateMachine.Instance.OnTick += CheckAttackTimer;
     }
 
     [PunRPC]
-    public void AttackFeedback()
+    public void AttackFeedbackRPC()
     {
         attackCollider.enabled = true;
-        //colliderRd.enabled = true;
         slashVfx.Play();
        
     }
@@ -126,6 +126,7 @@ public class WaddyAutoAttackCapacity : NewActiveCapacity
 
     private void AttackEnd()
     {
+        championCaster.SetCanRotate(true);
         photonView.RPC("AttackEndFeedback", RpcTarget.All);
     }
 
@@ -133,7 +134,6 @@ public class WaddyAutoAttackCapacity : NewActiveCapacity
     public void AttackEndFeedback()
     {
         attackCollider.enabled = false;
-        //colliderRd.enabled = false;
     }
 
     protected override void StartCooldown()

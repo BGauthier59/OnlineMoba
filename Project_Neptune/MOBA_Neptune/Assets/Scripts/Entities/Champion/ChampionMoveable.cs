@@ -14,10 +14,12 @@ namespace Entities.Champion
         public float currentMoveSpeed;
         public float currentRotateSpeed;
         public bool canMove;
+        public bool canRotate;
         private Vector3 moveDirection;
 
         private Vector3 rotateDirection;
         [SerializeField] private LayerMask groundMask;
+
 
         public bool CanMove()
         {
@@ -267,10 +269,13 @@ namespace Entities.Champion
 
         private void Rotate()
         {
+            if (!canRotate) return;
             rotateParent.transform.rotation = Quaternion.Lerp(rotateParent.transform.rotation,
                 Quaternion.LookRotation(rotateDirection),
                 Time.fixedDeltaTime * currentRotateSpeed);
         }
+        
+        
 
         public void SetMoveDirection(Vector3 direction)
         {
@@ -280,6 +285,11 @@ namespace Entities.Champion
         public Vector3 GetMoveDirection()
         {
             return moveDirection;
+        }
+
+        public void SetCanRotate(bool active)
+        {
+            canRotate = active;
         }
 
         public event GlobalDelegates.NoParameterDelegate OnMove;
