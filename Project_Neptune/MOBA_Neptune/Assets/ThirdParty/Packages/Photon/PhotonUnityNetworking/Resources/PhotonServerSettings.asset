@@ -226,6 +226,8 @@ MonoBehaviour:
   - DestroyProjectileRPC
   - SetDieShaderRPC
   - SetReviveShaderRPC
+  - DestroyItemRPC
+  - SyncDestroyItemRPC
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1

@@ -66,7 +66,10 @@ public class IoAutoAttackCapacity : NewActiveCapacity
     [PunRPC]
     public void SyncCastIoAutoAttackCapacityRPC()
     {
-        if (photonView.IsMine) championCaster.myHud.spellHolderDict[this].StartTimer(resetDuration + delayDuration);
+        if (championCaster.myHud)
+        {
+            if (photonView.IsMine) championCaster.myHud.spellHolderDict[this].StartTimer(resetDuration + delayDuration);
+        }
     }
 
     public override bool TryCast()

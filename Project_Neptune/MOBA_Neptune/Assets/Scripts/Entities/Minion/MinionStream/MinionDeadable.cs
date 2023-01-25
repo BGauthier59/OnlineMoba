@@ -75,7 +75,6 @@ namespace Entities.Minion.MinionStream
             photonView.RPC("SetReviveShaderRPC", RpcTarget.All);
             GameStateMachine.Instance.OnTick -= Die;
             respawnTimer = 0f;
-            gameObject.SetActive(false);
         }
 
         [PunRPC]
@@ -96,6 +95,7 @@ namespace Entities.Minion.MinionStream
                 rd.material.SetFloat("_DieColor", 1);
                 rd.material.SetFloat("_DieDissolve", -2);
             }
+            gameObject.SetActive(false);
         }
 
         public event GlobalDelegates.NoParameterDelegate OnDie;
