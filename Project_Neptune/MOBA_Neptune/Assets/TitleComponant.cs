@@ -8,6 +8,9 @@ public class TitleComponant : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        GetComponent<RectTransform>().DOScale(1.15f, 4f).Loops();
+        RectTransform myTransform = GetComponent<RectTransform>();
+
+        myTransform.DOKill();
+        myTransform.DOScale(1.085f, 4f).OnComplete(() => myTransform.DOScale(0.93f, 5.525f)).SetLoops(20, LoopType.Yoyo);
     }
 }

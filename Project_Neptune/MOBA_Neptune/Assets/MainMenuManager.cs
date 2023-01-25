@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,14 +9,19 @@ public class MainMenuManager : MonoBehaviour
     public GameObject mainPart;
     public GameObject tutorialPart;
     
-    public void NewGameButton()
+    public void GoToScene(int sceneToLoad)
     {
-        SceneManager.LoadScene(1, LoadSceneMode.Single);
+        SceneManager.LoadScene(sceneToLoad, LoadSceneMode.Single);
     }
 
     public void TutorialButton()
     {
-        
+        tutorialPart.SetActive(true);
+    }
+
+    public void ExitToMenu()
+    {
+        tutorialPart.SetActive(false);
     }
 
     public void ExitButton()
