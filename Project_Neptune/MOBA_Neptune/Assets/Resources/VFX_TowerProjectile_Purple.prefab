@@ -4875,6 +4875,7 @@ GameObject:
   - component: {fileID: 6151106922491784124}
   - component: {fileID: 11171966734566994}
   - component: {fileID: -5157481278183288851}
+  - component: {fileID: 9117818299397265710}
   m_Layer: 0
   m_Name: VFX_TowerProjectile_Purple
   m_TagString: Untagged
@@ -9768,6 +9769,19 @@ MonoBehaviour:
   sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
+--- !u!114 &9117818299397265710
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5312207399100205034}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c98e096fc9a3a9a4cb3d0ed31cf19254, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  photonView: {fileID: 0}
 --- !u!1 &7122487019364968984
 GameObject:
   m_ObjectHideFlags: 0
