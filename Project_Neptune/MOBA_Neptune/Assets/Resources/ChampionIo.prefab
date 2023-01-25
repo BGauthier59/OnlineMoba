@@ -436,7 +436,7 @@ GameObject:
   - component: {fileID: 6204996281995134005}
   m_Layer: 29
   m_Name: ChampionIo
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -610,6 +610,7 @@ MonoBehaviour:
   currentMoveSpeed: 10
   currentRotateSpeed: 15
   canMove: 0
+  canRotate: 0
   groundMask:
     serializedVersion: 2
     m_Bits: 64

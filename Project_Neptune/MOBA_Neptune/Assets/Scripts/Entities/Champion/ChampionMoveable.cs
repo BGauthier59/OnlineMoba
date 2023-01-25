@@ -1,10 +1,6 @@
-using System;
-using System.Runtime.CompilerServices;
 using Controllers;
 using UnityEngine;
 using Photon.Pun;
-using UnityEngine.AI;
-
 
 namespace Entities.Champion
 {
@@ -19,8 +15,7 @@ namespace Entities.Champion
 
         private Vector3 rotateDirection;
         [SerializeField] private LayerMask groundMask;
-
-
+        
         public bool CanMove()
         {
             return canMove;

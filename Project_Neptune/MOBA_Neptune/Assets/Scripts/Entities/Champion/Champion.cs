@@ -6,7 +6,6 @@ using Photon.Pun;
 using TMPro;
 using UIComponents;
 using UnityEngine;
-using UnityEngine.UI;
 
 namespace Entities.Champion
 {
