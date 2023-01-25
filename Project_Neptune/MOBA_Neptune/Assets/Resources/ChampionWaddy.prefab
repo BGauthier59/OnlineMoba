@@ -1278,7 +1278,6 @@ MonoBehaviour:
   myEntityHealthBar: {fileID: 6097287793020754922}
   camera: {fileID: 0}
   blocker: {fileID: 3711244289653556686}
-  grabLine: {fileID: 0}
   targetIndicators:
   - {fileID: 4001569560006406205}
   - {fileID: 2059209774022319987}
@@ -1395,7 +1394,6 @@ MonoBehaviour:
   cooldownDuration: 1.5
   previewObject: {fileID: 7867223321132074439}
   previewRenderer: {fileID: 7789095844495347562}
-  delayDuration: 0.1
   attackDuration: 1
   attackCollider: {fileID: 9120351919577744094}
   kickCollider: {fileID: 3265800608706468851}
@@ -2735,7 +2733,7 @@ Transform:
   m_GameObject: {fileID: 7561277461694742840}
   m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 6, y: 6, z: 1}
+  m_LocalScale: {x: 7.6, y: 7.6, z: 1}
   m_Children: []
   m_Father: {fileID: 1459296876762927797}
   m_RootOrder: 0

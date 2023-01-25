@@ -19,7 +19,6 @@ namespace Entities.Champion
         public EntityHealthBar myEntityHealthBar;
         public Camera camera;
         public CollisionBlocker blocker;
-        public LineRenderer grabLine;
         public List<TargetIndicator> targetIndicators;
         private bool isLinked;
         public TextMeshPro pointsText;

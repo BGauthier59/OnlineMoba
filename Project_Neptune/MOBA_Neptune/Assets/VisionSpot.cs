@@ -9,7 +9,7 @@ public class VisionSpot : MonoBehaviourPun
     public bool isSpotUsable;
     public int timeToEnable;
     public GameObject objToDisable;
-    
+    public Animator anim;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -49,7 +49,7 @@ public class VisionSpot : MonoBehaviourPun
     public void SyncDisableClairvoyanceSpotRPC()
     {
         isSpotUsable = false;
-        objToDisable.SetActive(false);
+        anim.Play("Anim_Disable");
     }
 
     #endregion
@@ -72,6 +72,7 @@ public class VisionSpot : MonoBehaviourPun
     {
         isSpotUsable = true;
         objToDisable.SetActive(true);
+        anim.Play("Anim_Vision");
     }
 
     #endregion

@@ -10,8 +10,6 @@ using UnityEngine;
 
 public class WaddyAutoAttackCapacity : NewActiveCapacity
 {
-    public double delayDuration;
-    private double delayTimer;
     public double attackDuration;
     private double attackTimer;
 
@@ -77,26 +75,9 @@ public class WaddyAutoAttackCapacity : NewActiveCapacity
             return false;
         }
 
-        // TODO - Play Anim
         Attack();
-        
-       // GameStateMachine.Instance.OnTick += CheckTimer;
         return true;
     }
-
-    /*
-    private void CheckTimer()
-    {
-        if (delayTimer > delayDuration)
-        {
-            GameStateMachine.Instance.OnTick -= CheckTimer;
-            delayTimer = 0f;
-            Attack();
-        }
-        
-        else delayTimer += 1.0 / GameStateMachine.Instance.tickRate;
-    }
-    */
 
     private void Attack()
     {

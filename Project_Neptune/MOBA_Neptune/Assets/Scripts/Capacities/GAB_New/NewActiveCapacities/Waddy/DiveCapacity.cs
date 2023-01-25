@@ -60,6 +60,10 @@ public class DiveCapacity : NewActiveCapacity
 
         photonView.RPC("SyncCastDiveCapacityRPC", RpcTarget.All,caster.entityIndex);
         // Play anim
+        
+        championCaster.animator.Play("A_Jump");
+        photonView.RPC("SyncImpactFeedback", RpcTarget.All);
+
         GameStateMachine.Instance.OnTick += CheckTimer;
 
         return true;
@@ -84,9 +88,7 @@ public class DiveCapacity : NewActiveCapacity
         Debug.DrawLine(pos, pos - Vector3.right * radius, Color.red, 2f);
         Debug.DrawLine(pos, pos + Vector3.forward * radius, Color.red, 2f);
         Debug.DrawLine(pos, pos - Vector3.forward * radius, Color.red, 2f);
-
-        photonView.RPC("SyncImpactFeedback", RpcTarget.All);
-
+        
         foreach (var c in allTargets)
         {
             var entity = c.GetComponent<Entity>();
