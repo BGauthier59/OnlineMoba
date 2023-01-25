@@ -9,7 +9,6 @@ using UnityEngine;
 
 public class IoAutoAttackCapacity : NewActiveCapacity
 {
-    public float skillshotMaxDistance;
     public LayerMask targetableLayer;
 
     public double delayDuration;
@@ -32,7 +31,13 @@ public class IoAutoAttackCapacity : NewActiveCapacity
 
     [SerializeField] private ParticleSystem iceImpactFx;
     [SerializeField] private ParticleSystem iceMuzzleFx;
-    
+
+    public override void Start()
+    {
+        base.Start();
+        iceImpactFx.transform.SetParent(null);
+    }
+
     public override void RequestCastCapacity(int[] targetedEntities, Vector3[] targetedPositions)
     {
         photonView.RPC("CastIoAutoAttackCapacityRPC", RpcTarget.MasterClient, targetedEntities, targetedPositions);
@@ -42,17 +47,12 @@ public class IoAutoAttackCapacity : NewActiveCapacity
     [PunRPC]
     public void CastIoAutoAttackCapacityRPC(int[] targetedEntities, Vector3[] targetedPositions)
     {
-        // Set data
         photonView.RPC("SyncDataIoAutoAttackCapacityRPC", RpcTarget.All, targetedPositions[0]);
 
-        if (TryCast())
-        {
-            if (count == maxCount)
-            {
-                photonView.RPC("SyncCanCastIoAutoAttackCapacityRPC", RpcTarget.All, false);
-                photonView.RPC("SyncCastIoAutoAttackCapacityRPC", RpcTarget.All);
-            }
-        }
+        if (!TryCast()) return;
+        if (count != maxCount) return;
+        photonView.RPC("SyncCanCastIoAutoAttackCapacityRPC", RpcTarget.All, false);
+        photonView.RPC("SyncCastIoAutoAttackCapacityRPC", RpcTarget.All);
     }
 
     [PunRPC]
@@ -66,15 +66,12 @@ public class IoAutoAttackCapacity : NewActiveCapacity
     [PunRPC]
     public void SyncCastIoAutoAttackCapacityRPC()
     {
-        if (championCaster.myHud)
-        {
-            if (photonView.IsMine) championCaster.myHud.spellHolderDict[this].StartTimer(resetDuration + delayDuration);
-        }
+        if (!championCaster.myHud) return;
+        if (photonView.IsMine) championCaster.myHud.spellHolderDict[this].StartTimer(resetDuration + delayDuration);
     }
 
     public override bool TryCast()
     {
-        // Check conditions
         if (!canCastCapacity)
         {
             Debug.LogWarning("Still on cooldown!");
@@ -83,9 +80,6 @@ public class IoAutoAttackCapacity : NewActiveCapacity
 
         if (count >= maxCount) return false;
         if (!canShootNewOne) return false;
-
-        // Cast Succeeded!
-
         count++;
         canShootNewOne = false;
 
@@ -93,21 +87,21 @@ public class IoAutoAttackCapacity : NewActiveCapacity
             direction.magnitude, targetableLayer)
             ? hit.point
             : casterInitPos + championCaster.rotateParent.forward + direction;
-
-        photonView.RPC("PlayIceMuzzleFeedback", RpcTarget.All, GetCasterPos());
-        photonView.RPC("PlayIceImpactFeedback", RpcTarget.All, hitPoint);
+        
+        photonView.RPC("PlayExplosionFeedback", RpcTarget.All, GetCasterPos());
 
         GameStateMachine.Instance.OnTick += CheckTimer;
         return true;
     }
 
     [PunRPC]
-    public void PlayIceMuzzleFeedback(Vector3 pos)
+    public void PlayExplosionFeedback(Vector3 casterPos)
     {
-        iceMuzzleFx.transform.position = pos;
-        var rotation = Mathf.Atan2(direction.z, direction.x) * Mathf.Rad2Deg;
-        iceMuzzleFx.transform.rotation = Quaternion.Euler(0, 0, rotation);
+        iceMuzzleFx.transform.position = casterPos;
         iceMuzzleFx.Play();
+
+        iceImpactFx.transform.position = previewObject.position;
+        iceImpactFx.Play();
     }
 
     private void CheckTimer()
@@ -139,12 +133,7 @@ public class IoAutoAttackCapacity : NewActiveCapacity
         }
 
         resetTimer = 0f;
-
-        if (count == 1)
-        {
-            GameStateMachine.Instance.OnTick += CheckResetTimer;
-        }
-
+        if (count == 1) GameStateMachine.Instance.OnTick += CheckResetTimer;
         canShootNewOne = true;
     }
 
@@ -161,18 +150,7 @@ public class IoAutoAttackCapacity : NewActiveCapacity
         else resetTimer += 1.0 / GameStateMachine.Instance.tickRate;
     }
 
-    [PunRPC]
-    public void PlayIceImpactFeedback(Vector3 pos)
-    {
-        iceImpactFx.transform.position = pos;
-        //var rotation = Mathf.Atan2(direction.z, direction.x) * Mathf.Rad2Deg;
-        //iceImpactFx.transform.rotation = Quaternion.Euler(0, 0, rotation);
-        iceImpactFx.Play();
-    }
-
-    protected override void StartCooldown()
-    {
-    }
+    protected override void StartCooldown() { }
 
     protected override void TimerCooldown()
     {

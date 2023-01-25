@@ -41,7 +41,6 @@ public class VisionSpot : MonoBehaviourPun
     [PunRPC]
     public void DisableClairvoyanceSpotRpc()
     {
-        // Methods
         StartCoroutine(EnableObj());
         photonView.RPC("SyncDisableClairvoyanceSpotRPC", RpcTarget.All);
     }
@@ -49,11 +48,7 @@ public class VisionSpot : MonoBehaviourPun
     [PunRPC]
     public void SyncDisableClairvoyanceSpotRPC()
     {
-        // Methods
         isSpotUsable = false;
-        //GetComponent<MeshRenderer>().enabled = false;
-        
-        Debug.Log("Changer par truc de GA plus tard");
         objToDisable.SetActive(false);
     }
 
@@ -76,8 +71,6 @@ public class VisionSpot : MonoBehaviourPun
     public void SyncEnableClaivoyanceSpotRPC()
     {
         isSpotUsable = true;
-        //GetComponent<MeshRenderer>().enabled = true;
-        Debug.Log("Changer par truc de GA plus tard");
         objToDisable.SetActive(true);
     }
 
