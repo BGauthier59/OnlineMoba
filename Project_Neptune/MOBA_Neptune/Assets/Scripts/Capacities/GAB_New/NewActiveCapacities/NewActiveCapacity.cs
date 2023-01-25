@@ -16,7 +16,7 @@ public abstract class NewActiveCapacity : MonoBehaviourPun
     [SerializeField] protected Transform previewObject;
     [SerializeField] protected SpriteRenderer previewRenderer;
 
-    private void Start()
+    public virtual void Start()
     {
         caster = GetComponent<Entity>();
         championCaster = (Champion) caster;

@@ -20,15 +20,15 @@ public partial class Tower : Building
     public float brainSpeed;
     public float reloadTime;
     public bool isCycleAttack = false;
-    
+
     [SerializeField] private float projectileSpeed;
     [SerializeField] private GameObject towerProjectile;
-    
+
     // Prep liaison tour - player
     public bool isActive;
     public bool isIoTower;
     public int entityLinkIndex;
-    
+
     private float brainTimer;
     [SerializeField] private ActiveCapacitySO attackCapa;
 
@@ -36,7 +36,7 @@ public partial class Tower : Building
     private static readonly int EmissionColor = Shader.PropertyToID("_EmissionColor");
 
     [SerializeField] private LineRenderer _lineRenderer;
-    
+
     [SerializeField] private GameObject warningPoint;
     [SerializeField] private int playerID;
     [SerializeField] private int localEnemiesInRange;
@@ -53,11 +53,11 @@ public partial class Tower : Building
 
     private void SetUpColor()
     {
-        
     }
 
     private float elapsedTime = 0f;
     private bool projectileAlive = true;
+
     protected override void OnUpdate()
     {
         if (!isActive) return;
@@ -67,7 +67,7 @@ public partial class Tower : Building
         if (localEnemiesInRange > 0) warningPoint.SetActive(localPlayerFocused == playerID);
 
         // Master
-        if (!PhotonNetwork.IsMasterClient) return; 
+        if (!PhotonNetwork.IsMasterClient) return;
         brainTimer += Time.deltaTime;
         if (brainTimer > brainSpeed)
         {
@@ -75,20 +75,22 @@ public partial class Tower : Building
             brainTimer = 0;
         }
 
-        
+
         if (isCycleAttack && projectileAlive)
         {
             elapsedTime += Time.deltaTime;
             float percentageComplete = elapsedTime / delayBeforeDamage;
-            
-            tempProjectile.transform.position = Vector3.Lerp(transform.position + Vector3.up * 2, actualAimedEntity.transform.position, percentageComplete);
+
+            tempProjectile.transform.position = Vector3.Lerp(transform.position + Vector3.up * 2,
+                actualAimedEntity.transform.position, percentageComplete);
         }
-        
+
         // Line Renderer 
         if (enemiesInRange.Count > 0)
         {
             photonView.RPC("SyncLineRendererRPC", RpcTarget.All, enemiesInRange[0].transform.position);
-            photonView.RPC("SyncPlayerInfoRPC", RpcTarget.All, enemiesInRange.Count, enemiesInRange[0].GetComponent<Entity>().entityIndex);
+            photonView.RPC("SyncPlayerInfoRPC", RpcTarget.All, enemiesInRange.Count,
+                enemiesInRange[0].GetComponent<Entity>().entityIndex);
         }
         else
         {
@@ -96,15 +98,17 @@ public partial class Tower : Building
             photonView.RPC("SyncPlayerInfoRPC", RpcTarget.All, 0, 0);
         }
     }
-    
-    [PunRPC] [UsedImplicitly]
+
+    [PunRPC]
+    [UsedImplicitly]
     private void SyncPlayerInfoRPC(int i, int j)
     {
         localEnemiesInRange = i;
         localPlayerFocused = j;
     }
 
-    [PunRPC] [UsedImplicitly]
+    [PunRPC]
+    [UsedImplicitly]
     private void SyncLineRendererRPC(Vector3 targetTransform)
     {
         _lineRenderer.positionCount = 2;
@@ -112,7 +116,8 @@ public partial class Tower : Building
         _lineRenderer.SetPosition(1, targetTransform + Vector3.up * 2);
     }
 
-    [PunRPC] [UsedImplicitly]
+    [PunRPC]
+    [UsedImplicitly]
     private void ResetLrRPC()
     {
         _lineRenderer.positionCount = 0;
@@ -131,7 +136,7 @@ public partial class Tower : Building
         foreach (var result in size)
         {
             if (result.GetComponent<Entity>().GetTeam() == GetTeam()) continue;
-            
+
             float dist = Vector3.Distance(transform.position, result.transform.position);
 
             if (dist < detectionRange)
@@ -162,43 +167,32 @@ public partial class Tower : Building
 
         if (isCycleAttack == false && enemiesInRange.Count > 0)
             StartCoroutine(AttackTarget());
-        
     }
 
-    private GameObject tempProjectile;
+    public GameObject tempProjectile;
 
     private Entity actualAimedEntity;
+
     private IEnumerator AttackTarget()
     {
         isCycleAttack = true;
         actualAimedEntity = enemiesInRange[0]; // Choix de la cible
-        int[] targetEntity = new[] { enemiesInRange[0].GetComponent<Entity>().entityIndex };
+
         // Instanciation du projectile
         tempProjectile = PhotonNetwork.Instantiate(towerProjectile.name, transform.position + Vector3.up * 2.5f, Quaternion.identity);
         projectileAlive = true;
+
         yield return new WaitForSeconds(delayBeforeDamage);
+
+        IDamageable targetDamageable = (IDamageable)actualAimedEntity;
+        targetDamageable?.RequestDecreaseCurrentHp(damage, this);
+
+        if (tempProjectile) tempProjectile.GetComponent<DestroyItem>().RequestDestroyItem();
+
         projectileAlive = false;
-        Destroy(tempProjectile);
         elapsedTime = 0;
-        RequestAttack(attackCapa.indexInCollection, targetEntity, Array.Empty<Vector3>());
         yield return new WaitForSeconds(reloadTime);
         isCycleAttack = false;
-    }
-
-    private void OnDrawGizmosSelected()
-    {
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, detectionRange);
-    }
-
-    private void OnDrawGizmos()
-    {
-        Gizmos.color = Color.yellow;
-
-        if (enemiesInRange.Count > 0)
-        {
-            Gizmos.DrawLine(transform.position, enemiesInRange[0].transform.position);
-        }
     }
 }
 
@@ -208,7 +202,7 @@ public partial class Tower : IAttackable, IDeadable
     public float respawnDuration = 3;
     private double respawnTimer;
     public GameObject desactivateIcon;
-    
+
     public bool CanAttack()
     {
         throw new System.NotImplementedException();
@@ -361,7 +355,7 @@ public partial class Tower : IAttackable, IDeadable
         respawnTimer = 0f;
         RequestRevive();
     }
-    
+
     public event GlobalDelegates.NoParameterDelegate OnRevive;
     public event GlobalDelegates.NoParameterDelegate OnReviveFeedback;
 }

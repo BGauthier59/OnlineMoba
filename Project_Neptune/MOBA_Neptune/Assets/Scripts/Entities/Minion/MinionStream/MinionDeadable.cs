@@ -1,11 +1,16 @@
 using System;
 using Entities.FogOfWar;
+using GameStates;
 using Photon.Pun;
+using UnityEngine;
 
 namespace Entities.Minion.MinionStream
 {
     public partial class MinionStreamBehaviour : IDeadable
     {
+        public float respawnDuration = 3;
+        private double respawnTimer;
+
         public bool IsAlive()
         {
             throw new NotImplementedException();
@@ -43,21 +48,54 @@ namespace Entities.Minion.MinionStream
         public void SyncDieRPC()
         {
             PoolNetworkManager.Instance.PoolRequeue(this);
-            if(FogOfWarManager.Instance != null) FogOfWarManager.Instance.RemoveFOWViewable(this);
-            gameObject.SetActive(false);
+            if (FogOfWarManager.Instance != null) FogOfWarManager.Instance.RemoveFOWViewable(this);
+            GameStateMachine.Instance.OnTick += Die;
         }
 
         [PunRPC]
         public void DieRPC()
         {
             photonView.RPC("SyncDieRPC", RpcTarget.All);
-            
+
             if (lastEntityWhoAttackedMeIndex != 0)
             {
                 var lastEntity = EntityCollectionManager.GetEntityByIndex(lastEntityWhoAttackedMeIndex);
                 var entityChamp = lastEntity.GetComponent<Champion.Champion>();
                 if (entityChamp) entityChamp.ChampionRequestIncreaseScore(this.currentPointCarried, lastEntity);
             }
+        }
+
+        private void Die()
+        {
+            respawnTimer += 1.0 / GameStateMachine.Instance.tickRate;
+            photonView.RPC("SetDieShaderRPC", RpcTarget.All,
+                (float) (respawnTimer / respawnDuration));
+
+            if (!(respawnTimer >= respawnDuration)) return;
+            photonView.RPC("SetReviveShaderRPC", RpcTarget.All);
+            GameStateMachine.Instance.OnTick -= Die;
+            respawnTimer = 0f;
+        }
+
+        [PunRPC]
+        private void SetDieShaderRPC(float ratio)
+        {
+            foreach (var rd in meshes)
+            {
+                rd.material.SetFloat("_DieColor", Mathf.Lerp(1, 0, ratio));
+                rd.material.SetFloat("_DieDissolve", Mathf.Lerp(-2, 2, ratio));
+            }
+        }
+
+        [PunRPC]
+        private void SetReviveShaderRPC()
+        {
+            foreach (var rd in meshes)
+            {
+                rd.material.SetFloat("_DieColor", 1);
+                rd.material.SetFloat("_DieDissolve", -2);
+            }
+            gameObject.SetActive(false);
         }
 
         public event GlobalDelegates.NoParameterDelegate OnDie;
@@ -82,4 +120,3 @@ namespace Entities.Minion.MinionStream
         public event GlobalDelegates.NoParameterDelegate OnReviveFeedback;
     }
 }
-
