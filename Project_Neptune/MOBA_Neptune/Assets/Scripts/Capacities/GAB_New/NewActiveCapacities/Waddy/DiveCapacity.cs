@@ -52,16 +52,12 @@ public class DiveCapacity : NewActiveCapacity
 
     public override bool TryCast()
     {
-        // Check conditions
         if (!canCastCapacity)
         {
             Debug.LogWarning("Still on cooldown!");
             return false;
         }
-        championCaster.isPlayingNonScalableAnim = true;
-        championCaster.animator.speed = 1;
         photonView.RPC("SetTriggerAnimation", RpcTarget.MasterClient, "IsJumping");
-        StartCoroutine(WaitForAnim(0.8f));
         photonView.RPC("SyncCastDiveCapacityRPC", RpcTarget.All);
         photonView.RPC("SyncImpactFeedback", RpcTarget.All);
 
@@ -112,6 +108,7 @@ public class DiveCapacity : NewActiveCapacity
         var team = GameStateMachine.Instance.GetPlayerTeam();
         if (team == championCaster.team) allyTeamVfx.Play();
         else enemyTeamVfx.Play();
+        StartCoroutine(WaitForAnim(0.8f));
     }
     
     protected override void StartCooldown()
@@ -169,10 +166,11 @@ public class DiveCapacity : NewActiveCapacity
         }
     }
     
-    public IEnumerator WaitForAnim(float timeToWait)
+    private IEnumerator WaitForAnim(float timeToWait)
     {
+        championCaster.animator.speed = 1;
+        championCaster.isPlayingNonScalableAnim = true;
         yield return new WaitForSeconds(timeToWait);
         championCaster.isPlayingNonScalableAnim = false;
-        //photonView.RPC("AttackEndAnim", RpcTarget.MasterClient);
     }
 }

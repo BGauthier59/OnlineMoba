@@ -70,20 +70,16 @@ public class GrabCapacity : NewActiveCapacity
             Debug.LogWarning("Still on cooldown!");
             return false;
         }
-        championCaster.isPlayingNonScalableAnim = true;
-        championCaster.animator.speed = 1;
         photonView.RPC("SetTriggerAnimation", RpcTarget.MasterClient, "IsGrabbing");
-        StartCoroutine(WaitForAnim(0.35f));
 
         if (!Physics.Raycast(casterInitPos + championCaster.rotateParent.forward, direction, out var hit,
                 grabMaxDistance, grabableLayer)) return false;
 
         // Cast Succeeded!
-        
         hitData = hit;
         GameStateMachine.Instance.OnTick += CheckTimer;
         return true;
-    } // Raycast
+    }
 
     private void CheckTimer()
     {
@@ -116,9 +112,6 @@ public class GrabCapacity : NewActiveCapacity
             Debug.LogWarning("Touched itself!");
             return;
         }
-
-        // Caster : celui qui lance le grab
-        // Entity : celui qui est touché par le grab
 
         var grabCaster = (Champion)caster;
         var team = entity.team;
@@ -208,8 +201,9 @@ public class GrabCapacity : NewActiveCapacity
     
     public IEnumerator WaitForAnim(float timeToWait)
     {
+        championCaster.animator.speed = 1;
+        championCaster.isPlayingNonScalableAnim = true;
         yield return new WaitForSeconds(timeToWait);
         championCaster.isPlayingNonScalableAnim = false;
-        //photonView.RPC("AttackEndAnim", RpcTarget.MasterClient);
     }
 }

@@ -1,8 +1,6 @@
 using System.Collections;
-using System.Collections.Generic;
 using Controllers.Inputs;
 using Entities;
-using Entities.Champion;
 using GameStates;
 using Photon.Pun;
 using UnityEngine;
@@ -34,6 +32,7 @@ public class IoAutoAttackCapacity : NewActiveCapacity
     [SerializeField] private ParticleSystem iceMuzzleFx;
 
     private Vector3 savedPreviewPos;
+    [SerializeField] private Transform projectile;
 
     public override void Start()
     {
@@ -84,10 +83,7 @@ public class IoAutoAttackCapacity : NewActiveCapacity
         if (count >= maxCount) return false;
         if (!canShootNewOne) return false;
         count++;
-        championCaster.isPlayingNonScalableAnim = true;
-        championCaster.animator.speed = 1;
         photonView.RPC("SetTriggerAnimation", RpcTarget.MasterClient, "IsAutoAttacking");
-        StartCoroutine(WaitForAnim(0.35f));
         canShootNewOne = false;
 
         hitPoint = Physics.Raycast(casterInitPos + championCaster.rotateParent.forward, direction, out var hit,
@@ -117,6 +113,8 @@ public class IoAutoAttackCapacity : NewActiveCapacity
         var team = GameStateMachine.Instance.GetPlayerTeam();
         if (team == championCaster.team) allyTeamVfx.Play();
         else enemyTeamVfx.Play();
+        
+        StartCoroutine(WaitForAnim(0.35f));
     }
 
     private void CheckTimer()
@@ -231,8 +229,9 @@ public class IoAutoAttackCapacity : NewActiveCapacity
     
     public IEnumerator WaitForAnim(float timeToWait)
     {
+        championCaster.animator.speed = 1;
+        championCaster.isPlayingNonScalableAnim = true;
         yield return new WaitForSeconds(timeToWait);
         championCaster.isPlayingNonScalableAnim = false;
-        //photonView.RPC("AttackEndAnim", RpcTarget.MasterClient);
     }
 }
