@@ -57,6 +57,7 @@ namespace Entities.Champion
         [PunRPC]
         public void SyncDieRPC()
         {
+            rb.velocity = Vector3.zero;
             if (photonView.IsMine)
             {
                 InputManager.PlayerMap.Movement.Disable();
