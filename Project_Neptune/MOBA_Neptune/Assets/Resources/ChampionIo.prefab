@@ -496,6 +496,9 @@ MonoBehaviour:
   capacity1: {fileID: 4806538035275567804}
   capacity2: {fileID: 2574456858352085549}
   ultimateCapacity: {fileID: 8202111792943879854}
+  animator: {fileID: 2960564805596792619}
+  animAutoAttack: IsAutoAttacking
+  animCapacity1: IsGrabbing
 --- !u!114 &3480681341667345174
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -616,7 +619,7 @@ MonoBehaviour:
     m_Bits: 64
   waterFX1: {fileID: 3054459778604918817}
   waterFX2: {fileID: 2467731035417655431}
-  accelerator: 4.5
+  accelerator: 3.5
   velocity: {x: 0, y: 0, z: 0}
   maxResource: 0
   currentResource: 0
@@ -802,7 +805,7 @@ MonoBehaviour:
   isActive: 0
   entityUnderEffect: {fileID: 0}
   slowedFx: {fileID: 601241129007180055}
-  duration: 5
+  duration: 4
   speedModifier: 2
 --- !u!1 &3480681342087303709
 GameObject:
@@ -3859,10 +3862,10 @@ MonoBehaviour:
     SynchronizeType: 2
     Name: IsAttacking
   - Type: 4
-    SynchronizeType: 2
+    SynchronizeType: 1
     Name: IsAutoAttacking
   - Type: 4
-    SynchronizeType: 2
+    SynchronizeType: 1
     Name: IsGrabbing
   - Type: 4
     SynchronizeType: 2

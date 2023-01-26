@@ -1,4 +1,5 @@
 using System;
+using GameStates;
 using Photon.Pun;
 using TMPro;
 using UnityEngine;
@@ -55,6 +56,9 @@ public class UICommonPlayers : MonoBehaviour
         else
         {
             Debug.Log($"Partie finie");
+            
+            if(!PhotonNetwork.IsMasterClient) return;
+            GameStateMachine.Instance.winner = orangeTeamCashier.cashierPoint > violetTeamCashier.cashierPoint ? Enums.Team.Team1 : Enums.Team.Team2;
         }
 
         float min = Mathf.FloorToInt(timerOfAGameInSeconds / 60);

@@ -195,5 +195,31 @@ namespace Entities.Champion
             myTower.isActive = true;
             myTower.desactivateIcon.SetActive(false);
         }
+        
+        [PunRPC]
+        public void SetTriggerAnimation(string animation)
+        {
+            animator.SetTrigger(animation);
+            photonView.RPC("SyncSetTriggerAnimation", RpcTarget.All, animation);
+        }
+        
+        [PunRPC]
+        public void SyncSetTriggerAnimation(string animation)
+        {
+            animator.SetTrigger(animation);
+        }
+        
+        [PunRPC]
+        public void ResetTriggerAnimation(string animation)
+        {
+            animator.ResetTrigger(animation);
+            photonView.RPC("SyncSetTriggerAnimation", RpcTarget.All, animation);
+        }
+        
+        [PunRPC]
+        public void SyncResetTriggerAnimation(string animation)
+        {
+            animator.ResetTrigger(animation);
+        }
     }
 }
