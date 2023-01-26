@@ -162,7 +162,7 @@ namespace Entities.Champion
                     tempAnimationSpeed = (rb.velocity.magnitude / referenceMoveSpeed);
                     animator.speed = tempAnimationSpeed;
                 }
-                //else Debug.LogWarning($"played anim : speed = {animator.speed}");
+                else Debug.LogWarning($"played anim : speed = {animator.speed}");
 
                 velocity = new Vector3(
                     Mathf.Lerp(velocity.x, currentMoveSpeed * moveDirection.x, accelerator * Time.deltaTime), 0,

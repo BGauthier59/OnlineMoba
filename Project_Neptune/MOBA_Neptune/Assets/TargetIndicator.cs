@@ -86,7 +86,7 @@ public class TargetIndicator : MonoBehaviourPun
         {
             EntityCollectionManager.GetEntityByIndex(EntityIndex).GetComponent<Champion>().targetIndicators[i].displayEnemyPos = true;
         }
-        StartCoroutine(CoolDownIndicator(EntityIndex));
+        if(gameObject.activeSelf) StartCoroutine(CoolDownIndicator(EntityIndex));
     }
     
     public void RequestUndisplayEnemies(int EntityIndex)

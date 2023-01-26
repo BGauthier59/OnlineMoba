@@ -221,5 +221,19 @@ namespace Entities.Champion
         {
             animator.ResetTrigger(animation);
         }
+        
+        [PunRPC]
+        public void AttackEndAnim(int entityIndex)
+        {
+            
+            isPlayingNonScalableAnim = false;
+            photonView.RPC("SyncAttackEndAnim", RpcTarget.All);
+        }
+    
+        [PunRPC]
+        public void SyncAttackEndAnim(int entityIndex)
+        {
+            isPlayingNonScalableAnim = false;
+        }
     }
 }

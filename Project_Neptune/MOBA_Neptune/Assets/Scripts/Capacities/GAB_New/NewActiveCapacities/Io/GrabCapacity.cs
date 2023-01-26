@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using Entities;
 using Entities.Capacities;
 using Entities.Champion;
@@ -75,11 +76,10 @@ public class GrabCapacity : NewActiveCapacity
                 grabMaxDistance, grabableLayer)) return false;
 
         // Cast Succeeded!
-        
         hitData = hit;
         GameStateMachine.Instance.OnTick += CheckTimer;
         return true;
-    } // Raycast
+    }
 
     private void CheckTimer()
     {
@@ -97,8 +97,6 @@ public class GrabCapacity : NewActiveCapacity
         Debug.DrawLine(casterInitPos, hitData.point, Color.red, 3);
         photonView.RPC("PlayHitEffect", RpcTarget.All, hitData.point);
         
-
-
         // We get hit IGrabable data
         var grabable = hitData.collider.gameObject.GetComponent<IGrabable>();
         if (grabable == null)
@@ -114,9 +112,6 @@ public class GrabCapacity : NewActiveCapacity
             Debug.LogWarning("Touched itself!");
             return;
         }
-
-        // Caster : celui qui lance le grab
-        // Entity : celui qui est touché par le grab
 
         var grabCaster = (Champion)caster;
         var team = entity.team;
@@ -202,5 +197,13 @@ public class GrabCapacity : NewActiveCapacity
             var color = canCast ? championCaster.previewColorEnable : championCaster.previewColorDisable;
             previewRenderer.material.SetColor("_EmissionColor", color);
         }
+    }
+    
+    public IEnumerator WaitForAnim(float timeToWait)
+    {
+        championCaster.animator.speed = 1;
+        championCaster.isPlayingNonScalableAnim = true;
+        yield return new WaitForSeconds(timeToWait);
+        championCaster.isPlayingNonScalableAnim = false;
     }
 }

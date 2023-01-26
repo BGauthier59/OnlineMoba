@@ -52,13 +52,11 @@ public class DiveCapacity : NewActiveCapacity
 
     public override bool TryCast()
     {
-        // Check conditions
         if (!canCastCapacity)
         {
             Debug.LogWarning("Still on cooldown!");
             return false;
         }
-        
         photonView.RPC("SetTriggerAnimation", RpcTarget.MasterClient, "IsJumping");
         photonView.RPC("SyncCastDiveCapacityRPC", RpcTarget.All);
         photonView.RPC("SyncImpactFeedback", RpcTarget.All);
@@ -110,6 +108,7 @@ public class DiveCapacity : NewActiveCapacity
         var team = GameStateMachine.Instance.GetPlayerTeam();
         if (team == championCaster.team) allyTeamVfx.Play();
         else enemyTeamVfx.Play();
+        StartCoroutine(WaitForAnim(0.8f));
     }
     
     protected override void StartCooldown()
@@ -165,5 +164,13 @@ public class DiveCapacity : NewActiveCapacity
             var color = canCast ? championCaster.previewColorEnable : championCaster.previewColorDisable;
             previewRenderer.material.SetColor("_EmissionColor", color);
         }
+    }
+    
+    private IEnumerator WaitForAnim(float timeToWait)
+    {
+        championCaster.animator.speed = 1;
+        championCaster.isPlayingNonScalableAnim = true;
+        yield return new WaitForSeconds(timeToWait);
+        championCaster.isPlayingNonScalableAnim = false;
     }
 }

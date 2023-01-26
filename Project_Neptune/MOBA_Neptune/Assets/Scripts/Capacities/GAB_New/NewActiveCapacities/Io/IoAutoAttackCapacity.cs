@@ -1,8 +1,6 @@
 using System.Collections;
-using System.Collections.Generic;
 using Controllers.Inputs;
 using Entities;
-using Entities.Champion;
 using GameStates;
 using Photon.Pun;
 using UnityEngine;
@@ -34,6 +32,7 @@ public class IoAutoAttackCapacity : NewActiveCapacity
     [SerializeField] private ParticleSystem iceMuzzleFx;
 
     private Vector3 savedPreviewPos;
+    [SerializeField] private Transform projectile;
 
     public override void Start()
     {
@@ -114,6 +113,8 @@ public class IoAutoAttackCapacity : NewActiveCapacity
         var team = GameStateMachine.Instance.GetPlayerTeam();
         if (team == championCaster.team) allyTeamVfx.Play();
         else enemyTeamVfx.Play();
+        
+        StartCoroutine(WaitForAnim(0.35f));
     }
 
     private void CheckTimer()
@@ -224,5 +225,13 @@ public class IoAutoAttackCapacity : NewActiveCapacity
         }
 
         canShootNewOne = true;
+    }
+    
+    public IEnumerator WaitForAnim(float timeToWait)
+    {
+        championCaster.animator.speed = 1;
+        championCaster.isPlayingNonScalableAnim = true;
+        yield return new WaitForSeconds(timeToWait);
+        championCaster.isPlayingNonScalableAnim = false;
     }
 }

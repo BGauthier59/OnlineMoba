@@ -1,3 +1,4 @@
+using System.Collections;
 using Entities;
 using GameStates;
 using JetBrains.Annotations;
@@ -67,8 +68,6 @@ public class WaddyAutoAttackCapacity : NewActiveCapacity
             Debug.LogWarning("Still on cooldown!");
             return false;
         }
-		championCaster.isPlayingNonScalableAnim = true;
-        championCaster.animator.speed = 1;
         photonView.RPC("SetTriggerAnimation", RpcTarget.MasterClient, "IsAutoAttacking");
 
         Attack();
@@ -106,15 +105,24 @@ public class WaddyAutoAttackCapacity : NewActiveCapacity
 
     private void AttackEnd()
     {
-        championCaster.isPlayingNonScalableAnim = false;
+        
         championCaster.SetCanRotate(true);
         photonView.RPC("AttackEndFeedback", RpcTarget.All);
+    }
+    
+    private IEnumerator WaitForAnim(float timeToWait)
+    {
+        championCaster.animator.speed = 1;
+        championCaster.isPlayingNonScalableAnim = true;
+        yield return new WaitForSeconds(timeToWait);
+        championCaster.isPlayingNonScalableAnim = false;
     }
 
     [PunRPC]
     public void AttackEndFeedback()
     {
         attackCollider.enabled = false;
+        StartCoroutine(WaitForAnim(0.5f));
     }
 
     protected override void StartCooldown()
@@ -126,12 +134,10 @@ public class WaddyAutoAttackCapacity : NewActiveCapacity
     {
         cooldownTimer += 1.0 / GameStateMachine.Instance.tickRate;
 
-        if (cooldownTimer >= cooldownDuration)
-        {
-            photonView.RPC("SyncCanCastWaddyAutoAttackCapacityRPC", RpcTarget.All, true);
-            cooldownTimer = 0f;
-            GameStateMachine.Instance.OnTick -= TimerCooldown;
-        }
+        if (!(cooldownTimer >= cooldownDuration)) return;
+        photonView.RPC("SyncCanCastWaddyAutoAttackCapacityRPC", RpcTarget.All, true);
+        cooldownTimer = 0f;
+        GameStateMachine.Instance.OnTick -= TimerCooldown;
     }
 
     public override void RequestSetPreview(bool active)
@@ -162,8 +168,6 @@ public class WaddyAutoAttackCapacity : NewActiveCapacity
     [PunRPC]
     private void SyncCanCastWaddyAutoAttackCapacityRPC(bool canCast)
     {
-        Debug.Log("Deactivate");
-
         canCastCapacity = canCast;
         if (previewActivate && photonView.IsMine)
         {
