@@ -66,11 +66,9 @@ public class Cashier : MonoBehaviour, IScorable
 
         _photonView.RPC("SyncCashierIncreaseScoreRPC", RpcTarget.All, cashierPoint);
 
-        if (cashierPoint < pointsNeededToWin) return;
-
-        Debug.Log($"Team {teamToGoCashier} won the game !");
-
-        GameStateMachine.Instance.winner = teamToGoCashier;
+        //if (cashierPoint < pointsNeededToWin) return;
+        //Debug.Log($"Team {teamToGoCashier} won the game !");
+        //GameStateMachine.Instance.winner = teamToGoCashier;
     }
 
     [PunRPC] [UsedImplicitly]

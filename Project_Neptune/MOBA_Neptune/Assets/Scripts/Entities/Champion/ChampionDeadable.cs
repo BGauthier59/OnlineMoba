@@ -74,6 +74,7 @@ namespace Entities.Champion
         {
             if (!canDie) return;
             
+            SetCanMoveRPC(false);
             isAlive = false;
             SetCanDieRPC(false);
 
@@ -124,6 +125,7 @@ namespace Entities.Champion
         public void ReviveRPC()
         {
             isAlive = true;
+            SetCanMoveRPC(true);
             SetCanDieRPC(true);
             SetCurrentHpRPC(maxHp);
             SetCurrentResourceRPC(maxResource);

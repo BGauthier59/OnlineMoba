@@ -1308,8 +1308,8 @@ MonoBehaviour:
   canAttack: 0
   attackDamage: 0
   canCast: 0
-  maxHp: 100
-  currentHp: 100
+  maxHp: 125
+  currentHp: 125
   hurtVfx: []
   isAlive: 0
   canDie: 0
@@ -1414,7 +1414,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   caster: {fileID: 0}
   canCastCapacity: 1
-  cooldownDuration: 4
+  cooldownDuration: 5
   previewObject: {fileID: 3801297301610604867}
   previewRenderer: {fileID: 7257404912225043647}
   delayDuration: 0.5
@@ -2536,7 +2536,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9cfe7d3d1696c5147a30a78604c3f964, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 20
+  damage: 17
   team: 0
   casterEntity: {fileID: 3480681341667345175}
   impactVfx: {fileID: 3113913207207808764}

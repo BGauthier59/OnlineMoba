@@ -183,8 +183,6 @@ namespace Entities.Champion
             }
 
             var strength = StreamManager.GetStreamVector(currentStreamModifier, transform);
-
-
             if (currentStreamModifier != null)
             {
                 animator.SetBool("IsSliding", true);

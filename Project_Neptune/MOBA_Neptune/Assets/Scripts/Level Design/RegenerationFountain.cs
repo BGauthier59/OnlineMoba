@@ -33,9 +33,9 @@ public class RegenerationFountain : MonoBehaviourPun
         
         if (championsInRegenerationFountain.Count == 0) return;
 
-        if (timer >= 1f)
+        if (timer >= .25f)
         {
-            timer -= 1f;
+            timer -= .25f;
             foreach (var champion in championsInRegenerationFountain)
             {
                 champion.IncreaseCurrentHpRPC(healPerSecond);

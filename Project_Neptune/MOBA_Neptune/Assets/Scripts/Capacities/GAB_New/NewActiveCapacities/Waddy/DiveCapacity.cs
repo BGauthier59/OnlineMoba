@@ -46,7 +46,6 @@ public class DiveCapacity : NewActiveCapacity
     public void SyncCastDiveCapacityRPC(int entityIndex)
     {
         if (!photonView.IsMine) return;
-        InputManager.EnablePlayerMap(false);
         EntityCollectionManager.GetEntityByIndex(entityIndex).GetComponent<Champion>().myHud.spellHolderDict[this].StartTimer(cooldownDuration);
     }
 
@@ -104,8 +103,6 @@ public class DiveCapacity : NewActiveCapacity
             var damageable = c.GetComponent<IDamageable>();
             damageable?.DecreaseCurrentHpRPC(damage, caster.entityIndex);
         }
-
-        photonView.RPC("EnableInputAfterHitGround", RpcTarget.All);
     }
 
     [PunRPC]
@@ -115,14 +112,7 @@ public class DiveCapacity : NewActiveCapacity
         if (team == championCaster.team) allyTeamVfx.Play();
         else enemyTeamVfx.Play();
     }
-
-    [PunRPC]
-    public void EnableInputAfterHitGround()
-    {
-        if (!photonView.IsMine) return;
-        InputManager.EnablePlayerMap(true);
-    }
-
+    
     protected override void StartCooldown()
     {
         photonView.RPC("SyncCanCastDiveCapacityRPC", RpcTarget.All, false);
@@ -170,7 +160,6 @@ public class DiveCapacity : NewActiveCapacity
     [PunRPC]
     private void SyncCanCastDiveCapacityRPC(bool canCast)
     {
-        Debug.Log("Deactivate");
         canCastCapacity = canCast;
         if (previewActivate && photonView.IsMine)
         {
