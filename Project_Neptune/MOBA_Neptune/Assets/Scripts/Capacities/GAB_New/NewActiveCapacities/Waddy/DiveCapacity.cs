@@ -59,6 +59,7 @@ public class DiveCapacity : NewActiveCapacity
             return false;
         }
         championCaster.isPlayingNonScalableAnim = true;
+        championCaster.animator.speed = 1;
         photonView.RPC("SetTriggerAnimation", RpcTarget.MasterClient, "IsJumping");
         StartCoroutine(WaitForAnim(0.8f));
         photonView.RPC("SyncCastDiveCapacityRPC", RpcTarget.All);

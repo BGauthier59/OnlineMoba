@@ -71,6 +71,7 @@ public class GrabCapacity : NewActiveCapacity
             return false;
         }
         championCaster.isPlayingNonScalableAnim = true;
+        championCaster.animator.speed = 1;
         photonView.RPC("SetTriggerAnimation", RpcTarget.MasterClient, "IsGrabbing");
         StartCoroutine(WaitForAnim(0.35f));
 
