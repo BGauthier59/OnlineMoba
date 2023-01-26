@@ -12,7 +12,7 @@ namespace Entities.Minion.MinionJungle
         public float repopCycleTime = 30; // 30 secondes de base
         public bool isInRepop;
 
-        private float repopTimer = 0;
+        public float repopTimer = 0;
         
         private void Start()
         {

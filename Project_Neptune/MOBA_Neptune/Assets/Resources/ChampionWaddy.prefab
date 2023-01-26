@@ -1268,8 +1268,8 @@ MonoBehaviour:
   - {fileID: 1638343341153135517}
   canChangeTeam: 0
   team: 0
-  baseViewRange: 15
-  viewRange: 15
+  baseViewRange: 17
+  viewRange: 17
   viewAngle: 360
   canView: 1
   meshFilterFoV: {fileID: 3480681341397647661}
@@ -1306,7 +1306,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 6a1b5a21d69f1ad4780881d3c200a6ec, type: 3}
   - {fileID: 21300000, guid: 9d847960cdad2a942911db5a0ef3690b, type: 3}
   canAttack: 0
-  attackDamage: 0
+  attackDamage: 18
   canCast: 0
   maxHp: 125
   currentHp: 125
@@ -2537,7 +2537,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9cfe7d3d1696c5147a30a78604c3f964, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 17
+  damage: 18
   team: 0
   casterEntity: {fileID: 3480681341667345175}
   impactVfx: {fileID: 3113913207207808764}

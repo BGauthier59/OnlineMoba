@@ -41,7 +41,7 @@ namespace Entities.Minion.MinionJungle
         
         [Space]
         public NewActiveCapacity secondaryCapacity;
-        [Range(1, 100)] public int capacityProbability = 20;
+        [Range(0, 100)] public int capacityProbability = 20;
         public GameObject vfxStunAttack;
         
         public minionAggroState currentAggroState = minionAggroState.None;

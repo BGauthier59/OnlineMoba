@@ -460,7 +460,7 @@ MonoBehaviour:
   autoAttackCapacity: {fileID: 5379231645317470454}
   vfxAutoAttack: {fileID: 1633552978531286641, guid: 6c015b97c152caa4d8979d4141c5c3fc, type: 3}
   secondaryCapacity: {fileID: 3947247432492200877}
-  capacityProbability: 10
+  capacityProbability: 0
   vfxStunAttack: {fileID: 292888104372464171, guid: c8bd420b7901c5c4a81ec982627248dc, type: 3}
   currentAggroState: 0
   currentAttackTarget: {fileID: 0}
@@ -685,7 +685,7 @@ PrefabInstance:
     - target: {fileID: 4265297573973807483, guid: 8eece4011fb212e48835ca84a55c2b3d, type: 3}
       propertyPath: m_Controller
       value: 
-      objectReference: {fileID: 9100000, guid: 31b4781df6854d242b94cab273c49255, type: 2}
+      objectReference: {fileID: 9100000, guid: b0ffb497b396ba34a88bf3a31cb67cad, type: 2}
     - target: {fileID: 4376330018166814366, guid: 8eece4011fb212e48835ca84a55c2b3d, type: 3}
       propertyPath: m_RootOrder
       value: 0

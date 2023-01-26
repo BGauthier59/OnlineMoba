@@ -496,9 +496,6 @@ MonoBehaviour:
   capacity1: {fileID: 4806538035275567804}
   capacity2: {fileID: 2574456858352085549}
   ultimateCapacity: {fileID: 8202111792943879854}
-  animator: {fileID: 2960564805596792619}
-  animAutoAttack: IsAutoAttacking
-  animCapacity1: IsGrabbing
 --- !u!114 &3480681341667345174
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -617,6 +614,7 @@ MonoBehaviour:
   groundMask:
     serializedVersion: 2
     m_Bits: 64
+  isPlayingNonScalableAnim: 0
   waterFX1: {fileID: 3054459778604918817}
   waterFX2: {fileID: 2467731035417655431}
   accelerator: 3.5
@@ -699,6 +697,7 @@ MonoBehaviour:
   allyTeamVfx: {fileID: 9001646744183956110}
   enemyTeamVfx: {fileID: 7383952629997451043}
   iceMuzzleFx: {fileID: 1925399621594516017}
+  projectile: {fileID: 0}
 --- !u!114 &4806538035275567804
 MonoBehaviour:
   m_ObjectHideFlags: 0
