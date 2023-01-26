@@ -119,8 +119,8 @@ public class IoAutoAttackCapacity : NewActiveCapacity
 
         var dist = Vector3.Distance(proj.position, hitPoint);
         var speed = dist / (delayDuration);
-
         proj.velocity = direction.normalized * (float)speed;
+        Destroy(proj.gameObject, (float)delayDuration - .05f);
 
         StartCoroutine(WaitForAnim(0.35f));
     }
@@ -156,7 +156,6 @@ public class IoAutoAttackCapacity : NewActiveCapacity
         resetTimer = 0f;
         if (count == 1) GameStateMachine.Instance.OnTick += CheckResetTimer;
 
-        Destroy(proj.gameObject);
         canShootNewOne = true;
     }
 
