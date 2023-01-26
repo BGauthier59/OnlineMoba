@@ -17,12 +17,10 @@ public class ChangePlayerVisionScale : MonoBehaviourPun
         {
             if (other.transform.position.z < transform.position.z) // Entre dans la jungle par le haut 
             {
-                Debug.Log("Exit Jungle");
                 newChampCollide.photonView.RPC("SetViewRangeRPC", RpcTarget.MasterClient, newChampCollide.entityIndex, newChampCollide.baseViewRange);
             }
             else // Sort de la jungle
             {
-                Debug.Log("Entered Jungle");
                 newChampCollide.photonView.RPC("SetViewRangeRPC", RpcTarget.MasterClient, newChampCollide.entityIndex, newViewRange);
             }
         }
@@ -30,12 +28,10 @@ public class ChangePlayerVisionScale : MonoBehaviourPun
         {
             if (other.transform.position.z > transform.position.z) // Trigger collide par le haut 
             {
-                Debug.Log("Exit Jungle");
                 newChampCollide.photonView.RPC("SetViewRangeRPC", RpcTarget.MasterClient, newChampCollide.entityIndex, newChampCollide.baseViewRange);
             }
             else // Sort de la jungle
             {
-                Debug.Log("Entered Jungle");
                 newChampCollide.photonView.RPC("SetViewRangeRPC", RpcTarget.MasterClient, newChampCollide.entityIndex, newViewRange);
             }
         }

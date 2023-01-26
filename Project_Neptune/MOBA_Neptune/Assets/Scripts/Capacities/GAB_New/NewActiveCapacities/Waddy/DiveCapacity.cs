@@ -14,7 +14,8 @@ public class DiveCapacity : NewActiveCapacity
     public LayerMask targetableLayer;
     [SerializeField] private uint damage;
 
-    [SerializeField] private ParticleSystem impactFx;
+    [SerializeField] private ParticleSystem allyTeamVfx;
+    [SerializeField] private ParticleSystem enemyTeamVfx;
 
     public override void RequestCastCapacity(int[] targetedEntities, Vector3[] targetedPositions)
     {
@@ -110,7 +111,9 @@ public class DiveCapacity : NewActiveCapacity
     [PunRPC]
     public void SyncImpactFeedback()
     {
-        impactFx.Play();
+        var team = GameStateMachine.Instance.GetPlayerTeam();
+        if (team == championCaster.team) allyTeamVfx.Play();
+        else enemyTeamVfx.Play();
     }
 
     [PunRPC]

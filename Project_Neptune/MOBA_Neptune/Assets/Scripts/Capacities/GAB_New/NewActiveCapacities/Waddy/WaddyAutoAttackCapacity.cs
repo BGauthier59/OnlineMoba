@@ -60,10 +60,8 @@ public class WaddyAutoAttackCapacity : NewActiveCapacity
     [PunRPC]
     public void SyncWaddyAutoAttackCastCapacityRPC(int entityIndex)
     {
-        if (photonView.IsMine)
-        {
-            //championCaster.GetComponent<Champion>().myHud.spellHolderDict[this].StartTimer(cooldownDuration);
-        }
+        if (!championCaster.myHud) return;
+        if (photonView.IsMine) championCaster.myHud.spellHolderDict[this].StartTimer(cooldownDuration);
     }
 
     public override bool TryCast()

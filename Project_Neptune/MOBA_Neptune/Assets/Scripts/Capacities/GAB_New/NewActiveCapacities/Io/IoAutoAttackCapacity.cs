@@ -29,7 +29,8 @@ public class IoAutoAttackCapacity : NewActiveCapacity
     private Vector3 hitPoint;
     private ChampionInputController _championInputController;
 
-    [SerializeField] private ParticleSystem iceImpactFx;
+    [SerializeField] private ParticleSystem allyTeamVfx;
+    [SerializeField] private ParticleSystem enemyTeamVfx;
     [SerializeField] private ParticleSystem iceMuzzleFx;
 
     private Vector3 savedPreviewPos;
@@ -37,7 +38,7 @@ public class IoAutoAttackCapacity : NewActiveCapacity
     public override void Start()
     {
         base.Start();
-        iceImpactFx.transform.SetParent(null);
+        allyTeamVfx.transform.SetParent(null);
     }
 
     public override void RequestCastCapacity(int[] targetedEntities, Vector3[] targetedPositions)
@@ -89,7 +90,7 @@ public class IoAutoAttackCapacity : NewActiveCapacity
             direction.magnitude, targetableLayer)
             ? hit.point
             : casterInitPos + championCaster.rotateParent.forward + direction;
-        
+
         photonView.RPC("PlayExplosionFeedback", RpcTarget.All, GetCasterPos());
 
         GameStateMachine.Instance.OnTick += CheckTimer;
@@ -101,9 +102,14 @@ public class IoAutoAttackCapacity : NewActiveCapacity
     {
         iceMuzzleFx.transform.position = casterPos;
         iceMuzzleFx.Play();
-
-        iceImpactFx.transform.position = savedPreviewPos;
-        iceImpactFx.Play();
+        
+        
+        allyTeamVfx.transform.position = savedPreviewPos;
+        enemyTeamVfx.transform.position = savedPreviewPos;
+        
+        var team = GameStateMachine.Instance.GetPlayerTeam();
+        if (team == championCaster.team) allyTeamVfx.Play();
+        else enemyTeamVfx.Play();
     }
 
     private void CheckTimer()

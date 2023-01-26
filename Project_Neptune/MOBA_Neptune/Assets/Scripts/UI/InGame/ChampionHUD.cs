@@ -64,6 +64,7 @@ public class ChampionHUD : MonoBehaviour
     {
         champion = newChampion;
         champion.myHud = this;
+        Debug.Log("set HUD");
         lifeable = champion.GetComponent<IDamageable>();
         healthBar.fillAmount = lifeable.GetCurrentHpPercent();
         LinkToEvents();
