@@ -77,7 +77,6 @@ namespace Entities.Minion.MinionJungle
         {
             // Master client deals with State Machine
             if (!PhotonNetwork.IsMasterClient) return;
-
             myAgent = GetComponent<NavMeshAgent>();
             currentHealth = maxHealth;
             currentState = MinionState.Attacking;
@@ -153,6 +152,7 @@ namespace Entities.Minion.MinionJungle
                     if (lastCapacity == lastCapacityUsed.SecondCapacity)
                     {
                         lastCapacity = lastCapacityUsed.AutoAttackCapacity;
+                        
                         StartCoroutine(AttackLogic());
                         return;
                     }
@@ -180,15 +180,51 @@ namespace Entities.Minion.MinionJungle
 
             if (lastCapacity == lastCapacityUsed.AutoAttackCapacity)
             {
+                PhotonNetwork.Instantiate(vfxAutoAttack.name, currentAttackTarget.transform.position, Quaternion.Euler(-90, 0, 0));
+                photonView.RPC("SetTriggerAnimation", RpcTarget.MasterClient, "SpinAttack");
+                yield return new WaitForSeconds(1f);
                 autoAttackCapacity.RequestCastCapacity(uwu, owo); // Lancement de la capacité
+                yield return new WaitForSeconds(0.95f);
+                photonView.RPC("ResetTriggerAnimation", RpcTarget.MasterClient, "SpinAttack");
             }
             else if (lastCapacity == lastCapacityUsed.SecondCapacity)
             {
+                PhotonNetwork.Instantiate(vfxStunAttack.name, currentAttackTarget.transform.position, Quaternion.Euler(-90, 0, 0));
+                photonView.RPC("SetTriggerAnimation", RpcTarget.MasterClient, "StunAttack");
+                yield return new WaitForSeconds(0.55f);
                 secondaryCapacity.RequestCastCapacity(uwu, owo); // Lancement de la capacité
+                yield return new WaitForSeconds(0.7f);
+                photonView.RPC("ResetTriggerAnimation", RpcTarget.MasterClient, "StunAttack");
             }
             
             yield return new WaitForSeconds(attackSpeed);
             attackCycle = false;
+        }
+        
+        [PunRPC]
+        public void SetTriggerAnimation(string animation)
+        {
+            animator.SetTrigger(animation);
+            photonView.RPC("SyncSetTriggerAnimation", RpcTarget.All, animation);
+        }
+        
+        [PunRPC]
+        public void SyncSetTriggerAnimation(string animation)
+        {
+            animator.SetTrigger(animation);
+        }
+        
+        [PunRPC]
+        public void ResetTriggerAnimation(string animation)
+        {
+            animator.ResetTrigger(animation);
+            photonView.RPC("SyncSetTriggerAnimation", RpcTarget.All, animation);
+        }
+        
+        [PunRPC]
+        public void SyncResetTriggerAnimation(string animation)
+        {
+            animator.ResetTrigger(animation);
         }
         
         private void OnDrawGizmos()

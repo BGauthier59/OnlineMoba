@@ -11,8 +11,10 @@ public class MinionJungleAutoAttackCapacity : NewActiveCapacity
     [Space] [Header("Capacity Stats")] [SerializeField]
     private int capacityDamage;
 
+    public GameObject autoAttackVfx;
     [SerializeField] private Vector3 casterPos;
     [SerializeField] private Vector3 targetPos;
+    [SerializeField] private LayerMask capacityLayerMask;
 
     private void Start()
     {
@@ -25,16 +27,25 @@ public class MinionJungleAutoAttackCapacity : NewActiveCapacity
         photonView.RPC("CastMinionJungleAutoAttackCapacityRPC", RpcTarget.MasterClient, targetedEntities, targetedPositions);
     }
 
+    
     [PunRPC]
     [UsedImplicitly]
     public void CastMinionJungleAutoAttackCapacityRPC(int[] targetedEntities, Vector3[] targetedPositions)
     {
         photonView.RPC("SyncDataJungleAutoAttackCapacityRPC", RpcTarget.All);
+        
+        // Calcul de la capa
+        var colliders = Physics.OverlapSphere(targetedPositions[0], 1.5f, capacityLayerMask);
 
-        foreach (var c in targetedEntities)
+        foreach (var entityHit in colliders)
         {
-            var damageable = EntityCollectionManager.GetEntityByIndex(c).GetComponent<IDamageable>();
-            damageable?.DecreaseCurrentHpRPC(capacityDamage, caster.entityIndex);
+            Champion thisChampion = entityHit.GetComponent<Champion>();
+
+            if (thisChampion && entityHit.GetComponent<Entity>() != caster)
+            {
+                var damageable = thisChampion.GetComponent<IDamageable>();
+                damageable?.DecreaseCurrentHpRPC(capacityDamage, caster.entityIndex);
+            }
         }
     }
 
@@ -43,6 +54,7 @@ public class MinionJungleAutoAttackCapacity : NewActiveCapacity
     public void SyncDataJungleAutoAttackCapacityRPC()
     {
         caster = GetComponent<Entity>();
+        
     }
 
     public override bool TryCast()

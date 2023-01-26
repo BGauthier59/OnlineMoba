@@ -390,6 +390,7 @@ MonoBehaviour:
   observableSearch: 2
   ObservedComponents:
   - {fileID: 6289120641470716828}
+  - {fileID: 6527285454676432746}
   sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
@@ -434,7 +435,7 @@ MonoBehaviour:
   uiTransform: {fileID: 0}
   guiOffset: {x: 0, y: 2, z: 0}
   rb: {fileID: 6289120641470716830}
-  animator: {fileID: 0}
+  animator: {fileID: 7690576247578516876}
   outline: {fileID: 0}
   canShow: 0
   canHide: 0
@@ -474,7 +475,8 @@ MonoBehaviour:
   attackRange: 3.5
   wanderRange: 3.5
   myCamp: {fileID: 0}
-  meshes: []
+  meshes:
+  - {fileID: 4933488603532867307}
 --- !u!114 &5379231645317470454
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -493,8 +495,12 @@ MonoBehaviour:
   previewObject: {fileID: 0}
   previewRenderer: {fileID: 0}
   capacityDamage: 0
+  autoAttackVfx: {fileID: 1633552978531286641, guid: 6c015b97c152caa4d8979d4141c5c3fc, type: 3}
   casterPos: {x: 0, y: 0, z: 0}
   targetPos: {x: 0, y: 0, z: 0}
+  capacityLayerMask:
+    serializedVersion: 2
+    m_Bits: 536870912
 --- !u!114 &3947247432492200877
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -513,6 +519,7 @@ MonoBehaviour:
   previewObject: {fileID: 0}
   previewRenderer: {fileID: 0}
   capacityRange: 0
+  stunVfx: {fileID: 292888104372464171, guid: c8bd420b7901c5c4a81ec982627248dc, type: 3}
   capacityDuration: 0
   capacityLayerMask:
     serializedVersion: 2
@@ -739,6 +746,18 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6548185243430612246, guid: 8eece4011fb212e48835ca84a55c2b3d, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 2.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6548185243430612246, guid: 8eece4011fb212e48835ca84a55c2b3d, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 2.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6548185243430612246, guid: 8eece4011fb212e48835ca84a55c2b3d, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 2.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6548185243430612246, guid: 8eece4011fb212e48835ca84a55c2b3d, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
@@ -756,14 +775,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8eece4011fb212e48835ca84a55c2b3d, type: 3}
---- !u!1 &7384499897442263251 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4030730850781260836, guid: 8eece4011fb212e48835ca84a55c2b3d, type: 3}
-  m_PrefabInstance: {fileID: 5875803136696913143}
-  m_PrefabAsset: {fileID: 0}
 --- !u!137 &4933488603532867307 stripped
 SkinnedMeshRenderer:
   m_CorrespondingSourceObject: {fileID: 1584227400226552348, guid: 8eece4011fb212e48835ca84a55c2b3d, type: 3}
+  m_PrefabInstance: {fileID: 5875803136696913143}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &7690576247578516876 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 4265297573973807483, guid: 8eece4011fb212e48835ca84a55c2b3d, type: 3}
   m_PrefabInstance: {fileID: 5875803136696913143}
   m_PrefabAsset: {fileID: 0}
 --- !u!4 &7868020703612910185 stripped
@@ -771,6 +790,35 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4376330018166814366, guid: 8eece4011fb212e48835ca84a55c2b3d, type: 3}
   m_PrefabInstance: {fileID: 5875803136696913143}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &7384499897442263251 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4030730850781260836, guid: 8eece4011fb212e48835ca84a55c2b3d, type: 3}
+  m_PrefabInstance: {fileID: 5875803136696913143}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &6527285454676432746
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7384499897442263251}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b8c4a61274f60b4ea5fb4299cfdbf14, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ShowLayerWeightsInspector: 1
+  ShowParameterInspector: 1
+  m_SynchronizeParameters:
+  - Type: 9
+    SynchronizeType: 1
+    Name: SpinAttack
+  - Type: 9
+    SynchronizeType: 1
+    Name: StunAttack
+  m_SynchronizeLayers:
+  - SynchronizeType: 1
+    LayerIndex: 0
 --- !u!114 &7903072266113791378
 MonoBehaviour:
   m_ObjectHideFlags: 0
