@@ -122,7 +122,7 @@ namespace Entities.Champion
             OnReviveFeedback?.Invoke();
         }
 
-        [PunRPC]
+        [PunRPC] 
         public void ReviveRPC()
         {
             isAlive = true;
@@ -151,8 +151,8 @@ namespace Entities.Champion
         {
             foreach (var rd in meshes)
             {
-                rd.material.SetFloat("_DieColor", Mathf.Lerp(1, 0, ratio));
-                rd.material.SetFloat("_DieDissolve", Mathf.Lerp(-2, 2, ratio));
+                rd.material.SetFloat("_DieColor", Mathf.Lerp(1, 0, ratio*2.5f));
+                rd.material.SetFloat("_DieDissolve", Mathf.Lerp(-2, 2, ratio*2.5f));
             }
         }
 

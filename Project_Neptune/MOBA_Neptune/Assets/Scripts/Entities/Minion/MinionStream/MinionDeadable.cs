@@ -83,8 +83,8 @@ namespace Entities.Minion.MinionStream
         {
             foreach (var rd in meshes)
             {
-                rd.material.SetFloat("_DieColor", Mathf.Lerp(1, 0, ratio));
-                rd.material.SetFloat("_DieDissolve", Mathf.Lerp(-2, 2, ratio));
+                rd.material.SetFloat("_DieColor", Mathf.Lerp(0.7f, 0, ratio*2));
+                rd.material.SetFloat("_DieDissolve", Mathf.Lerp(-1, 2, ratio*2));
             }
         }
 
