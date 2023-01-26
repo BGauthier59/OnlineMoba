@@ -1,8 +1,4 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using Entities;
-using Entities.Champion;
 using GameStates;
 using JetBrains.Annotations;
 using Photon.Pun;
@@ -36,7 +32,6 @@ public class WaddyAutoAttackCapacity : NewActiveCapacity
     {
         kickCollider.team = EntityCollectionManager.GetEntityByIndex(entityIndex).team;
     }
-    
     
     [PunRPC]
     public void SyncDataWaddyAutoAttackCapacityRPC()
@@ -78,6 +73,8 @@ public class WaddyAutoAttackCapacity : NewActiveCapacity
 
     private void Attack()
     {
+        championCaster.isPlayingNonScalableAnim = true;
+        championCaster.animator.speed = 1;
         championCaster.animator.Play("A_AutoAttack");
         championCaster.SetCanRotate(false);
         photonView.RPC("AttackFeedbackRPC", RpcTarget.All);
@@ -105,6 +102,7 @@ public class WaddyAutoAttackCapacity : NewActiveCapacity
 
     private void AttackEnd()
     {
+        championCaster.isPlayingNonScalableAnim = false;
         championCaster.SetCanRotate(true);
         photonView.RPC("AttackEndFeedback", RpcTarget.All);
     }

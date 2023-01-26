@@ -1396,7 +1396,7 @@ MonoBehaviour:
   cooldownDuration: 1.5
   previewObject: {fileID: 7867223321132074439}
   previewRenderer: {fileID: 7789095844495347562}
-  attackDuration: 1
+  attackDuration: 0.1
   attackCollider: {fileID: 9120351919577744094}
   kickCollider: {fileID: 3265800608706468851}
   slashVfx: {fileID: 4211638063179274035}
@@ -3024,8 +3024,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8977397687767554621}
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0.02, y: -1, z: 1.75}
-  m_LocalScale: {x: 4, y: 3, z: 1}
+  m_LocalPosition: {x: 0.02, y: -1, z: 1.974}
+  m_LocalScale: {x: 4.5, y: 3, z: 1}
   m_Children: []
   m_Father: {fileID: 3480681341152264625}
   m_RootOrder: 3
@@ -3314,19 +3314,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3468741952408808967, guid: e3f9ef8a5f57c5d45ac8478ea6c5dc07, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.20637368
+      value: 0.17106935
       objectReference: {fileID: 0}
     - target: {fileID: 3468741952408808967, guid: e3f9ef8a5f57c5d45ac8478ea6c5dc07, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.00000010430813
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3468741952408808967, guid: e3f9ef8a5f57c5d45ac8478ea6c5dc07, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.000000059604645
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3468741952408808967, guid: e3f9ef8a5f57c5d45ac8478ea6c5dc07, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.97847325
+      value: 0.985259
       objectReference: {fileID: 0}
     - target: {fileID: 3468741952408808967, guid: e3f9ef8a5f57c5d45ac8478ea6c5dc07, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -3334,7 +3334,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3468741952408808967, guid: e3f9ef8a5f57c5d45ac8478ea6c5dc07, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 156.18
+      value: 160.3
       objectReference: {fileID: 0}
     - target: {fileID: 3468741952409475097, guid: e3f9ef8a5f57c5d45ac8478ea6c5dc07, type: 3}
       propertyPath: m_IsActive

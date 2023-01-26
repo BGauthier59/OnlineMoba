@@ -15,7 +15,8 @@ namespace Entities.Champion
 
         private Vector3 rotateDirection;
         [SerializeField] private LayerMask groundMask;
-        
+        [HideInInspector] public bool isPlayingNonScalableAnim;
+
         public bool CanMove()
         {
             return canMove;
@@ -52,60 +53,40 @@ namespace Entities.Champion
         public event GlobalDelegates.BoolDelegate OnSetCanMove;
         public event GlobalDelegates.BoolDelegate OnSetCanMoveFeedback;
 
-        public void RequestSetReferenceMoveSpeed(float value)
-        {
-        }
+        public void RequestSetReferenceMoveSpeed(float value) { }
 
         [PunRPC]
-        public void SyncSetReferenceMoveSpeedRPC(float value)
-        {
-        }
+        public void SyncSetReferenceMoveSpeedRPC(float value) { }
 
         [PunRPC]
-        public void SetReferenceMoveSpeedRPC(float value)
-        {
-        }
+        public void SetReferenceMoveSpeedRPC(float value) { }
 
         public event GlobalDelegates.FloatDelegate OnSetReferenceMoveSpeed;
         public event GlobalDelegates.FloatDelegate OnSetReferenceMoveSpeedFeedback;
 
-        public void RequestIncreaseReferenceMoveSpeed(float amount)
-        {
-        }
+        public void RequestIncreaseReferenceMoveSpeed(float amount) { }
 
         [PunRPC]
-        public void SyncIncreaseReferenceMoveSpeedRPC(float amount)
-        {
-        }
+        public void SyncIncreaseReferenceMoveSpeedRPC(float amount) { }
 
         [PunRPC]
-        public void IncreaseReferenceMoveSpeedRPC(float amount)
-        {
-        }
+        public void IncreaseReferenceMoveSpeedRPC(float amount) { }
 
         public event GlobalDelegates.FloatDelegate OnIncreaseReferenceMoveSpeed;
         public event GlobalDelegates.FloatDelegate OnIncreaseReferenceMoveSpeedFeedback;
 
-        public void RequestDecreaseReferenceMoveSpeed(float amount)
-        {
-        }
+        public void RequestDecreaseReferenceMoveSpeed(float amount) { }
 
         [PunRPC]
-        public void SyncDecreaseReferenceMoveSpeedRPC(float amount)
-        {
-        }
+        public void SyncDecreaseReferenceMoveSpeedRPC(float amount) { }
 
         [PunRPC]
-        public void DecreaseReferenceMoveSpeedRPC(float amount)
-        {
-        }
+        public void DecreaseReferenceMoveSpeedRPC(float amount) { }
 
         public event GlobalDelegates.FloatDelegate OnDecreaseReferenceMoveSpeed;
         public event GlobalDelegates.FloatDelegate OnDecreaseReferenceMoveSpeedFeedback;
 
-        public void RequestSetCurrentMoveSpeed(float value)
-        {
-        }
+        public void RequestSetCurrentMoveSpeed(float value) { }
 
         [PunRPC]
         public void SyncSetCurrentMoveSpeedRPC(float value)
@@ -123,36 +104,24 @@ namespace Entities.Champion
         public event GlobalDelegates.FloatDelegate OnSetCurrentMoveSpeed;
         public event GlobalDelegates.FloatDelegate OnSetCurrentMoveSpeedFeedback;
 
-        public void RequestIncreaseCurrentMoveSpeed(float amount)
-        {
-        }
+        public void RequestIncreaseCurrentMoveSpeed(float amount) { }
 
         [PunRPC]
-        public void SyncIncreaseCurrentMoveSpeedRPC(float amount)
-        {
-        }
+        public void SyncIncreaseCurrentMoveSpeedRPC(float amount) { }
 
         [PunRPC]
-        public void IncreaseCurrentMoveSpeedRPC(float amount)
-        {
-        }
+        public void IncreaseCurrentMoveSpeedRPC(float amount) { }
 
         public event GlobalDelegates.FloatDelegate OnIncreaseCurrentMoveSpeed;
         public event GlobalDelegates.FloatDelegate OnIncreaseCurrentMoveSpeedFeedback;
 
-        public void RequestDecreaseCurrentMoveSpeed(float amount)
-        {
-        }
+        public void RequestDecreaseCurrentMoveSpeed(float amount) { }
 
         [PunRPC]
-        public void SyncDecreaseCurrentMoveSpeedRPC(float amount)
-        {
-        }
+        public void SyncDecreaseCurrentMoveSpeedRPC(float amount) { }
 
         [PunRPC]
-        public void DecreaseCurrentMoveSpeedRPC(float amount)
-        {
-        }
+        public void DecreaseCurrentMoveSpeedRPC(float amount) { }
 
         public event GlobalDelegates.FloatDelegate OnDecreaseCurrentMoveSpeed;
         public event GlobalDelegates.FloatDelegate OnDecreaseCurrentMoveSpeedFeedback;
@@ -187,10 +156,12 @@ namespace Entities.Champion
             {
                 animator.SetBool("IsSliding", true);
 
-                var tempAnimationSpeed = animator.speed;
-                tempAnimationSpeed = (rb.velocity.magnitude / referenceMoveSpeed);
-                animator.speed = tempAnimationSpeed;
-
+                if (!isPlayingNonScalableAnim)
+                {
+                    var tempAnimationSpeed = animator.speed;
+                    tempAnimationSpeed = (rb.velocity.magnitude / referenceMoveSpeed);
+                    animator.speed = tempAnimationSpeed;
+                }
 
                 velocity = new Vector3(
                     Mathf.Lerp(velocity.x, currentMoveSpeed * moveDirection.x, accelerator * Time.deltaTime), 0,
@@ -230,7 +201,7 @@ namespace Entities.Champion
             }
 
             photonView.RPC("SetInStreamFXRPC", RpcTarget.MasterClient, entityIndex, strength);
-            
+
             Debug.DrawRay(transform.position, velocity, Color.green);
             Debug.DrawRay(transform.position, strength, Color.magenta);
         }
@@ -267,8 +238,7 @@ namespace Entities.Champion
                 Quaternion.LookRotation(rotateDirection),
                 Time.fixedDeltaTime * currentRotateSpeed);
         }
-        
-        
+
 
         public void SetMoveDirection(Vector3 direction)
         {
