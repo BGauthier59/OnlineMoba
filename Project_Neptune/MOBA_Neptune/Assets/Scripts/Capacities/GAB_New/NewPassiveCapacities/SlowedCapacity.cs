@@ -13,7 +13,7 @@ public class SlowedCapacity : NewPassiveCapacity
 
     [SerializeField] private float speedModifier;
     private float initSpeed;
-
+    
     private void Update()
     {
         if (!PhotonNetwork.IsMasterClient) return;
@@ -42,6 +42,7 @@ public class SlowedCapacity : NewPassiveCapacity
         moveable.SetCurrentMoveSpeedRPC(championUnderEffect.referenceMoveSpeed / speedModifier);
 
         base.OnAddEffect(giver, position);
+        
     }
 
     private void CheckTimer()

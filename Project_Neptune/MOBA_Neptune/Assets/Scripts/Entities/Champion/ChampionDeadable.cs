@@ -114,6 +114,7 @@ namespace Entities.Champion
                 InputManager.PlayerMap.Attack.Enable();
                 InputManager.PlayerMap.Capacity.Enable();
                 dieCanvas.SetActive(false);
+                GetComponent<SlowedCapacity>().OnRemoveEffect();
                 viewRange = baseViewRange;
             }
 
@@ -130,6 +131,7 @@ namespace Entities.Champion
             SetCanDieRPC(true);
             SetCurrentHpRPC(maxHp);
             SetCurrentResourceRPC(maxResource);
+            
             OnRevive?.Invoke();
             photonView.RPC("SyncReviveRPC", RpcTarget.All);
         }
