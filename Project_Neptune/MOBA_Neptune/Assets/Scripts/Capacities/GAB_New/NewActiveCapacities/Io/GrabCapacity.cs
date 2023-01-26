@@ -33,7 +33,7 @@ public class GrabCapacity : NewActiveCapacity
     {
         // Set data
         photonView.RPC("SyncDataGrabCapacityRPC", RpcTarget.All, targetedPositions[0]);
-
+        
         if (TryCast())
         {
             StartCooldown();
@@ -54,6 +54,7 @@ public class GrabCapacity : NewActiveCapacity
     [PunRPC]
     public void SyncCastGrabCapacityRPC()
     {
+        photonView.RPC("ResetTriggerAnimation", RpcTarget.MasterClient, "IsGrabbing");
         if (photonView.IsMine) championCaster.myHud.spellHolderDict[this].StartTimer(cooldownDuration);
     }
 
@@ -68,13 +69,13 @@ public class GrabCapacity : NewActiveCapacity
             Debug.LogWarning("Still on cooldown!");
             return false;
         }
+        photonView.RPC("SetTriggerAnimation", RpcTarget.MasterClient, "IsGrabbing");
 
         if (!Physics.Raycast(casterInitPos + championCaster.rotateParent.forward, direction, out var hit,
                 grabMaxDistance, grabableLayer)) return false;
 
         // Cast Succeeded!
-
-        championCaster.animator.SetBool("IsGrabbing", true);
+        
         hitData = hit;
         GameStateMachine.Instance.OnTick += CheckTimer;
         return true;
@@ -95,7 +96,8 @@ public class GrabCapacity : NewActiveCapacity
     {
         Debug.DrawLine(casterInitPos, hitData.point, Color.red, 3);
         photonView.RPC("PlayHitEffect", RpcTarget.All, hitData.point);
-        championCaster.animator.SetBool("IsGrabbing", false);
+        
+
 
         // We get hit IGrabable data
         var grabable = hitData.collider.gameObject.GetComponent<IGrabable>();
@@ -134,7 +136,7 @@ public class GrabCapacity : NewActiveCapacity
             Debug.Log("You hit an ally!");
         }
     }
-
+    
     [PunRPC]
     private void PlayHitEffect(Vector3 pos)
     {

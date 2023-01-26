@@ -51,7 +51,7 @@ public class IoAutoAttackCapacity : NewActiveCapacity
     public void CastIoAutoAttackCapacityRPC(int[] targetedEntities, Vector3[] targetedPositions)
     {
         photonView.RPC("SyncDataIoAutoAttackCapacityRPC", RpcTarget.All, targetedPositions[0]);
-
+        
         if (!TryCast()) return;
         if (count != maxCount) return;
         photonView.RPC("SyncCanCastIoAutoAttackCapacityRPC", RpcTarget.All, false);
@@ -84,6 +84,7 @@ public class IoAutoAttackCapacity : NewActiveCapacity
         if (count >= maxCount) return false;
         if (!canShootNewOne) return false;
         count++;
+        photonView.RPC("SetTriggerAnimation", RpcTarget.MasterClient, "IsAutoAttacking");
         canShootNewOne = false;
 
         hitPoint = Physics.Raycast(casterInitPos + championCaster.rotateParent.forward, direction, out var hit,
@@ -92,6 +93,7 @@ public class IoAutoAttackCapacity : NewActiveCapacity
             : casterInitPos + championCaster.rotateParent.forward + direction;
 
         photonView.RPC("PlayExplosionFeedback", RpcTarget.All, GetCasterPos());
+       
 
         GameStateMachine.Instance.OnTick += CheckTimer;
         return true;
@@ -100,6 +102,8 @@ public class IoAutoAttackCapacity : NewActiveCapacity
     [PunRPC]
     public void PlayExplosionFeedback(Vector3 casterPos)
     {
+        photonView.RPC("ResetTriggerAnimation", RpcTarget.MasterClient, "IsAutoAttacking");
+        
         iceMuzzleFx.transform.position = casterPos;
         iceMuzzleFx.Play();
         
@@ -118,6 +122,7 @@ public class IoAutoAttackCapacity : NewActiveCapacity
         {
             GameStateMachine.Instance.OnTick -= CheckTimer;
             delayTimer = 0f;
+            //photonView.RPC("ResetTriggerAnimation", RpcTarget.MasterClient, "IsAutoAttacking");
             CastSkillShot();
         }
         else delayTimer += 1.0 / GameStateMachine.Instance.tickRate;
@@ -126,7 +131,7 @@ public class IoAutoAttackCapacity : NewActiveCapacity
     private void CastSkillShot()
     {
         var allTargets = Physics.OverlapSphere(hitPoint, radius, targetableLayer);
-
+        
         foreach (var c in allTargets)
         {
             var entity = c.GetComponent<Entity>();

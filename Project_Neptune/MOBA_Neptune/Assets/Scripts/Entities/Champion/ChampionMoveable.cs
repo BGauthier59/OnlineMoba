@@ -198,20 +198,20 @@ namespace Entities.Champion
 
                 if (strength.x > 3f)
                 {
-                    velocity.x = Mathf.Clamp(velocity.x, -strength.x / 2, 10);
+                    velocity.x = Mathf.Clamp(velocity.x, -strength.x * .75f, 5);
                 }
                 else if (strength.x < -3f)
                 {
-                    velocity.x = Mathf.Clamp(velocity.x, -10, -strength.x / 2);
+                    velocity.x = Mathf.Clamp(velocity.x, -5, -strength.x * .75f);
                 }
 
                 if (strength.z > 3f)
                 {
-                    velocity.z = Mathf.Clamp(velocity.z, -strength.z / 2, 10);
+                    velocity.z = Mathf.Clamp(velocity.z, -strength.z * .75f, 5);
                 }
                 else if (strength.z < -3f)
                 {
-                    velocity.z = Mathf.Clamp(velocity.z, -10, -strength.z / 2);
+                    velocity.z = Mathf.Clamp(velocity.z, -5, -strength.z * .75f);
                 }
 
                 rb.velocity = velocity + strength;

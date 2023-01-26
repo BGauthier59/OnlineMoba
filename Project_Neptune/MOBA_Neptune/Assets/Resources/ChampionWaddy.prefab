@@ -1327,7 +1327,7 @@ MonoBehaviour:
     m_Bits: 64
   waterFX1: {fileID: 290239315555001462}
   waterFX2: {fileID: 8014362800867042096}
-  accelerator: 4.5
+  accelerator: 3
   velocity: {x: 0, y: 0, z: 0}
   maxResource: 0
   currentResource: 0
@@ -1509,7 +1509,7 @@ MonoBehaviour:
   isActive: 0
   entityUnderEffect: {fileID: 0}
   slowedFx: {fileID: 2855006862871977994}
-  duration: 5
+  duration: 4
   speedModifier: 2
 --- !u!1 &3480681342087303709
 GameObject:
@@ -1754,7 +1754,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 400}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 300, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4178314197916624775
@@ -1787,8 +1787,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Respawn soon
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 2870a568caa792641bf4000797f3d667, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 2870a568caa792641bf4000797f3d667, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 09683dec3f506eb49a206d3f9a28847f, type: 2}
+  m_sharedMaterial: {fileID: -5668751342615208940, guid: 09683dec3f506eb49a206d3f9a28847f, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1812,7 +1812,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 44.75
+  m_fontSize: 44.9
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -4086,10 +4086,10 @@ MonoBehaviour:
     SynchronizeType: 2
     Name: IsAutoAttacking
   - Type: 4
-    SynchronizeType: 2
+    SynchronizeType: 1
     Name: IsJumping
   - Type: 4
-    SynchronizeType: 2
+    SynchronizeType: 1
     Name: IsRunning
   m_SynchronizeLayers:
   - SynchronizeType: 0
@@ -4162,6 +4162,10 @@ PrefabInstance:
     - target: {fileID: 1670826123425090332, guid: 2bccef3002942954790a1c37bf4341ad, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1670826123425090333, guid: 2bccef3002942954790a1c37bf4341ad, type: 3}
+      propertyPath: lengthInSec
+      value: 3.5
       objectReference: {fileID: 0}
     - target: {fileID: 1670826123425090335, guid: 2bccef3002942954790a1c37bf4341ad, type: 3}
       propertyPath: m_Name

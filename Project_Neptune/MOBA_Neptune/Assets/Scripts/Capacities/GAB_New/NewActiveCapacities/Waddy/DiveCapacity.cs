@@ -43,10 +43,11 @@ public class DiveCapacity : NewActiveCapacity
     }
 
     [PunRPC]
-    public void SyncCastDiveCapacityRPC(int entityIndex)
+    public void SyncCastDiveCapacityRPC()
     {
+        photonView.RPC("ResetTriggerAnimation", RpcTarget.MasterClient, "IsJumping");
         if (!photonView.IsMine) return;
-        EntityCollectionManager.GetEntityByIndex(entityIndex).GetComponent<Champion>().myHud.spellHolderDict[this].StartTimer(cooldownDuration);
+        championCaster.myHud.spellHolderDict[this].StartTimer(cooldownDuration);
     }
 
     public override bool TryCast()
@@ -57,11 +58,9 @@ public class DiveCapacity : NewActiveCapacity
             Debug.LogWarning("Still on cooldown!");
             return false;
         }
-
-        photonView.RPC("SyncCastDiveCapacityRPC", RpcTarget.All,caster.entityIndex);
-        // Play anim
         
-        championCaster.animator.Play("A_Jump");
+        photonView.RPC("SetTriggerAnimation", RpcTarget.MasterClient, "IsJumping");
+        photonView.RPC("SyncCastDiveCapacityRPC", RpcTarget.All);
         photonView.RPC("SyncImpactFeedback", RpcTarget.All);
 
         GameStateMachine.Instance.OnTick += CheckTimer;

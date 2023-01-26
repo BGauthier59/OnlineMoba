@@ -1,8 +1,4 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using Entities;
-using Entities.Champion;
 using GameStates;
 using JetBrains.Annotations;
 using Photon.Pun;
@@ -53,15 +49,16 @@ public class WaddyAutoAttackCapacity : NewActiveCapacity
         if (!TryCast()) return;
         StartCooldown();
         photonView.RPC("SyncCanCastWaddyAutoAttackCapacityRPC", RpcTarget.All, false);
-        photonView.RPC("SyncWaddyAutoAttackCastCapacityRPC", RpcTarget.All, caster.entityIndex);
+        photonView.RPC("SyncWaddyAutoAttackCastCapacityRPC", RpcTarget.All);
         GameStateMachine.Instance.OnTick += TimerCooldown;
     }
 
     [PunRPC]
-    public void SyncWaddyAutoAttackCastCapacityRPC(int entityIndex)
+    public void SyncWaddyAutoAttackCastCapacityRPC()
     {
         if (!championCaster.myHud) return;
         if (photonView.IsMine) championCaster.myHud.spellHolderDict[this].StartTimer(cooldownDuration);
+
     }
 
     public override bool TryCast()
@@ -71,6 +68,7 @@ public class WaddyAutoAttackCapacity : NewActiveCapacity
             Debug.LogWarning("Still on cooldown!");
             return false;
         }
+        photonView.RPC("SetTriggerAnimation", RpcTarget.MasterClient, "IsAutoAttacking");
 
         Attack();
         return true;
@@ -78,7 +76,8 @@ public class WaddyAutoAttackCapacity : NewActiveCapacity
 
     private void Attack()
     {
-        championCaster.animator.Play("A_AutoAttack");
+        photonView.RPC("ResetTriggerAnimation", RpcTarget.MasterClient, "IsAutoAttacking");
+        //championCaster.animator.Play("A_AutoAttack");
         championCaster.SetCanRotate(false);
         photonView.RPC("AttackFeedbackRPC", RpcTarget.All);
         GameStateMachine.Instance.OnTick += CheckAttackTimer;
