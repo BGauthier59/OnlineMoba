@@ -33,7 +33,6 @@ public class WaddyAutoAttackCapacity : NewActiveCapacity
         kickCollider.team = EntityCollectionManager.GetEntityByIndex(entityIndex).team;
     }
     
-    
     [PunRPC]
     public void SyncDataWaddyAutoAttackCapacityRPC()
     {
@@ -68,6 +67,8 @@ public class WaddyAutoAttackCapacity : NewActiveCapacity
             Debug.LogWarning("Still on cooldown!");
             return false;
         }
+		championCaster.isPlayingNonScalableAnim = true;
+        championCaster.animator.speed = 1;
         photonView.RPC("SetTriggerAnimation", RpcTarget.MasterClient, "IsAutoAttacking");
 
         Attack();
@@ -77,7 +78,8 @@ public class WaddyAutoAttackCapacity : NewActiveCapacity
     private void Attack()
     {
         photonView.RPC("ResetTriggerAnimation", RpcTarget.MasterClient, "IsAutoAttacking");
-        //championCaster.animator.Play("A_AutoAttack");
+        
+        championCaster.animator.Play("A_AutoAttack");
         championCaster.SetCanRotate(false);
         photonView.RPC("AttackFeedbackRPC", RpcTarget.All);
         GameStateMachine.Instance.OnTick += CheckAttackTimer;
@@ -104,6 +106,7 @@ public class WaddyAutoAttackCapacity : NewActiveCapacity
 
     private void AttackEnd()
     {
+        championCaster.isPlayingNonScalableAnim = false;
         championCaster.SetCanRotate(true);
         photonView.RPC("AttackEndFeedback", RpcTarget.All);
     }

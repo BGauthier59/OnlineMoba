@@ -30,7 +30,6 @@ public class SlowedCapacity : NewPassiveCapacity
     // Se lance sur le Master
     public override void OnAddEffect(Entity giver = null, Vector3 position = default)
     {
-        Debug.Log("slowed!");
         if (isActive) return;
         
         var moveable = entityUnderEffect.GetComponent<IMoveable>();
@@ -60,7 +59,6 @@ public class SlowedCapacity : NewPassiveCapacity
 
     public override void OnRemoveEffect()
     {
-        Debug.Log("not slowed any more");
         photonView.RPC("CancelSlowFeedback", RpcTarget.All);
         var championUnderEffect = ((Champion)entityUnderEffect);
         championUnderEffect.SetCurrentMoveSpeedRPC(initSpeed);
