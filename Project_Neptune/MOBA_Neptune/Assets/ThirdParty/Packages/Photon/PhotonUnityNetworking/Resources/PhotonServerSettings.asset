@@ -230,6 +230,10 @@ MonoBehaviour:
   - SyncDestroyItemRPC
   - PlayExplosionFeedback
   - SyncPreviewPosRPC
+  - ResetTriggerAnimation
+  - SetTriggerAnimation
+  - SyncResetTriggerAnimation
+  - SyncSetTriggerAnimation
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1
