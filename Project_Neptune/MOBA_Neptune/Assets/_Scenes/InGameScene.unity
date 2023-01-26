@@ -8885,7 +8885,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minionPrefab: {fileID: 6289120641470716826, guid: 63c443148e917c845bfcee0e8fb6a89a, type: 3}
   pointsCarriedAtStartByMinions: 4
-  repopCycleTime: 45
+  repopCycleTime: 55
   isInRepop: 1
 --- !u!1001 &324381746
 PrefabInstance:
@@ -32972,8 +32972,8 @@ MonoBehaviour:
   spawnPointForMinion: {fileID: 1227025856}
   minionPrefab: {fileID: 4555090259929885739, guid: 959943504399ac74a8da2f2c8bb23385, type: 3}
   spawnMinionAmount: 5
-  spawnMinionInterval: 1.5
-  spawnCycleTime: 40
+  spawnMinionInterval: 1
+  spawnCycleTime: 55
   goToPointBeforeStream: {fileID: 1332538914}
   pointsCarriedAtStartByMinions: 1
 --- !u!114 &1227025858
@@ -48957,8 +48957,8 @@ MonoBehaviour:
   spawnPointForMinion: {fileID: 1844950592}
   minionPrefab: {fileID: 4555090259929885739, guid: 959943504399ac74a8da2f2c8bb23385, type: 3}
   spawnMinionAmount: 5
-  spawnMinionInterval: 1.5
-  spawnCycleTime: 40
+  spawnMinionInterval: 1
+  spawnCycleTime: 55
   goToPointBeforeStream: {fileID: 1786296966}
   pointsCarriedAtStartByMinions: 1
 --- !u!114 &1844950594
@@ -49800,7 +49800,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minionPrefab: {fileID: 6289120641470716826, guid: 63c443148e917c845bfcee0e8fb6a89a, type: 3}
   pointsCarriedAtStartByMinions: 4
-  repopCycleTime: 45
+  repopCycleTime: 55
   isInRepop: 1
 --- !u!1 &1873888108
 GameObject:
@@ -70049,7 +70049,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minionPrefab: {fileID: 6289120641470716826, guid: 63c443148e917c845bfcee0e8fb6a89a, type: 3}
   pointsCarriedAtStartByMinions: 4
-  repopCycleTime: 45
+  repopCycleTime: 55
   isInRepop: 1
 --- !u!114 &4109613458547349956
 MonoBehaviour:
@@ -70065,7 +70065,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minionPrefab: {fileID: 5096569864970827413, guid: 0ff26f05550564d419783b9b3c2986b2, type: 3}
   pointsCarriedAtStartByMinions: 20
-  repopCycleTime: 120
+  repopCycleTime: 110
   isInRepop: 1
 --- !u!1 &4109613458547349957
 GameObject:
@@ -70126,7 +70126,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minionPrefab: {fileID: 6289120641470716826, guid: 63c443148e917c845bfcee0e8fb6a89a, type: 3}
   pointsCarriedAtStartByMinions: 4
-  repopCycleTime: 45
+  repopCycleTime: 55
   isInRepop: 1
 --- !u!1 &4109613458596129390
 GameObject:
@@ -70190,7 +70190,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minionPrefab: {fileID: 6289120641470716826, guid: 63c443148e917c845bfcee0e8fb6a89a, type: 3}
   pointsCarriedAtStartByMinions: 4
-  repopCycleTime: 45
+  repopCycleTime: 55
   isInRepop: 1
 --- !u!114 &4109613459490920108
 MonoBehaviour:
@@ -70206,7 +70206,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minionPrefab: {fileID: 6289120641470716826, guid: 63c443148e917c845bfcee0e8fb6a89a, type: 3}
   pointsCarriedAtStartByMinions: 4
-  repopCycleTime: 45
+  repopCycleTime: 55
   isInRepop: 1
 --- !u!1 &4109613459490920109
 GameObject:

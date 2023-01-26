@@ -85,6 +85,7 @@ public class IoAutoAttackCapacity : NewActiveCapacity
         if (!canShootNewOne) return false;
         count++;
         photonView.RPC("SetTriggerAnimation", RpcTarget.MasterClient, "IsAutoAttacking");
+        StartCoroutine(WaitForAnim(0.35f));
         canShootNewOne = false;
 
         hitPoint = Physics.Raycast(casterInitPos + championCaster.rotateParent.forward, direction, out var hit,
@@ -224,5 +225,12 @@ public class IoAutoAttackCapacity : NewActiveCapacity
         }
 
         canShootNewOne = true;
+    }
+    
+    public IEnumerator WaitForAnim(float timeToWait)
+    {
+        yield return new WaitForSeconds(timeToWait);
+        championCaster.isPlayingNonScalableAnim = false;
+        //photonView.RPC("AttackEndAnim", RpcTarget.MasterClient);
     }
 }

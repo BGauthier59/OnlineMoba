@@ -1,3 +1,4 @@
+using System.Collections;
 using Entities;
 using GameStates;
 using JetBrains.Annotations;
@@ -106,9 +107,17 @@ public class WaddyAutoAttackCapacity : NewActiveCapacity
 
     private void AttackEnd()
     {
-        championCaster.isPlayingNonScalableAnim = false;
+        
         championCaster.SetCanRotate(true);
         photonView.RPC("AttackEndFeedback", RpcTarget.All);
+        StartCoroutine(WaitForAnim(0.5f));
+    }
+    
+    public IEnumerator WaitForAnim(float timeToWait)
+    {
+        yield return new WaitForSeconds(timeToWait);
+        championCaster.isPlayingNonScalableAnim = false;
+        //photonView.RPC("AttackEndAnim", RpcTarget.MasterClient);
     }
 
     [PunRPC]

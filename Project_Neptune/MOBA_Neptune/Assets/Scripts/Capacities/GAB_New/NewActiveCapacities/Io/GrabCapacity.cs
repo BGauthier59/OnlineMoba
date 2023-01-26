@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using Entities;
 using Entities.Capacities;
 using Entities.Champion;
@@ -70,6 +71,7 @@ public class GrabCapacity : NewActiveCapacity
             return false;
         }
         photonView.RPC("SetTriggerAnimation", RpcTarget.MasterClient, "IsGrabbing");
+        StartCoroutine(WaitForAnim(0.35f));
 
         if (!Physics.Raycast(casterInitPos + championCaster.rotateParent.forward, direction, out var hit,
                 grabMaxDistance, grabableLayer)) return false;
@@ -97,8 +99,6 @@ public class GrabCapacity : NewActiveCapacity
         Debug.DrawLine(casterInitPos, hitData.point, Color.red, 3);
         photonView.RPC("PlayHitEffect", RpcTarget.All, hitData.point);
         
-
-
         // We get hit IGrabable data
         var grabable = hitData.collider.gameObject.GetComponent<IGrabable>();
         if (grabable == null)
@@ -202,5 +202,12 @@ public class GrabCapacity : NewActiveCapacity
             var color = canCast ? championCaster.previewColorEnable : championCaster.previewColorDisable;
             previewRenderer.material.SetColor("_EmissionColor", color);
         }
+    }
+    
+    public IEnumerator WaitForAnim(float timeToWait)
+    {
+        yield return new WaitForSeconds(timeToWait);
+        championCaster.isPlayingNonScalableAnim = false;
+        //photonView.RPC("AttackEndAnim", RpcTarget.MasterClient);
     }
 }

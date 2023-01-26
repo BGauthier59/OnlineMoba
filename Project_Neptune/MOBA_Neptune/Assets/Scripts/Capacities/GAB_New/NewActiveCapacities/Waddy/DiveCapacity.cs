@@ -60,6 +60,7 @@ public class DiveCapacity : NewActiveCapacity
         }
         
         photonView.RPC("SetTriggerAnimation", RpcTarget.MasterClient, "IsJumping");
+        StartCoroutine(WaitForAnim(0.8f));
         photonView.RPC("SyncCastDiveCapacityRPC", RpcTarget.All);
         photonView.RPC("SyncImpactFeedback", RpcTarget.All);
 
@@ -165,5 +166,12 @@ public class DiveCapacity : NewActiveCapacity
             var color = canCast ? championCaster.previewColorEnable : championCaster.previewColorDisable;
             previewRenderer.material.SetColor("_EmissionColor", color);
         }
+    }
+    
+    public IEnumerator WaitForAnim(float timeToWait)
+    {
+        yield return new WaitForSeconds(timeToWait);
+        championCaster.isPlayingNonScalableAnim = false;
+        //photonView.RPC("AttackEndAnim", RpcTarget.MasterClient);
     }
 }
