@@ -37,14 +37,11 @@ namespace Entities.Minion.MinionJungle
         [Header("Attack Logic")] 
         public lastCapacityUsed lastCapacity = lastCapacityUsed.None;
         public NewActiveCapacity autoAttackCapacity;
-        public int autoAttackDamage;
         public GameObject vfxAutoAttack;
         
         [Space]
         public NewActiveCapacity secondaryCapacity;
         [Range(1, 100)] public int capacityProbability = 20;
-        [Range(1,10)] public float stunRange;
-        [Range(0.1f, 6)] public float stunDuration;
         public GameObject vfxStunAttack;
         
         public minionAggroState currentAggroState = minionAggroState.None;

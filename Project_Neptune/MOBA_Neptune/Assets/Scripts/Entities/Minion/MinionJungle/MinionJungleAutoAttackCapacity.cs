@@ -15,19 +15,14 @@ public class MinionJungleAutoAttackCapacity : NewActiveCapacity
     [SerializeField] private Vector3 casterPos;
     [SerializeField] private Vector3 targetPos;
     [SerializeField] private LayerMask capacityLayerMask;
-
-    private void Start()
-    {
-        if (!PhotonNetwork.IsMasterClient) return;
-        capacityDamage = GetComponent<MinionJungle>().autoAttackDamage;
-    }
+    
+    public new void Start() { }
 
     public override void RequestCastCapacity(int[] targetedEntities, Vector3[] targetedPositions)
     {
         photonView.RPC("CastMinionJungleAutoAttackCapacityRPC", RpcTarget.MasterClient, targetedEntities, targetedPositions);
     }
 
-    
     [PunRPC]
     [UsedImplicitly]
     public void CastMinionJungleAutoAttackCapacityRPC(int[] targetedEntities, Vector3[] targetedPositions)

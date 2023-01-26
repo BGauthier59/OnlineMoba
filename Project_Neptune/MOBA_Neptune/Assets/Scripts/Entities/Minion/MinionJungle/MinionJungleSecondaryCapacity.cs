@@ -16,14 +16,7 @@ public class MinionJungleSecondaryCapacity : NewActiveCapacity
     [SerializeField] private Vector3 casterPos;
     [SerializeField] private Vector3 targetPos;
 
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        if (!PhotonNetwork.IsMasterClient) return;
-        capacityRange = GetComponent<MinionJungle>().stunRange;
-        capacityDuration = GetComponent<MinionJungle>().stunDuration;
-    }
+    public new void Start() { }
 
     public override void RequestCastCapacity(int[] targetedEntities, Vector3[] targetedPositions)
     {
@@ -40,7 +33,7 @@ public class MinionJungleSecondaryCapacity : NewActiveCapacity
 
         // Calcul de la capa
         var aimedZone = targetedPositions[0]; // Endroit où le joueur se situe
-        colliders = Physics.OverlapSphere(aimedZone, 1.5f, capacityLayerMask);
+        colliders = Physics.OverlapSphere(aimedZone, capacityRange, capacityLayerMask);
 
         foreach (var entityStuned in colliders)
         {
@@ -48,7 +41,6 @@ public class MinionJungleSecondaryCapacity : NewActiveCapacity
 
             if (thisChampion && entityStuned.GetComponent<Entity>() != caster)
             {
-                Debug.Log("STUN PLAYER");
                 thisChampion.rb.velocity = Vector3.zero;
                 thisChampion.RequestSetCanMove(false);
                 thisChampion.RequestSetCanCast(false);
@@ -68,7 +60,6 @@ public class MinionJungleSecondaryCapacity : NewActiveCapacity
 
             if (thisChampion)
             {
-                Debug.Log("FINI");
                 thisChampion.RequestSetCanMove(true);
                 thisChampion.RequestSetCanCast(true);
             }
@@ -77,10 +68,7 @@ public class MinionJungleSecondaryCapacity : NewActiveCapacity
 
 
     [PunRPC]
-    public void SyncCastSecondaryMinionJungleCapacityRPC()
-    {
-        
-    }
+    public void SyncCastSecondaryMinionJungleCapacityRPC() { }
 
     public override bool TryCast()
     {

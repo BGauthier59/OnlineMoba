@@ -14,7 +14,9 @@ namespace Entities.Champion
         public string championName;
         public ChampionInputController controller;
         public Transform rotateParent;
+
         private Vector3 respawnPos;
+
         //private UIManager uiManager;
         public EntityHealthBar myEntityHealthBar;
         public Camera camera;
@@ -22,7 +24,7 @@ namespace Entities.Champion
         public List<TargetIndicator> targetIndicators;
         private bool isLinked;
         public TextMeshPro pointsText;
-    
+
         [SerializeField] private MeshRenderer teamConeRenderer;
 
         public Color previewColorEnable;
@@ -33,13 +35,12 @@ namespace Entities.Champion
 
         // Which tower is link
         private int towerLinkedIndex;
-        
+
         // UI
-        [Space, Header("UI Variable")] 
-        public ChampionHUD myHud;
-        public Sprite   championSpellKit;
+        [Space, Header("UI Variable")] public ChampionHUD myHud;
+        public Sprite championSpellKit;
         public Sprite[] championIcon;
-        
+
         protected override void OnStart()
         {
             base.OnStart();
@@ -49,11 +50,11 @@ namespace Entities.Champion
             dieCanvas.SetActive(false);
             myEntityHealthBar.InitHealthBar(this);
         }
-        
+
         protected override void OnUpdate()
         {
             if (!isLinked) return;
-            
+
             if (GameStateMachine.Instance.GetPlayerChampion() == this)
                 RotateMath();
         }
@@ -83,7 +84,7 @@ namespace Entities.Champion
                 Debug.LogError("Neutral team?");
                 return;
             }
-            
+
             var material = team == Enums.Team.Team1 ? orangeTeam : violetTeam;
 
             foreach (var rd in meshes)
@@ -138,15 +139,15 @@ namespace Entities.Champion
             }
 
             respawnPos = transform.position = pos.position;
-            
+
             rb.velocity = Vector3.zero;
             RequestSetCanDie(true);
             RequestSetCanMove(true);
             SetCanRotate(true);
-            
+
             isLinked = true;
             LinkTower();
-            
+
             EntityCollectionManager.AllChampion.Add(this);
         }
 
@@ -182,11 +183,12 @@ namespace Entities.Champion
                     tower2.entityLinkIndex = entityIndex;
                 }
             }
-            
+
             photonView.RPC("SyncTowerActiveRpc", RpcTarget.All, towerLinkedIndex);
         }
 
-        [PunRPC] [UsedImplicitly]
+        [PunRPC]
+        [UsedImplicitly]
         public void SyncTowerActiveRpc(int myTowerIndex)
         {
             var myTower = EntityCollectionManager.GetEntityByIndex(myTowerIndex).GetComponent<Tower>();

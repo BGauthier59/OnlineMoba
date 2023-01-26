@@ -47,6 +47,7 @@ namespace Entities.Minion.MinionStream
         [PunRPC]
         public void SyncDieRPC()
         {
+            OnDieFeedback?.Invoke();
             PoolNetworkManager.Instance.PoolRequeue(this);
             if (FogOfWarManager.Instance != null) FogOfWarManager.Instance.RemoveFOWViewable(this);
             GameStateMachine.Instance.OnTick += Die;

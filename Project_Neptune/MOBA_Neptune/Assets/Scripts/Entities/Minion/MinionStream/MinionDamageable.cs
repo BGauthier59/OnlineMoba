@@ -9,6 +9,7 @@ namespace Entities.Minion.MinionStream
         public float maxHp;
         public float currentHp;
         [SerializeField] private Renderer[] meshes;
+
         public float GetMaxHp()
         {
             return maxHp;
@@ -60,62 +61,38 @@ namespace Entities.Minion.MinionStream
         public event GlobalDelegates.FloatDelegate OnIncreaseMaxHp;
         public event GlobalDelegates.FloatDelegate OnIncreaseMaxHpFeedback;
 
-        public void RequestDecreaseMaxHp(float amount)
-        {
-        }
+        public void RequestDecreaseMaxHp(float amount) { }
 
-        public void SyncDecreaseMaxHpRPC(float amount)
-        {
-        }
+        public void SyncDecreaseMaxHpRPC(float amount) { }
 
-        public void DecreaseMaxHpRPC(float amount)
-        {
-        }
+        public void DecreaseMaxHpRPC(float amount) { }
 
         public event GlobalDelegates.FloatDelegate OnDecreaseMaxHp;
         public event GlobalDelegates.FloatDelegate OnDecreaseMaxHpFeedback;
 
-        public void RequestSetCurrentHp(float value)
-        {
-        }
+        public void RequestSetCurrentHp(float value) { }
 
-        public void SyncSetCurrentHpRPC(float value)
-        {
-        }
+        public void SyncSetCurrentHpRPC(float value) { }
 
-        public void SetCurrentHpRPC(float value)
-        {
-        }
+        public void SetCurrentHpRPC(float value) { }
 
         public event GlobalDelegates.FloatDelegate OnSetCurrentHp;
         public event GlobalDelegates.FloatDelegate OnSetCurrentHpFeedback;
 
-        public void RequestSetCurrentHpPercent(float value)
-        {
-        }
+        public void RequestSetCurrentHpPercent(float value) { }
 
-        public void SyncSetCurrentHpPercentRPC(float value)
-        {
-        }
+        public void SyncSetCurrentHpPercentRPC(float value) { }
 
-        public void SetCurrentHpPercentRPC(float value)
-        {
-        }
+        public void SetCurrentHpPercentRPC(float value) { }
 
         public event GlobalDelegates.FloatDelegate OnSetCurrentHpPercent;
         public event GlobalDelegates.FloatDelegate OnSetCurrentHpPercentFeedback;
 
-        public void RequestIncreaseCurrentHp(float amount)
-        {
-        }
+        public void RequestIncreaseCurrentHp(float amount) { }
 
-        public void SyncIncreaseCurrentHpRPC(float amount)
-        {
-        }
+        public void SyncIncreaseCurrentHpRPC(float amount) { }
 
-        public void IncreaseCurrentHpRPC(float amount)
-        {
-        }
+        public void IncreaseCurrentHpRPC(float amount) { }
 
         public event GlobalDelegates.FloatDelegate OnIncreaseCurrentHp;
         public event GlobalDelegates.FloatDelegate OnIncreaseCurrentHpFeedback;
@@ -127,6 +104,7 @@ namespace Entities.Minion.MinionStream
         }
 
         public S_GetHurtOnSimpleMesh hurtOnSkinnedMeshVfx;
+
         [PunRPC]
         public void SyncDecreaseCurrentHpRPC(float amount, int entityWhoAttackedMeIndex)
         {
@@ -144,9 +122,9 @@ namespace Entities.Minion.MinionStream
         {
             currentHp -= amount;
             lastEntityWhoAttackedMeIndex = entityWhoAttackedMeIndex;
-            
+
             if (currentHp < 0) currentHp = 0;
-            
+
             photonView.RPC("SyncDecreaseCurrentHpRPC", RpcTarget.All, currentHp, lastEntityWhoAttackedMeIndex);
             if (currentHp <= 0) DieRPC();
         }

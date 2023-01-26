@@ -20,7 +20,6 @@ public class WaddyAutoAttackCapacity : NewActiveCapacity
 
     public override void RequestCastCapacity(int[] targetedEntities, Vector3[] targetedPositions)
     {
-        //if (kickCollider.team == Enums.Team.Neutral) photonView.RPC("SetKickColliderTeamRPC", RpcTarget.MasterClient, championCaster.entityIndex);
         photonView.RPC("CastWaddyAutoAttackCapacityRPC", RpcTarget.MasterClient, targetedEntities, targetedPositions);
         RequestSetPreview(false);
     }

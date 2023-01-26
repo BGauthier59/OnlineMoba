@@ -25,7 +25,8 @@ public class ChampionHUD : MonoBehaviour
     private Champion champion;
     private IDamageable lifeable;
 
-    public Dictionary<NewActiveCapacity, SpellHolder> spellHolderDict = new Dictionary<NewActiveCapacity, SpellHolder>();
+    public Dictionary<NewActiveCapacity, SpellHolder>
+        spellHolderDict = new Dictionary<NewActiveCapacity, SpellHolder>();
 
     public class SpellHolder
     {
@@ -84,8 +85,6 @@ public class ChampionHUD : MonoBehaviour
 
     private void UpdateIcons(Champion champion)
     {
-        Debug.Log("Has to be modified.");
-
         var autoAttackHolder = new SpellHolder
         {
             spellCooldown = autoAttackCooldown,
