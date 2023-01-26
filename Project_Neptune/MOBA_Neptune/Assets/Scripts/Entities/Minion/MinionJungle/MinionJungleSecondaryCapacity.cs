@@ -10,6 +10,7 @@ public class MinionJungleSecondaryCapacity : NewActiveCapacity
     [Space] [Header("Capacity Stats")] [SerializeField]
     private float capacityRange;
 
+    public GameObject stunVfx;
     [SerializeField] private float capacityDuration;
     [SerializeField] private LayerMask capacityLayerMask;
     [SerializeField] private Vector3 casterPos;
@@ -34,12 +35,12 @@ public class MinionJungleSecondaryCapacity : NewActiveCapacity
     [PunRPC]
     public void CastSecondaryMinionJungleCapacityRPC(Vector3[] targetedPositions)
     {
-        photonView.RPC("SyncCastSecondaryMinionJungleCapacityRPC", RpcTarget.All);
+        //photonView.RPC("SyncCastSecondaryMinionJungleCapacityRPC", RpcTarget.All);
         caster = GetComponent<Entity>();
 
         // Calcul de la capa
         var aimedZone = targetedPositions[0]; // Endroit où le joueur se situe
-        colliders = Physics.OverlapSphere(aimedZone, capacityRange, capacityLayerMask);
+        colliders = Physics.OverlapSphere(aimedZone, 1.5f, capacityLayerMask);
 
         foreach (var entityStuned in colliders)
         {
@@ -78,7 +79,7 @@ public class MinionJungleSecondaryCapacity : NewActiveCapacity
     [PunRPC]
     public void SyncCastSecondaryMinionJungleCapacityRPC()
     {
-        // TODO - Afficher FX
+        
     }
 
     public override bool TryCast()
