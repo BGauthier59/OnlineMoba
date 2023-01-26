@@ -58,7 +58,7 @@ public class DiveCapacity : NewActiveCapacity
             Debug.LogWarning("Still on cooldown!");
             return false;
         }
-        
+        championCaster.isPlayingNonScalableAnim = true;
         photonView.RPC("SetTriggerAnimation", RpcTarget.MasterClient, "IsJumping");
         StartCoroutine(WaitForAnim(0.8f));
         photonView.RPC("SyncCastDiveCapacityRPC", RpcTarget.All);

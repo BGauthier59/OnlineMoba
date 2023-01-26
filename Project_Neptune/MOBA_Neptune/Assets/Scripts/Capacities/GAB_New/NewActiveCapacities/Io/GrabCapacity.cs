@@ -70,6 +70,7 @@ public class GrabCapacity : NewActiveCapacity
             Debug.LogWarning("Still on cooldown!");
             return false;
         }
+        championCaster.isPlayingNonScalableAnim = true;
         photonView.RPC("SetTriggerAnimation", RpcTarget.MasterClient, "IsGrabbing");
         StartCoroutine(WaitForAnim(0.35f));
 

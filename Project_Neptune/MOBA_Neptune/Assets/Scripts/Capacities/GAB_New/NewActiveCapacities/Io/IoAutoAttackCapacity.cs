@@ -84,6 +84,7 @@ public class IoAutoAttackCapacity : NewActiveCapacity
         if (count >= maxCount) return false;
         if (!canShootNewOne) return false;
         count++;
+        championCaster.isPlayingNonScalableAnim = true;
         photonView.RPC("SetTriggerAnimation", RpcTarget.MasterClient, "IsAutoAttacking");
         StartCoroutine(WaitForAnim(0.35f));
         canShootNewOne = false;
