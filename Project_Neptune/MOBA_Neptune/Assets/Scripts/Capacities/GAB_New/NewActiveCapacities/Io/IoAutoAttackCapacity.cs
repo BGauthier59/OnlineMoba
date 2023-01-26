@@ -32,7 +32,7 @@ public class IoAutoAttackCapacity : NewActiveCapacity
     [SerializeField] private ParticleSystem iceMuzzleFx;
 
     private Vector3 savedPreviewPos;
-    [SerializeField] private Transform projectile;
+    [SerializeField] private Rigidbody projectile;
 
     public override void Start()
     {
@@ -50,7 +50,7 @@ public class IoAutoAttackCapacity : NewActiveCapacity
     public void CastIoAutoAttackCapacityRPC(int[] targetedEntities, Vector3[] targetedPositions)
     {
         photonView.RPC("SyncDataIoAutoAttackCapacityRPC", RpcTarget.All, targetedPositions[0]);
-        
+
         if (!TryCast()) return;
         if (count != maxCount) return;
         photonView.RPC("SyncCanCastIoAutoAttackCapacityRPC", RpcTarget.All, false);
@@ -91,29 +91,37 @@ public class IoAutoAttackCapacity : NewActiveCapacity
             ? hit.point
             : casterInitPos + championCaster.rotateParent.forward + direction;
 
-        photonView.RPC("PlayExplosionFeedback", RpcTarget.All, GetCasterPos());
-       
+        photonView.RPC("PlayExplosionFeedback", RpcTarget.All, GetCasterPos(), hitPoint);
 
         GameStateMachine.Instance.OnTick += CheckTimer;
         return true;
     }
 
+    private Rigidbody proj;
+
     [PunRPC]
-    public void PlayExplosionFeedback(Vector3 casterPos)
+    public void PlayExplosionFeedback(Vector3 casterPos, Vector3 hitPoint)
     {
         photonView.RPC("ResetTriggerAnimation", RpcTarget.MasterClient, "IsAutoAttacking");
-        
+
         iceMuzzleFx.transform.position = casterPos;
         iceMuzzleFx.Play();
-        
-        
+
         allyTeamVfx.transform.position = savedPreviewPos;
         enemyTeamVfx.transform.position = savedPreviewPos;
-        
+
         var team = GameStateMachine.Instance.GetPlayerTeam();
         if (team == championCaster.team) allyTeamVfx.Play();
         else enemyTeamVfx.Play();
-        
+
+        proj = Instantiate(projectile, GetCasterPos(), Quaternion.LookRotation(direction));
+        proj.transform.Rotate(-90 * Vector3.up);
+
+        var dist = Vector3.Distance(proj.position, hitPoint);
+        var speed = dist / (delayDuration);
+
+        proj.velocity = direction.normalized * (float)speed;
+
         StartCoroutine(WaitForAnim(0.35f));
     }
 
@@ -123,7 +131,6 @@ public class IoAutoAttackCapacity : NewActiveCapacity
         {
             GameStateMachine.Instance.OnTick -= CheckTimer;
             delayTimer = 0f;
-            //photonView.RPC("ResetTriggerAnimation", RpcTarget.MasterClient, "IsAutoAttacking");
             CastSkillShot();
         }
         else delayTimer += 1.0 / GameStateMachine.Instance.tickRate;
@@ -132,7 +139,7 @@ public class IoAutoAttackCapacity : NewActiveCapacity
     private void CastSkillShot()
     {
         var allTargets = Physics.OverlapSphere(hitPoint, radius, targetableLayer);
-        
+
         foreach (var c in allTargets)
         {
             var entity = c.GetComponent<Entity>();
@@ -148,6 +155,8 @@ public class IoAutoAttackCapacity : NewActiveCapacity
 
         resetTimer = 0f;
         if (count == 1) GameStateMachine.Instance.OnTick += CheckResetTimer;
+
+        Destroy(proj.gameObject);
         canShootNewOne = true;
     }
 
@@ -226,7 +235,7 @@ public class IoAutoAttackCapacity : NewActiveCapacity
 
         canShootNewOne = true;
     }
-    
+
     public IEnumerator WaitForAnim(float timeToWait)
     {
         championCaster.animator.speed = 1;
