@@ -102,7 +102,8 @@ public class IoAutoAttackCapacity : NewActiveCapacity
     [PunRPC]
     public void PlayExplosionFeedback(Vector3 casterPos, Vector3 hitPoint)
     {
-        photonView.RPC("ResetTriggerAnimation", RpcTarget.MasterClient, "IsAutoAttacking");
+        if (PhotonNetwork.IsMasterClient)
+            photonView.RPC("ResetTriggerAnimation", RpcTarget.MasterClient, "IsAutoAttacking");
 
         iceMuzzleFx.transform.position = casterPos;
         iceMuzzleFx.Play();

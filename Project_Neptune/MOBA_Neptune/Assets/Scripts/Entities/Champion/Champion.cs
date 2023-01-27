@@ -199,7 +199,7 @@ namespace Entities.Champion
         [PunRPC]
         public void SetTriggerAnimation(string animation)
         {
-            animator.SetTrigger(animation);
+            //animator.SetTrigger(animation);
             photonView.RPC("SyncSetTriggerAnimation", RpcTarget.All, animation);
         }
         
@@ -212,7 +212,7 @@ namespace Entities.Champion
         [PunRPC]
         public void ResetTriggerAnimation(string animation)
         {
-            animator.ResetTrigger(animation);
+            //animator.ResetTrigger(animation);
             photonView.RPC("SyncSetTriggerAnimation", RpcTarget.All, animation);
         }
         

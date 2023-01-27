@@ -78,7 +78,7 @@ public class WaddyAutoAttackCapacity : NewActiveCapacity
     {
         photonView.RPC("ResetTriggerAnimation", RpcTarget.MasterClient, "IsAutoAttacking");
         
-        championCaster.animator.Play("A_AutoAttack");
+        //championCaster.animator.Play("A_AutoAttack");
         championCaster.SetCanRotate(false);
         photonView.RPC("AttackFeedbackRPC", RpcTarget.All);
         GameStateMachine.Instance.OnTick += CheckAttackTimer;
